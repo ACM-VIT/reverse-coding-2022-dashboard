@@ -1,13 +1,21 @@
 import React, { Component } from "react";
-
-// Styling
+import { Route, Switch } from "react-router-dom";
+import Questions from "./components/Questions/Questions";
 import "./App.css";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <p className=" bg-black">hello</p>
+        <div className=" md:ml-64">
+          <Switch>
+            <>
+              <Sidebar />
+              <Route exact path="/questions" component={Questions} />
+            </>
+          </Switch>
+        </div>
       </div>
     );
   }
