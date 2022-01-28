@@ -4,7 +4,7 @@ import "./Overview.css";
 
 const Overview = () => (
   <div className="pl-52">
-    <div className="grid grid-cols-3 pt-40">
+    <div className="grid grid-cols-3 font-dm pt-40">
       <div className="text-white space-y-3">
         <h1 className="text-2xl">Team</h1>
         <p className="text-4xl text-prpl">Bina Aloo Pyaz</p>
@@ -20,7 +20,7 @@ const Overview = () => (
       </div>
     </div>
 
-    <div className="text-white pt-24">
+    <div className="font-dm text-white pt-24">
       <h1 className="text-3xl">My Submissions</h1>
       <div className="flex flex-col items-center space-y-10 pr-40">
         <h1 className="text-4xl text-grey pt-20">No Submissions</h1>
