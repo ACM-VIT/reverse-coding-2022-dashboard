@@ -1,11 +1,13 @@
 import React, { useState, useRef } from "react";
-// import Chevron from "./Chevron";
+import Chevron from "../Chevron";
 
 import "./Accordion.css";
 
 const Accordion = (props) => {
   const [setActive, setActiveState] = useState("");
   const [setHeight, setHeightState] = useState("0px");
+  const [setRotate, setRotateState] = useState("accordion__icon");
+  const [setColor, setColorState] = useState("#984FB9");
   const [setDisplay, setDisplayState] = useState("displayBorder");
   const [hideBorder, setHideBorder] = useState("accordion");
   const content = useRef(null);
@@ -15,6 +17,10 @@ const Accordion = (props) => {
     setHeightState(
       setActive === "active" ? "0px" : `${content.current.scrollHeight}px`
     );
+    setRotateState(
+      setActive === "active" ? "accordion__icon" : "accordion__icon rotate"
+    );
+    setColorState(setActive === "active" ? "#984FB9" : "#984FB9");
     setDisplayState(
       setActive === "active" ? "displayBorder" : "accordion__content"
     );
@@ -29,6 +35,7 @@ const Accordion = (props) => {
         onClick={toggleAccordion}
       >
         <div className={`accordion__title ${setActive}`}>{props.title}</div>
+        <Chevron className={`${setRotate}`} width={10} fill={`${setColor}`} />
       </button>
       <div
         ref={content}

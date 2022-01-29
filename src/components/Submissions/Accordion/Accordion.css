@@ -11,7 +11,7 @@
 /* Style the buttons that are used to open and close the accordion panel */
 .accordion {
   border-radius: 16px;
-  background: rgba(5, 5, 5, 1);
+  background: rgba(24, 24, 24, 1);
   border: 2px solid rgba(227, 198, 240, 0.2);
   border-left: 2px solid rgba(227, 198, 240, 0.2);
   border-right: 2px solid rgba(227, 198, 240, 0.2);
@@ -24,7 +24,7 @@
 
 .accordion-active {
   border-radius: 16px 16px 0 0;
-  background: rgba(5, 5, 5, 1);
+  background: rgba(24, 24, 24, 1);
   border-top: 2px solid rgba(227, 198, 240, 0.2);
   border-bottom: 2px solid rgba(227, 198, 240, 0.2);
   border-left: 2px solid rgba(227, 198, 240, 0.2);
