@@ -16,7 +16,8 @@ const Submissions = () => (
             key={props.id}
             id={props.id}
             title={props.question}
-            content={props.answer}
+            content={props.description}
+            score={props.score}
           />
         ))}
       </div>

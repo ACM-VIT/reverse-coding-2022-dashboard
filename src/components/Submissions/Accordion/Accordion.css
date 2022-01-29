@@ -5,6 +5,7 @@
   border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
   border: 10px;
   border-radius: 16px;
+  margin-bottom: 10px;
 }
 
 /* Style the buttons that are used to open and close the accordion panel */
@@ -24,16 +25,17 @@
   display: flex;
   align-items: center;
   transition: background-color 0.3s ease;
+  border-radius: 8px 8px 0px 0px !important;
 }
 
 /* Style the accordion content title */
 .accordion__title {
-  font-weight: 400;
+  font-weight: 700;
   font-family: "DMSans";
   font-size: 20px;
   line-height: 30px;
   letter-spacing: 1.92px;
-  text-align: left;
+  /* text-align: left; */
   color: #ffffff;
 }
 
@@ -82,6 +84,14 @@
   padding: 16px 16px 16px 16px;
   color: #ffffff;
   border-radius: 12px 12px;
+}
+
+.gray {
+  color: #bdbdbd;
+}
+
+.purple {
+  color: #9b51e0;
 }
 
 /* Media Queries */

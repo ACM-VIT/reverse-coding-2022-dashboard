@@ -8,6 +8,7 @@ const Accordion = (props) => {
   const [setHeight, setHeightState] = useState("0px");
   const [setRotate, setRotateState] = useState("accordion__icon");
   const [setColor, setColorState] = useState("#984FB9");
+  const [setTextColor, setTextColorState] = useState("gray");
   const [setDisplay, setDisplayState] = useState("displayBorder");
   const [hideBorder, setHideBorder] = useState("accordion");
   const content = useRef(null);
@@ -21,6 +22,7 @@ const Accordion = (props) => {
       setActive === "active" ? "accordion__icon" : "accordion__icon rotate"
     );
     setColorState(setActive === "active" ? "#984FB9" : "#984FB9");
+    setTextColorState(setActive === "active" ? "gray" : "purple");
     setDisplayState(
       setActive === "active" ? "displayBorder" : "accordion__content"
     );
@@ -34,7 +36,11 @@ const Accordion = (props) => {
         className={`${hideBorder} ${setActive}`}
         onClick={toggleAccordion}
       >
-        <div className={`accordion__title ${setActive}`}>{props.title}</div>
+        <div className="grid grid-cols-3 gap-x-28 accordion__title">
+          <div className={`${setActive}`}>{props.title}</div>
+          <p className={`${setTextColor} pl-8`}>Open IDE</p>
+          <div className={`${setActive}`}>{props.score}/100</div>
+        </div>
         <Chevron className={`${setRotate}`} width={10} fill={`${setColor}`} />
       </button>
       <div
