@@ -1,12 +1,13 @@
 import React from "react";
 
-import admin from "../../assets/images/admin.svg";
-
 import "./Overview.css";
+
+import admin from "../../assets/images/admin.svg";
+import Submissions from "../../components/Submissions/Submissions";
 
 const Overview = () => (
   <div className="pl-52">
-    <div className="grid grid-cols-3 font-dm font-bold pt-36">
+    <div className="grid grid-cols-3 font-dm font-bold pt-32">
       <div className="text-white space-y-3">
         <h1 className="text-3xl">Team</h1>
         <p className="text-4xl text-prpl">Bina Aloo Pyaz</p>
@@ -25,13 +26,16 @@ const Overview = () => (
       </div>
     </div>
 
-    <div className="font-dm font-bold text-white pt-24">
+    <div className="font-dm font-bold text-white pt-20">
       <h1 className="text-3xl">My Submissions</h1>
-      <div className="flex flex-col items-center space-y-10 pr-40">
+      {/* <div className="flex flex-col items-center space-y-10 pr-40">
         <h1 className="text-4xl text-grey pt-20">No Submissions</h1>
         <div className="flex justify-center items-center cursor-pointer z-10 grad-bg rounded-3xl w-60 h-14">
-          <div className="text-white text-xl font-medium">Begin Solving</div>
+        <div className="text-white text-xl font-medium">Begin Solving</div>
         </div>
+      </div> */}
+      <div className="mt-10 overflow-y-scroll h-96">
+        <Submissions />
       </div>
     </div>
   </div>
