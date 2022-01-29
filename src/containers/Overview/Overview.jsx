@@ -26,7 +26,7 @@ const Overview = () => (
       </div>
     </div>
 
-    <div className="font-dm font-bold text-white pt-20">
+    <div className="font-dm font-bold text-white pt-16">
       <h1 className="text-3xl">My Submissions</h1>
       {/* <div className="flex flex-col items-center space-y-10 pr-40">
         <h1 className="text-4xl text-grey pt-20">No Submissions</h1>
@@ -34,9 +34,7 @@ const Overview = () => (
         <div className="text-white text-xl font-medium">Begin Solving</div>
         </div>
       </div> */}
-      <div className="mt-10 overflow-y-scroll h-96">
-        <Submissions />
-      </div>
+      <Submissions />
     </div>
   </div>
 );

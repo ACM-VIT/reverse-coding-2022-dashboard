@@ -5,18 +5,23 @@ import "./Submissions.css";
 import data from "./Data";
 
 const Submissions = () => (
-  <article id="faqs" className="faqcontainer">
-    <div className="tabscontainer">
-      {data.map((ques) => (
-        <Accordion
-          key={ques.id}
-          id={ques.id}
-          title={ques.question}
-          content={ques.answer}
-        />
-      ))}
-    </div>
-  </article>
+  <div
+    id="sub"
+    className="overflow-y-scroll h-80 mt-2 w-11/12 md:w-7/12 lg:w-7/12 xl:w-9/12"
+  >
+    <article>
+      <div className="tabscontainer">
+        {data.map((props) => (
+          <Accordion
+            key={props.id}
+            id={props.id}
+            title={props.question}
+            content={props.answer}
+          />
+        ))}
+      </div>
+    </article>
+  </div>
 );
 
 export default Submissions;
