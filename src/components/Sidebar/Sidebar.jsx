@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
+import logo from "../../assets/images/logo.svg";
+
 const Sidebar = () => {
   const [active, setActive] = useState("");
   return (
@@ -13,7 +15,7 @@ const Sidebar = () => {
           rel="noreferrer"
           className="mt-2 text-center w-full inline-block"
         >
-          <h1 className="text-white">RC</h1>
+          <img src={logo} alt="RC" className="pl-3" />
         </a>
         <div className="flex flex-col mt-52">
           <ul className="flex-col min-w-full flex list-none">
