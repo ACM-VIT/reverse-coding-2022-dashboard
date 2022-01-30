@@ -9,7 +9,12 @@ import Pages from "./Pages";
 import nextarrow from "../../assets/images/nextarrow.svg";
 import prevarrow from "../../assets/images/prevarrow.svg";
 import Countdown from "../CountDown/CountDown";
+import Modals from "../Modals/Modals";
 function Overview() {
+  const [open, setOpen] = useState(false);
+  console.log(open);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(3);
 
@@ -65,7 +70,11 @@ function Overview() {
     <div>
       <div className=" flex flex-col text-center text-white">
         <div className="flex flex-col">
-          <h1 className=" mt-20 text-2xl"> Event Ends in</h1>
+          <h1 className=" mt-20 text-2xl" onClick={handleOpen}>
+            {" "}
+            Event Ends in
+          </h1>
+          <Modals open={open} onClose={handleClose} />
           <Countdown />
         </div>
         <div>
