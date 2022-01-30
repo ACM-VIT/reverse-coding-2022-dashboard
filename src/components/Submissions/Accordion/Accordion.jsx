@@ -29,6 +29,10 @@ const Accordion = (props) => {
     setHideBorder(setActive === "active" ? "accordion" : "accordion-active");
   }
 
+  function QuestionRedirect() {
+    window.location.href = "/questions";
+  }
+
   return (
     <div className="accordion__section z-0">
       <button
@@ -38,7 +42,13 @@ const Accordion = (props) => {
       >
         <div className="grid grid-cols-3 gap-x-28 accordion__title">
           <div className={`${setActive}`}>{props.title}</div>
-          <p className={`${setTextColor} pl-8`}>Open IDE</p>
+          <button
+            type="button"
+            className={`${setTextColor} pl-8 accordion__title`}
+            onClick={QuestionRedirect}
+          >
+            Open
+          </button>
           <div className={`${setActive}`}>{props.score}/100</div>
         </div>
         <Chevron className={`${setRotate}`} width={10} fill={`${setColor}`} />
