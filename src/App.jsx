@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
+import Overview from "./containers/Overview/Overview";
 import Questions from "./components/Questions/Questions";
-import "./App.css";
 import Sidebar from "./components/Sidebar/Sidebar";
 
+import "./App.css";
 class App extends Component {
   render() {
     return (
@@ -12,6 +13,7 @@ class App extends Component {
           <Switch>
             <>
               <Sidebar />
+              <Route exact path="/overview" component={Overview} />
               <Route exact path="/questions" component={Questions} />
             </>
           </Switch>
@@ -20,4 +22,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;
