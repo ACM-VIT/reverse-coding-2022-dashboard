@@ -12,9 +12,14 @@ import Modals from "../../components/Modals/Modals";
 import LeaderboardItems from "../../components/LeaderBoard/LeaderboardItems";
 function Leaderboard() {
   const [open, setOpen] = useState(false);
+  const [filename, setFilename] = useState("");
+
   console.log(open);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setFilename("");
+  };
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(3);
 
@@ -66,6 +71,18 @@ function Leaderboard() {
       </li>
     );
   }
+  const handlechangefile = (e) => {
+    if (e.target.files[0]) {
+      if (e.target.files[0].size > 47185920) {
+        console.log("file size is too big");
+        setFilename("");
+      } else {
+        setFilename(e.target.files[0].name);
+      }
+    } else {
+      setFilename("");
+    }
+  };
   return (
     <div>
       <div className=" flex flex-col text-center text-white">
@@ -74,7 +91,12 @@ function Leaderboard() {
             {" "}
             Event Ends in
           </h1>
-          <Modals open={open} onClose={handleClose} />
+          <Modals
+            open={open}
+            onClose={handleClose}
+            onchange={handlechangefile}
+            filename={filename}
+          />
           <Countdown />
         </div>
         <div>

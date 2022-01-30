@@ -13,3 +13,20 @@
   color: white;
   outline: none !important;
 }
+
+.label-style{
+  display: inline-block;
+  background: #BB6BD9;
+  border-radius: 0.5rem;
+
+}
+.input-file{
+  background: #4F4F4F;
+  border-radius: 0.5rem;
+
+}
+.upload-btn{
+  background: #9B51E0;
+  border-radius: 0.5rem;
+
+}
