@@ -45,6 +45,15 @@ const Sidebar = () => {
                 LeaderBoard
               </NavLink>
             </li>
+            <li className="rounded-lg mb-2 ">
+              <NavLink
+                to="/faq"
+                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
+                activeClassName="bg-gray-500 text-white shadow-md"
+              >
+                FAQ
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
