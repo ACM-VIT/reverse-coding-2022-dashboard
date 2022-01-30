@@ -11,11 +11,11 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Backdrop from "@mui/material/Backdrop";
 import LinearProgress from "@material-ui/core/LinearProgress";
-
+import upload from "../../assets/images/upload.svg";
 import "./Modals.css";
 function Modals(props) {
-  const [filename, setFilename] = useState("");
-  console.log(filename);
+  // const [filename, setFilename] = useState("");
+  console.log(props.filename);
   console.log(props);
   const limit = 100;
   const normalise = (value) => ((value - 0) * 100) / (limit - 0);
@@ -56,20 +56,35 @@ function Modals(props) {
                 It should Not exceed
               </div>
               <div className=" text-left text-lg"> Supported languages are</div>
-              <div className=" text-left text-lg bg-gray-500">
-                {props.open ? filename : " "}
-                {/* <label htmlFor="upload" className=" bg-red-800">
-                  {" "}
-                  Upload
-                </label> */}
-                {/* <input
+              <div className=" text-right input-file mt-4">
+                {/* {props.open ? filename : " "} */}
+                {props.filename}
+                <label
+                  htmlFor="upload"
+                  className=" label-style text-base p-2 px-6 ml-4 "
+                >
+                  Select File
+                </label>
+                <input
                   type="file"
                   id="upload"
-                  className=" text-right justify-end "
+                  className=" "
                   hidden
-                  onChange={(e) => setFilename(e.target.files[0].name)}
-                /> */}
-                <input type="file" id="upload2" className="  " />
+                  onChange={(e) => props.onchange(e)}
+                  // accept=".cpp,.py,.java"
+                />
+
+                {/* <input type="file" id="upload2" className="  " /> */}
+              </div>
+              <div>
+                <button type="button" className="mt-8 upload-btn p-3">
+                  <div className="flex">
+                    <div className="px-1">Upload</div>
+                    <div>
+                      <img src={upload} alt="upload" />
+                    </div>
+                  </div>
+                </button>
               </div>
             </div>
           </Box>
