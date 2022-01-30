@@ -29,7 +29,7 @@ const Accordion = (props) => {
     setHideBorder(setActive === "active" ? "accordion" : "accordion-active");
   }
 
-  function QuestionRedirect() {
+  function questionRedirect() {
     window.location.href = "/questions";
   }
 
@@ -45,7 +45,7 @@ const Accordion = (props) => {
           <button
             type="button"
             className={`${setTextColor} pl-8 accordion__title`}
-            onClick={QuestionRedirect}
+            onClick={questionRedirect}
           >
             Open
           </button>
