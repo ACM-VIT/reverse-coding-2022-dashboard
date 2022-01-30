@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import Leaderboard from "../../../containers/LeaderboardContainer/Leaderboard";
 import Chevron from "../Chevron";
 
@@ -14,6 +14,7 @@ const Accordion = (props) => {
   const [setDisplay, setDisplayState] = useState("displayBorder");
   const [hideBorder, setHideBorder] = useState("accordion");
   const content = useRef(null);
+  const history = useHistory();
 
   function toggleAccordion() {
     setActiveState(setActive === "" ? "active" : "");
@@ -33,7 +34,9 @@ const Accordion = (props) => {
 
   function questionRedirect() {
     // window.location.href = "/questions";
-    <Link to="/questions" />;
+    // <Link to="/questions" />;
+
+    history.push("/questions");
   }
 
   return (

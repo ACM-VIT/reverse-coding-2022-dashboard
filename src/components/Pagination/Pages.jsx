@@ -18,7 +18,7 @@ function Pages({
             key={page}
             id={page}
             onClick={onclick}
-            className={currentPage === page ? "active mx-1" : " mx-1"}
+            className={currentPage === page ? "active-pages mx-1" : " mx-1"}
           >
             {page}
           </li>
