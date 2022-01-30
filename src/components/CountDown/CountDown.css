@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap");
+
+.font-mono {
+  font-family: "Roboto Mono", monospace;
+}
+
+.fontdm {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+}
