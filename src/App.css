@@ -1,4 +1,13 @@
+@font-face {
+  font-family: "DMSans";
+  src: local("DMSans"), url(./assets/fonts/DMSans-Regular.ttf);
+}
+
 body {
-    background: #181818;
-  }
-  
+  background: #181818;
+}
+
+.grad-bg {
+  background: linear-gradient(106.25deg, #9d50bb 0%, #6e48aa 100%);
+  /* background: #984fb9; */
+}
