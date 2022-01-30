@@ -1,4 +1,6 @@
 import React, { useState, useRef } from "react";
+import { Link, NavLink } from "react-router-dom";
+import Leaderboard from "../../../containers/LeaderboardContainer/Leaderboard";
 import Chevron from "../Chevron";
 
 import "./Accordion.css";
@@ -30,7 +32,8 @@ const Accordion = (props) => {
   }
 
   function questionRedirect() {
-    window.location.href = "/questions";
+    // window.location.href = "/questions";
+    <Link to="/questions" />;
   }
 
   return (
