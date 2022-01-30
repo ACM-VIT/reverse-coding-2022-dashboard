@@ -1,6 +1,6 @@
 import React from "react";
-import "./Pages.css";
-function Leaderboard({ person, key }) {
+import "./LeaderboardItems.css";
+function LeaderboardItems({ person, key }) {
   return (
     // <tr>
     //   <td>{person.id}</td>
@@ -16,4 +16,4 @@ function Leaderboard({ person, key }) {
   );
 }
 
-export default Leaderboard;
+export default LeaderboardItems;

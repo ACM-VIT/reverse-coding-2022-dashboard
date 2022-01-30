@@ -1,0 +1,18 @@
+.active {
+  background-color: #984fb9;
+}
+.pageNumbers {
+  list-style: none;
+  display: flex;
+}
+
+.pageNumbers li {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid #1d2126;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+}
+.pageNumbers li button {
+  cursor: pointer;
+}
