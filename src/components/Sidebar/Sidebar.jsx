@@ -19,6 +19,14 @@ const Sidebar = () => {
           <ul className="flex-col min-w-full flex list-none">
             <li className="rounded-lg mb-4">
               <NavLink
+                to="/"
+                exact
+                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
+                activeClassName="bg-gray-500 text-white shadow-md"
+              >
+                DemoApi call
+              </NavLink>
+              <NavLink
                 to="/overview"
                 exact
                 className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
