@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
-import Questions from "./components/Questions/Questions";
+import Questions from "./components/Questions/Ques";
 import "./App.css";
 import Sidebar from "./components/Sidebar/Sidebar";
 

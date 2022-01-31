@@ -5,7 +5,7 @@ import mac from "../../assets/images/mac.svg";
 import windows from "../../assets/images/windows.svg";
 import download from "../../assets/images/download.svg";
 
-import "./Questions.css";
+import "./Ques.css";
 
 const Questions = () => {
   const [active, setActive] = useState({
