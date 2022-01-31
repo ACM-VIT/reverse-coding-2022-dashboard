@@ -4,7 +4,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import Overview from "./containers/Overview/Overview";
 import Questions from "./components/Questions/Questions";
-import Ques from "./components/Questions/ide";
+import Ques from "./components/Questions/Ques";
 import Faq from "./components/Faq/Faq";
 import "./App.css";
 

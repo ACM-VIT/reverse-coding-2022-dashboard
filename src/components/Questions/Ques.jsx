@@ -1,9 +1,11 @@
 /* eslint-disable react/function-component-definition */
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import linux from "../../assets/images/linux.svg";
 import mac from "../../assets/images/mac.svg";
 import windows from "../../assets/images/windows.svg";
 import download from "../../assets/images/download.svg";
+import upload from "../../assets/images/upload.svg";
 
 import "./Ques.css";
 
@@ -34,6 +36,12 @@ const Questions = () => {
             sit amet, consectetur adipiscing elit. Nunc diam sit arcu vitae.
             Nisi, metus, adipiscing sit rhoncus sed. Massa, scelerisque vel hac
             vel.
+            <Link to="/">
+              <div className="upload-btn text-white mt-24 flex">
+                Upload
+                <img className="ml-2 h-6" src={upload} alt="upload" />
+              </div>
+            </Link>
           </div>
           <div className="flex flex-col gap-6 ">
             <div className="bg-color pl-6 pt-6 pr-16 exec">
@@ -139,6 +147,11 @@ const Questions = () => {
             <div className="text-center text-2xl">OR</div>
             <div className="bg-color exec pl-6 pt-6">
               Try with your own custom I/O online
+              <Link to="/">
+                <div className="launch-btn text-white mt-16 mx-24 flex">
+                  Launch
+                </div>
+              </Link>
             </div>
           </div>
         </div>
