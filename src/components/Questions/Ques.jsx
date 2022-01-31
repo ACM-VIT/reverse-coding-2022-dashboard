@@ -136,7 +136,7 @@ const Questions = () => {
                 </span>
               </div>
             </div>
-            <div className="text-center">OR</div>
+            <div className="text-center text-2xl">OR</div>
             <div className="bg-color exec pl-6 pt-6">
               Try with your own custom I/O online
             </div>

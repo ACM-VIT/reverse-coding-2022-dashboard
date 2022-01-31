@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
+import logo from "../../assets/images/logo.svg";
+
 const Sidebar = () => {
   const [active, setActive] = useState("");
   return (
@@ -13,11 +15,19 @@ const Sidebar = () => {
           rel="noreferrer"
           className="mt-2 text-center w-full inline-block"
         >
-          <h1 className="text-white">RC</h1>
+          <img src={logo} alt="RC" className="pl-3" />
         </a>
         <div className="flex flex-col mt-52">
           <ul className="flex-col min-w-full flex list-none">
             <li className="rounded-lg mb-4">
+              <NavLink
+                to="/"
+                exact
+                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
+                activeClassName="bg-gray-500 text-white shadow-md"
+              >
+                DemoApi call
+              </NavLink>
               <NavLink
                 to="/overview"
                 exact
@@ -43,6 +53,15 @@ const Sidebar = () => {
                 activeClassName="bg-gray-500 text-white shadow-md"
               >
                 LeaderBoard
+              </NavLink>
+            </li>
+            <li className="rounded-lg mb-2 ">
+              <NavLink
+                to="/faq"
+                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
+                activeClassName="bg-gray-500 text-white shadow-md"
+              >
+                FAQ
               </NavLink>
             </li>
           </ul>

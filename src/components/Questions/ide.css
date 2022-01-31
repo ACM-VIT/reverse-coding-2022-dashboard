@@ -1,27 +1,32 @@
-.ques {
+.ide {
   font-family: "DM Sans";
   font-weight: 400;
   font-size: 16px;
-  width: 747px;
+  width: 979px;
+  height: 735px;
   color: rgba(187, 200, 200, 1);
-  padding-top: 150px;
+  padding-top: 100px;
   padding-bottom: 70px;
+}
+.ques {
+  width: 628px;
 }
 .bg-color {
   background-color: rgba(29, 33, 38, 1);
-}
-
-.sec-height {
-  height: 524px;
 }
 
 .test-case {
   width: 311px;
 }
 
-.exec {
-  width: 399px;
-  height: 226px;
+.input {
+  width: 300px;
+  height: 414px;
+}
+
+.output {
+  width: 300px;
+  height: 493px;
 }
 
 .download-container {
@@ -40,4 +45,17 @@
 }
 .icon {
   margin: 0 0.3rem;
+}
+.run-btn {
+  font-family: "DM Sans";
+  background: #27ae60;
+  border-radius: 8px;
+  padding: 9px 22px;
+}
+.upload-btn {
+  background: #984fb9;
+  border-radius: 8px;
+  width: 131px;
+  height: 47px;
+  padding: 11px 22px;
 }
