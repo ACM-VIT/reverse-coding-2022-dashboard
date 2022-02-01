@@ -16,7 +16,7 @@ const Accordion = (props) => {
   const content = useRef(null);
   const history = useHistory();
 
-  function toggleAccordion() {
+  const toggleAccordion = () => {
     setActiveState(setActive === "" ? "active" : "");
     setHeightState(
       setActive === "active" ? "0px" : `${content.current.scrollHeight}px`
@@ -30,34 +30,36 @@ const Accordion = (props) => {
       setActive === "active" ? "displayBorder" : "accordion__content"
     );
     setHideBorder(setActive === "active" ? "accordion" : "accordion-active");
-  }
+  };
 
-  function questionRedirect() {
+  const questionRedirect = () => {
     // window.location.href = "/questions";
     // <Link to="/questions" />;
-
     history.push("/questions");
-  }
+  };
 
   return (
     <div className="accordion__section z-0">
       <button
         type="button"
-        className={`${hideBorder} ${setActive}`}
+        className={`${hideBorder} ${setActive} flex justify-between accordion__title`}
         onClick={toggleAccordion}
       >
-        <div className="grid grid-cols-3 gap-x-28 accordion__title">
-          <div className={`${setActive}`}>{props.title}</div>
-          <button
-            type="button"
-            className={`${setTextColor} pl-8 accordion__title`}
-            onClick={questionRedirect}
-          >
-            Open
-          </button>
-          <div className={`${setActive}`}>{props.score}/100</div>
+        <div className={`${setActive}`}>{props.title}</div>
+        <button
+          type="button"
+          className={`${setTextColor} accordion__title`}
+          onClick={questionRedirect}
+        >
+          Open
+        </button>
+        <div className={`${setActive} flex`}>
+          {props.score}/100
+          <Chevron
+            className={`${setRotate} mt-2 2xl:mt-0 ml-28 2xl:ml-48 3xl:ml-60`}
+            fill={`${setColor}`}
+          />
         </div>
-        <Chevron className={`${setRotate}`} width={10} fill={`${setColor}`} />
       </button>
       <div
         ref={content}

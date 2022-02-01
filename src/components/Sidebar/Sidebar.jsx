@@ -1,11 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import "./Sidebar.css";
+import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/images/logo.svg";
 import logout from "../../assets/images/logout2.svg";
+
+import { getLaunch } from "../../redux/QuestionsLaunch/questionsLaunchActions";
+
 const Sidebar = () => {
   const [active, setActive] = useState("");
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const getData = useSelector((state) => state.questionsLaunch.launchState);
+  console.log(getData);
   return (
     <div className="h-screen fixed top-0 md:left-0  overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-3xl bg-black w-64 z-10 py-4 px-6 transition-all duration-300">
       <div className="flex-col items-stretch min-h-full flex-nowrap px-0 relative">
@@ -37,14 +46,19 @@ const Sidebar = () => {
                 Overview
               </NavLink>
             </li>
-            <li className="rounded-lg mb-2">
-              <NavLink
-                to="/questions"
+            <li
+              className="rounded-lg mb-2"
+              onClick={() => {
+                dispatch(getLaunch(false));
+                history.push("/questions");
+              }}
+            >
+              <div
                 className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg 3xl:text-xl 2xl:text-xl"
-                activeClassName="activeclassname  text-white shadow-md"
+                activeClassName="bg-gray-500  text-white shadow-md"
               >
                 Questions
-              </NavLink>
+              </div>
             </li>
             <li className="rounded-lg mb-2 ">
               <NavLink

@@ -1,13 +1,5 @@
-.tabscontainer {
-  margin-right: 20px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  justify-content: center;
-}
-
 #sub::-webkit-scrollbar {
-  width: 16px;
+  width: 13px;
 }
 
 #sub::-webkit-scrollbar-thumb {
@@ -17,4 +9,5 @@
 
 #sub::-webkit-scrollbar-track {
   box-shadow: inset 0 0 0 50px rgba(0, 0, 0, 1);
+  border-radius: 48px;
 }
