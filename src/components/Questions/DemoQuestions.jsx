@@ -4,7 +4,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 
 import { getPeople } from "../../redux/PostTeam/postTeamActions";
-const Questions = () => {
+const Questionsdemo = () => {
   const dispatch = useDispatch();
   console.log("Questions");
   useEffect(() => {
@@ -20,4 +20,4 @@ const Questions = () => {
   );
 };
 
-export default Questions;
+export default Questionsdemo;

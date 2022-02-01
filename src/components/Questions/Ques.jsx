@@ -11,7 +11,7 @@ import upload from "../../assets/images/upload.svg";
 import { getLaunch } from "../../redux/QuestionsLaunch/questionsLaunchActions";
 import "./Ques.css";
 
-const Questions = () => {
+const Ques = ({ person }) => {
   const [active, setActive] = useState({
     windowsImage: true,
     linuxImage: false,
@@ -29,23 +29,10 @@ const Questions = () => {
         style={{ display: getData ? "none" : "block" }}
       >
         <div className="flex flex-col gap-9 ">
-          <div className="px-8 py-8 bg-color box-radius">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc diam
-            sit arcu vitae. Nisi, metus, adipiscing sit rhoncus sed. Massa,
-            scelerisque vel hac velLorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Nunc diam sit arcu vitae. Nisi, metus, adipiscing
-            sit rhoncus sed. Massa, scelerisque vel hac vel.
-          </div>
+          <div className="px-8 py-8 bg-color box-radius">{person.id}</div>
           <div className="flex flex-row gap-9 sec-height">
             <div className="px-5 py-5 bg-color relative test-case box-radius">
-              01Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              diam sit arcu vitae. Nisi, metus, adipiscing sit rhoncus sed.
-              Massa, scelerisque vel hac velLorem ipsum dolor sit amet,
-              consectetur adipiscing elit. Nunc diam sit arcu vitae. Nisi,
-              metus, adipiscing sit rhoncus sed. Massa, scelerisque vel hac vel.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc diam
-              sit arcu vitae. Nisi, metus, adipiscing sit rhoncus sed. Massa,
-              scelerisque vel hac vel.
+              {person.name}
               <div className="flex absolute bottom-0 mb-4">
                 <Link to="/">
                   <div className="upload-btn text-white flex">
@@ -181,4 +168,4 @@ const Questions = () => {
   );
 };
 
-export default Questions;
+export default Ques;
