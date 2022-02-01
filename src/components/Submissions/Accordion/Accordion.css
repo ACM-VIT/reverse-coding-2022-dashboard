@@ -30,6 +30,7 @@
 
 /* Style the accordion content title */
 .accordion__title {
+  display: flex;
   font-weight: 700;
   font-family: "DMSans", sans-serif;
   font-size: 20px;
@@ -40,7 +41,6 @@
 
 /* Style the accordion chevron icon */
 .accordion__icon {
-  margin-left: auto;
   transition: transform 0.3s ease;
   transform: rotate(90deg);
   width: 18px;
@@ -95,25 +95,56 @@
 
 /* Media Queries */
 
-/* @media (min-width: 1550px) and (max-width: 1930px) {
+@media (min-width: 1550px) and (max-width: 1920px) {
   .accordion__title {
-    font-size: 22px;
+    font-size: 28px;
     line-height: 26px;
     letter-spacing: 1.92px;
   }
 
   .accordion {
-    padding: 20px;
+    padding: 30px;
   }
 
   .accordion-active {
-    padding: 20px;
+    padding: 30px;
   }
 
   .accordion__text {
-    padding: 20px;
-    font-size: 18px;
+    padding: 30px;
+    font-size: 22px;
     line-height: 25px;
     letter-spacing: 1.92px;
   }
-} */
+
+  .accordion__icon {
+    height: 20px;
+  }
+}
+
+@media (min-width: 1921px) and (max-width: 2560px) {
+  .accordion__title {
+    font-size: 28px;
+    line-height: 26px;
+    letter-spacing: 1.92px;
+  }
+
+  .accordion {
+    padding: 30px;
+  }
+
+  .accordion-active {
+    padding: 30px;
+  }
+
+  .accordion__text {
+    padding: 30px;
+    font-size: 22px;
+    line-height: 25px;
+    letter-spacing: 1.92px;
+  }
+
+  .accordion__icon {
+    height: 20px;
+  }
+}

@@ -24,40 +24,44 @@ const Overview = () => {
   }
 
   return (
-    <div className="pl-52">
+    <div className="pl-52 2xl:pl-72">
       {users.map((user) => (
         <div
-          className="grid grid-cols-3 font-dm font-bold pt-32"
+          className="grid grid-cols-3 2xl:gap-x-40 font-dm font-bold pt-32 2xl:pt-52"
           key={user.email}
         >
           <div className="text-white space-y-3">
-            <h1 className="text-3xl">Team</h1>
-            <p className="text-4xl text-prpl">{user.team}</p>
+            <h1 className="text-3xl 2xl:text-4xl">Team</h1>
+            <p className="text-4xl 2xl:text-5xl text-prpl">{user.team}</p>
           </div>
           <div className="text-white pl-24">
-            <h1 className="text-3xl pb-2">Members</h1>
+            <h1 className="text-3xl 2xl:text-4xl pb-2">Members</h1>
             <div className="flex">
-              <p className="text-gre pr-2">{user.name}</p>
+              <p className="text-gre 2xl:text-xl pr-2">{user.name}</p>
               <img src={admin} alt="admin" />
             </div>
-            <p className="text-gre">Jeet Kaushik</p>
+            <p className="text-gre 2xl:text-xl">Jeet Kaushik</p>
           </div>
           <div className="text-white space-y-3 pl-4">
-            <h1 className="text-3xl">Score</h1>
-            <p className="text-4xl pt-1">{user.score}</p>
+            <h1 className="text-3xl 2xl:text-4xl">Score</h1>
+            <p className="text-4xl 2xl:text-5xl pt-1">{user.score}</p>
           </div>
         </div>
       ))}
 
-      <div className="font-dm font-bold text-white pt-16">
-        <h1 className="text-3xl">My Submissions</h1>
+      <div className="font-dm font-bold text-white pt-20 2xl:pt-32">
+        <h1 className="text-3xl 2xl:text-4xl">My Submissions</h1>
         {/* <div className="flex flex-col items-center space-y-10 pr-40">
-          <h1 className="text-4xl text-grey pt-20">No Submissions</h1>
+          <h1 className="text-4xl 2xl:text-5xl text-grey pt-32 2xl:pt-40 2xl:pb-4">
+            No Submissions
+          </h1>
           <div
-            className="flex justify-center items-center cursor-pointer z-10 grad-bg rounded-3xl w-60 h-14"
+            className="flex justify-center items-center cursor-pointer z-10 prpl rounded-full 2xl:rounded-full w-60 h-14 2xl:w-80 2xl:h-20"
             onClick={submissionRedirect}
           >
-            <div className="text-white text-xl font-medium">Begin Solving</div>
+            <div className="text-white text-xl 2xl:text-3xl font-medium">
+              Begin Solving
+            </div>
           </div>
         </div> */}
         <Submissions />

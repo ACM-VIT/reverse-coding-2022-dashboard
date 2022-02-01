@@ -35,7 +35,6 @@ const Accordion = (props) => {
   const questionRedirect = () => {
     // window.location.href = "/questions";
     // <Link to="/questions" />;
-
     history.push("/questions");
   };
 
@@ -43,7 +42,7 @@ const Accordion = (props) => {
     <div className="accordion__section z-0">
       <button
         type="button"
-        className={`${hideBorder} ${setActive} xl:space-x-28 accordion__title`}
+        className={`${hideBorder} ${setActive} flex justify-between accordion__title`}
         onClick={toggleAccordion}
       >
         <div className={`${setActive}`}>{props.title}</div>
@@ -54,8 +53,13 @@ const Accordion = (props) => {
         >
           Open
         </button>
-        <div className={`${setActive}`}>{props.score}/100</div>
-        <Chevron className={`${setRotate}`} width={10} fill={`${setColor}`} />
+        <div className={`${setActive} flex`}>
+          {props.score}/100
+          <Chevron
+            className={`${setRotate} mt-2 2xl:mt-0 ml-28 2xl:ml-48 3xl:ml-60`}
+            fill={`${setColor}`}
+          />
+        </div>
       </button>
       <div
         ref={content}
