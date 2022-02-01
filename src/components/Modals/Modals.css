@@ -14,19 +14,17 @@
   outline: none !important;
 }
 
-.label-style{
+.label-style {
   display: inline-block;
-  background: #BB6BD9;
+  background: #bb6bd9;
   border-radius: 0.5rem;
-
+  cursor: pointer;
 }
-.input-file{
-  background: #4F4F4F;
+.input-file {
+  background: #4f4f4f;
   border-radius: 0.5rem;
-
 }
-.upload-btn{
-  background: #9B51E0;
+.upload-btn {
+  background: #9b51e0;
   border-radius: 0.5rem;
-
 }

@@ -1,6 +1,7 @@
 /* eslint-disable react/function-component-definition */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Modals from "../Modals/Modals";
 import linux from "../../assets/images/linux.svg";
 import mac from "../../assets/images/mac.svg";
 import windows from "../../assets/images/windows.svg";
@@ -16,6 +17,37 @@ const Ide = () => {
     linuxImage: false,
     macImage: false,
   });
+
+  const [open, setOpen] = useState(false);
+  const [filename, setFilename] = useState("");
+  const [disable, setDisable] = useState(true);
+  console.log(open);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false);
+    setFilename("");
+  };
+  const handlechangefile = (e) => {
+    if (e.target.files[0]) {
+      if (e.target.files[0].name.split(".")[1].match(/^(java|js|go|py)$/)) {
+        if (e.target.files[0].size > 47185920) {
+          setDisable(true);
+          console.log("file size is too big");
+          setFilename("");
+        } else {
+          setDisable(false);
+          setFilename(e.target.files[0].name);
+        }
+      } else {
+        setDisable(true);
+        console.log("file type not supported");
+        setFilename("");
+      }
+    } else {
+      setDisable(true);
+      setFilename("");
+    }
+  };
 
   return (
     <div className="ide mx-auto">
@@ -132,12 +164,23 @@ const Ide = () => {
             Nisi, metus, adipiscing sit rhoncus sed. Massa, scelerisque vel hac
             vel.
             <div className="flex absolute bottom-0 mb-4">
-              <Link to="/">
-                <div className="upload-btn text-white flex">
+              <div>
+                <div
+                  className="upload-btn text-white flex"
+                  onClick={handleOpen}
+                >
                   Upload
                   <img className="ml-2 h-6" src={upload} alt="upload" />
                 </div>
-              </Link>
+                <Modals
+                  open={open}
+                  onClose={handleClose}
+                  onchange={handlechangefile}
+                  filename={filename}
+                  btndis={disable}
+                />
+              </div>
+
               <div className=" ml-10 text-white font-700 text-xl">
                 Points: <br />
                 25/100{" "}

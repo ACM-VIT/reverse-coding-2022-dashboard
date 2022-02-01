@@ -45,6 +45,7 @@
   width: 131px;
   height: 47px;
   padding: 11px 22px;
+  cursor: pointer;
 }
 .launch-btn {
   background: #984fb9;
