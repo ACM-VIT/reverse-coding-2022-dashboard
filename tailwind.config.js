@@ -15,6 +15,9 @@ module.exports = {
         "4.5xl": "2.5rem",
         "5.5xl": "3.5rem",
       },
+      lineHeight: {
+        12: "3.75rem",
+      },
     },
     variants: {
       extend: {},
