@@ -31,7 +31,7 @@ const Sidebar = () => {
               <NavLink
                 to="/overview"
                 exact
-                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
+                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg 3xl:text-xl 2xl:text-xl"
                 activeClassName="activeclassname text-white shadow-md"
               >
                 Overview
@@ -40,7 +40,7 @@ const Sidebar = () => {
             <li className="rounded-lg mb-2">
               <NavLink
                 to="/questions"
-                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
+                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg 3xl:text-xl 2xl:text-xl"
                 activeClassName="activeclassname  text-white shadow-md"
               >
                 Questions
@@ -49,7 +49,7 @@ const Sidebar = () => {
             <li className="rounded-lg mb-2 ">
               <NavLink
                 to="/leaderboard"
-                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
+                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg 3xl:text-xl  2xl:text-xl"
                 activeClassName="activeclassname text-white shadow-md"
               >
                 LeaderBoard
@@ -58,7 +58,7 @@ const Sidebar = () => {
             <li className="rounded-lg mb-2 ">
               <NavLink
                 to="/faq"
-                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
+                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg 3xl:text-xl  2xl:text-xl"
                 activeClassName="activeclassname text-white shadow-md"
               >
                 FAQ
@@ -66,7 +66,7 @@ const Sidebar = () => {
             </li>
           </ul>
         </div>
-        <div className="flex mt-2 text-center w-full absolute bottom-0 pb-10 text-white justify-around brdr p-5">
+        <div className="flex mt-2 text-center w-full absolute bottom-0 pb-10 text-white justify-around brdr p-5 3xl:text-xl  2xl:text-xl">
           <div>Pranav Desai</div>
           <img src={logout} alt="RC" className="pl-3" />
         </div>
