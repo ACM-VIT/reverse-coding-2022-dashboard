@@ -16,7 +16,7 @@ const Accordion = (props) => {
   const content = useRef(null);
   const history = useHistory();
 
-  function toggleAccordion() {
+  const toggleAccordion = () => {
     setActiveState(setActive === "" ? "active" : "");
     setHeightState(
       setActive === "active" ? "0px" : `${content.current.scrollHeight}px`
@@ -30,14 +30,14 @@ const Accordion = (props) => {
       setActive === "active" ? "displayBorder" : "accordion__content"
     );
     setHideBorder(setActive === "active" ? "accordion" : "accordion-active");
-  }
+  };
 
-  function questionRedirect() {
+  const questionRedirect = () => {
     // window.location.href = "/questions";
     // <Link to="/questions" />;
 
     history.push("/questions");
-  }
+  };
 
   return (
     <div className="accordion__section z-0">
