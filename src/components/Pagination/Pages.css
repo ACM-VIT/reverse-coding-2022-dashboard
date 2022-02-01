@@ -33,3 +33,36 @@
   }
   
 }
+
+.pageNumbersquestion {
+  list-style: none;
+  display: flex;
+}
+
+.pageNumbersquestion li {
+  padding: 0.25rem;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  border: 2px solid #1d2126;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding-top: 0.5rem;
+}
+.pageNumbersquestion li button {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1550px) {
+  .pageNumbersquestion li {
+    padding: 1.25rem;
+    padding-left: 1.7rem;
+    padding-right: 1.7rem;
+    border: 2px solid #1d2126;
+    box-sizing: border-box;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    padding-top: 1.5rem;
+  }
+  
+}

@@ -10,7 +10,7 @@ import upload from "../../assets/images/upload.svg";
 
 import "./ide.css";
 
-const Questions = () => {
+const Ide = () => {
   const [active, setActive] = useState({
     windowsImage: true,
     linuxImage: false,
@@ -170,4 +170,4 @@ const Questions = () => {
   );
 };
 
-export default Questions;
+export default Ide;
