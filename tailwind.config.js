@@ -10,6 +10,10 @@ module.exports = {
       height: {
         100: "28rem",
       },
+      fontSize: {
+        "4.5xl": "2.5rem",
+        "5.5xl": "3.5rem",
+      },
     },
     variants: {
       extend: {},

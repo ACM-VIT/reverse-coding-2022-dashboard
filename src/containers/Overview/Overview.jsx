@@ -31,11 +31,11 @@ const Overview = () => {
           key={user.email}
         >
           <div className="text-white space-y-3">
-            <h1 className="text-3xl 2xl:text-4xl">Team</h1>
-            <p className="text-4xl 2xl:text-5xl text-prpl">{user.team}</p>
+            <h1 className="text-3xl 2xl:text-4.5xl 2xl:pb-3">Team</h1>
+            <p className="text-4xl 2xl:text-5.5xl text-prpl">{user.team}</p>
           </div>
           <div className="text-white pl-24">
-            <h1 className="text-3xl 2xl:text-4xl pb-2">Members</h1>
+            <h1 className="text-3xl 2xl:text-4.5xl pb-2 2xl:pb-4">Members</h1>
             <div className="flex">
               <p className="text-gre 2xl:text-xl pr-2">{user.name}</p>
               <img src={admin} alt="admin" />
@@ -43,16 +43,16 @@ const Overview = () => {
             <p className="text-gre 2xl:text-xl">Jeet Kaushik</p>
           </div>
           <div className="text-white space-y-3 pl-4">
-            <h1 className="text-3xl 2xl:text-4xl">Score</h1>
-            <p className="text-4xl 2xl:text-5xl pt-1">{user.score}</p>
+            <h1 className="text-3xl 2xl:text-4.5xl 2xl:pb-3">Score</h1>
+            <p className="text-4xl 2xl:text-5.5xl pt-1">{user.score}</p>
           </div>
         </div>
       ))}
 
       <div className="font-dm font-bold text-white pt-20 2xl:pt-32">
-        <h1 className="text-3xl 2xl:text-4xl">My Submissions</h1>
+        <h1 className="text-3xl 2xl:text-4.5xl">My Submissions</h1>
         {/* <div className="flex flex-col items-center space-y-10 pr-40">
-          <h1 className="text-4xl 2xl:text-5xl text-grey pt-32 2xl:pt-40 2xl:pb-4">
+          <h1 className="text-4xl 2xl:text-5.5xl text-grey pt-32 2xl:pt-40 2xl:pb-4">
             No Submissions
           </h1>
           <div
