@@ -125,7 +125,7 @@
 
 @media (min-width: 1921px) and (max-width: 2560px) {
   .accordion__title {
-    font-size: 28px;
+    font-size: 34px;
     line-height: 26px;
     letter-spacing: 1.92px;
   }
@@ -140,13 +140,12 @@
 
   .accordion__text {
     padding: 30px;
-    font-size: 22px;
+    font-size: 26px;
     line-height: 25px;
     letter-spacing: 1.92px;
   }
 
   .accordion__icon {
-    height: 20px;
-    margin-top: 3px;
+    height: 25px;
   }
 }
