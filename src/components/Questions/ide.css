@@ -5,7 +5,7 @@
   width: 979px;
   height: 735px;
   color: rgba(187, 200, 200, 1);
-  padding-top: 100px;
+  padding-top: 50px;
   padding-bottom: 70px;
 }
 
@@ -13,7 +13,7 @@
   background-color: rgba(29, 33, 38, 1);
 }
 
-.test-case {
+.test-cases {
   width: 311px;
   height: 494px;
   border-radius: 4px;
@@ -30,7 +30,7 @@
   height: 494px;
   border-radius: 4px;
 }
-.exec {
+.execs {
   margin-left: 723px;
 }
 

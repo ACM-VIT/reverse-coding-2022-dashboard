@@ -27,7 +27,7 @@ const Questions = () => {
           adipiscing elit. Nunc diam sit arcu vitae. Nisi, metus, adipiscing sit
           rhoncus sed. Massa, scelerisque vel hac vel.
           <div
-            className="download-container mt-2 exec"
+            className="download-container mt-2 execs"
             style={{
               display: "flex",
               flexDirection: "row",
@@ -122,7 +122,7 @@ const Questions = () => {
           </div>
         </div>
         <div className="flex flex-row gap-9 ">
-          <div className="px-5 py-5 bg-color relative test-case">
+          <div className="px-5 py-5 bg-color relative test-cases">
             01Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc diam
             sit arcu vitae. Nisi, metus, adipiscing sit rhoncus sed. Massa,
             scelerisque vel hac velLorem ipsum dolor sit amet, consectetur
