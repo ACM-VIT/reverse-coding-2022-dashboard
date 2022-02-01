@@ -43,20 +43,18 @@ const Accordion = (props) => {
     <div className="accordion__section z-0">
       <button
         type="button"
-        className={`${hideBorder} ${setActive}`}
+        className={`${hideBorder} ${setActive} xl:space-x-28 accordion__title`}
         onClick={toggleAccordion}
       >
-        <div className="grid grid-cols-3 gap-x-24 accordion__title">
-          <div className={`${setActive}`}>{props.title}</div>
-          <button
-            type="button"
-            className={`${setTextColor} pl-8 accordion__title`}
-            onClick={questionRedirect}
-          >
-            Open
-          </button>
-          <div className={`${setActive}`}>{props.score}/100</div>
-        </div>
+        <div className={`${setActive}`}>{props.title}</div>
+        <button
+          type="button"
+          className={`${setTextColor} accordion__title`}
+          onClick={questionRedirect}
+        >
+          Open
+        </button>
+        <div className={`${setActive}`}>{props.score}/100</div>
         <Chevron className={`${setRotate}`} width={10} fill={`${setColor}`} />
       </button>
       <div

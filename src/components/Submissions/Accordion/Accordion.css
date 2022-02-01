@@ -36,7 +36,6 @@
   line-height: 30px;
   letter-spacing: 1.92px;
   color: #ffffff;
-  align-items: flex-start;
 }
 
 /* Style the accordion chevron icon */
@@ -96,7 +95,7 @@
 
 /* Media Queries */
 
-@media (min-width: 1550px) and (max-width: 1930px) {
+/* @media (min-width: 1550px) and (max-width: 1930px) {
   .accordion__title {
     font-size: 22px;
     line-height: 26px;
@@ -117,4 +116,4 @@
     line-height: 25px;
     letter-spacing: 1.92px;
   }
-}
+} */

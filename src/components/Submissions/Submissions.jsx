@@ -20,9 +20,9 @@ const Submissions = () => {
   }, []);
 
   return (
-    <div id="sub" className="overflow-y-scroll h-80 mt-2 w-9/12 xl:w-9/12">
+    <div id="sub" className="overflow-y-scroll h-80 mt-4 w-9/12 xl:w-9/12">
       <article>
-        <div>
+        <div className="mr-5">
           {submissions.map((sub) => (
             <Accordion
               key={sub.id}
