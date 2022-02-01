@@ -3,8 +3,8 @@
   height: 1px;
   background-image: linear-gradient(
     to right,
-    rgba(145, 58, 160, 0),
-    rgba(100, 51, 174, 0.75),
-    rgba(113, 43, 177, 0)
+    rgba(242, 242, 242, 0),
+    rgba(242, 242, 242, 0.347),
+    rgba(242, 242, 242, 0)
   );
 }

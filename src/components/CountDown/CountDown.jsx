@@ -27,15 +27,15 @@ const Countdown = () => {
     );
   };
   return (
-    <div className="flex flex-col items-center justify-center text-center text-6xl sm:text-2xl font-mono">
-      <div className="grad pt-8 text-4xl">
+    <div className="flex flex-col items-center justify-center text-center font-mono">
+      <div className="grad pt-3 text-2xl 3xl:text-4xl 2xl:text-4xl 3xl:pt-5 2xl:pt-5">
         <Count
           date="2022-02-05T18:00:00"
           renderer={renderer}
           intervalDelay={0}
         />
       </div>
-      <div className="flex flex-row text-white font-mono text-xl pt-4 space-x-12 mb-12">
+      <div className="flex flex-row text-white font-mono text-base pt-1 space-x-5 mb-8 2xl:mb-16 3xl:space-x-11 2xl:space-x-11">
         <div>DAYS</div>
         <div>HRS</div>
         <div>MINS</div>

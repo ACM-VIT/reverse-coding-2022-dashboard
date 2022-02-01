@@ -8,9 +8,15 @@ function LeaderboardItems({ person, key }) {
     //   <td>{person.name}</td>
     // </tr>
     <div className="grid grid-cols-3 mx-40">
-      <td className=" justify-start text-left text-xl py-4">{person.id}</td>
-      <td className="justify-center text-center text-xl py-4">{person.name}</td>
-      <td className="justify-end text-right text-xl py-4">{person.name}</td>
+      <td className=" justify-start text-left text-xl 3xl:text-3xl 2xl:text-3xl py-4 3xl:py-6 2xl:py-6">
+        {person.id}
+      </td>
+      <td className="justify-center text-center text-xl 3xl:text-3xl 2xl:text-3xl py-4 3xl:py-6 2xl:py-6">
+        {person.name}
+      </td>
+      <td className="justify-end text-right text-xl 3xl:text-3xl 2xl:text-3xl py-4 3xl:py-6 2xl:py-6">
+        {person.name}
+      </td>
       <hr className="hr-bottom col-span-3" />
     </div>
   );
