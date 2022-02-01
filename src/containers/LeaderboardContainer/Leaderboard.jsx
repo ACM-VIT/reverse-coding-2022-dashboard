@@ -13,7 +13,7 @@ import LeaderboardItems from "../../components/LeaderBoard/LeaderboardItems";
 function Leaderboard() {
   const [open, setOpen] = useState(false);
   const [filename, setFilename] = useState("");
-
+  const [disable, setDisable] = useState(true);
   console.log(open);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -21,10 +21,10 @@ function Leaderboard() {
     setFilename("");
   };
   const [currentPage, setcurrentPage] = useState(1);
-  const [itemsPerPage, setitemsPerPage] = useState(3);
+  const [itemsPerPage, setitemsPerPage] = useState(6);
 
-  const [pageNumberLimit, setPageNumberLimit] = useState(3);
-  const [maxpageNumberLimit, setMaxPageNumberLimit] = useState(3);
+  const [pageNumberLimit, setPageNumberLimit] = useState(8);
+  const [maxpageNumberLimit, setMaxPageNumberLimit] = useState(8);
   const [minpageNumberLimit, setMinPageNumberLimit] = useState(0);
 
   const getData = useSelector((state) => state.postTeam.people);
@@ -73,13 +73,22 @@ function Leaderboard() {
   }
   const handlechangefile = (e) => {
     if (e.target.files[0]) {
-      if (e.target.files[0].size > 47185920) {
-        console.log("file size is too big");
-        setFilename("");
+      if (e.target.files[0].name.split(".")[1].match(/^(java|js|go|py)$/)) {
+        if (e.target.files[0].size > 47185920) {
+          setDisable(true);
+          console.log("file size is too big");
+          setFilename("");
+        } else {
+          setDisable(false);
+          setFilename(e.target.files[0].name);
+        }
       } else {
-        setFilename(e.target.files[0].name);
+        setDisable(true);
+        console.log("file type not supported");
+        setFilename("");
       }
     } else {
+      setDisable(true);
       setFilename("");
     }
   };
@@ -87,7 +96,7 @@ function Leaderboard() {
     <div>
       <div className=" flex flex-col text-center text-white">
         <div className="flex flex-col">
-          <h1 className=" mt-20 text-2xl" onClick={handleOpen}>
+          <h1 className=" mt-14 text-xl" onClick={handleOpen}>
             {" "}
             Event Ends in
           </h1>
@@ -96,6 +105,7 @@ function Leaderboard() {
             onClose={handleClose}
             onchange={handlechangefile}
             filename={filename}
+            btndis={disable}
           />
           <Countdown />
         </div>
@@ -110,9 +120,9 @@ function Leaderboard() {
             </thead>
             <tbody> */}
           <div className="grid grid-cols-3 mx-40">
-            <td className=" justify-start text-left text-2xl py-2">Rank</td>
-            <td className="justify-center text-center text-2xl py-2">Team</td>
-            <td className="justify-end text-right text-2xl py-2">Score</td>
+            <td className=" justify-start text-left text-xl py-2">Rank</td>
+            <td className="justify-center text-center text-xl py-2">Team</td>
+            <td className="justify-end text-right text-xl py-2">Score</td>
           </div>
           {currentItems.map((person) => (
             <LeaderboardItems person={person} />
@@ -120,7 +130,7 @@ function Leaderboard() {
           {/* </tbody>
           </table> */}
         </div>
-        <ul className="pageNumbers justify-end mt-24 mx-40">
+        <ul className="pageNumbers justify-end mt-10 mb-8 mx-40">
           <li className="mx-1">
             <button onClick={handlePrev} disabled={currentPage === pages[0]}>
               <img src={prevarrow} alt="prev" />
