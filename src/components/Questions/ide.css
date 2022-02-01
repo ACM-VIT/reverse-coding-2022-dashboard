@@ -5,7 +5,6 @@
   width: 979px;
   height: 735px;
   color: rgba(187, 200, 200, 1);
-  padding-top: 50px;
   padding-bottom: 70px;
 }
 
@@ -64,6 +63,7 @@
   width: 131px;
   height: 47px;
   padding: 11px 22px;
+  cursor: pointer;
 }
 .text-area {
   overflow: hidden;

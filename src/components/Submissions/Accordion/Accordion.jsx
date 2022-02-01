@@ -33,8 +33,6 @@ const Accordion = (props) => {
   };
 
   const questionRedirect = () => {
-    // window.location.href = "/questions";
-    // <Link to="/questions" />;
     history.push("/questions");
   };
 

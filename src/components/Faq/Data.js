@@ -1,4 +1,3 @@
-import React from "react";
 export default [
   {
     id: "1",
@@ -34,7 +33,7 @@ export default [
     id: "6",
     question: "Where can I view my rank?",
     answer:
-      "Your rank will be visible right beside your team name.<br>ou can head over the Leaderboard tab to check how you fare against the other teams.",
+      "Your rank will be visible right beside your team name.<br>You can head over the Leaderboard tab to check how you fare against the other teams.",
   },
   {
     id: "7",

@@ -63,33 +63,35 @@ function Questions() {
   }
   return (
     <div>
-      <ul className="pageNumbersquestion justify-end mt-10 mb-8 mx-40 pb-1 text-white">
-        <li className="mx-1">
-          <button onClick={handlePrev} disabled={currentPage === pages[0]}>
-            <img src={prevarrow} alt="prev" />
-          </button>
-        </li>
-        {pageDecrementBtn}
-        <Pages
-          pages={pages}
-          currentPage={currentPage}
-          setcurrentPage={setcurrentPage}
-          onclick={handleClick}
-          pageNumberLimit={pageNumberLimit}
-          setPageNumberLimit={setPageNumberLimit}
-          maxpageNumberLimit={maxpageNumberLimit}
-          minpageNumberLimit={minpageNumberLimit}
-        />
-        {pageIncrementBtn}
-        <li className="mx-1">
-          <button
-            onClick={handleNext}
-            disabled={currentPage === pages[pages.length - 1]}
-          >
-            <img src={nextarrow} alt="next" />
-          </button>
-        </li>
-      </ul>
+      <div className="flex justify-center mb-10 mt-24">
+        <ul className="pageNumbersquestion justify-end pb-1 text-white">
+          <li className="mx-1">
+            <button onClick={handlePrev} disabled={currentPage === pages[0]}>
+              <img src={prevarrow} alt="prev" />
+            </button>
+          </li>
+          {pageDecrementBtn}
+          <Pages
+            pages={pages}
+            currentPage={currentPage}
+            setcurrentPage={setcurrentPage}
+            onclick={handleClick}
+            pageNumberLimit={pageNumberLimit}
+            setPageNumberLimit={setPageNumberLimit}
+            maxpageNumberLimit={maxpageNumberLimit}
+            minpageNumberLimit={minpageNumberLimit}
+          />
+          {pageIncrementBtn}
+          <li className="mx-1">
+            <button
+              onClick={handleNext}
+              disabled={currentPage === pages[pages.length - 1]}
+            >
+              <img src={nextarrow} alt="next" />
+            </button>
+          </li>
+        </ul>
+      </div>
       {currentItems.map((person) => (
         <Ques person={person} />
       ))}
