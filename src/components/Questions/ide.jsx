@@ -10,7 +10,7 @@ import upload from "../../assets/images/upload.svg";
 
 import "./ide.css";
 
-const Ide = () => {
+const Ide = ({ name, id }) => {
   const [active, setActive] = useState({
     windowsImage: true,
     linuxImage: false,
@@ -21,11 +21,7 @@ const Ide = () => {
     <div className="ide mx-auto">
       <div className="flex flex-col gap-9 ">
         <div className="px-8 py-8 bg-color ">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc diam sit
-          arcu vitae. Nisi, metus, adipiscing sit rhoncus sed. Massa,
-          scelerisque vel hac velLorem ipsum dolor sit amet, consectetur
-          adipiscing elit. Nunc diam sit arcu vitae. Nisi, metus, adipiscing sit
-          rhoncus sed. Massa, scelerisque vel hac vel.
+          {name}
           <div
             className="download-container mt-2 execs"
             style={{
@@ -123,14 +119,7 @@ const Ide = () => {
         </div>
         <div className="flex flex-row gap-9 ">
           <div className="px-5 py-5 bg-color relative test-cases">
-            01Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc diam
-            sit arcu vitae. Nisi, metus, adipiscing sit rhoncus sed. Massa,
-            scelerisque vel hac velLorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Nunc diam sit arcu vitae. Nisi, metus, adipiscing
-            sit rhoncus sed. Massa, scelerisque vel hac vel. Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit. Nunc diam sit arcu vitae.
-            Nisi, metus, adipiscing sit rhoncus sed. Massa, scelerisque vel hac
-            vel.
+            {id}
             <div className="flex absolute bottom-0 mb-4">
               <Link to="/">
                 <div className="upload-btn text-white flex">

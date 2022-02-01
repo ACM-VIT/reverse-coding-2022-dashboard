@@ -162,7 +162,7 @@ const Ques = ({ person }) => {
         </div>
       </div>
       <div style={{ display: getData ? "block" : "none" }}>
-        <Ide />
+        <Ide name={person.name} id={person.id} />
       </div>
     </div>
   );
