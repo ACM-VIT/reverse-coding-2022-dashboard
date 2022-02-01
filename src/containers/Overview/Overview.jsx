@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import admin from "../../assets/images/admin.svg";
 import Submissions from "../../components/Submissions/Submissions";
 
@@ -7,6 +8,7 @@ import "./Overview.css";
 
 const Overview = () => {
   const [users, setUsers] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     axios
@@ -20,7 +22,7 @@ const Overview = () => {
   }, []);
 
   function submissionRedirect() {
-    window.location.href = "/questions";
+    history.push("/questions");
   }
   return (
     <div className="pl-52 2xl:pl-72">
