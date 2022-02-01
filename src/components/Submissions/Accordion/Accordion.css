@@ -35,8 +35,8 @@
   font-size: 20px;
   line-height: 30px;
   letter-spacing: 1.92px;
-  /* text-align: left; */
   color: #ffffff;
+  align-items: flex-start;
 }
 
 /* Style the accordion chevron icon */

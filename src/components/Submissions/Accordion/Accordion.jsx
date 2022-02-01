@@ -46,7 +46,7 @@ const Accordion = (props) => {
         className={`${hideBorder} ${setActive}`}
         onClick={toggleAccordion}
       >
-        <div className="grid grid-cols-3 gap-x-28 accordion__title">
+        <div className="grid grid-cols-3 gap-x-24 accordion__title">
           <div className={`${setActive}`}>{props.title}</div>
           <button
             type="button"
