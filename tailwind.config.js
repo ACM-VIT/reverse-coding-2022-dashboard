@@ -11,6 +11,7 @@ module.exports = {
         100: "28rem",
       },
       fontSize: {
+        "1.5xl": "1.4rem",
         "4.5xl": "2.5rem",
         "5.5xl": "3.5rem",
       },

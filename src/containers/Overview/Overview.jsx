@@ -31,19 +31,23 @@ const Overview = () => {
           key={user.email}
         >
           <div className="text-white space-y-3">
-            <h1 className="text-3xl 2xl:text-4.5xl 2xl:pb-3">Team</h1>
+            <h1 className="text-3xl 2xl:text-4.5xl pb-1 2xl:pb-4">Team</h1>
             <p className="text-4xl 2xl:text-5.5xl text-prpl">{user.team}</p>
           </div>
           <div className="text-white pl-24">
             <h1 className="text-3xl 2xl:text-4.5xl pb-2 2xl:pb-4">Members</h1>
             <div className="flex">
-              <p className="text-gre 2xl:text-xl pr-2">{user.name}</p>
-              <img src={admin} alt="admin" />
+              <p className="text-gre 2xl:text-1.5xl pr-2">{user.name}</p>
+              <img
+                className="2xl:w-6 2xl:ml-1 2xl:mb-0.5"
+                src={admin}
+                alt="admin"
+              />
             </div>
-            <p className="text-gre 2xl:text-xl">Jeet Kaushik</p>
+            <p className="text-gre 2xl:text-1.5xl">Jeet Kaushik</p>
           </div>
           <div className="text-white space-y-3 pl-4">
-            <h1 className="text-3xl 2xl:text-4.5xl 2xl:pb-3">Score</h1>
+            <h1 className="text-3xl 2xl:text-4.5xl pb-1 2xl:pb-4">Score</h1>
             <p className="text-4xl 2xl:text-5.5xl pt-1">{user.score}</p>
           </div>
         </div>
