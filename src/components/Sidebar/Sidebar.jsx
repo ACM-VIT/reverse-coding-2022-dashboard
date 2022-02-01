@@ -1,10 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from "react";
-
-import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
+import "./Sidebar.css";
+import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/images/logo.svg";
+import logout from "../../assets/images/logout2.svg";
+
 import { getLaunch } from "../../redux/QuestionsLaunch/questionsLaunchActions";
 
 const Sidebar = () => {
@@ -38,8 +40,8 @@ const Sidebar = () => {
               <NavLink
                 to="/overview"
                 exact
-                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
-                activeClassName="bg-gray-500 text-white shadow-md"
+                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg 3xl:text-xl 2xl:text-xl"
+                activeClassName="activeclassname text-white shadow-md"
               >
                 Overview
               </NavLink>
@@ -52,7 +54,7 @@ const Sidebar = () => {
               }}
             >
               <div
-                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
+                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg 3xl:text-xl 2xl:text-xl"
                 activeClassName="bg-gray-500  text-white shadow-md"
               >
                 Questions
@@ -61,8 +63,8 @@ const Sidebar = () => {
             <li className="rounded-lg mb-2 ">
               <NavLink
                 to="/leaderboard"
-                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
-                activeClassName="bg-gray-500 text-white shadow-md"
+                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg 3xl:text-xl  2xl:text-xl"
+                activeClassName="activeclassname text-white shadow-md"
               >
                 LeaderBoard
               </NavLink>
@@ -70,13 +72,17 @@ const Sidebar = () => {
             <li className="rounded-lg mb-2 ">
               <NavLink
                 to="/faq"
-                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
-                activeClassName="bg-gray-500 text-white shadow-md"
+                className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg 3xl:text-xl  2xl:text-xl"
+                activeClassName="activeclassname text-white shadow-md"
               >
                 FAQ
               </NavLink>
             </li>
           </ul>
+        </div>
+        <div className="flex mt-2 text-center w-full absolute bottom-0 pb-10 text-white justify-around brdr p-5 3xl:text-xl  2xl:text-xl">
+          <div>Pranav Desai</div>
+          <img src={logout} alt="RC" className="pl-3" />
         </div>
       </div>
     </div>

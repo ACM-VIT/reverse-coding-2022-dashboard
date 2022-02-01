@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import Overview from "./containers/Overview/Overview";
-import Questions from "./components/Questions/Questions";
-import Ques from "./components/Questions/Ques";
+import Questionsdemo from "./components/Questions/DemoQuestions";
+import QuestionsMain from "./containers/QuestionsContainer/QuestionMain/Questions";
 import Faq from "./components/Faq/Faq";
 import "./App.css";
 
@@ -22,9 +22,9 @@ const App = () => (
             {/* <Redirect exact from="/" to="/overview" /> */}
             <Sidebar />
             {/* <Route exact path="/questions" component={Overview} /> */}
-            <Route exact path="/" component={Questions} />
+            <Route exact path="/" component={Questionsdemo} />
             <Route exact path="/overview" component={Overview} />
-            <Route exact path="/questions" component={Ques} />
+            <Route exact path="/questions" component={QuestionsMain} />
             <Route exact path="/leaderboard" component={Leaderboard} />
             <Route exact path="/faq" component={Faq} />
           </>
