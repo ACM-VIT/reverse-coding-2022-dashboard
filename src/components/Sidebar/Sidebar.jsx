@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import "./Sidebar.css";
 import logo from "../../assets/images/logo.svg";
-
+import logout from "../../assets/images/logout2.svg";
 const Sidebar = () => {
   const [active, setActive] = useState("");
   return (
@@ -32,7 +32,7 @@ const Sidebar = () => {
                 to="/overview"
                 exact
                 className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
-                activeClassName="bg-gray-500 text-white shadow-md"
+                activeClassName="activeclassname text-white shadow-md"
               >
                 Overview
               </NavLink>
@@ -41,7 +41,7 @@ const Sidebar = () => {
               <NavLink
                 to="/questions"
                 className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
-                activeClassName="bg-gray-500  text-white shadow-md"
+                activeClassName="activeclassname  text-white shadow-md"
               >
                 Questions
               </NavLink>
@@ -50,7 +50,7 @@ const Sidebar = () => {
               <NavLink
                 to="/leaderboard"
                 className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
-                activeClassName="bg-gray-500 text-white shadow-md"
+                activeClassName="activeclassname text-white shadow-md"
               >
                 LeaderBoard
               </NavLink>
@@ -59,12 +59,16 @@ const Sidebar = () => {
               <NavLink
                 to="/faq"
                 className="flex items-center gap-4 text-sm text-white font-light px-4 py-3 rounded-lg"
-                activeClassName="bg-gray-500 text-white shadow-md"
+                activeClassName="activeclassname text-white shadow-md"
               >
                 FAQ
               </NavLink>
             </li>
           </ul>
+        </div>
+        <div className="flex mt-2 text-center w-full absolute bottom-0 pb-10 text-white justify-around brdr p-5">
+          <div>Pranav Desai</div>
+          <img src={logout} alt="RC" className="pl-3" />
         </div>
       </div>
     </div>
