@@ -8,20 +8,10 @@ import Pages from "../../components/Pagination/Pages";
 import nextarrow from "../../assets/images/nextarrow.svg";
 import prevarrow from "../../assets/images/prevarrow.svg";
 import Countdown from "../../components/CountDown/CountDown";
-import Modals from "../../components/Modals/Modals";
 import LeaderboardItems from "../../components/LeaderBoard/LeaderboardItems";
 import "./Leaderboard.css";
 
 function Leaderboard() {
-  const [open, setOpen] = useState(false);
-  const [filename, setFilename] = useState("");
-  const [disable, setDisable] = useState(true);
-  console.log(open);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-    setOpen(false);
-    setFilename("");
-  };
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(6);
 
@@ -73,45 +63,16 @@ function Leaderboard() {
       </li>
     );
   }
-  const handlechangefile = (e) => {
-    if (e.target.files[0]) {
-      if (e.target.files[0].name.split(".")[1].match(/^(java|js|go|py)$/)) {
-        if (e.target.files[0].size > 47185920) {
-          setDisable(true);
-          console.log("file size is too big");
-          setFilename("");
-        } else {
-          setDisable(false);
-          setFilename(e.target.files[0].name);
-        }
-      } else {
-        setDisable(true);
-        console.log("file type not supported");
-        setFilename("");
-      }
-    } else {
-      setDisable(true);
-      setFilename("");
-    }
-  };
+
   return (
     <div>
       <div className=" flex flex-col text-center text-white">
         <div className="flex flex-col">
-          <h1
-            className=" mt-14 text-xl 3xl:text-3xl 3xl:mt-20 2xl:text-3xl 2xl:mt-20"
-            onClick={handleOpen}
-          >
+          <h1 className=" mt-14 text-xl 3xl:text-3xl 3xl:mt-20 2xl:text-3xl 2xl:mt-20">
             {" "}
             Event Ends in
           </h1>
-          <Modals
-            open={open}
-            onClose={handleClose}
-            onchange={handlechangefile}
-            filename={filename}
-            btndis={disable}
-          />
+
           <Countdown />
         </div>
         <div>
