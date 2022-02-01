@@ -10,7 +10,7 @@ const Submissions = () => {
 
   useEffect(() => {
     axios
-      .get("https://mocki.io/v1/969499df-f089-4638-8159-8cf4d822126b")
+      .get("https://mocki.io/v1/14e66659-cc6d-45d5-a1a0-2ca05f1ebea2")
       .then((res) => {
         setSubmissions(res.data);
       })
@@ -22,10 +22,10 @@ const Submissions = () => {
   return (
     <div
       id="sub"
-      className="overflow-y-scroll h-80 mt-2 w-11/12 md:w-7/12 lg:w-7/12 xl:w-9/12"
+      className="overflow-y-scroll h-80 2xl:h-100 mt-4 2xl:mt-8 w-9/12 2xl:w-10/12"
     >
       <article>
-        <div className="tabscontainer">
+        <div className="mr-5">
           {submissions.map((sub) => (
             <Accordion
               key={sub.id}
