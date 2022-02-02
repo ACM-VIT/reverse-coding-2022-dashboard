@@ -3,6 +3,11 @@
 import React, { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import Fade from "@mui/material/Fade";
+import Box from "@material-ui/core/Box";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
 import { getLaunch } from "../../redux/QuestionsLaunch/questionsLaunchActions";
 
 import "./Sidebar.css";
@@ -11,10 +16,19 @@ import logout from "../../assets/images/logout2.svg";
 
 const Sidebar = () => {
   const [active, setActive] = useState("");
+  const [open, setOpen] = useState(false);
+
   const history = useHistory();
   const dispatch = useDispatch();
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const getData = useSelector((state) => state.questionsLaunch.launchState);
-  console.log(getData);
+
+  const logoutfunc = () => {
+    sessionStorage.removeItem("TK");
+    sessionStorage.removeItem("cc");
+    window.location.href = "/";
+  };
 
   return (
     <div className="h-screen fixed top-0 md:left-0 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-3xl bg-black w-64 2xl:w-88 3xl:w-100 z-10 py-4 px-6 2xl:px-7 transition-all duration-300">
@@ -86,11 +100,59 @@ const Sidebar = () => {
           <p className="2xl:pt-3">Pranav Desai</p>
           <img
             src={logout}
-            className="2xl:pt-2 3xl:pt-2.5 w-6 2xl:w-8 3xl:w-10"
+            className="2xl:pt-2 3xl:pt-2.5 w-6 2xl:w-8 3xl:w-10 cursor-pointer"
+            onClick={handleOpen}
             alt="RC"
           />
         </div>
       </div>
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        closeAfterTransition
+        disableAutoFocus
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 1300,
+          style: {
+            backgroundColor: "rgba(255,255,255,0.075)",
+            backdropFilter: "blur(4px)",
+          },
+        }}
+      >
+        <Fade in={open}>
+          <Box className="shadows stile2">
+            <div className="flex flex-col text-center pt-8">
+              <h1
+                variant="h6"
+                id="modal-modal-title"
+                className="text-1.5xl font-700 pb-4 fontdm"
+              >
+                Are you sure you want to logout?
+              </h1>
+              <div className="flex flex-row justify-between">
+                <button
+                  type="button"
+                  className="py-2 mt-3 mb-1 w-44 focus:outline-none btn"
+                  onClick={() => handleClose()}
+                >
+                  No
+                </button>
+                <button
+                  type="button"
+                  className="py-2 mt-3 mb-1 w-44 focus:outline-none btn-create"
+                  onClick={() => logoutfunc()}
+                >
+                  Yes
+                </button>
+              </div>
+            </div>
+          </Box>
+        </Fade>
+      </Modal>
     </div>
   );
 };
