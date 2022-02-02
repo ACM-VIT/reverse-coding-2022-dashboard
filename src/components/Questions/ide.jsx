@@ -1,4 +1,6 @@
 /* eslint-disable react/function-component-definition */
+/* eslint-disable no-nested-ternary */
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Modals from "../Modals/Modals";
@@ -151,7 +153,18 @@ const Ide = ({ name, id }) => {
         </div>
         <div className="flex flex-row gap-9 ">
           <div className="px-5 py-5 bg-color relative test-cases">
-            {id}
+            <div
+              style={{
+                color:
+                  id === "ACCEPTED"
+                    ? "rgba(39, 174, 96, 1)"
+                    : id === "WRONG"
+                    ? "rgba(235, 87, 87, 1)"
+                    : "rgba(242, 201, 76, 1)",
+              }}
+            >
+              {id}
+            </div>
             <div className="flex absolute bottom-0 mb-4">
               <div>
                 <div
