@@ -10,8 +10,8 @@ import nextarrow from "../../../assets/images/nextarrow.svg";
 import prevarrow from "../../../assets/images/prevarrow.svg";
 
 function Questions() {
-  const getData = useSelector((state) => state.postTeam.people);
-  console.log(getData);
+  const getData = useSelector((state) => state.getAll.problems);
+  console.log("getData", getData);
 
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(1);

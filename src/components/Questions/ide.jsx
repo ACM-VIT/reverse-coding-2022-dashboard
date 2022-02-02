@@ -14,7 +14,7 @@ import upload from "../../assets/images/upload.svg";
 
 import "./ide.css";
 
-const Ide = ({ name, id }) => {
+const Ide = ({ name, id, maxPoints }) => {
   const [active, setActive] = useState({
     windowsImage: true,
     linuxImage: false,
@@ -195,7 +195,7 @@ const Ide = ({ name, id }) => {
 
               <div className=" ml-10 text-white font-700 text-xl">
                 Points: <br />
-                25/100{" "}
+                {maxPoints}/100{" "}
               </div>
             </div>
           </div>

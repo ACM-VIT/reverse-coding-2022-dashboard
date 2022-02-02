@@ -23,6 +23,7 @@ const Ques = ({ person }) => {
   const [open, setOpen] = useState(false);
   const [filename, setFilename] = useState("");
   const [disable, setDisable] = useState(true);
+  const [downloadFile, setDownloadFile] = useState("");
   console.log(open);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -63,7 +64,9 @@ const Ques = ({ person }) => {
         style={{ display: getData ? "none" : "block" }}
       >
         <div className="flex flex-col gap-9 ">
-          <div className="px-8 py-8 bg-color box-radius">{person.id}</div>
+          <div className="px-8 py-8 bg-color box-radius">
+            {person.instructionsText}
+          </div>
           <div className="flex flex-row gap-9 sec-height">
             <div className="px-5 py-5 bg-color relative test-case box-radius">
               <div
@@ -98,7 +101,7 @@ const Ques = ({ person }) => {
 
                 <div className=" ml-10 text-white font-700 text-xl">
                   Points: <br />
-                  25/100{" "}
+                  {person.maxPoints}/100{" "}
                 </div>
               </div>
             </div>
@@ -217,7 +220,11 @@ const Ques = ({ person }) => {
         </div>
       </div>
       <div style={{ display: getData ? "block" : "none" }}>
-        <Ide name={person.name} id={person.id} />
+        <Ide
+          name={person.instructionsText}
+          id={person.id}
+          maxPoints={person.maxPoints}
+        />
       </div>
     </div>
   );
