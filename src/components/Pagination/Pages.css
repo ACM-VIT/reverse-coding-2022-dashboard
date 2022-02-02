@@ -92,13 +92,14 @@
     padding-top: 1.5rem;
   }
   .pageNumbersquestion div {
-    padding: 0.25rem;
-    padding-left: 0.7rem;
-    padding-right: 0.7rem;
+    padding: 1.25rem;
+    padding-left: 1.7rem;
+    padding-right: 1.7rem;
     border: 2px solid #1d2126;
     box-sizing: border-box;
-    border-radius: 0.5rem;
-    padding-top: 0.5rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    padding-top: 1.5rem;
   }
   
 }
