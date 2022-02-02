@@ -18,6 +18,10 @@ body {
   font-weight: 400;
 }
 
+.primary-purple {
+  color: #9b51e0;
+}
+
 .largescreen {
   display: none;
 }
