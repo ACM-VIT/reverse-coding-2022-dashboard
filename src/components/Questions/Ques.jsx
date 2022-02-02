@@ -13,13 +13,13 @@ import upload from "../../assets/images/upload.svg";
 import { getLaunch } from "../../redux/QuestionsLaunch/questionsLaunchActions";
 import "./Ques.css";
 
-const Ques = ({ person }) => {
+const Ques = ({ person, input }) => {
   const [active, setActive] = useState({
     windowsImage: true,
     linuxImage: false,
     macImage: false,
   });
-
+  console.log(input);
   const [open, setOpen] = useState(false);
   const [filename, setFilename] = useState("");
   const [disable, setDisable] = useState(true);
@@ -63,11 +63,9 @@ const Ques = ({ person }) => {
         className="ques mx-auto "
         style={{ display: getData ? "none" : "block" }}
       >
-        <div className="flex flex-col gap-9 ">
-          <div className="px-8 py-8 bg-color box-radius">
-            {person.instructionsText}
-          </div>
-          <div className="flex flex-row gap-9 sec-height">
+        <div className="flex flex-col gap-7 ">
+          <div className="px-8 py-8 bg-color box-radius">{person.instructionsText}</div>
+          <div className="flex flex-row gap-7 sec-height">
             <div className="px-5 py-5 bg-color relative test-case box-radius">
               <div
                 style={{
@@ -81,14 +79,18 @@ const Ques = ({ person }) => {
               >
                 {person.name}
               </div>
-              <div className="flex absolute bottom-0 mb-4">
+              <div className="flex absolute bottom-0 mb-4 2xl:mb-6">
                 <div>
                   <div
                     className="upload-btn text-white flex"
                     onClick={handleOpen}
                   >
                     Upload
-                    <img className="ml-2 h-6" src={upload} alt="upload" />
+                    <img
+                      className="ml-2 h-6 2xl:h-7 2xl:ml-4"
+                      src={upload}
+                      alt="upload"
+                    />
                   </div>
                   <Modals
                     open={open}
@@ -99,29 +101,19 @@ const Ques = ({ person }) => {
                   />
                 </div>
 
-                <div className=" ml-10 text-white font-700 text-xl">
+                <div className=" ml-8 2xl:ml-20 text-white font-700 text-lg 2xl:text-2xl">
                   Points: <br />
                   {person.maxPoints}/100{" "}
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-6 ">
-              <div className="bg-color pl-6 pt-6 pr-16 exec box-radius">
-                To solve the question on your PC, download the executable file
-                accordinng to your OS.
-                <div
-                  className="download-container mt-11 mx-16"
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    overflow: "hidden",
-                    height: "40px",
-                    width: "190px",
-                    marginRight: "1.2rem",
-                  }}
-                >
+            <div className="flex flex-col gap-5 ">
+              <div className="bg-color  exec box-radius ">
+                <div className="pl-6 pt-6 pr-16">
+                  To solve the question on your PC, download the executable file
+                  accordinng to your OS.
+                </div>
+                <div className="download-container mt-6 mx-auto">
                   <span
                     onClick={() => {
                       setActive({
@@ -134,7 +126,7 @@ const Ques = ({ person }) => {
                     <img
                       src={windows}
                       alt="windows"
-                      className="icon h-5"
+                      className="icon h-5 2xl:h-7"
                       style={{
                         cursor: "pointer",
                         marginLeft: "24px",
@@ -154,7 +146,7 @@ const Ques = ({ person }) => {
                     <img
                       src={linux}
                       alt="linux"
-                      className="icon h-5"
+                      className="icon h-5 2xl:h-7"
                       style={{
                         cursor: "pointer",
                         opacity: active.linuxImage ? "1" : "0.5",
@@ -173,7 +165,7 @@ const Ques = ({ person }) => {
                     <img
                       src={mac}
                       alt="mac"
-                      className="icon h-5"
+                      className="icon h-5 2xl:h-7"
                       style={{
                         cursor: "pointer",
                         opacity: active.macImage ? "1" : "0.5",
@@ -194,23 +186,28 @@ const Ques = ({ person }) => {
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                      width: "2.75rem",
                       cursor: "pointer",
                       // opacity: active. ? "1" : "0.5",
                     }}
                   >
-                    <img className="h-5" src={download} alt="download" />
+                    <img
+                      className="h-5 2xl:h-7"
+                      src={download}
+                      alt="download"
+                    />
                   </span>
                 </div>
               </div>
-              <div className="text-center text-2xl">OR</div>
-              <div className="bg-color exec pl-6 pt-6 box-radius">
-                Try with your own custom I/O online
+              <div className="text-center text-2xl 2xl:text-3xl">OR</div>
+              <div className="bg-color exec  box-radius">
+                <div className="pl-6 pt-6">
+                  Try with your own custom I/O online
+                </div>
                 <div
-                  className="launch-btn text-white mt-16 mx-24 flex"
                   onClick={() => {
                     dispatch(getLaunch(true));
                   }}
+                  className="launch-btn text-white mt-12 2xl:mt-20 mx-auto flex"
                 >
                   <span>Launch</span>
                 </div>
@@ -224,6 +221,7 @@ const Ques = ({ person }) => {
           name={person.instructionsText}
           id={person.id}
           maxPoints={person.maxPoints}
+          input={input}
         />
       </div>
     </div>

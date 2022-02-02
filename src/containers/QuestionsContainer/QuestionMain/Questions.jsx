@@ -13,6 +13,8 @@ function Questions() {
   const getData = useSelector((state) => state.getAll.problems);
   console.log("getData", getData);
 
+  const [input, setInput] = useState(false);
+
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(1);
 
@@ -30,7 +32,9 @@ function Questions() {
   console.log(currentItems);
   const handleClick = (e) => {
     setcurrentPage(Number(e.target.id));
+    setInput(true);
   };
+
   const handleNext = () => {
     setcurrentPage(currentPage + 1);
     if (currentPage + 1 > maxpageNumberLimit) {
@@ -63,7 +67,7 @@ function Questions() {
   }
   return (
     <div>
-      <div className="flex justify-center mb-10 mt-24">
+      <div className="flex justify-center mb-8 mt-24">
         <ul className="pageNumbersquestion justify-end pb-1 text-white">
           <div className="mx-1">
             <button onClick={handlePrev} disabled={currentPage === pages[0]}>
@@ -92,8 +96,9 @@ function Questions() {
           </div>
         </ul>
       </div>
+
       {currentItems.map((person) => (
-        <Ques person={person} />
+        <Ques person={person} input={input} />
       ))}
     </div>
   );

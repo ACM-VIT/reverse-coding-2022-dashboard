@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+import axios from "axios";
 import Fade from "@mui/material/Fade";
 import Box from "@material-ui/core/Box";
 import Modal from "@material-ui/core/Modal";
@@ -17,6 +18,7 @@ import logout from "../../assets/images/logout2.svg";
 const Sidebar = () => {
   const [active, setActive] = useState("");
   const [open, setOpen] = useState(false);
+  const [users, setUsers] = useState([]);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -30,14 +32,25 @@ const Sidebar = () => {
     window.location.href = "/";
   };
 
+  useEffect(() => {
+    axios
+      .get("https://mocki.io/v1/58bde005-111f-4830-b49e-d90fd8ebbe3c")
+      .then((res) => {
+        setUsers(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div className="h-screen fixed top-0 md:left-0 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-3xl bg-black w-64 2xl:w-88 3xl:w-100 z-10 py-4 px-6 2xl:px-7 transition-all duration-300">
-      <div className="flex-col items-stretch min-h-full flex-nowrap px-0 relative">
+      <div className="flex-col items-stretch min-h-full w-full flex-nowrap relative">
         {/* <a href="#" className="mt-2 text-center w-full inline-block"> */}
         <img
           src={logo}
           alt="RC"
-          className="pl-3 mt-2 text-center w-full inline-block"
+          className="inline mt-2 pl-5 2xl:pl-8 3xl:pl-10 w-44 2xl:w-60 3xl:w-72 2xl:mt-6 3xl:mt-6"
         />
         {/* </a> */}
         <div className="flex flex-col mt-24 2xl:mt-40">
@@ -96,15 +109,20 @@ const Sidebar = () => {
             </li>
           </ul>
         </div>
-        <div className="flex mt-2 text-center w-full absolute bottom-0 pb-10 text-white justify-around brdr p-5 3xl:text-3xl 2xl:text-2.5xl text-lg font-robo">
-          <p className="2xl:pt-3">Pranav Desai</p>
-          <img
-            src={logout}
-            className="2xl:pt-2 3xl:pt-2.5 w-6 2xl:w-8 3xl:w-10 cursor-pointer"
-            onClick={handleOpen}
-            alt="RC"
-          />
-        </div>
+        {users.map((user) => (
+          <div
+            className="flex mt-2 text-center w-full absolute bottom-0 pb-10 text-white justify-around brdr p-5 3xl:text-3xl 2xl:text-2.5xl text-lg font-robo"
+            key={user.email}
+          >
+            <p className="2xl:pt-3">{user.name}</p>
+            <img
+              src={logout}
+              className="2xl:pt-2 3xl:pt-2.5 w-6 2xl:w-8 3xl:w-10 cursor-pointer"
+              onClick={handleOpen}
+              alt="RC"
+            />
+          </div>
+        ))}
       </div>
 
       <Modal

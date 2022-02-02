@@ -2,7 +2,7 @@
   font-family: "DM Sans";
   font-weight: 400;
   font-size: 16px;
-  width: 747px;
+  width: 680px;
   color: rgba(187, 200, 200, 1);
 }
 .bg-color {
@@ -10,31 +10,34 @@
 }
 
 .sec-height {
-  height: 524px;
+  height: 440px;
 }
 
 .test-case {
-  width: 311px;
+  width: 290px;
 }
 
 .exec {
-  width: 399px;
-  height: 226px;
+  width: 359px;
+  height: 200px;
 }
 
 .download-container {
-  width: 10rem;
   font-size: 1em;
   background-color: rgba(21, 21, 21, 1);
   border-radius: 8px;
-  height: 2.5rem;
-  display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  height: 40px;
+  width: 190px;
+  display: flex;
 }
 .download {
   background: rgba(152, 79, 185, 1);
   height: 100%;
+  width: 2.75rem;
 }
 .icon {
   margin: 0 0.3rem;
@@ -42,20 +45,76 @@
 .upload-btn {
   background: #984fb9;
   border-radius: 8px;
-  width: 131px;
-  height: 47px;
+  width: 130px;
+  height: 45px;
   padding: 11px 22px;
   cursor: pointer;
 }
 .launch-btn {
   background: #984fb9;
   border-radius: 8px;
-  width: 160px;
-  height: 47px;
+  width: 150px;
+  height: 45px;
   padding: 10px 46px;
   cursor: pointer;
 }
 
 .box-radius {
   border-radius: 4px;
+}
+
+@media screen and (min-width: 1550px) {
+  .ques {
+    font-family: "DM Sans";
+    font-weight: 400;
+    font-size: 22px;
+    width: 947px;
+    color: rgba(187, 200, 200, 1);
+  }
+
+  .sec-height {
+    height: 624px;
+  }
+
+  .test-case {
+    width: 390px;
+  }
+
+  .exec {
+    width: 520px;
+    height: 276px;
+  }
+  .upload-btn {
+    background: #984fb9;
+    border-radius: 8px;
+    width: 170px;
+    height: 60px;
+    padding: 16px 30px;
+    cursor: pointer;
+  }
+  .launch-btn {
+    background: #984fb9;
+    border-radius: 8px;
+    width: 200px;
+    height: 60px;
+    padding: 12px 50px;
+    cursor: pointer;
+  }
+  .download-container {
+    font-size: 1em;
+    background-color: rgba(21, 21, 21, 1);
+    border-radius: 8px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    height: 60px;
+    width: 240px;
+    display: flex;
+  }
+  .download {
+    background: rgba(152, 79, 185, 1);
+    height: 100%;
+    width: 3.5rem;
+  }
 }
