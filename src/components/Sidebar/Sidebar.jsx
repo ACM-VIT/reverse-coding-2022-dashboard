@@ -45,12 +45,12 @@ const Sidebar = () => {
 
   return (
     <div className="h-screen fixed top-0 md:left-0 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-3xl bg-black w-64 2xl:w-88 3xl:w-100 z-10 py-4 px-6 2xl:px-7 transition-all duration-300">
-      <div className="flex-col items-stretch min-h-full flex-nowrap px-0 relative">
+      <div className="flex-col items-stretch min-h-full w-full flex-nowrap relative">
         {/* <a href="#" className="mt-2 text-center w-full inline-block"> */}
         <img
           src={logo}
           alt="RC"
-          className="pl-3 mt-2 text-center w-full inline-block"
+          className="inline mt-2 pl-5 2xl:pl-8 3xl:pl-10 w-44 2xl:w-60 3xl:w-72 2xl:mt-6 3xl:mt-6"
         />
         {/* </a> */}
         <div className="flex flex-col mt-24 2xl:mt-40">
