@@ -19,14 +19,13 @@ const Sidebar = () => {
   return (
     <div className="h-screen fixed top-0 md:left-0 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-3xl bg-black w-64 2xl:w-88 3xl:w-100 z-10 py-4 px-6 2xl:px-7 transition-all duration-300">
       <div className="flex-col items-stretch min-h-full flex-nowrap px-0 relative">
-        <a
-          href="#"
-          target="_blank"
-          rel="noreferrer"
-          className="mt-2 text-center w-full inline-block"
-        >
-          <img src={logo} alt="RC" className="pl-3" />
-        </a>
+        {/* <a href="#" className="mt-2 text-center w-full inline-block"> */}
+        <img
+          src={logo}
+          alt="RC"
+          className="pl-3 mt-2 text-center w-full inline-block"
+        />
+        {/* </a> */}
         <div className="flex flex-col mt-24 2xl:mt-40">
           <ul className="flex-col min-w-full flex list-none text-lg 2xl:text-2.5xl 3xl:text-3xl font-robo leading-5 2xl:leading-10 3xl:leading-11">
             <li className="rounded-lg mb-2 2xl:mb-3">
@@ -50,7 +49,7 @@ const Sidebar = () => {
               </NavLink>
             </li>
             <li
-              className="rounded-lg mb-2 2xl:mb-3"
+              className="rounded-lg cursor-pointer mb-2 2xl:mb-3"
               onClick={() => {
                 dispatch(getLaunch(false));
                 history.push("/questions");
@@ -58,7 +57,7 @@ const Sidebar = () => {
             >
               <div
                 className="flex items-center text-white px-4 py-3 3xl:py-4 rounded-lg 2xl:rounded-xl 3xl:rounded-2xl 2xl:pl-6"
-                activeClassName="text-white shadow-md"
+                activeClassName="activeclassname text-white shadow-md"
               >
                 Questions
               </div>
