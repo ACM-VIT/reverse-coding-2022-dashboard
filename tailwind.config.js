@@ -12,11 +12,17 @@ module.exports = {
       },
       fontSize: {
         "1.5xl": "1.4rem",
+        "2.5xl": "1.7rem",
         "4.5xl": "2.5rem",
         "5.5xl": "3.5rem",
       },
       lineHeight: {
+        11: "3rem",
         12: "3.75rem",
+      },
+      width: {
+        88: "22rem",
+        100: "25rem",
       },
     },
     variants: {

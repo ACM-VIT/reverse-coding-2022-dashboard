@@ -1,6 +1,40 @@
-.brdr{
-    border-top: 2px solid rgba(242, 242, 242, 0.435);
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+.font-robo {
+  font-family: "Roboto", sans-serif;
 }
-.activeclassname{
-    background: #363636;
+
+.brdr {
+  border-top: 2px solid rgba(242, 242, 242, 0.435);
+}
+
+.activeclassname {
+  background: #363636;
+}
+
+.btn {
+  background: #9b51e0;
+  border-radius: 2rem;
+}
+
+.btn-create {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 2rem;
+  border: 1.5px solid #9b51e0;
+}
+
+.stile2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 440px;
+  height: 230px;
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 24px;
+  padding: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 24px;
+  color: white;
+  outline: none !important;
 }
