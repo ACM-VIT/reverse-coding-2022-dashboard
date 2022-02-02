@@ -64,7 +64,9 @@ const Ques = ({ person, input }) => {
         style={{ display: getData ? "none" : "block" }}
       >
         <div className="flex flex-col gap-7 ">
-          <div className="px-8 py-8 bg-color box-radius">{person.instructionsText}</div>
+          <div className="px-8 py-8 bg-color box-radius">
+            {person.instructionsText}
+          </div>
           <div className="flex flex-row gap-7 sec-height">
             <div className="px-5 py-5 bg-color relative test-case box-radius">
               <div
