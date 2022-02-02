@@ -1,4 +1,5 @@
 /* eslint-disable react/function-component-definition */
+/* eslint-disable no-nested-ternary */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -63,7 +64,18 @@ const Ques = ({ person }) => {
           <div className="px-8 py-8 bg-color box-radius">{person.id}</div>
           <div className="flex flex-row gap-9 sec-height">
             <div className="px-5 py-5 bg-color relative test-case box-radius">
-              {person.name}
+              <div
+                style={{
+                  color:
+                    person.name === "ACCEPTED"
+                      ? "rgba(39, 174, 96, 1)"
+                      : person.name === "WRONG"
+                      ? "rgba(235, 87, 87, 1)"
+                      : "rgba(242, 201, 76, 1)",
+                }}
+              >
+                {person.name}
+              </div>
               <div className="flex absolute bottom-0 mb-4">
                 <div>
                   <div

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import Overview from "./containers/Overview/Overview";
 import Questionsdemo from "./components/Questions/DemoQuestions";
@@ -31,7 +31,7 @@ const App = () => {
         <div className=" md:ml-64">
           <Switch>
             <>
-              {/* <Redirect exact from="/" to="/overview" /> */}
+              <Redirect exact from="/" to="/" />
               <Sidebar />
               {/* <Route exact path="/questions" component={Overview} /> */}
               <Route exact path="/" component={Questionsdemo} />
