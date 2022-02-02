@@ -13,6 +13,8 @@ function Questions() {
   const getData = useSelector((state) => state.postTeam.people);
   console.log(getData);
 
+  const [input, setInput] = useState(false);
+
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(1);
 
@@ -30,7 +32,9 @@ function Questions() {
   console.log(currentItems);
   const handleClick = (e) => {
     setcurrentPage(Number(e.target.id));
+    setInput(true);
   };
+
   const handleNext = () => {
     setcurrentPage(currentPage + 1);
     if (currentPage + 1 > maxpageNumberLimit) {
@@ -92,8 +96,9 @@ function Questions() {
           </div>
         </ul>
       </div>
+
       {currentItems.map((person) => (
-        <Ques person={person} />
+        <Ques person={person} input={input} />
       ))}
     </div>
   );

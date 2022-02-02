@@ -13,13 +13,13 @@ import upload from "../../assets/images/upload.svg";
 import { getLaunch } from "../../redux/QuestionsLaunch/questionsLaunchActions";
 import "./Ques.css";
 
-const Ques = ({ person }) => {
+const Ques = ({ person, input }) => {
   const [active, setActive] = useState({
     windowsImage: true,
     linuxImage: false,
     macImage: false,
   });
-
+  console.log(input);
   const [open, setOpen] = useState(false);
   const [filename, setFilename] = useState("");
   const [disable, setDisable] = useState(true);
@@ -202,14 +202,13 @@ const Ques = ({ person }) => {
                 <div className="pl-6 pt-6">
                   Try with your own custom I/O online
                 </div>
-                <div className="launch-btn text-white mt-12 2xl:mt-20 mx-auto flex">
-                  <span
-                    onClick={() => {
-                      dispatch(getLaunch(true));
-                    }}
-                  >
-                    Launch
-                  </span>
+                <div
+                  onClick={() => {
+                    dispatch(getLaunch(true));
+                  }}
+                  className="launch-btn text-white mt-12 2xl:mt-20 mx-auto flex"
+                >
+                  <span>Launch</span>
                 </div>
               </div>
             </div>
@@ -217,7 +216,7 @@ const Ques = ({ person }) => {
         </div>
       </div>
       <div style={{ display: getData ? "block" : "none" }}>
-        <Ide name={person.name} id={person.id} />
+        <Ide name={person.name} id={person.id} input={input} />
       </div>
     </div>
   );

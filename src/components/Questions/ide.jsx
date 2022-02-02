@@ -14,12 +14,24 @@ import upload from "../../assets/images/upload.svg";
 
 import "./ide.css";
 
-const Ide = ({ name, id }) => {
+// const initialState = { inputTextArea: "" };
+
+const Ide = ({ name, id, input }) => {
   const [active, setActive] = useState({
     windowsImage: true,
     linuxImage: false,
     macImage: false,
   });
+
+  // const [inputTextArea, setState] = useState(initialState);
+  // const clearState = () => {
+  //   setState({ initialState });
+  // };
+
+  // const onChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setState((prevState) => ({ prevState, [name]: value }));
+  // };
 
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
