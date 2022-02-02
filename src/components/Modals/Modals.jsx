@@ -132,7 +132,7 @@ function Modals(props) {
                   <p>Drag drop some files here, or click to select files</p>
                 )} */}
               </div>
-              <div>
+              <div onClick={props.handleupload}>
                 <button
                   type="button"
                   className={`mt-8 upload-btn p-3 ${
