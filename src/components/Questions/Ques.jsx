@@ -13,7 +13,7 @@ import upload from "../../assets/images/upload.svg";
 import { getLaunch } from "../../redux/QuestionsLaunch/questionsLaunchActions";
 import "./Ques.css";
 
-const Ques = ({ person, input }) => {
+const Ques = ({ data, input }) => {
   const [active, setActive] = useState({
     windowsImage: true,
     linuxImage: false,
@@ -65,21 +65,21 @@ const Ques = ({ person, input }) => {
       >
         <div className="flex flex-col gap-7 ">
           <div className="px-8 py-8 bg-color box-radius">
-            {person.instructionsText}
+            {data.instructionsText}
           </div>
           <div className="flex flex-row gap-7 sec-height">
             <div className="px-5 py-5 bg-color relative test-case box-radius">
               <div
                 style={{
                   color:
-                    person.name === "ACCEPTED"
+                    data.name === "ACCEPTED"
                       ? "rgba(39, 174, 96, 1)"
-                      : person.name === "WRONG"
+                      : data.name === "WRONG"
                       ? "rgba(235, 87, 87, 1)"
                       : "rgba(242, 201, 76, 1)",
                 }}
               >
-                {person.name}
+                {data.name}
               </div>
               <div className="flex absolute bottom-0 mb-4 2xl:mb-6">
                 <div>
@@ -105,7 +105,7 @@ const Ques = ({ person, input }) => {
 
                 <div className=" ml-8 2xl:ml-20 text-white font-700 text-lg 2xl:text-2xl">
                   Points: <br />
-                  {person.maxPoints}/100{" "}
+                  {data.maxPoints}/100{" "}
                 </div>
               </div>
             </div>
@@ -220,9 +220,9 @@ const Ques = ({ person, input }) => {
       </div>
       <div style={{ display: getData ? "block" : "none" }}>
         <Ide
-          name={person.instructionsText}
-          id={person.id}
-          maxPoints={person.maxPoints}
+          name={data.instructionsText}
+          id={data.id}
+          maxPoints={data.maxPoints}
           input={input}
         />
       </div>

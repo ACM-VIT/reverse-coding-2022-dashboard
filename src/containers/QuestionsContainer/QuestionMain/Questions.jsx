@@ -97,8 +97,8 @@ function Questions() {
         </ul>
       </div>
 
-      {currentItems.map((person) => (
-        <Ques person={person} input={input} />
+      {currentItems.map((data) => (
+        <Ques data={data} input={input} />
       ))}
     </div>
   );
