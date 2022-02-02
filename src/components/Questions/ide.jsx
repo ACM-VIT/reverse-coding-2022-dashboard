@@ -26,12 +26,16 @@ const Ide = ({ name, id }) => {
   console.log("ide open", open);
   console.log("ide open2", open2);
   const handleOpen = () => setOpen(true);
+  const handleOpen2 = () => setOpen2(true);
+
   const handleClose = () => {
     setOpen(false);
     setFilename("");
   };
-  const handleOpen2 = () => setOpen2(true);
-  const handleClose2 = () => setOpen2(false);
+  const handleClose2 = () => {
+    console.log("close");
+    setOpen2(false);
+  };
   const handlechangefile = (e) => {
     if (e.target.files[0]) {
       if (e.target.files[0].name.split(".")[1].match(/^(java|js|go|py)$/)) {
