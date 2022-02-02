@@ -1,10 +1,16 @@
 /* eslint-disable default-param-last */
-import { GET_PEOPLE, GET_PROBLEMS, GET_TEAMS } from "./GetAllTypes";
+import {
+  GET_PEOPLE,
+  GET_PROBLEMS,
+  GET_TEAMS,
+  GET_LEADERBOARD,
+} from "./GetAllTypes";
 
 const initialState = {
   people: {},
   problems: [],
   teams: {},
+  leaderboard: [],
 };
 
 const getAllReducer = (state = initialState, action) => {
@@ -23,6 +29,11 @@ const getAllReducer = (state = initialState, action) => {
       return {
         ...state,
         teams: action.payload,
+      };
+    case GET_LEADERBOARD:
+      return {
+        ...state,
+        leaderboard: action.payload,
       };
     default:
       return state;
