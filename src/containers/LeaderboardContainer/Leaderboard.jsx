@@ -103,11 +103,11 @@ function Leaderboard() {
           </table> */}
         </div>
         <ul className="pageNumbers justify-end mt-10 mb-8 mx-40 position-ul pb-1">
-          <li className="mx-1">
+          <div className="mx-1">
             <button onClick={handlePrev} disabled={currentPage === pages[0]}>
               <img src={prevarrow} alt="prev" />
             </button>
-          </li>
+          </div>
           {pageDecrementBtn}
           <Pages
             pages={pages}
@@ -120,14 +120,14 @@ function Leaderboard() {
             minpageNumberLimit={minpageNumberLimit}
           />
           {pageIncrementBtn}
-          <li className="mx-1">
+          <div className="mx-1">
             <button
               onClick={handleNext}
               disabled={currentPage === pages[pages.length - 1]}
             >
               <img src={nextarrow} alt="next" />
             </button>
-          </li>
+          </div>
         </ul>
       </div>
     </div>

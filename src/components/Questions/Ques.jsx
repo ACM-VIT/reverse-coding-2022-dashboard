@@ -189,14 +189,13 @@ const Ques = ({ person }) => {
               <div className="text-center text-2xl">OR</div>
               <div className="bg-color exec pl-6 pt-6 box-radius">
                 Try with your own custom I/O online
-                <div className="launch-btn text-white mt-16 mx-24 flex">
-                  <span
-                    onClick={() => {
-                      dispatch(getLaunch(true));
-                    }}
-                  >
-                    Launch
-                  </span>
+                <div
+                  className="launch-btn text-white mt-16 mx-24 flex"
+                  onClick={() => {
+                    dispatch(getLaunch(true));
+                  }}
+                >
+                  <span>Launch</span>
                 </div>
               </div>
             </div>
