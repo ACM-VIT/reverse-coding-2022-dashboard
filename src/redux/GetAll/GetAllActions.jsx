@@ -1,5 +1,10 @@
 /* eslint-disable import/prefer-default-export */
-import { GET_PEOPLE, GET_PROBLEMS, GET_TEAMS } from "./GetAllTypes";
+import {
+  GET_PEOPLE,
+  GET_PROBLEMS,
+  GET_TEAMS,
+  GET_LEADERBOARD,
+} from "./GetAllTypes";
 
 export const getPeople = (people) => ({
   type: GET_PEOPLE,
@@ -12,4 +17,8 @@ export const getTeams = (teams) => ({
 export const getProblems = (problems) => ({
   type: GET_PROBLEMS,
   payload: problems,
+});
+export const getLeaderboard = (leaderboard) => ({
+  type: GET_LEADERBOARD,
+  payload: leaderboard,
 });
