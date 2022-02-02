@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Ide from "./ide";
 import Modals from "../Modals/Modals";
+import ModalsDownload from "../Modals/ModalsDownload";
 import linux from "../../assets/images/linux.svg";
 import mac from "../../assets/images/mac.svg";
 import windows from "../../assets/images/windows.svg";
@@ -22,7 +23,9 @@ const Ques = ({ data, input }) => {
   });
   const [problemid, setProblemid] = useState(data.id);
   console.log(input);
+  const [selection, setSelection] = useState("");
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
   const [filename, setFilename] = useState("");
   const [disable, setDisable] = useState(true);
   const [downloadFile, setDownloadFile] = useState("");
@@ -31,6 +34,8 @@ const Ques = ({ data, input }) => {
   console.log("doenloadfiel", downloadFile);
   console.log(open);
   const handleOpen = () => setOpen(true);
+  const handleOpen2 = () => setOpen2(true);
+
   const handleClose = () => {
     setOpen(false);
     setFilename("");
@@ -47,7 +52,11 @@ const Ques = ({ data, input }) => {
       console.log("Error: ", error);
     };
   };
-  const handlechangefile = async (e) => {
+  const handleClose2 = () => {
+    console.log("close");
+    setOpen2(false);
+  };
+  const handlechangefile = (e) => {
     if (e.target.files[0]) {
       const file = e.target.files[0];
       try {
@@ -72,6 +81,23 @@ const Ques = ({ data, input }) => {
     } else {
       setDisable(true);
       setFilename("");
+    }
+  };
+
+  const downloadClick = () => {
+    if (active.windowsImage) window.open(data.windowsFileURL, "_blank");
+    if (active.linuxImage) window.open(data.objectFileURL, "_blank");
+    if (active.macImage) window.open(data.macFileURL, "_blank");
+  };
+  const modalSelection = () => {
+    if (active.windowsImage) {
+      setSelection("Windows");
+    }
+    if (active.linuxImage) {
+      setSelection("Linux");
+    }
+    if (active.macImage) {
+      setSelection("Mac");
     }
   };
 
@@ -206,11 +232,9 @@ const Ques = ({ data, input }) => {
                   </span>
                   <span
                     onClick={() => {
-                      setActive({
-                        windowsImage: true,
-                        linuxImage: false,
-                        macImage: false,
-                      });
+                      downloadClick();
+                      handleOpen2();
+                      modalSelection();
                     }}
                     className="icon download"
                     style={{
@@ -229,6 +253,11 @@ const Ques = ({ data, input }) => {
                     />
                   </span>
                 </div>
+                <ModalsDownload
+                  open={open2}
+                  onClose={handleClose2}
+                  selection={selection}
+                />
               </div>
               <div className="text-center text-2xl 2xl:text-3xl">OR</div>
               <div className="bg-color exec  box-radius">
@@ -253,6 +282,7 @@ const Ques = ({ data, input }) => {
           name={data.instructionsText}
           id={data.id}
           maxPoints={data.maxPoints}
+          data={data}
           input={input}
         />
       </div>
