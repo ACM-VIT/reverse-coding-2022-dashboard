@@ -88,11 +88,6 @@ function Modals(props) {
                 Select Code File To Upload
               </div>
               <div className=" pb-4 text-base fontdmteam">Instructions</div>
-              <LinearProgress
-                variant="determinate"
-                value={normalise(12)}
-                color="primary"
-              />
               <div className=" text-left text-lg pt-7">
                 {" "}
                 It should Not exceed

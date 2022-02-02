@@ -65,11 +65,11 @@ function Questions() {
     <div>
       <div className="flex justify-center mb-10 mt-24">
         <ul className="pageNumbersquestion justify-end pb-1 text-white">
-          <li className="mx-1">
+          <div className="mx-1">
             <button onClick={handlePrev} disabled={currentPage === pages[0]}>
               <img src={prevarrow} alt="prev" />
             </button>
-          </li>
+          </div>
           {pageDecrementBtn}
           <Pages
             pages={pages}
@@ -82,14 +82,14 @@ function Questions() {
             minpageNumberLimit={minpageNumberLimit}
           />
           {pageIncrementBtn}
-          <li className="mx-1">
+          <div className="mx-1">
             <button
               onClick={handleNext}
               disabled={currentPage === pages[pages.length - 1]}
             >
               <img src={nextarrow} alt="next" />
             </button>
-          </li>
+          </div>
         </ul>
       </div>
       {currentItems.map((person) => (

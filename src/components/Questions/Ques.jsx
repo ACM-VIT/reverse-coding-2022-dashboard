@@ -31,8 +31,12 @@ const Ques = ({ person }) => {
   };
   const handlechangefile = (e) => {
     if (e.target.files[0]) {
-      if (e.target.files[0].name.split(".")[1].match(/^(java|js|go|py)$/)) {
-        if (e.target.files[0].size > 47185920) {
+      try {
+        if (!e.target.files[0].name.split(".")[1].match(/^(java|js|go|py)$/)) {
+          setDisable(true);
+          setFilename("");
+          console.log("file not supported");
+        } else if (e.target.files[0].size > 47185920) {
           setDisable(true);
           console.log("file size is too big");
           setFilename("");
@@ -40,10 +44,8 @@ const Ques = ({ person }) => {
           setDisable(false);
           setFilename(e.target.files[0].name);
         }
-      } else {
-        setDisable(true);
-        console.log("file type not supported");
-        setFilename("");
+      } catch (error) {
+        console.log("errorfew", error);
       }
     } else {
       setDisable(true);
@@ -201,14 +203,13 @@ const Ques = ({ person }) => {
               <div className="text-center text-2xl">OR</div>
               <div className="bg-color exec pl-6 pt-6 box-radius">
                 Try with your own custom I/O online
-                <div className="launch-btn text-white mt-16 mx-24 flex">
-                  <span
-                    onClick={() => {
-                      dispatch(getLaunch(true));
-                    }}
-                  >
-                    Launch
-                  </span>
+                <div
+                  className="launch-btn text-white mt-16 mx-24 flex"
+                  onClick={() => {
+                    dispatch(getLaunch(true));
+                  }}
+                >
+                  <span>Launch</span>
                 </div>
               </div>
             </div>
