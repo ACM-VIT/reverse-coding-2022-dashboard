@@ -31,7 +31,14 @@ export const postJudge =
         }
       )
       .then((res) => {
-        dispatch(postTrial(res.data));
+        const polling = setInterval(() => {
+          axios.get("http://20.204.89.226:5000/judge").then((response) => {
+            if (response.data.status === "done") {
+              clearInterval(polling);
+              dispatch(postTrial(res.data));
+            }
+          });
+        }, 1000);
       })
       .catch((err) => {
         console.log(err);
