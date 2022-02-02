@@ -10,8 +10,8 @@ import nextarrow from "../../../assets/images/nextarrow.svg";
 import prevarrow from "../../../assets/images/prevarrow.svg";
 
 function Questions() {
-  const getData = useSelector((state) => state.postTeam.people);
-  console.log(getData);
+  const getData = useSelector((state) => state.getAll.problems);
+  console.log("getData", getData);
 
   const [input, setInput] = useState(false);
 
@@ -97,8 +97,8 @@ function Questions() {
         </ul>
       </div>
 
-      {currentItems.map((person) => (
-        <Ques person={person} input={input} />
+      {currentItems.map((data) => (
+        <Ques data={data} input={input} />
       ))}
     </div>
   );

@@ -16,7 +16,7 @@ import "./ide.css";
 
 // const initialState = { inputTextArea: "" };
 
-const Ide = ({ name, id, input }) => {
+const Ide = ({ name, id, input, maxPoints }) => {
   const [active, setActive] = useState({
     windowsImage: true,
     linuxImage: false,
@@ -200,7 +200,7 @@ const Ide = ({ name, id, input }) => {
 
               <div className=" ml-10 2xl:ml-20  text-white font-700 text-lg 2xl:text-2xl">
                 Points: <br />
-                25/100{" "}
+                {maxPoints}/100{" "}
               </div>
             </div>
           </div>
