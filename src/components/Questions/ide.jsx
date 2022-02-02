@@ -3,6 +3,7 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import ModalsDownload from "../Modals/ModalsDownload";
 import Modals from "../Modals/Modals";
 import linux from "../../assets/images/linux.svg";
 import mac from "../../assets/images/mac.svg";
@@ -21,14 +22,18 @@ const Ide = ({ name, id }) => {
   });
 
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
   const [filename, setFilename] = useState("");
   const [disable, setDisable] = useState(true);
-  console.log(open);
+  console.log("ide open", open);
+  console.log("ide open2", open2);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
     setFilename("");
   };
+  const handleOpen2 = () => setOpen2(true);
+  const handleClose2 = () => setOpen2(false);
   const handlechangefile = (e) => {
     if (e.target.files[0]) {
       if (e.target.files[0].name.split(".")[1].match(/^(java|js|go|py)$/)) {
@@ -130,11 +135,7 @@ const Ide = ({ name, id }) => {
             </span>
             <span
               onClick={() => {
-                setActive({
-                  windowsImage: true,
-                  linuxImage: false,
-                  macImage: false,
-                });
+                handleOpen2();
               }}
               className="icon download"
               style={{
@@ -148,6 +149,11 @@ const Ide = ({ name, id }) => {
               }}
             >
               <img className="h-5" src={download} alt="download" />
+              <ModalsDownload
+                open={open2}
+                onClose={handleClose2}
+                selection={active}
+              />
             </span>
           </div>
         </div>
