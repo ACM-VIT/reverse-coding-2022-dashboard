@@ -135,13 +135,13 @@ function Modals(props) {
               <div onClick={props.handleupload}>
                 <button
                   type="button"
-                  className={`mt-8 upload-btn p-3 ${
+                  className={`mt-8 upload-btn-modal p-3 ${
                     props.btndis ? "opacity-50 cursor-not-allowed" : ""
                   }`}
                   disabled={props.btndis}
                 >
                   <div className="flex">
-                    <div className="px-1">Upload</div>
+                    <div className="px-1 ">Upload</div>
                     <div>
                       <img src={upload} alt="upload" />
                     </div>

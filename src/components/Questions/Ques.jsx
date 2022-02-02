@@ -56,7 +56,7 @@ const Ques = ({ data, input }) => {
     console.log("close");
     setOpen2(false);
   };
-  const handlechangefile = (e) => {
+  const handlechangefile = async (e) => {
     if (e.target.files[0]) {
       const file = e.target.files[0];
       try {
@@ -107,9 +107,9 @@ const Ques = ({ data, input }) => {
   const getTeamid = getTeam.id;
   const getTeampoints = getTeam.points;
   console.log(getData);
-  const handleupload = () => {
+  const handleupload = async () => {
     console.log("handleuplaod");
-    dispatch(postJudge(problemid, getTeamid, fileType, downloadFile));
+    await dispatch(postJudge(problemid, getTeamid, fileType, downloadFile));
     handleClose();
   };
   return (
