@@ -63,7 +63,7 @@ function Questions() {
   }
   return (
     <div>
-      <div className="flex justify-center mb-10 mt-24">
+      <div className="flex justify-center mb-8 mt-24">
         <ul className="pageNumbersquestion justify-end pb-1 text-white">
           <li className="mx-1">
             <button onClick={handlePrev} disabled={currentPage === pages[0]}>

@@ -59,102 +59,91 @@ const Ide = ({ name, id }) => {
   return (
     <div className="ide mx-auto">
       <div className="flex flex-col gap-9 ">
-        <div className="px-8 py-8 bg-color ">
+        <div className="px-8 py-8 bg-color relative">
           {name}
-          <div
-            className="download-container mt-2 execs"
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              overflow: "hidden",
-              height: "40px",
-              width: "190px",
-              marginRight: "1.2rem",
-            }}
-          >
-            <span
-              onClick={() => {
-                setActive({
-                  windowsImage: true,
-                  linuxImage: false,
-                  macImage: false,
-                });
-              }}
-            >
-              <img
-                src={windows}
-                alt="windows"
-                className="icon h-5"
-                style={{
-                  cursor: "pointer",
-                  marginLeft: "24px",
-                  opacity: active.windowsImage ? "1" : "0.5",
+          <div className="absolute right-0 bottom-0 mb-3 mr-3">
+            <div className="download-container mt-2 ">
+              <span
+                onClick={() => {
+                  setActive({
+                    windowsImage: true,
+                    linuxImage: false,
+                    macImage: false,
+                  });
                 }}
-              />
-            </span>
-            <span
-              onClick={() => {
-                setActive({
-                  windowsImage: false,
-                  linuxImage: true,
-                  macImage: false,
-                });
-              }}
-            >
-              <img
-                src={linux}
-                alt="linux"
-                className="icon h-5"
-                style={{
-                  cursor: "pointer",
-                  opacity: active.linuxImage ? "1" : "0.5",
+              >
+                <img
+                  src={windows}
+                  alt="windows"
+                  className="icon h-5 2xl:h-7"
+                  style={{
+                    cursor: "pointer",
+                    marginLeft: "24px",
+                    opacity: active.windowsImage ? "1" : "0.5",
+                  }}
+                />
+              </span>
+              <span
+                onClick={() => {
+                  setActive({
+                    windowsImage: false,
+                    linuxImage: true,
+                    macImage: false,
+                  });
                 }}
-              />
-            </span>
-            <span
-              onClick={() => {
-                setActive({
-                  windowsImage: false,
-                  linuxImage: false,
-                  macImage: true,
-                });
-              }}
-            >
-              <img
-                src={mac}
-                alt="mac"
-                className="icon h-5"
-                h
-                style={{
-                  cursor: "pointer",
-                  opacity: active.macImage ? "1" : "0.5",
+              >
+                <img
+                  src={linux}
+                  alt="linux"
+                  className="icon h-5 2xl:h-7"
+                  style={{
+                    cursor: "pointer",
+                    opacity: active.linuxImage ? "1" : "0.5",
+                  }}
+                />
+              </span>
+              <span
+                onClick={() => {
+                  setActive({
+                    windowsImage: false,
+                    linuxImage: false,
+                    macImage: true,
+                  });
                 }}
-              />
-            </span>
-            <span
-              onClick={() => {
-                handleOpen2();
-              }}
-              className="icon download"
-              style={{
-                marginRight: "0",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "2.75rem",
-                cursor: "pointer",
-                // opacity: active. ? "1" : "0.5",
-              }}
-            >
-              <img className="h-5" src={download} alt="download" />
-              <ModalsDownload
-                open={open2}
-                onClose={handleClose2}
-                selection={active}
-              />
-            </span>
+              >
+                <img
+                  src={mac}
+                  alt="mac"
+                  className="icon h-5 2xl:h-7"
+                  h
+                  style={{
+                    cursor: "pointer",
+                    opacity: active.macImage ? "1" : "0.5",
+                  }}
+                />
+              </span>
+              <span
+                onClick={() => {
+                  handleOpen2();
+                }}
+                className="icon download"
+                style={{
+                  marginRight: "0",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  cursor: "pointer",
+                  // opacity: active. ? "1" : "0.5",
+                }}
+              >
+                <img className="h-5 2xl:h-7" src={download} alt="download" />
+                <ModalsDownload
+                  open={open2}
+                  onClose={handleClose2}
+                  selection={active}
+                />
+              </span>
+            </div>
           </div>
         </div>
         <div className="flex flex-row gap-9 ">
@@ -171,14 +160,18 @@ const Ide = ({ name, id }) => {
             >
               {id}
             </div>
-            <div className="flex absolute bottom-0 mb-4">
+            <div className="flex absolute bottom-0 mb-3 2xl:mb-6">
               <div>
                 <div
                   className="upload-btn text-white flex"
                   onClick={handleOpen}
                 >
                   Upload
-                  <img className="ml-2 h-6" src={upload} alt="upload" />
+                  <img
+                    className="ml-2 h-6 2xl:h-7 2xl:ml-4"
+                    src={upload}
+                    alt="upload"
+                  />
                 </div>
                 <Modals
                   open={open}
@@ -189,14 +182,14 @@ const Ide = ({ name, id }) => {
                 />
               </div>
 
-              <div className=" ml-10 text-white font-700 text-xl">
+              <div className=" ml-10 2xl:ml-20  text-white font-700 text-lg 2xl:text-2xl">
                 Points: <br />
                 25/100{" "}
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-9 ">
-            <div className="flex flex-row gap-7">
+            <div className="flex flex-row gap-9">
               <div>
                 <div className="bg-color pl-6 pt-6  input relative">
                   Input
@@ -204,8 +197,8 @@ const Ide = ({ name, id }) => {
                   <textarea className="text-area" />
                   <div className="flex ">
                     <Link to="/">
-                      <div className="run-btn absolute bottom-0 mb-4 text-white  flex">
-                        <img src={run} alt="run" />
+                      <div className="run-btn absolute bottom-0 mb-4 2xl:mb-6 text-white  flex">
+                        <img className="2xl:h-5" src={run} alt="run" />
                       </div>
                     </Link>
                   </div>
