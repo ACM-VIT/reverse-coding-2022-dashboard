@@ -69,7 +69,7 @@ const Sidebar = () => {
                 className="flex items-center text-white px-4 py-3 3xl:py-4 rounded-lg 2xl:rounded-xl 3xl:rounded-2xl 2xl:pl-6"
                 activeClassName="activeclassname text-white shadow-md"
               >
-                LeaderBoard
+                Leaderboard
               </NavLink>
             </li>
             <li className="rounded-lg mb-2 2xl:mb-3">
