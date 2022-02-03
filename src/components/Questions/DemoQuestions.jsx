@@ -22,7 +22,7 @@
 //       .get(process.env.REACT_APP_GET_TEAM, {
 //         headers: {
 //           "Content-Type": "application/json",
-//           authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0aWNpcGFudCI6eyJpZCI6MzUsImdvb2dsZUlEIjoiMTE1MDAzOTM2NjM3MDg0NjEwNTkwIiwibmFtZSI6IlByYW5hdiBEZXNhaSIsImlzQWRtaW4iOnRydWUsImVtYWlsIjoicHJhbmF2ZGVzYWkucHNkQGdtYWlsLmNvbSIsInRlYW1faWQiOjE1MjZ9LCJpYXQiOjE2NDM4MTQ3OTQsImV4cCI6MTY1MjQ1NDc5NCwiaXNzIjoiaGVwaGFlc3R1cyJ9.nrLHJlPnEZHIaU29bw5XtG4ywQ7R_0PPWUDLFK4vA6I`,
+//           authorization: `Bearer TK`,
 //         },
 //       })
 //       .then(async (responseteams) => {
@@ -32,7 +32,7 @@
 //           .get(process.env.REACT_APP_GET_PROBLEMS, {
 //             headers: {
 //               "Content-Type": "application/json",
-//               authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0aWNpcGFudCI6eyJpZCI6MzUsImdvb2dsZUlEIjoiMTE1MDAzOTM2NjM3MDg0NjEwNTkwIiwibmFtZSI6IlByYW5hdiBEZXNhaSIsImlzQWRtaW4iOnRydWUsImVtYWlsIjoicHJhbmF2ZGVzYWkucHNkQGdtYWlsLmNvbSIsInRlYW1faWQiOjE1MjZ9LCJpYXQiOjE2NDM4MTQ3OTQsImV4cCI6MTY1MjQ1NDc5NCwiaXNzIjoiaGVwaGFlc3R1cyJ9.nrLHJlPnEZHIaU29bw5XtG4ywQ7R_0PPWUDLFK4vA6I`,
+//               authorization: `Bearer TK`,
 //             },
 //           })
 //           .then(async (responseproblems) => {
@@ -42,7 +42,7 @@
 //               .get(process.env.REACT_APP_GET_JUDGE, {
 //                 headers: {
 //                   "Content-Type": "application/json",
-//                   authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0aWNpcGFudCI6eyJpZCI6MzUsImdvb2dsZUlEIjoiMTE1MDAzOTM2NjM3MDg0NjEwNTkwIiwibmFtZSI6IlByYW5hdiBEZXNhaSIsImlzQWRtaW4iOnRydWUsImVtYWlsIjoicHJhbmF2ZGVzYWkucHNkQGdtYWlsLmNvbSIsInRlYW1faWQiOjE1MjZ9LCJpYXQiOjE2NDM4MTQ3OTQsImV4cCI6MTY1MjQ1NDc5NCwiaXNzIjoiaGVwaGFlc3R1cyJ9.nrLHJlPnEZHIaU29bw5XtG4ywQ7R_0PPWUDLFK4vA6I`,
+//                   authorization: `Bearer TK`,
 //                 },
 //               })
 //               .then(async (responsejudge) => {
@@ -52,7 +52,7 @@
 //                   .get(process.env.REACT_APP_GET_LEADERBOARD, {
 //                     headers: {
 //                       "Content-Type": "application/json",
-//                       authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0aWNpcGFudCI6eyJpZCI6MzUsImdvb2dsZUlEIjoiMTE1MDAzOTM2NjM3MDg0NjEwNTkwIiwibmFtZSI6IlByYW5hdiBEZXNhaSIsImlzQWRtaW4iOnRydWUsImVtYWlsIjoicHJhbmF2ZGVzYWkucHNkQGdtYWlsLmNvbSIsInRlYW1faWQiOjE1MjZ9LCJpYXQiOjE2NDM4MTQ3OTQsImV4cCI6MTY1MjQ1NDc5NCwiaXNzIjoiaGVwaGFlc3R1cyJ9.nrLHJlPnEZHIaU29bw5XtG4ywQ7R_0PPWUDLFK4vA6I`,
+//                       authorization: `Bearer TK`,
 //                     },
 //                   })
 //                   .then((responseleaderboard) => {
