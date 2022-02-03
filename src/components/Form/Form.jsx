@@ -33,7 +33,6 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitted");
 
     /** Regex for freshers'(2022) reg number */
     const reg = /^21[A-Z]{3}[0-9]{4}$/;
@@ -52,8 +51,8 @@ const Form = () => {
       toast.error("Invalid registration number!");
     } else {
       notifySuccess();
+      console.log("submitted");
     }
-
     const data = {
       name: name.trim(),
       fresher: fresher.value === "Yes" ? true : false,
@@ -73,28 +72,35 @@ const Form = () => {
         />
 
         <div className="flex flex-col form-box font-400">
-          <div className="flex justify-center pt-8 text-4xl primary-purple">
+          <div className="flex justify-center pt-8 text-4xl 2xl:text-5xl primary-purple">
             Hey, User
           </div>
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col text-white p-8">
-              <label>Name of University/College</label>
+              <label className="text-normal 2xl:text-md 3xl:text-lg">
+                Name of University/College
+              </label>
               <input
                 type="text"
                 id="college"
-                className="text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 py-1 mt-3 mb-5"
+                className="text-normal 2xl:text-md 3xl:text-lg text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 2X2xl:px-3 3xl:px-4 py-1 2xl:py-2 3xl:py-3 mt-3 2xl:mt-4 3xl:mt-5 mb-5 2xl:mb-6 3xl:mb-7"
                 onChange={(e) => setName(e.target.value)}
               />
-              <label>Are you a Fresher? (eligible for only VIT Students)</label>
+              <label className="text-normal 2xl:text-md 3xl:text-lg">
+                Are you a Fresher? (eligible for only VIT Students)
+              </label>
               <div className="flex items-center py-2 mb-3">
                 <input
+                  className="h-18"
                   type="radio"
                   name="fresher"
                   value="Yes"
                   id="Yes"
                   onChange={handleChange}
                 />
-                <label className="ml-2">Yes</label>
+                <label className="text-normal 2xl:text-md 3xl:text-lg ml-2">
+                  Yes
+                </label>
                 <input
                   className="ml-12"
                   type="radio"
@@ -104,34 +110,37 @@ const Form = () => {
                   defaultChecked
                   onChange={handleChange}
                 />
-                <label className="ml-2">No</label>
+                <label className="text-normal 2xl:text-md 3xl:text-lg ml-2">
+                  No
+                </label>
               </div>
               <div className={`${fresher.value === "Yes" ? "" : "hidden"}`}>
-                <label>
+                <label className="text-normal 2xl:text-md 3xl:text-lg">
                   Registration Number (fill only if you are a Fresher)
                 </label>
                 <input
                   type="text"
                   id="registration"
-                  className="text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 py-1 mt-3 mb-5 w-full"
+                  className="text-normal 2xl:text-md 3xl:text-lg text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 2xl:px-3 3xl:px-4 py-1 2xl:py-2 3xl:py-3 mt-3 2xl:mt-4 3xl:mt-5 mb-5 2xl:mb-6 3xl:mb-7 w-full"
                   onChange={(e) => setRegistration(e.target.value)}
                 />
               </div>
-              <label>Phone Number</label>
+              <label className="text-normal 2xl:text-md 3xl:text-lg">
+                Phone Number
+              </label>
               <PhoneInput
                 limitMaxLength
                 value={phone}
-                className="text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 py-1 mt-3 mb-5"
+                className="text-normal 2xl:text-md 3xl:text-lg text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 2xl:px-3 3xl:px-4 py-1 2xl:py-2 3xl:py-3 mt-3 2xl:mt-4 3xl:mt-5 mb-5 2xl:mb-6 3xl:mb-7"
                 onChange={setPhone}
                 defaultCountry="IN"
                 country="IN"
-                useNationalFormatForDefaultCountryValue
                 rules={{ required: true }}
               />
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="text-white grad-bg rounded-md w-32 mt-3 py-2 cursor-pointer"
+                  className="text-normal 2xl:text-md 3xl:text-lg text-white grad-bg rounded-md w-32 3xl:w-40 mt-3 py-2 cursor-pointer"
                 >
                   Submit
                 </button>

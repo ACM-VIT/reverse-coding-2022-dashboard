@@ -31,3 +31,10 @@
     margin: 150px auto;
   }
 }
+
+@media (min-width: 1951px) and (max-width: 2560px) {
+  .form-box {
+    width: 470px !important;
+    margin: 190px auto;
+  }
+}
