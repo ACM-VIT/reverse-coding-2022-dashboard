@@ -23,7 +23,6 @@ const Form = () => {
   useEffect(() => {}, []);
 
   const notifySuccess = () => toast.success("Form submitted successfully!");
-  const notifyError = () => toast.error("Fill all the fields!");
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -36,10 +35,21 @@ const Form = () => {
     e.preventDefault();
     console.log("Submitted");
 
-    if (name.trim() === "" || phone.trim() === "") {
-      notifyError();
+    /** Regex for freshers'(2022) reg number */
+    const reg = /^21[A-Z]{3}[0-9]{4}$/;
+
+    /** Regex for college name */
+    const collegeRegEx = /^[A-Za-z]+$/;
+
+    /** Validations */
+    if (name.trim() === "" || phone.trim() === "+91" || phone.trim() === "") {
+      toast.error("Fill all the fields!");
     } else if (fresher.value === "Yes" && registration.trim() === "") {
-      notifyError();
+      toast.error("Fill all the fields!");
+    } else if (collegeRegEx.test(name) === false) {
+      toast.error("College name should be in alphabets!");
+    } else if (fresher.value === "Yes" && reg.test(registration) === false) {
+      toast.error("Invalid registration number!");
     } else {
       notifySuccess();
     }
@@ -50,16 +60,6 @@ const Form = () => {
       registration: registration.trim(),
       phone: phone.trim(),
     };
-    console.log(data);
-
-    // axios
-    //   .post("https://firebase.acmvit.in/participants/update", { data })
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   };
 
   return (
@@ -84,7 +84,6 @@ const Form = () => {
                 id="college"
                 className="text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 py-1 mt-3 mb-5"
                 onChange={(e) => setName(e.target.value)}
-                required
               />
               <label>Are you a Fresher? (eligible for only VIT Students)</label>
               <div className="flex items-center py-2 mb-3">
@@ -94,7 +93,6 @@ const Form = () => {
                   value="Yes"
                   id="Yes"
                   onChange={handleChange}
-                  required
                 />
                 <label className="ml-2">Yes</label>
                 <input
@@ -128,7 +126,7 @@ const Form = () => {
                 defaultCountry="IN"
                 country="IN"
                 useNationalFormatForDefaultCountryValue
-                required
+                rules={{ required: true }}
               />
               <div className="flex justify-center">
                 <button
