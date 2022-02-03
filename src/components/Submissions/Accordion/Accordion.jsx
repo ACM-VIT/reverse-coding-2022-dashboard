@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useSelector } from "react-redux";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import Leaderboard from "../../../containers/LeaderboardContainer/Leaderboard";
 import Chevron from "../Chevron";
@@ -38,27 +39,31 @@ const Accordion = (props) => {
 
   return (
     <div className="accordion__section z-0">
-      <button
-        type="button"
-        className={`${hideBorder} ${setActive} flex justify-between accordion__title`}
-        onClick={toggleAccordion}
-      >
-        <div className={`${setActive}`}>{props.question}</div>
+      {props.score !== null ? (
         <button
           type="button"
-          className={`${setTextColor} accordion__title`}
-          onClick={questionRedirect}
+          className={`${hideBorder} ${setActive} flex justify-between accordion__title`}
+          onClick={toggleAccordion}
         >
-          Open
+          <div className={`${setActive}`}>{props.question}</div>
+          <button
+            type="button"
+            className={`${setTextColor} accordion__title`}
+            onClick={questionRedirect}
+          >
+            Open
+          </button>
+          <div className={`${setActive} flex`}>
+            {props.score}/100
+            <Chevron
+              className={`${setRotate} mt-2 2xl:mt-0 ml-28 2xl:ml-48 3xl:ml-60`}
+              fill={`${setColor}`}
+            />
+          </div>
         </button>
-        <div className={`${setActive} flex`}>
-          {props.score}/100
-          <Chevron
-            className={`${setRotate} mt-2 2xl:mt-0 ml-28 2xl:ml-48 3xl:ml-60`}
-            fill={`${setColor}`}
-          />
-        </div>
-      </button>
+      ) : (
+        <div className="none">Hidden</div>
+      )}
       <div
         ref={desc}
         style={{ maxHeight: `${setHeight}` }}

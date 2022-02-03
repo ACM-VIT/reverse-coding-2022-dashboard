@@ -14,7 +14,6 @@ import {
   getJudgePoints,
 } from "../../redux/GetAll/GetAllActions";
 
-// require("dotenv").config();
 const Overview = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -37,7 +36,7 @@ const Overview = () => {
       const TK = sessionStorage.getItem("TK");
 
       await axios
-        .get(process.env.REACT_APP_GET_TEAM, {
+        .get(`${process.env.REACT_APP_BASEURL}/teams`, {
           headers: {
             "Content-Type": "application/json",
             authorization: `Bearer ${TK}`,
@@ -47,7 +46,7 @@ const Overview = () => {
           console.log("teams", responseteams);
           dispatch(getTeams(responseteams.data));
           await axios
-            .get(process.env.REACT_APP_GET_PROBLEMS, {
+            .get(`${process.env.REACT_APP_BASEURL}/problems`, {
               headers: {
                 "Content-Type": "application/json",
                 authorization: `Bearer ${TK}`,
@@ -57,7 +56,7 @@ const Overview = () => {
               console.log("problems", responseproblems);
               dispatch(getProblems(responseproblems.data));
               await axios
-                .get(process.env.REACT_APP_GET_JUDGE, {
+                .get(`${process.env.REACT_APP_BASEURL}/judge`, {
                   headers: {
                     "Content-Type": "application/json",
                     authorization: `Bearer ${TK}`,
@@ -67,7 +66,7 @@ const Overview = () => {
                   console.log("leaderboard", responsejudge);
                   dispatch(getJudgePoints(responsejudge.data));
                   await axios
-                    .get(process.env.REACT_APP_GET_LEADERBOARD, {
+                    .get(`${process.env.REACT_APP_BASEURL}/teams/leader`, {
                       headers: {
                         "Content-Type": "application/json",
                         authorization: `Bearer ${TK}`,
@@ -97,10 +96,11 @@ const Overview = () => {
 
   const team = useSelector((state) => state.getAll.teams);
   const submissions = useSelector((state) => state.getAll.judgePoints);
-  console.log(team);
+
   function submissionRedirect() {
     history.push("/questions");
   }
+
   return (
     <div className="pl-52 2xl:pl-72 md:ml-64 2xl:ml-80 3xl:ml-100">
       <div className="grid grid-cols-3 mr-60 font-dm font-bold pt-32 2xl:pt-52">

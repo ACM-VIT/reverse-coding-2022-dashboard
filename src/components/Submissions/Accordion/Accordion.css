@@ -73,6 +73,10 @@
   display: none;
 }
 
+.none {
+  display: none;
+}
+
 /* Style the accordion content text */
 .accordion__text {
   font-weight: 400;

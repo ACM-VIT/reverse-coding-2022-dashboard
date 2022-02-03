@@ -48,7 +48,7 @@ export const postJudge =
     const TK = sessionStorage.getItem("TK");
     axios
       .post(
-        "http://20.204.89.226:5000/judge",
+        `${process.env.REACT_APP_BASEURL}/judge`,
         {
           problemID: problemid,
           teamID: getTeamid,
@@ -66,7 +66,7 @@ export const postJudge =
         console.log(res);
         const polling = setInterval(() => {
           axios
-            .get(`http://20.204.89.226:5000/judge/${res.data}`, {
+            .get(`${process.env.REACT_APP_BASEURL}/judge/${res.data}`, {
               headers: {
                 "Content-Type": "application/json",
                 authorization: `Bearer ${TK}`,

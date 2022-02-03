@@ -3,6 +3,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -15,13 +17,25 @@ import "./Form.css";
 const Form = () => {
   const [name, setName] = useState("");
   const [fresher, setFresher] = useState("No");
-  const [registration, setRegistration] = useState("");
-  const [phone, setPhone] = useState("");
+  const [registration, setRegistration] = useState("21BCE0999");
+  const [phone, setPhone] = useState("+91");
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const headers = {
+      "Content-Type": "application/json",
+      authorization: "Bearer ",
+    };
+    axios
+      .get(`${process.env.BASEURL}/participants`, { headers })
+      .then((res) => {
+        console.log(res.data.name);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const notifySuccess = () => toast.success("Form submitted successfully!");
-  const notifyError = () => toast.error("Fill all the fields!");
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -32,31 +46,51 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitted");
 
-    if (name.trim() === "" || phone.trim() === "") {
-      notifyError();
+    /** Regex for freshers'(2022) reg number */
+    const reg = /^21[A-Z]{3}[0-9]{4}$/;
+
+    /** Regex for college name */
+    const collegeRegEx = /^[A-Za-z]+$/;
+
+    /** Validations */
+    if (name.trim() === "" || phone.trim() === "+91" || phone.trim() === "") {
+      toast.error("Fill all the fields!");
     } else if (fresher.value === "Yes" && registration.trim() === "") {
-      notifyError();
+      toast.error("Fill all the fields!");
+    } else if (collegeRegEx.test(name) === false) {
+      toast.error("College name should be in alphabets!");
+    } else if (fresher.value === "Yes" && reg.test(registration) === false) {
+      toast.error("Invalid registration number!");
     } else {
       notifySuccess();
+      console.log("submitted");
     }
-
     const data = {
-      name: name.trim(),
+      college: name.trim(),
       fresher: fresher.value === "Yes" ? true : false,
-      registration: registration.trim(),
-      phone: phone.trim(),
+      registrationNumber: registration.trim(),
+      phoneNumber: phone.trim(),
+      isForm: true,
     };
-
-    // axios
-    //   .post("https://firebase.acmvit.in/participants/update", { data })
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    console.log(data);
+    const headers = {
+      "Content-Type": "application/json",
+      authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0aWNpcGFudCI6eyJpZCI6ODI1NSwiZ29vZ2xlSUQiOiIxMDEwMjY0MjY1MTM4MDg5NjM5MDciLCJuYW1lIjoiQW5pc2ggTWl0dGFsIiwiaXNBZG1pbiI6dHJ1ZSwiZW1haWwiOiJhbS5hbmlzaG1pdHRhbEBnbWFpbC5jb20iLCJ0ZWFtX2lkIjoxNjh9LCJpYXQiOjE2NDM5MjExODAsImV4cCI6MTY1MjU2MTE4MCwiaXNzIjoiaGVwaGFlc3R1cyJ9.gINDIJw_MsmDZh_ADtzPbmSnyy1dSYZ_NXe239bh8Cg",
+    };
+    axios
+      .post(
+        `${process.env.BASEURL}/participants/update`,
+        JSON.stringify(data),
+        { headers }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -70,30 +104,35 @@ const Form = () => {
         />
 
         <div className="flex flex-col form-box font-400">
-          <div className="flex justify-center pt-8 text-4xl primary-purple">
+          <div className="flex justify-center pt-8 text-4xl 2xl:text-5xl primary-purple">
             Hey, User
           </div>
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col text-white p-8">
-              <label>Name of University/College</label>
+              <label className="text-normal 2xl:text-md 3xl:text-lg">
+                Name of University/College
+              </label>
               <input
                 type="text"
                 id="college"
-                className="text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 py-1 mt-3 mb-5"
+                className="text-normal 2xl:text-md 3xl:text-lg text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 2X2xl:px-3 3xl:px-4 py-1 2xl:py-2 3xl:py-3 mt-3 2xl:mt-4 3xl:mt-5 mb-5 2xl:mb-6 3xl:mb-7"
                 onChange={(e) => setName(e.target.value)}
-                required
               />
-              <label>Are you a Fresher? (eligible for only VIT Students)</label>
+              <label className="text-normal 2xl:text-md 3xl:text-lg">
+                Are you a Fresher? (eligible for only VIT Students)
+              </label>
               <div className="flex items-center py-2 mb-3">
                 <input
+                  className="h-18"
                   type="radio"
                   name="fresher"
                   value="Yes"
                   id="Yes"
                   onChange={handleChange}
-                  required
                 />
-                <label className="ml-2">Yes</label>
+                <label className="text-normal 2xl:text-md 3xl:text-lg ml-2">
+                  Yes
+                </label>
                 <input
                   className="ml-12"
                   type="radio"
@@ -103,31 +142,37 @@ const Form = () => {
                   defaultChecked
                   onChange={handleChange}
                 />
-                <label className="ml-2">No</label>
+                <label className="text-normal 2xl:text-md 3xl:text-lg ml-2">
+                  No
+                </label>
               </div>
               <div className={`${fresher.value === "Yes" ? "" : "hidden"}`}>
-                <label>
+                <label className="text-normal 2xl:text-md 3xl:text-lg">
                   Registration Number (fill only if you are a Fresher)
                 </label>
                 <input
                   type="text"
                   id="registration"
-                  className="text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 py-1 mt-3 mb-5 w-full"
+                  className="text-normal 2xl:text-md 3xl:text-lg text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 2xl:px-3 3xl:px-4 py-1 2xl:py-2 3xl:py-3 mt-3 2xl:mt-4 3xl:mt-5 mb-5 2xl:mb-6 3xl:mb-7 w-full"
                   onChange={(e) => setRegistration(e.target.value)}
                 />
               </div>
-              <label>Phone Number</label>
-              <input
-                type="phone"
-                id="phone"
-                className="text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 py-1 mt-3 mb-5"
-                onChange={(e) => setPhone(e.target.value)}
-                required
+              <label className="text-normal 2xl:text-md 3xl:text-lg">
+                Phone Number
+              </label>
+              <PhoneInput
+                limitMaxLength
+                value={phone}
+                className="text-normal 2xl:text-md 3xl:text-lg text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 2xl:px-3 3xl:px-4 py-1 2xl:py-2 3xl:py-3 mt-3 2xl:mt-4 3xl:mt-5 mb-5 2xl:mb-6 3xl:mb-7"
+                onChange={setPhone}
+                defaultCountry="IN"
+                country="IN"
+                rules={{ required: true }}
               />
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="text-white grad-bg rounded-md w-32 mt-3 py-2 cursor-pointer"
+                  className="text-normal 2xl:text-md 3xl:text-lg text-white grad-bg rounded-md w-32 3xl:w-40 mt-3 py-2 cursor-pointer"
                 >
                   Submit
                 </button>
