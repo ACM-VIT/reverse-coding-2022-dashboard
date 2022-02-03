@@ -13,13 +13,13 @@ const Accordion = (props) => {
   const [setTextColor, setTextColorState] = useState("gray");
   const [setDisplay, setDisplayState] = useState("displayBorder");
   const [hideBorder, setHideBorder] = useState("accordion");
-  const content = useRef(null);
+  const desc = useRef(null);
   const history = useHistory();
 
   const toggleAccordion = () => {
     setActiveState(setActive === "" ? "active" : "");
     setHeightState(
-      setActive === "active" ? "0px" : `${content.current.scrollHeight}px`
+      setActive === "active" ? "0px" : `${desc.current.scrollHeight}px`
     );
     setRotateState(
       setActive === "active" ? "accordion__icon" : "accordion__icon rotate"
@@ -43,7 +43,7 @@ const Accordion = (props) => {
         className={`${hideBorder} ${setActive} flex justify-between accordion__title`}
         onClick={toggleAccordion}
       >
-        <div className={`${setActive}`}>{props.title}</div>
+        <div className={`${setActive}`}>{props.question}</div>
         <button
           type="button"
           className={`${setTextColor} accordion__title`}
@@ -60,13 +60,13 @@ const Accordion = (props) => {
         </div>
       </button>
       <div
-        ref={content}
+        ref={desc}
         style={{ maxHeight: `${setHeight}` }}
         className={`${setDisplay}`}
       >
         <div
           className="accordion__text "
-          dangerouslySetInnerHTML={{ __html: props.content }}
+          dangerouslySetInnerHTML={{ __html: props.desc }}
         />
       </div>
     </div>

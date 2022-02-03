@@ -16,9 +16,10 @@ import logo from "../../assets/images/logo.svg";
 import logout from "../../assets/images/logout2.svg";
 
 const Sidebar = () => {
-  const [active, setActive] = useState("");
   const [open, setOpen] = useState(false);
   const [users, setUsers] = useState([]);
+  const [setActive, setActiveState] = useState("");
+  const [activeClass, setActiveClass] = useState("");
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -75,16 +76,13 @@ const Sidebar = () => {
                 Overview
               </NavLink>
             </li>
-            <li
-              className="rounded-lg cursor-pointer mb-2 2xl:mb-3"
-              onClick={() => {
-                dispatch(getLaunch(false));
-                history.push("/questions");
-              }}
-            >
+            <li className="rounded-lg cursor-pointer mb-2 2xl:mb-3">
               <div
                 className="flex items-center text-white px-4 py-3 3xl:py-4 rounded-lg 2xl:rounded-xl 3xl:rounded-2xl 2xl:pl-6"
-                activeClassName="activeclassname text-white shadow-md"
+                onClick={() => {
+                  dispatch(getLaunch(false));
+                  history.push("/questions");
+                }}
               >
                 Questions
               </div>
