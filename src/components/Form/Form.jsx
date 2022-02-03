@@ -1,3 +1,4 @@
+/* eslint-disable no-unneeded-ternary */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from "react";
@@ -40,13 +41,22 @@ const Form = () => {
     } else {
       notifySuccess();
     }
-  };
 
-  const data = {
-    name: name.trim(),
-    fresher: fresher.value,
-    registration: registration.trim(),
-    phone: phone.trim(),
+    const data = {
+      name: name.trim(),
+      fresher: fresher.value === "Yes" ? true : false,
+      registration: registration.trim(),
+      phone: phone.trim(),
+    };
+
+    // axios
+    //   .post("https://firebase.acmvit.in/participants/update", { data })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   return (
