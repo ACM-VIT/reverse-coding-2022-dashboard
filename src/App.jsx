@@ -12,6 +12,7 @@ import "./App.css";
 
 import Login from "./components/Login/Login";
 import Sidebar from "./components/Sidebar/Sidebar";
+import Instructions from "./components/Instructions/Instructions";
 import Leaderboard from "./containers/LeaderboardContainer/Leaderboard";
 import LargeScreen from "./containers/LargeScreen/LargeScreen";
 import store from "./redux/store";
@@ -32,6 +33,11 @@ const App = () => {
   return (
     <Provider store={store}>
       <Switch>
+        <Route exact path="/instructions">
+          <Redirect exact from="/" to="/overview" />
+          <Sidebar />
+          <Instructions />
+        </Route>
         <Route exact path="/overview">
           <Redirect exact from="/" to="/overview" />
           <Sidebar />
