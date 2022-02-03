@@ -1,33 +1,7 @@
 .bg-image {
   background-image: url(../../assets/images/404.svg);
+  height: 100% !important;
+  background-position: center !important;
   background-repeat: no-repeat !important;
-  object-fit: contain !important;
-}
-
-/* .brdr {
-  border: 2px solid #9b51e0;
-  background: #281250;
-  border-radius: 48px;
-}
-
-.grad {
-  background: linear-gradient(90deg, #e100ff 0%, #7f00ff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-} */
-
-.box {
-  position: relative;
-  margin: 100px auto 0;
-  width: 950px;
-  height: 500px;
-  padding: 75px;
-  background: linear-gradient(
-    135.61deg,
-    rgba(0, 0, 0, 0.14) -94.15%,
-    rgba(0, 0, 0, 0) 102.34%
-  );
-  backdrop-filter: blur(20px);
-  border-radius: 16px;
+  background-size: cover !important;
 }
