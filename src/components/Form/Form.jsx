@@ -19,16 +19,19 @@ const Form = () => {
   const [fresher, setFresher] = useState("No");
   const [registration, setRegistration] = useState("21BCE0999");
   const [phone, setPhone] = useState("+91");
+  const [displayName, setDisplayName] = useState("");
 
   useEffect(() => {
+    const token = sessionStorage.getItem("TK");
     const headers = {
       "Content-Type": "application/json",
-      authorization: "Bearer ",
+      authorization: `Bearer ${token}`,
     };
     axios
       .get(`${process.env.BASEURL}/participants`, { headers })
       .then((res) => {
-        console.log(res.data.name);
+        const firstName = res.data.name.split(" ")[0];
+        setDisplayName(firstName);
       })
       .catch((err) => {
         console.log(err);
@@ -73,20 +76,21 @@ const Form = () => {
       phoneNumber: phone.trim(),
       isForm: true,
     };
-    console.log(data);
+
+    const token = sessionStorage.getItem("TK");
     const headers = {
       "Content-Type": "application/json",
-      authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0aWNpcGFudCI6eyJpZCI6ODI1NSwiZ29vZ2xlSUQiOiIxMDEwMjY0MjY1MTM4MDg5NjM5MDciLCJuYW1lIjoiQW5pc2ggTWl0dGFsIiwiaXNBZG1pbiI6dHJ1ZSwiZW1haWwiOiJhbS5hbmlzaG1pdHRhbEBnbWFpbC5jb20iLCJ0ZWFtX2lkIjoxNjh9LCJpYXQiOjE2NDM5MjExODAsImV4cCI6MTY1MjU2MTE4MCwiaXNzIjoiaGVwaGFlc3R1cyJ9.gINDIJw_MsmDZh_ADtzPbmSnyy1dSYZ_NXe239bh8Cg",
+      authorization: `Bearer ${token}`,
     };
+
     axios
       .post(
         `${process.env.BASEURL}/participants/update`,
         JSON.stringify(data),
         { headers }
       )
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        window.location.href = "/overview";
       })
       .catch((err) => {
         console.log(err);
@@ -105,7 +109,7 @@ const Form = () => {
 
         <div className="flex flex-col form-box font-400">
           <div className="flex justify-center pt-8 text-4xl 2xl:text-5xl primary-purple">
-            Hey, User
+            Hey, {displayName}
           </div>
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col text-white p-8">
