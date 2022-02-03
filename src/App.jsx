@@ -16,6 +16,7 @@ import Leaderboard from "./containers/LeaderboardContainer/Leaderboard";
 import LargeScreen from "./containers/LargeScreen/LargeScreen";
 import store from "./redux/store";
 import NotFound404 from "./components/404/404";
+import NotAuth401 from "./components/401/401";
 
 const App = () => {
   const size = useWindowSize();
@@ -56,6 +57,7 @@ const App = () => {
           <Faq />
         </Route>
         <Route exact path="/login" component={Login} />
+        <Route exact path="/401" component={NotAuth401} />
         <Route path="*" component={NotFound404} />
       </Switch>
     </Provider>
