@@ -84,15 +84,20 @@ function Modals(props) {
         <Fade in={props.open}>
           <Box className=" shadows stile">
             <div className="flex flex-col text-center pt-2">
-              <div className=" pb-4 text-xl fontdmteam">
+              <div className=" pb-4 text-xl fontdmteam font-700">
                 Select Code File To Upload
               </div>
-              <div className=" pb-4 text-base fontdmteam">Instructions</div>
-              <div className=" text-left text-lg pt-7">
-                {" "}
-                It should Not exceed
+              <div className=" pb-4 text-base fontdmteam font-700">
+                Instructions
               </div>
-              <div className=" text-left text-lg"> Supported languages are</div>
+              <div className=" text-left text-lg pt-7 font-400">
+                {" "}
+                It should not exceed
+              </div>
+              <div className=" text-left text-lg font-400">
+                {" "}
+                Supported languages are
+              </div>
               {/* <div
                 className=" text-right input-file mt-4"
                 {...getRootProps({ className: "dropzone" })}
@@ -109,7 +114,7 @@ function Modals(props) {
 
                 <label
                   htmlFor="upload"
-                  className=" label-style text-base p-2 px-6 ml-4 "
+                  className=" label-style text-base p-2 px-6 ml-4 font-400"
                 >
                   Select File
                 </label>
@@ -141,7 +146,7 @@ function Modals(props) {
                   disabled={props.btndis}
                 >
                   <div className="flex">
-                    <div className="px-1 ">Upload</div>
+                    <div className="px-1 font-400">Upload</div>
                     <div>
                       <img src={upload} alt="upload" />
                     </div>
