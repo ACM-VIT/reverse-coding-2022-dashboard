@@ -58,7 +58,7 @@ export const postJudge =
         {
           headers: {
             "Content-Type": "application/json",
-            authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0aWNpcGFudCI6eyJpZCI6MzUsImdvb2dsZUlEIjoiMTE1MDAzOTM2NjM3MDg0NjEwNTkwIiwibmFtZSI6IlByYW5hdiBEZXNhaSIsImlzQWRtaW4iOnRydWUsImVtYWlsIjoicHJhbmF2ZGVzYWkucHNkQGdtYWlsLmNvbSIsInRlYW1faWQiOjE1MjZ9LCJpYXQiOjE2NDM4MTQ3OTQsImV4cCI6MTY1MjQ1NDc5NCwiaXNzIjoiaGVwaGFlc3R1cyJ9.nrLHJlPnEZHIaU29bw5XtG4ywQ7R_0PPWUDLFK4vA6I`,
+            authorization: `Bearer ${TK}`,
           },
         }
       )
@@ -69,7 +69,7 @@ export const postJudge =
             .get(`http://20.204.89.226:5000/judge/${res.data}`, {
               headers: {
                 "Content-Type": "application/json",
-                authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0aWNpcGFudCI6eyJpZCI6MzUsImdvb2dsZUlEIjoiMTE1MDAzOTM2NjM3MDg0NjEwNTkwIiwibmFtZSI6IlByYW5hdiBEZXNhaSIsImlzQWRtaW4iOnRydWUsImVtYWlsIjoicHJhbmF2ZGVzYWkucHNkQGdtYWlsLmNvbSIsInRlYW1faWQiOjE1MjZ9LCJpYXQiOjE2NDM4MTQ3OTQsImV4cCI6MTY1MjQ1NDc5NCwiaXNzIjoiaGVwaGFlc3R1cyJ9.nrLHJlPnEZHIaU29bw5XtG4ywQ7R_0PPWUDLFK4vA6I`,
+                authorization: `Bearer ${TK}`,
               },
             })
             .then((response) => {

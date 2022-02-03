@@ -38,7 +38,7 @@ const App = () => {
           <Sidebar />
           <Instructions />
         </Route>
-        <Route exact path="/overview">
+        <Route path="/overview">
           <Redirect exact from="/" to="/overview" />
           <Sidebar />
           <Overview />
