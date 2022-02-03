@@ -5,7 +5,7 @@ const initialState = {
   postjudge: [],
 };
 
-const postTeamReducer = (state = initialState, action) => {
+const postJudgeReducer = (state = initialState, action) => {
   switch (action.type) {
     case POST_FILE:
       return {
@@ -16,4 +16,4 @@ const postTeamReducer = (state = initialState, action) => {
       return state;
   }
 };
-export default postTeamReducer;
+export default postJudgeReducer;
