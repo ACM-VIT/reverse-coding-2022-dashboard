@@ -7,10 +7,7 @@ import Accordion from "./Accordion/Accordion";
 import "./Submissions.css";
 
 const Submissions = () => {
-  // const [submissions, setSubmissions] = useState([]);
-  const getProblems = useSelector((state) => state.getAll.problems);
-
-  const submissions = getProblems;
+  const submissions = useSelector((state) => state.getAll.judgePoints);
 
   return (
     <div
@@ -21,11 +18,11 @@ const Submissions = () => {
         <div className="mr-5">
           {submissions.map((sub) => (
             <Accordion
-              key={sub.id}
-              id={sub.id}
-              question={sub.name}
+              key={sub.problem_id}
+              id={sub.prblem_id}
+              question={sub.problem_name}
               desc={sub.instructionsText}
-              score={sub.maxPoints}
+              score={sub.points}
             />
           ))}
         </div>
