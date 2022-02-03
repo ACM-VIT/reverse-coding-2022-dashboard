@@ -71,14 +71,14 @@ function ModalsDownload(props) {
         <Fade in={props.open}>
           <Box className=" shadows stile">
             <div className="flex flex-col text-center pt-2">
-              <div className=" pb-4 text-xl fontdmteam">
+              <div className=" pb-4 text-xl fontdmteam font-700">
                 Your Downlaod is Done
               </div>
-              <div className=" pb-4 text-base fontdmteam">
+              <div className=" pb-4 text-base fontdmteam font-700">
                 Selection: {props.selection}
               </div>
 
-              <div className="pb-4 pt-6 text-base fontdmteam flex mx-auto">
+              <div className="pb-4 pt-6 text-base fontdmteam flex mx-auto font-400">
                 <span className="pr-2">Download the Instructions Pdf</span>
 
                 <div>

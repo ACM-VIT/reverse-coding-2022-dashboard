@@ -93,9 +93,9 @@ const Ide = ({ name, id, input, maxPoints, data }) => {
     <div className="ide mx-auto">
       <div className="flex flex-col gap-9 ">
         <div className="px-8 py-8 bg-color relative">
-          {name}
-          <div className="absolute right-0 bottom-0 mb-3 mr-3">
-            <div className="download-container mt-2 ">
+          <div className="mb-10">{name}</div>
+          <div className="absolute mt-16 right-0 bottom-0 mb-3 mr-3">
+            <div className="download-container">
               <span
                 onClick={() => {
                   setActive({
