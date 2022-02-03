@@ -24,6 +24,10 @@ module.exports = {
         88: "22rem",
         100: "25rem",
       },
+      margin: {
+        88: "22rem",
+        100: "25rem",
+      },
     },
     variants: {
       extend: {},
