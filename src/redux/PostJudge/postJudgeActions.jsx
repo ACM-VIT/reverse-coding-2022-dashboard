@@ -2,34 +2,35 @@
 import axios from "axios";
 import {
   POST_FILE,
-  CASE_ONE,
-  CASE_TWO,
-  CASE_THREE,
-  CASE_FOUR,
-  CASE_FIVE,
+  // CASE_ONE,
+  // CASE_TWO,
+  // CASE_THREE,
+  // CASE_FOUR,
+  // CASE_FIVE,
   JUDGE_MAIN,
+  CLEAR_ALL,
 } from "./postJudgeTypes";
 
-export const caseOne = (stateone) => ({
-  type: CASE_ONE,
-  payload: stateone,
-});
-export const caseTwo = (statetwo) => ({
-  type: CASE_TWO,
-  payload: statetwo,
-});
-export const caseThree = (statethree) => ({
-  type: CASE_THREE,
-  payload: statethree,
-});
-export const caseFour = (statefour) => ({
-  type: CASE_FOUR,
-  payload: statefour,
-});
-export const caseFive = (statefive) => ({
-  type: CASE_FIVE,
-  payload: statefive,
-});
+// export const caseOne = (stateone) => ({
+//   type: CASE_ONE,
+//   payload: stateone,
+// });
+// export const caseTwo = (statetwo) => ({
+//   type: CASE_TWO,
+//   payload: statetwo,
+// });
+// export const caseThree = (statethree) => ({
+//   type: CASE_THREE,
+//   payload: statethree,
+// });
+// export const caseFour = (statefour) => ({
+//   type: CASE_FOUR,
+//   payload: statefour,
+// });
+// export const caseFive = (statefive) => ({
+//   type: CASE_FIVE,
+//   payload: statefive,
+// });
 export const postTrial = (judge) => ({
   type: POST_FILE,
   payload: judge,
@@ -37,6 +38,10 @@ export const postTrial = (judge) => ({
 export const judgeMain = (obj) => ({
   type: JUDGE_MAIN,
   payload: obj,
+});
+
+export const clearAll = () => ({
+  type: CLEAR_ALL,
 });
 
 export const postJudge =
@@ -138,7 +143,7 @@ export const postJudge =
                 dispatch(judgeMain(obj));
               }
             });
-        }, 10000);
+        }, 3000);
       })
       .catch((err) => {
         console.log(err);

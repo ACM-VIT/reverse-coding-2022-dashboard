@@ -3,16 +3,24 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-plusplus */
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Ques from "../../../components/Questions/Ques";
 import Pages from "../../../components/Pagination/Pages";
 import nextarrow from "../../../assets/images/nextarrow.svg";
 import prevarrow from "../../../assets/images/prevarrow.svg";
-
+import { clearAll } from "../../../redux/PostJudge/postJudgeActions";
 function Questions() {
   const getData = useSelector((state) => state.getAll.problems);
-  console.log("getData", getData);
-
+  const dispatch = useDispatch();
+  console.log("getDataBefore", getData);
+  const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
+  for (let i = 0; i < getData.length; i++) {
+    getData[i] = {
+      ...getData[i],
+      points: getJudgePoints[i].points,
+    };
+  }
+  console.log("getDataAfter", getData);
   const [input, setInput] = useState(false);
 
   const [currentPage, setcurrentPage] = useState(1);
@@ -33,6 +41,7 @@ function Questions() {
   const handleClick = (e) => {
     setcurrentPage(Number(e.target.id));
     setInput(true);
+    dispatch(clearAll());
   };
 
   const handleNext = () => {
