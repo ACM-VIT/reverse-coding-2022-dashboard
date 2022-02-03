@@ -5,6 +5,13 @@
   background-repeat: no-repeat !important;
   background-size: cover !important;
 }
+.PhoneInputInput {
+  background: transparent !important;
+  outline: none;
+  outline:focus {
+    outline: none;
+  }
+}
 
 .form-box {
   width: 425px !important;
@@ -22,5 +29,12 @@
   .form-box {
     width: 450px !important;
     margin: 150px auto;
+  }
+}
+
+@media (min-width: 1951px) and (max-width: 2560px) {
+  .form-box {
+    width: 470px !important;
+    margin: 190px auto;
   }
 }
