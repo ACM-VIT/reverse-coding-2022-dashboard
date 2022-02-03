@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import axios from "axios";
@@ -23,26 +23,24 @@ const Sidebar = () => {
 
   const history = useHistory();
   const dispatch = useDispatch();
+  const location = useLocation();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const getData = useSelector((state) => state.questionsLaunch.launchState);
+
+  const { pathname } = location;
+  const splitLocation = pathname.split("/");
+
+  const team = useSelector((state) => state.getAll.teams);
+  // eslint-disable-next-line array-callback-return
+  // team.participants.map((part) => {
+  //   console.log(part.name);
+  // });
 
   const logoutfunc = () => {
     sessionStorage.removeItem("TK");
     sessionStorage.removeItem("cc");
     window.location.href = "/";
   };
-
-  useEffect(() => {
-    axios
-      .get("https://mocki.io/v1/58bde005-111f-4830-b49e-d90fd8ebbe3c")
-      .then((res) => {
-        setUsers(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
   return (
     <div className="h-screen fixed top-0 md:left-0 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-3xl bg-black w-64 2xl:w-80 3xl:w-100 z-10 py-4 px-6 2xl:px-7 transition-all duration-300">
@@ -56,27 +54,25 @@ const Sidebar = () => {
         {/* </a> */}
         <div className="flex flex-col mt-24 2xl:mt-40">
           <ul className="flex-col min-w-full flex list-none text-lg 2xl:text-2.5xl 3xl:text-3xl font-robo leading-5 2xl:leading-10 3xl:leading-11">
-            <li className="rounded-lg mb-2 2xl:mb-3">
-              <NavLink
-                to="/"
-                exact
-                className="flex items-center text-white px-4 py-3 3xl:py-4 rounded-lg 2xl:rounded-xl 3xl:rounded-2xl 2xl:pl-6"
-                activeClassName="activeclassname text-white shadow-md"
-              >
-                DemoApi call
-              </NavLink>
-            </li>
-            <li className="rounded-lg mb-2 2xl:mb-3">
-              <NavLink
+            <li
+              className={`${
+                splitLocation[1] === "overview" ? "active" : ""
+              } rounded-lg mb-2 2xl:mb-3`}
+            >
+              <Link
                 to="/overview"
                 exact
                 className="flex items-center text-white px-4 py-3 3xl:py-4 rounded-lg 2xl:rounded-xl 3xl:rounded-2xl 2xl:pl-6"
-                activeClassName="activeclassname text-white shadow-md"
+                activeClassName="active text-white shadow-md"
               >
                 Overview
-              </NavLink>
+              </Link>
             </li>
-            <li className="rounded-lg cursor-pointer mb-2 2xl:mb-3">
+            <li
+              className={`${
+                splitLocation[1] === "questions" ? "active" : ""
+              } rounded-lg cursor-pointer mb-2 2xl:mb-3`}
+            >
               <div
                 className="flex items-center text-white px-4 py-3 3xl:py-4 rounded-lg 2xl:rounded-xl 3xl:rounded-2xl 2xl:pl-6"
                 onClick={() => {
@@ -87,40 +83,47 @@ const Sidebar = () => {
                 Questions
               </div>
             </li>
-            <li className="rounded-lg mb-2 2xl:mb-3">
-              <NavLink
+            <li
+              className={`${
+                splitLocation[1] === "leaderboard" ? "active" : ""
+              } rounded-lg mb-2 2xl:mb-3`}
+            >
+              <Link
                 to="/leaderboard"
                 className="flex items-center text-white px-4 py-3 3xl:py-4 rounded-lg 2xl:rounded-xl 3xl:rounded-2xl 2xl:pl-6"
-                activeClassName="activeclassname text-white shadow-md"
               >
                 Leaderboard
-              </NavLink>
+              </Link>
             </li>
-            <li className="rounded-lg mb-2 2xl:mb-3">
-              <NavLink
+            <li
+              className={`${
+                splitLocation[1] === "faq" ? "active" : ""
+              } rounded-lg mb-2 2xl:mb-3`}
+            >
+              <Link
                 to="/faq"
                 className="flex items-center text-white px-4 py-3 3xl:py-4 2xl:py-3.5 rounded-lg 2xl:rounded-xl 3xl:rounded-2xl 2xl:pl-6"
-                activeClassName="activeclassname text-white shadow-md"
               >
                 FAQ
-              </NavLink>
+              </Link>
             </li>
           </ul>
         </div>
-        {users.map((user) => (
-          <div
-            className="flex mt-2 text-center w-full absolute bottom-0 pb-10 text-white justify-around brdr p-5 3xl:text-3xl 2xl:text-2.5xl text-lg font-robo"
-            key={user.email}
-          >
-            <p className="2xl:pt-3">{user.name}</p>
-            <img
-              src={logout}
-              className="2xl:pt-2 3xl:pt-2.5 w-6 2xl:w-8 3xl:w-10 cursor-pointer"
-              onClick={handleOpen}
-              alt="RC"
-            />
-          </div>
-        ))}
+
+        {/* {team.participants.map((part) => ( */}
+        <div
+          className="flex mt-2 text-center w-full absolute bottom-0 pb-10 text-white break-words break-normal justify-around brdr p-5 3xl:text-3xl 2xl:text-2.5xl text-lg font-robo"
+          // key={part.id}
+        >
+          <p className="2xl:pt-3">{team.name}</p>
+          <img
+            src={logout}
+            className="2xl:pt-2 3xl:pt-2.5 w-6 2xl:w-8 3xl:w-10 cursor-pointer"
+            onClick={handleOpen}
+            alt="RC"
+          />
+        </div>
+        {/* ))} */}
       </div>
 
       <Modal

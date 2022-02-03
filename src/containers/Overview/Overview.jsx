@@ -1,21 +1,89 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 import admin from "../../assets/images/admin.svg";
 import Submissions from "../../components/Submissions/Submissions";
-
 import "./Overview.css";
 
+import {
+  getPeople,
+  getProblems,
+  getTeams,
+  getLeaderboard,
+  getJudgePoints,
+} from "../../redux/GetAll/GetAllActions";
 const Overview = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  useEffect(async () => {
+    // axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {
+    //   console.log(res.data);
+    //   dispatch(getPeople(res.data));
+    // });
+    await axios
+      .get(process.env.REACT_APP_GET_TEAM, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0aWNpcGFudCI6eyJpZCI6MzUsImdvb2dsZUlEIjoiMTE1MDAzOTM2NjM3MDg0NjEwNTkwIiwibmFtZSI6IlByYW5hdiBEZXNhaSIsImlzQWRtaW4iOnRydWUsImVtYWlsIjoicHJhbmF2ZGVzYWkucHNkQGdtYWlsLmNvbSIsInRlYW1faWQiOjE1MjZ9LCJpYXQiOjE2NDM4MTQ3OTQsImV4cCI6MTY1MjQ1NDc5NCwiaXNzIjoiaGVwaGFlc3R1cyJ9.nrLHJlPnEZHIaU29bw5XtG4ywQ7R_0PPWUDLFK4vA6I`,
+        },
+      })
+      .then(async (responseteams) => {
+        console.log("teams", responseteams);
+        dispatch(getTeams(responseteams.data));
+        await axios
+          .get(process.env.REACT_APP_GET_PROBLEMS, {
+            headers: {
+              "Content-Type": "application/json",
+              authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0aWNpcGFudCI6eyJpZCI6MzUsImdvb2dsZUlEIjoiMTE1MDAzOTM2NjM3MDg0NjEwNTkwIiwibmFtZSI6IlByYW5hdiBEZXNhaSIsImlzQWRtaW4iOnRydWUsImVtYWlsIjoicHJhbmF2ZGVzYWkucHNkQGdtYWlsLmNvbSIsInRlYW1faWQiOjE1MjZ9LCJpYXQiOjE2NDM4MTQ3OTQsImV4cCI6MTY1MjQ1NDc5NCwiaXNzIjoiaGVwaGFlc3R1cyJ9.nrLHJlPnEZHIaU29bw5XtG4ywQ7R_0PPWUDLFK4vA6I`,
+            },
+          })
+          .then(async (responseproblems) => {
+            console.log("problems", responseproblems);
+            dispatch(getProblems(responseproblems.data));
+            await axios
+              .get(process.env.REACT_APP_GET_JUDGE, {
+                headers: {
+                  "Content-Type": "application/json",
+                  authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0aWNpcGFudCI6eyJpZCI6MzUsImdvb2dsZUlEIjoiMTE1MDAzOTM2NjM3MDg0NjEwNTkwIiwibmFtZSI6IlByYW5hdiBEZXNhaSIsImlzQWRtaW4iOnRydWUsImVtYWlsIjoicHJhbmF2ZGVzYWkucHNkQGdtYWlsLmNvbSIsInRlYW1faWQiOjE1MjZ9LCJpYXQiOjE2NDM4MTQ3OTQsImV4cCI6MTY1MjQ1NDc5NCwiaXNzIjoiaGVwaGFlc3R1cyJ9.nrLHJlPnEZHIaU29bw5XtG4ywQ7R_0PPWUDLFK4vA6I`,
+                },
+              })
+              .then(async (responsejudge) => {
+                console.log("leaderboard", responsejudge);
+                dispatch(getJudgePoints(responsejudge.data));
+                await axios
+                  .get(process.env.REACT_APP_GET_LEADERBOARD, {
+                    headers: {
+                      "Content-Type": "application/json",
+                      authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0aWNpcGFudCI6eyJpZCI6MzUsImdvb2dsZUlEIjoiMTE1MDAzOTM2NjM3MDg0NjEwNTkwIiwibmFtZSI6IlByYW5hdiBEZXNhaSIsImlzQWRtaW4iOnRydWUsImVtYWlsIjoicHJhbmF2ZGVzYWkucHNkQGdtYWlsLmNvbSIsInRlYW1faWQiOjE1MjZ9LCJpYXQiOjE2NDM4MTQ3OTQsImV4cCI6MTY1MjQ1NDc5NCwiaXNzIjoiaGVwaGFlc3R1cyJ9.nrLHJlPnEZHIaU29bw5XtG4ywQ7R_0PPWUDLFK4vA6I`,
+                    },
+                  })
+                  .then((responseleaderboard) => {
+                    console.log("leaderboard", responseleaderboard);
+                    dispatch(getLeaderboard(responseleaderboard.data));
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }, []);
   const team = useSelector((state) => state.getAll.teams);
   const submissions = useSelector((state) => state.getAll.judgePoints);
-
-  const history = useHistory();
-
+  console.log(team);
   function submissionRedirect() {
     history.push("/questions");
   }
-
   return (
     <div className="pl-52 2xl:pl-72 md:ml-64 2xl:ml-80 3xl:ml-100">
       <div className="grid grid-cols-3 mr-60 font-dm font-bold pt-32 2xl:pt-52">
@@ -32,20 +100,24 @@ const Overview = () => {
             <h1 className="text-3xl 2xl:text-4.5xl 3xl:text-5xl pb-2 2xl:pb-5 3xl:pb-6">
               Members
             </h1>
-            {team.participants.map((part) => (
-              <div className="flex" key={part.id}>
-                <p className="text-gre 2xl:text-1.5xl 3xl:text-2xl pl-1 pr-2 pb-0.5">
-                  {part.name}
-                </p>
-                {part.isAdmin && (
-                  <img
-                    className="2xl:w-6 2xl:ml-1 mb-0.5 2xl:mb-0.5"
-                    src={admin}
-                    alt="admin"
-                  />
-                )}
-              </div>
-            ))}
+            {Object.keys(team).length === 0 ? (
+              <p>Loading...</p>
+            ) : (
+              team.participants.map((part) => (
+                <div className="flex" key={part.id}>
+                  <p className="text-gre 2xl:text-1.5xl 3xl:text-2xl pl-1 pr-2 pb-0.5">
+                    {part.name}
+                  </p>
+                  {part.isAdmin && (
+                    <img
+                      className="2xl:w-6 2xl:ml-1 mb-0.5 2xl:mb-0.5"
+                      src={admin}
+                      alt="admin"
+                    />
+                  )}
+                </div>
+              ))
+            )}
           </div>
         </div>
         <div className="text-white text-right">

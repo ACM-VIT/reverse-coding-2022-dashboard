@@ -32,28 +32,23 @@ const App = () => {
   return (
     <Provider store={store}>
       <Switch>
-        <Route exact path="/">
-          <Redirect exact from="/" to="/" />
-          <Sidebar />
-          <Questionsdemo />
-        </Route>
         <Route exact path="/overview">
-          <Redirect exact from="/" to="/" />
+          <Redirect exact from="/" to="/overview" />
           <Sidebar />
           <Overview />
         </Route>
         <Route exact path="/questions">
-          <Redirect exact from="/" to="/" />
+          <Redirect exact from="/" to="/overview" />
           <Sidebar />
           <QuestionsMain />
         </Route>
         <Route exact path="/leaderboard">
-          <Redirect exact from="/" to="/" />
+          <Redirect exact from="/" to="/overview" />
           <Sidebar />
           <Leaderboard />
         </Route>
         <Route exact path="/faq">
-          <Redirect exact from="/" to="/" />
+          <Redirect exact from="/" to="/overview" />
           <Sidebar />
           <Faq />
         </Route>
