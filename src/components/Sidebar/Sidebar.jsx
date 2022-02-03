@@ -17,9 +17,6 @@ import logout from "../../assets/images/logout2.svg";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
-  const [users, setUsers] = useState([]);
-  const [setActive, setActiveState] = useState("");
-  const [activeClass, setActiveClass] = useState("");
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -56,21 +53,20 @@ const Sidebar = () => {
           <ul className="flex-col min-w-full flex list-none text-lg 2xl:text-2.5xl 3xl:text-3xl font-robo leading-5 2xl:leading-10 3xl:leading-11">
             <li
               className={`${
-                splitLocation[1] === "overview" ? "active" : ""
+                splitLocation[1] === "overview" ? "activeClass" : ""
               } rounded-lg mb-2 2xl:mb-3`}
             >
               <Link
                 to="/overview"
                 exact
                 className="flex items-center text-white px-4 py-3 3xl:py-4 rounded-lg 2xl:rounded-xl 3xl:rounded-2xl 2xl:pl-6"
-                activeClassName="active text-white shadow-md"
               >
                 Overview
               </Link>
             </li>
             <li
               className={`${
-                splitLocation[1] === "questions" ? "active" : ""
+                splitLocation[1] === "questions" ? "activeClass" : ""
               } rounded-lg cursor-pointer mb-2 2xl:mb-3`}
             >
               <div
@@ -85,7 +81,7 @@ const Sidebar = () => {
             </li>
             <li
               className={`${
-                splitLocation[1] === "leaderboard" ? "active" : ""
+                splitLocation[1] === "leaderboard" ? "activeClass" : ""
               } rounded-lg mb-2 2xl:mb-3`}
             >
               <Link
@@ -97,7 +93,7 @@ const Sidebar = () => {
             </li>
             <li
               className={`${
-                splitLocation[1] === "faq" ? "active" : ""
+                splitLocation[1] === "faq" ? "activeClass" : ""
               } rounded-lg mb-2 2xl:mb-3`}
             >
               <Link
