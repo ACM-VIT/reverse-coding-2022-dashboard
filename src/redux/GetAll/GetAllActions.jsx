@@ -4,6 +4,7 @@ import {
   GET_PROBLEMS,
   GET_TEAMS,
   GET_LEADERBOARD,
+  GET_JUDGEPOINTS,
 } from "./GetAllTypes";
 
 export const getPeople = (people) => ({
@@ -21,4 +22,8 @@ export const getProblems = (problems) => ({
 export const getLeaderboard = (leaderboard) => ({
   type: GET_LEADERBOARD,
   payload: leaderboard,
+});
+export const getJudgePoints = (points) => ({
+  type: GET_JUDGEPOINTS,
+  payload: points,
 });

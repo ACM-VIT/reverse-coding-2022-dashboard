@@ -9,10 +9,10 @@ import "./Overview.css";
 
 const Overview = () => {
   const getTeam = useSelector((state) => state.getAll.teams);
-  const getPeople = useSelector((state) => state.getAll.people);
+  // const getPeople = useSelector((state) => state.getAll.people);
 
   const team = getTeam;
-  const part = getPeople;
+  // const part = getPeople;
 
   // eslint-disable-next-line array-callback-return
   Object.keys(team).map((item) => {
@@ -41,11 +41,11 @@ const Overview = () => {
             <h1 className="text-3xl 2xl:text-4.5xl 3xl:text-5xl pb-2 2xl:pb-5 3xl:pb-6">
               Members
             </h1>
-            <div className="flex" key={part.email}>
+            <div className="flex" key={team.name}>
               <p className="text-gre 2xl:text-1.5xl 3xl:text-2xl pl-1 pr-2 pb-0.5">
-                {part.name}
+                {team.name}
               </p>
-              {part.isAdmin && (
+              {team.isAdmin && (
                 <img
                   className="2xl:w-6 2xl:ml-1 2xl:mb-0.5"
                   src={admin}
