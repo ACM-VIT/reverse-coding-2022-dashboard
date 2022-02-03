@@ -19,7 +19,12 @@ function Leaderboard() {
   const [maxpageNumberLimit, setMaxPageNumberLimit] = useState(8);
   const [minpageNumberLimit, setMinPageNumberLimit] = useState(0);
 
-  const getData = useSelector((state) => state.postTeam.people);
+  const getData = useSelector((state) => state.getAll.leaderboard);
+  const getTeams = useSelector((state) => state.getAll.teams.participants);
+  // for (const i in getTeams) {
+  //   console.log(getTeams[i].id);
+  // }
+  console.log("teams", typeof getTeams);
   console.log(getData);
 
   const pages = [];

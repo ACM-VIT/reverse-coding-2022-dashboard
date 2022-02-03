@@ -16,12 +16,29 @@ import "./ide.css";
 
 // const initialState = { inputTextArea: "" };
 
-const Ide = ({ name, id, input, maxPoints }) => {
+const Ide = ({ name, id, input, maxPoints, data }) => {
   const [active, setActive] = useState({
     windowsImage: true,
     linuxImage: false,
     macImage: false,
   });
+  const [selection, setSelection] = useState("");
+  const downloadClick = () => {
+    if (active.windowsImage) window.open(data.windowsFileURL, "_blank");
+    if (active.linuxImage) window.open(data.objectFileURL, "_blank");
+    if (active.macImage) window.open(data.macFileURL, "_blank");
+  };
+  const modalSelection = () => {
+    if (active.windowsImage) {
+      setSelection("Windows");
+    }
+    if (active.linuxImage) {
+      setSelection("Linux");
+    }
+    if (active.macImage) {
+      setSelection("Mac");
+    }
+  };
 
   // const [inputTextArea, setState] = useState(initialState);
   // const clearState = () => {
@@ -141,6 +158,8 @@ const Ide = ({ name, id, input, maxPoints }) => {
               <span
                 onClick={() => {
                   handleOpen2();
+                  downloadClick();
+                  modalSelection();
                 }}
                 className="icon download"
                 style={{
@@ -153,13 +172,13 @@ const Ide = ({ name, id, input, maxPoints }) => {
                 }}
               >
                 <img className="h-5 2xl:h-7" src={download} alt="download" />
-                <ModalsDownload
-                  open={open2}
-                  onClose={handleClose2}
-                  selection={active}
-                />
               </span>
             </div>
+            <ModalsDownload
+              open={open2}
+              onClose={handleClose2}
+              selection={selection}
+            />
           </div>
         </div>
         <div className="flex flex-row gap-9 ">
