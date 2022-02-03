@@ -1,0 +1,7 @@
+.bg-image {
+  background-image: url(../../assets/images/404.svg);
+  height: 100% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}

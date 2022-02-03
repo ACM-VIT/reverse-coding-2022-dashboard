@@ -66,7 +66,7 @@ function Questions() {
     );
   }
   return (
-    <div>
+    <div className="md:ml-64 2xl:ml-80 3xl:ml-100">
       <div className="flex justify-center mb-8 mt-24">
         <ul className="pageNumbersquestion justify-end pb-1 text-white">
           <div className="mx-1">

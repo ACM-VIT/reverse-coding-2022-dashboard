@@ -10,10 +10,12 @@ import useWindowSize from "./utils";
 
 import "./App.css";
 
+import Login from "./components/Login/Login";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Leaderboard from "./containers/LeaderboardContainer/Leaderboard";
 import LargeScreen from "./containers/LargeScreen/LargeScreen";
 import store from "./redux/store";
+import NotFound404 from "./components/404/404";
 
 const App = () => {
   const size = useWindowSize();
@@ -26,24 +28,37 @@ const App = () => {
     return <LargeScreen />;
   }
   return (
-    <div>
-      <Provider store={store}>
-        <div className=" md:ml-64">
-          <Switch>
-            <>
-              <Redirect exact from="/" to="/" />
-              <Sidebar />
-              {/* <Route exact path="/questions" component={Overview} /> */}
-              <Route exact path="/" component={Questionsdemo} />
-              <Route exact path="/overview" component={Overview} />
-              <Route exact path="/questions" component={QuestionsMain} />
-              <Route exact path="/leaderboard" component={Leaderboard} />
-              <Route exact path="/faq" component={Faq} />
-            </>
-          </Switch>
-        </div>
-      </Provider>
-    </div>
+    <Provider store={store}>
+      <Switch>
+        <Route exact path="/">
+          <Redirect exact from="/" to="/" />
+          <Sidebar />
+          <Questionsdemo />
+        </Route>
+        <Route exact path="/overview">
+          <Redirect exact from="/" to="/" />
+          <Sidebar />
+          <Overview />
+        </Route>
+        <Route exact path="/questions">
+          <Redirect exact from="/" to="/" />
+          <Sidebar />
+          <QuestionsMain />
+        </Route>
+        <Route exact path="/leaderboard">
+          <Redirect exact from="/" to="/" />
+          <Sidebar />
+          <Leaderboard />
+        </Route>
+        <Route exact path="/faq">
+          <Redirect exact from="/" to="/" />
+          <Sidebar />
+          <Faq />
+        </Route>
+        <Route exact path="/login" component={Login} />
+        <Route path="*" component={NotFound404} />
+      </Switch>
+    </Provider>
   );
 };
 export default App;
