@@ -1,0 +1,40 @@
+.bg-image {
+  min-height: 100vh;
+  background-image: url(../../assets/images/bg.svg);
+  background-repeat: no-repeat !important;
+  object-fit: contain !important;
+  background-size: 100%;
+}
+
+.box {
+  position: relative;
+  margin: 100px auto 0;
+  width: 950px;
+  height: 500px;
+  padding: 75px;
+  background: linear-gradient(
+    135.61deg,
+    rgba(0, 0, 0, 0.14) -94.15%,
+    rgba(0, 0, 0, 0) 102.34%
+  );
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+}
+
+.button {
+  /* padding: 15px 12px;
+  margin-bottom: 0;
+  vertical-align: middle;
+  cursor: pointer; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 24px;
+
+  position: absolute;
+  width: 262px;
+  height: 63px;
+  left: 344px;
+  bottom: 74px;
+}
