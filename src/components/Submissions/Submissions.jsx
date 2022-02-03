@@ -7,8 +7,8 @@ import Accordion from "./Accordion/Accordion";
 import "./Submissions.css";
 
 const Submissions = () => {
-  // const [submissions, setSubmissions] = useState([]);
   const submissions = useSelector((state) => state.getAll.judgePoints);
+
   return (
     <div
       id="sub"
@@ -30,4 +30,5 @@ const Submissions = () => {
     </div>
   );
 };
+
 export default Submissions;

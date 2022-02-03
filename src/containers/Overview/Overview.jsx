@@ -8,6 +8,7 @@ import "./Overview.css";
 
 const Overview = () => {
   const team = useSelector((state) => state.getAll.teams);
+  const submissions = useSelector((state) => state.getAll.judgePoints);
 
   const history = useHistory();
 
@@ -58,24 +59,23 @@ const Overview = () => {
       </div>
       <div className="font-dm font-bold text-white pt-20 2xl:pt-32">
         <h1 className="text-3xl 2xl:text-4.5xl 3xl:text-5xl">My Submissions</h1>
-        <Submissions />
-        {/* {users.submissions > 0 ? (
-              <Submissions />
-            ) : (
-              <div className="flex flex-col items-center space-y-10 pr-40">
-                <h1 className="text-4xl 2xl:text-5.5xl 3xl:text-6xl text-grey pt-32 2xl:pt-40 2xl:pb-4">
-                  No Submissions
-                </h1>
-                <div
-                  className="flex justify-center items-center cursor-pointer z-10 prpl rounded-full 2xl:rounded-full w-60 h-14 2xl:w-80 2xl:h-20"
-                  onClick={submissionRedirect}
-                >
-                  <div className="text-white text-xl 2xl:text-3xl font-medium">
-                    Begin Solving
-                  </div>
-                </div>
+        {submissions.length > 0 ? (
+          <Submissions />
+        ) : (
+          <div className="flex flex-col items-center space-y-10 pr-40">
+            <h1 className="text-4xl 2xl:text-5.5xl 3xl:text-6xl text-grey pt-32 2xl:pt-40 2xl:pb-4">
+              No Submissions
+            </h1>
+            <div
+              className="flex justify-center items-center cursor-pointer z-10 prpl rounded-full 2xl:rounded-full w-60 h-14 2xl:w-80 2xl:h-20"
+              onClick={submissionRedirect}
+            >
+              <div className="text-white text-xl 2xl:text-3xl font-medium">
+                Begin Solving
               </div>
-            )} */}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
