@@ -31,14 +31,45 @@ export const postJudge =
         }
       )
       .then((res) => {
+        console.log(res);
         const polling = setInterval(() => {
-          axios.get("http://20.204.89.226:5000/judge").then((response) => {
-            if (response.data.status === "done") {
-              clearInterval(polling);
-              dispatch(postTrial(res.data));
-            }
-          });
-        }, 1000);
+          axios
+            .get(`http://20.204.89.226:5000/judge/${res.data}`, {
+              headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0aWNpcGFudCI6eyJpZCI6MzUsImdvb2dsZUlEIjoiMTE1MDAzOTM2NjM3MDg0NjEwNTkwIiwibmFtZSI6IlByYW5hdiBEZXNhaSIsImlzQWRtaW4iOnRydWUsImVtYWlsIjoicHJhbmF2ZGVzYWkucHNkQGdtYWlsLmNvbSIsInRlYW1faWQiOjE1MjZ9LCJpYXQiOjE2NDM4MTQ3OTQsImV4cCI6MTY1MjQ1NDc5NCwiaXNzIjoiaGVwaGFlc3R1cyJ9.nrLHJlPnEZHIaU29bw5XtG4ywQ7R_0PPWUDLFK4vA6I`,
+              },
+            })
+            .then((response) => {
+              // response.data.testCase.forEach((testCase) => {
+              //   console.log(testCase);
+              //   if (testCase.state === 6) {
+              //     clearInterval(polling);
+              //     dispatch(postTrial(res.data));
+              //   }
+              // });
+              // response.data.testCase.every((testCase) => {
+              //   console.log(testCase);
+              //   if (testCase.state === 6) {
+              //     clearInterval(polling);
+              //     dispatch(postTrial(res.data));
+              //   }
+              //   return false;
+              // });
+              if (response.data.returned_testcases >= 5) {
+                response.data.testCase.forEach((testCase) => {
+                  console.log("final", testCase);
+                });
+                clearInterval(polling);
+              } else {
+                console.log("done:", response.data.returned_testcases);
+                response.data.testCase.forEach((testCase) => {
+                  console.log("Test CAse:", testCase.testCaseNumber);
+                  console.log("state:", testCase.state);
+                });
+              }
+            });
+        }, 3000);
       })
       .catch((err) => {
         console.log(err);
