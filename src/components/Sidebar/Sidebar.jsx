@@ -53,7 +53,7 @@ const Sidebar = () => {
           <ul className="flex-col min-w-full flex list-none text-lg 2xl:text-2.5xl 3xl:text-3xl font-robo leading-5 2xl:leading-10 3xl:leading-11">
             <li
               className={`${
-                splitLocation[1] === "instructions" ? "active" : ""
+                splitLocation[1] === "instructions" ? "activeClass" : ""
               } rounded-lg mb-2 2xl:mb-3`}
             >
               <Link
@@ -66,7 +66,7 @@ const Sidebar = () => {
             </li>
             <li
               className={`${
-                splitLocation[1] === "overview" ? "active" : ""
+                splitLocation[1] === "overview" ? "activeClass" : ""
               } rounded-lg mb-2 2xl:mb-3`}
             >
               <Link
