@@ -45,8 +45,9 @@ const Ques = ({ data, input }) => {
     reader.readAsDataURL(file);
     reader.onload = () => {
       const base64 = reader.result;
+      console.log("base6444", base64.split(",")[1]);
       console.log("base64", window.btoa(base64));
-      setDownloadFile(window.btoa(base64));
+      setDownloadFile(base64.split(",")[1]);
     };
     reader.onerror = (error) => {
       console.log("Error: ", error);
@@ -60,7 +61,9 @@ const Ques = ({ data, input }) => {
     if (e.target.files[0]) {
       const file = e.target.files[0];
       try {
-        if (!e.target.files[0].name.split(".")[1].match(/^(java|js|go|py)$/)) {
+        if (
+          !e.target.files[0].name.split(".")[1].match(/^(java|js|go|py|cpp|c)$/)
+        ) {
           setDisable(true);
           setFilename("");
           console.log("file not supported");
@@ -107,7 +110,7 @@ const Ques = ({ data, input }) => {
   const getJudgecolor = useSelector((state) => state.postJudge.judgestatecol);
   const getJudgetext = useSelector((state) => state.postJudge.judgestatetext);
   const getJudgeMain = useSelector((state) => state.postJudge.judgeMain);
-  console.log("getjudge", getJudgeMain[1]);
+
   const getTeamid = getTeam.id;
   const getTeampoints = getTeam.points;
   console.log(getData);
@@ -129,79 +132,64 @@ const Ques = ({ data, input }) => {
           <div className="flex flex-row gap-7 sec-height">
             <div className="px-5 py-5 bg-color relative test-case box-radius">
               <div
-                style={{
-                  color:
-                    data.name === "ACCEPTED"
-                      ? "rgba(39, 174, 96, 1)"
-                      : data.name === "WRONG"
-                      ? "rgba(235, 87, 87, 1)"
-                      : "rgba(242, 201, 76, 1)",
-                }}
+                className={
+                  CODE_STATES[getJudgeMain[1]]
+                    ? CODE_STATES[getJudgeMain[1]].color
+                    : ""
+                }
               >
-                <h1>Test Case 1</h1>
+                <h1 className="text-white">Test Case 1</h1>
                 {CODE_STATES[getJudgeMain[1]]
                   ? CODE_STATES[getJudgeMain[1]].text
                   : ""}
               </div>
               <div
-                style={{
-                  color:
-                    data.name === "ACCEPTED"
-                      ? "rgba(39, 174, 96, 1)"
-                      : data.name === "WRONG"
-                      ? "rgba(235, 87, 87, 1)"
-                      : "rgba(242, 201, 76, 1)",
-                }}
+                className={
+                  CODE_STATES[getJudgeMain[2]]
+                    ? CODE_STATES[getJudgeMain[2]].color
+                    : ""
+                }
               >
-                <h1>Test Case 2</h1>
+                <h1 className="text-white">Test Case 2</h1>
 
                 {CODE_STATES[getJudgeMain[2]]
                   ? CODE_STATES[getJudgeMain[2]].text
                   : ""}
               </div>
               <div
-                style={{
-                  color:
-                    data.name === "ACCEPTED"
-                      ? "rgba(39, 174, 96, 1)"
-                      : data.name === "WRONG"
-                      ? "rgba(235, 87, 87, 1)"
-                      : "rgba(242, 201, 76, 1)",
-                }}
+                className={
+                  CODE_STATES[getJudgeMain[3]]
+                    ? CODE_STATES[getJudgeMain[3]].color
+                    : ""
+                }
               >
-                <h1>Test Case 3</h1>
+                <h1 className="text-white">Test Case 3</h1>
 
                 {CODE_STATES[getJudgeMain[3]]
                   ? CODE_STATES[getJudgeMain[3]].text
                   : ""}
               </div>
               <div
-                style={{
-                  color:
-                    data.name === "ACCEPTED"
-                      ? "rgba(39, 174, 96, 1)"
-                      : data.name === "WRONG"
-                      ? "rgba(235, 87, 87, 1)"
-                      : "rgba(242, 201, 76, 1)",
-                }}
+                className={
+                  CODE_STATES[getJudgeMain[4]]
+                    ? CODE_STATES[getJudgeMain[4]].color
+                    : ""
+                }
               >
-                <h1>Test Case 4</h1>
+                <h1 className="text-white">Test Case 4</h1>
 
                 {CODE_STATES[getJudgeMain[4]]
                   ? CODE_STATES[getJudgeMain[4]].text
                   : ""}
               </div>
               <div
-                style={{
-                  color:
-                    data.name === "ACCEPTED"
-                      ? "rgba(39, 174, 96, 1)"
-                      : data.name === "WRONG"
-                      ? "rgba(235, 87, 87, 1)"
-                      : "rgba(242, 201, 76, 1)",
-                }}
+                className={
+                  CODE_STATES[getJudgeMain[5]]
+                    ? CODE_STATES[getJudgeMain[5]].color
+                    : ""
+                }
               >
-                <h1>Test Case 5</h1>
+                <h1 className="text-white">Test Case 5</h1>
 
                 {CODE_STATES[getJudgeMain[5]]
                   ? CODE_STATES[getJudgeMain[5]].text
@@ -232,7 +220,8 @@ const Ques = ({ data, input }) => {
 
                 <div className=" ml-8 2xl:ml-20 text-white font-700 text-lg 2xl:text-2xl">
                   Points: <br />
-                  {getTeampoints}/{data.maxPoints}
+                  {getJudgeMain.points ? getJudgeMain.points : 0}/
+                  {data.maxPoints}
                 </div>
               </div>
             </div>

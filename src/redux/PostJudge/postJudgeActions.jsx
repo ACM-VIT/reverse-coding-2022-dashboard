@@ -116,13 +116,15 @@ export const postJudge =
               //     console.log("state:", testCase.state);
               //   });
               // }
-              if (response.data.returned_testcases >= 5) {
+              if (response.data.returned_testcases > 4) {
                 const objfinal = {};
                 response.data.testCase.forEach((testCase) => {
                   objfinal[testCase.testCaseNumber] = testCase.state;
                   console.log("final", testCase);
-                  dispatch(judgeMain(objfinal));
+                  console.log("objfinal", objfinal);
                 });
+                objfinal.points = response.data.points;
+                dispatch(judgeMain(objfinal));
                 clearInterval(polling);
               } else {
                 const obj = {};
@@ -136,7 +138,7 @@ export const postJudge =
                 dispatch(judgeMain(obj));
               }
             });
-        }, 3000);
+        }, 10000);
       })
       .catch((err) => {
         console.log(err);
