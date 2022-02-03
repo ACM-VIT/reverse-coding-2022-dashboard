@@ -1,0 +1,26 @@
+.bg-image {
+  background-image: url(../../assets/images/404.svg);
+  height: 100% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+.form-box {
+  width: 425px !important;
+  margin: 40px auto;
+  background: linear-gradient(
+    135.61deg,
+    rgba(0, 0, 0, 0.14) -94.15%,
+    rgba(0, 0, 0, 0) 102.34%
+  );
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+}
+
+@media (min-width: 1550px) and (max-width: 1950px) {
+  .form-box {
+    width: 450px !important;
+    margin: 150px auto;
+  }
+}

@@ -6,7 +6,10 @@ body {
 
 .grad-bg {
   background: linear-gradient(106.25deg, #9d50bb 0%, #6e48aa 100%);
-  /* background: #984fb9; */
+}
+
+.grad-text {
+  color: linear-gradient(106.25deg, #9d50bb 0%, #6e48aa 100%);
 }
 
 .font-700 {
