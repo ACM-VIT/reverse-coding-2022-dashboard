@@ -17,10 +17,23 @@ import "./Form.css";
 const Form = () => {
   const [name, setName] = useState("");
   const [fresher, setFresher] = useState("No");
-  const [registration, setRegistration] = useState("");
+  const [registration, setRegistration] = useState("21BCE0999");
   const [phone, setPhone] = useState("+91");
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const headers = {
+      "Content-Type": "application/json",
+      authorization: "Bearer ",
+    };
+    axios
+      .get(`${process.env.BASEURL}/participants`, { headers })
+      .then((res) => {
+        console.log(res.data.name);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const notifySuccess = () => toast.success("Form submitted successfully!");
 
@@ -54,11 +67,30 @@ const Form = () => {
       console.log("submitted");
     }
     const data = {
-      name: name.trim(),
+      college: name.trim(),
       fresher: fresher.value === "Yes" ? true : false,
-      registration: registration.trim(),
-      phone: phone.trim(),
+      registrationNumber: registration.trim(),
+      phoneNumber: phone.trim(),
+      isForm: true,
     };
+    console.log(data);
+    const headers = {
+      "Content-Type": "application/json",
+      authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0aWNpcGFudCI6eyJpZCI6ODI1NSwiZ29vZ2xlSUQiOiIxMDEwMjY0MjY1MTM4MDg5NjM5MDciLCJuYW1lIjoiQW5pc2ggTWl0dGFsIiwiaXNBZG1pbiI6dHJ1ZSwiZW1haWwiOiJhbS5hbmlzaG1pdHRhbEBnbWFpbC5jb20iLCJ0ZWFtX2lkIjoxNjh9LCJpYXQiOjE2NDM5MjExODAsImV4cCI6MTY1MjU2MTE4MCwiaXNzIjoiaGVwaGFlc3R1cyJ9.gINDIJw_MsmDZh_ADtzPbmSnyy1dSYZ_NXe239bh8Cg",
+    };
+    axios
+      .post(
+        `${process.env.BASEURL}/participants/update`,
+        JSON.stringify(data),
+        { headers }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
