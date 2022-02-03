@@ -10,6 +10,7 @@ import useWindowSize from "./utils";
 
 import "./App.css";
 
+import Login from "./components/Login/Login";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Leaderboard from "./containers/LeaderboardContainer/Leaderboard";
 import LargeScreen from "./containers/LargeScreen/LargeScreen";
@@ -54,6 +55,7 @@ const App = () => {
           <Sidebar />
           <Faq />
         </Route>
+        <Route exact path="/login" component={Login} />
         <Route path="*" component={NotFound404} />
       </Switch>
     </Provider>
