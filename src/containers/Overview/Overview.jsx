@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import admin from "../../assets/images/admin.svg";
@@ -15,6 +14,7 @@ const Overview = () => {
   function submissionRedirect() {
     history.push("/questions");
   }
+
   return (
     <div className="pl-52 2xl:pl-72 md:ml-64 2xl:ml-80 3xl:ml-100">
       <div className="grid grid-cols-3 mr-60 font-dm font-bold pt-32 2xl:pt-52">
