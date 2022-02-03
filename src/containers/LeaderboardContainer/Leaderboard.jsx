@@ -70,7 +70,7 @@ function Leaderboard() {
   }
 
   return (
-    <div>
+    <div className="md:ml-64 2xl:ml-80 3xl:ml-100">
       <div className=" flex flex-col text-center text-white">
         <div className="flex flex-col">
           <h1 className="primary-purple mt-16 text-xl 3xl:text-3xl 3xl:mt-20 2xl:text-3xl 2xl:mt-20">
