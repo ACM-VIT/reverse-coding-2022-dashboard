@@ -12,9 +12,9 @@ import windows from "../../assets/images/windows.svg";
 import download from "../../assets/images/download.svg";
 import upload from "../../assets/images/upload.svg";
 import { getLaunch } from "../../redux/QuestionsLaunch/questionsLaunchActions";
-import { postJudge } from "../../redux/PostJudge/postJudgeActions";
+import { judgeMain, postJudge } from "../../redux/PostJudge/postJudgeActions";
 import "./Ques.css";
-
+import { CODE_STATES } from "../../redux/PostJudge/states";
 const Ques = ({ data, input }) => {
   const [active, setActive] = useState({
     windowsImage: true,
@@ -45,8 +45,9 @@ const Ques = ({ data, input }) => {
     reader.readAsDataURL(file);
     reader.onload = () => {
       const base64 = reader.result;
+      console.log("base6444", base64.split(",")[1]);
       console.log("base64", window.btoa(base64));
-      setDownloadFile(window.btoa(base64));
+      setDownloadFile(base64.split(",")[1]);
     };
     reader.onerror = (error) => {
       console.log("Error: ", error);
@@ -60,7 +61,9 @@ const Ques = ({ data, input }) => {
     if (e.target.files[0]) {
       const file = e.target.files[0];
       try {
-        if (!e.target.files[0].name.split(".")[1].match(/^(java|js|go|py)$/)) {
+        if (
+          !e.target.files[0].name.split(".")[1].match(/^(java|js|go|py|cpp|c)$/)
+        ) {
           setDisable(true);
           setFilename("");
           console.log("file not supported");
@@ -104,6 +107,10 @@ const Ques = ({ data, input }) => {
   const dispatch = useDispatch();
   const getData = useSelector((state) => state.questionsLaunch.launchState);
   const getTeam = useSelector((state) => state.getAll.teams);
+  const getJudgecolor = useSelector((state) => state.postJudge.judgestatecol);
+  const getJudgetext = useSelector((state) => state.postJudge.judgestatetext);
+  const getJudgeMain = useSelector((state) => state.postJudge.judgeMain);
+
   const getTeamid = getTeam.id;
   const getTeampoints = getTeam.points;
   console.log(getData);
@@ -125,16 +132,68 @@ const Ques = ({ data, input }) => {
           <div className="flex flex-row gap-7 sec-height">
             <div className="px-5 py-5 bg-color relative test-case box-radius">
               <div
-                style={{
-                  color:
-                    data.name === "ACCEPTED"
-                      ? "rgba(39, 174, 96, 1)"
-                      : data.name === "WRONG"
-                      ? "rgba(235, 87, 87, 1)"
-                      : "rgba(242, 201, 76, 1)",
-                }}
+                className={
+                  CODE_STATES[getJudgeMain[1]]
+                    ? CODE_STATES[getJudgeMain[1]].color
+                    : ""
+                }
               >
-                {data.name}
+                <h1 className="text-white">Test Case 1</h1>
+                {CODE_STATES[getJudgeMain[1]]
+                  ? CODE_STATES[getJudgeMain[1]].text
+                  : ""}
+              </div>
+              <div
+                className={
+                  CODE_STATES[getJudgeMain[2]]
+                    ? CODE_STATES[getJudgeMain[2]].color
+                    : ""
+                }
+              >
+                <h1 className="text-white">Test Case 2</h1>
+
+                {CODE_STATES[getJudgeMain[2]]
+                  ? CODE_STATES[getJudgeMain[2]].text
+                  : ""}
+              </div>
+              <div
+                className={
+                  CODE_STATES[getJudgeMain[3]]
+                    ? CODE_STATES[getJudgeMain[3]].color
+                    : ""
+                }
+              >
+                <h1 className="text-white">Test Case 3</h1>
+
+                {CODE_STATES[getJudgeMain[3]]
+                  ? CODE_STATES[getJudgeMain[3]].text
+                  : ""}
+              </div>
+              <div
+                className={
+                  CODE_STATES[getJudgeMain[4]]
+                    ? CODE_STATES[getJudgeMain[4]].color
+                    : ""
+                }
+              >
+                <h1 className="text-white">Test Case 4</h1>
+
+                {CODE_STATES[getJudgeMain[4]]
+                  ? CODE_STATES[getJudgeMain[4]].text
+                  : ""}
+              </div>
+              <div
+                className={
+                  CODE_STATES[getJudgeMain[5]]
+                    ? CODE_STATES[getJudgeMain[5]].color
+                    : ""
+                }
+              >
+                <h1 className="text-white">Test Case 5</h1>
+
+                {CODE_STATES[getJudgeMain[5]]
+                  ? CODE_STATES[getJudgeMain[5]].text
+                  : ""}
               </div>
               <div className="flex absolute bottom-0 mb-4 2xl:mb-6">
                 <div>
@@ -161,7 +220,8 @@ const Ques = ({ data, input }) => {
 
                 <div className=" ml-8 2xl:ml-20 text-white font-700 text-lg 2xl:text-2xl">
                   Points: <br />
-                  {getTeampoints}/{data.maxPoints}
+                  {getJudgeMain.points ? getJudgeMain.points : 0}/
+                  {data.maxPoints}
                 </div>
               </div>
             </div>

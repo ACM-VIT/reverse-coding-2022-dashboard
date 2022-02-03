@@ -56,19 +56,6 @@ const Sidebar = () => {
           <ul className="flex-col min-w-full flex list-none text-lg 2xl:text-2.5xl 3xl:text-3xl font-robo leading-5 2xl:leading-10 3xl:leading-11">
             <li
               className={`${
-                splitLocation[1] === "" ? "active" : ""
-              } rounded-lg mb-2 2xl:mb-3`}
-            >
-              <Link
-                to="/"
-                exact
-                className="flex items-center text-white px-4 py-3 3xl:py-4 rounded-lg 2xl:rounded-xl 3xl:rounded-2xl 2xl:pl-6"
-              >
-                DemoApi call
-              </Link>
-            </li>
-            <li
-              className={`${
                 splitLocation[1] === "overview" ? "active" : ""
               } rounded-lg mb-2 2xl:mb-3`}
             >

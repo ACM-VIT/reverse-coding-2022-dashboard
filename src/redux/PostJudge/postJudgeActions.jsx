@@ -1,10 +1,42 @@
 /* eslint-disable import/prefer-default-export */
 import axios from "axios";
-import { POST_FILE } from "./postJudgeTypes";
+import {
+  POST_FILE,
+  CASE_ONE,
+  CASE_TWO,
+  CASE_THREE,
+  CASE_FOUR,
+  CASE_FIVE,
+  JUDGE_MAIN,
+} from "./postJudgeTypes";
 
+export const caseOne = (stateone) => ({
+  type: CASE_ONE,
+  payload: stateone,
+});
+export const caseTwo = (statetwo) => ({
+  type: CASE_TWO,
+  payload: statetwo,
+});
+export const caseThree = (statethree) => ({
+  type: CASE_THREE,
+  payload: statethree,
+});
+export const caseFour = (statefour) => ({
+  type: CASE_FOUR,
+  payload: statefour,
+});
+export const caseFive = (statefive) => ({
+  type: CASE_FIVE,
+  payload: statefive,
+});
 export const postTrial = (judge) => ({
   type: POST_FILE,
   payload: judge,
+});
+export const judgeMain = (obj) => ({
+  type: JUDGE_MAIN,
+  payload: obj,
 });
 
 export const postJudge =
@@ -56,20 +88,57 @@ export const postJudge =
               //   }
               //   return false;
               // });
-              if (response.data.returned_testcases >= 5) {
+              // if (response.data.returned_testcases >= 5) {
+              //   response.data.testCase.forEach((testCase) => {
+              //     console.log("final", testCase);
+              //   });
+              //   clearInterval(polling);
+              // } else {
+              //   console.log("done:", response.data.returned_testcases);
+              //   response.data.testCase.forEach((testCase) => {
+              //     // if (testCase.testCaseNumber === 1) {
+              //     //   console.log("case1", testCase);
+              //     //   dispatch(caseOne(testCase.state));
+              //     // } else if (testCase.testCaseNumber === 2) {
+              //     //   console.log("case2", testCase);
+              //     //   dispatch(caseTwo(testCase.state));
+              //     // } else if (testCase.testCaseNumber === 3) {
+              //     //   console.log("case3", testCase);
+              //     //   dispatch(caseThree(testCase.state));
+              //     // } else if (testCase.testCaseNumber === 4) {
+              //     //   console.log("case4", testCase);
+              //     //   dispatch(caseFour(testCase.state));
+              //     // } else if (testCase.testCaseNumber === 5) {
+              //     //   console.log("case5", testCase);
+              //     //   dispatch(caseFive(testCase.state));
+              //     // }
+              //     console.log("Test CAse:", testCase.testCaseNumber);
+              //     console.log("state:", testCase.state);
+              //   });
+              // }
+              if (response.data.returned_testcases > 4) {
+                const objfinal = {};
                 response.data.testCase.forEach((testCase) => {
+                  objfinal[testCase.testCaseNumber] = testCase.state;
                   console.log("final", testCase);
+                  console.log("objfinal", objfinal);
                 });
+                objfinal.points = response.data.points;
+                dispatch(judgeMain(objfinal));
                 clearInterval(polling);
               } else {
+                const obj = {};
                 console.log("done:", response.data.returned_testcases);
                 response.data.testCase.forEach((testCase) => {
+                  obj[testCase.testCaseNumber] = testCase.state;
                   console.log("Test CAse:", testCase.testCaseNumber);
                   console.log("state:", testCase.state);
                 });
+                console.log("obj:", obj);
+                dispatch(judgeMain(obj));
               }
             });
-        }, 3000);
+        }, 10000);
       })
       .catch((err) => {
         console.log(err);
