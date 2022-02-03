@@ -12,6 +12,7 @@ import windows from "../../assets/images/windows.svg";
 import download from "../../assets/images/download.svg";
 import upload from "../../assets/images/upload.svg";
 import { getLaunch } from "../../redux/QuestionsLaunch/questionsLaunchActions";
+import { postJudge } from "../../redux/PostJudge/postJudgeActions";
 import "./Ques.css";
 
 const Ques = ({ data, input }) => {
@@ -20,12 +21,17 @@ const Ques = ({ data, input }) => {
     linuxImage: false,
     macImage: false,
   });
+  const [problemid, setProblemid] = useState(data.id);
+  console.log(input);
   const [selection, setSelection] = useState("");
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [filename, setFilename] = useState("");
   const [disable, setDisable] = useState(true);
   const [downloadFile, setDownloadFile] = useState("");
+  const [fileType, setFileType] = useState("");
+
+  console.log("doenloadfiel", downloadFile);
   console.log(open);
   const handleOpen = () => setOpen(true);
   const handleOpen2 = () => setOpen2(true);
@@ -34,12 +40,25 @@ const Ques = ({ data, input }) => {
     setOpen(false);
     setFilename("");
   };
+  const convertBase64 = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const base64 = reader.result;
+      console.log("base64", window.btoa(base64));
+      setDownloadFile(window.btoa(base64));
+    };
+    reader.onerror = (error) => {
+      console.log("Error: ", error);
+    };
+  };
   const handleClose2 = () => {
     console.log("close");
     setOpen2(false);
   };
-  const handlechangefile = (e) => {
+  const handlechangefile = async (e) => {
     if (e.target.files[0]) {
+      const file = e.target.files[0];
       try {
         if (!e.target.files[0].name.split(".")[1].match(/^(java|js|go|py)$/)) {
           setDisable(true);
@@ -50,6 +69,9 @@ const Ques = ({ data, input }) => {
           console.log("file size is too big");
           setFilename("");
         } else {
+          const base64 = await convertBase64(file);
+          console.log("base64insidehandle", base64);
+          setFileType(e.target.files[0].name.split(".")[1]);
           setDisable(false);
           setFilename(e.target.files[0].name);
         }
@@ -81,7 +103,15 @@ const Ques = ({ data, input }) => {
 
   const dispatch = useDispatch();
   const getData = useSelector((state) => state.questionsLaunch.launchState);
+  const getTeam = useSelector((state) => state.getAll.teams);
+  const getTeamid = getTeam.id;
+  const getTeampoints = getTeam.points;
   console.log(getData);
+  const handleupload = async () => {
+    console.log("handleuplaod");
+    await dispatch(postJudge(problemid, getTeamid, fileType, downloadFile));
+    handleClose();
+  };
   return (
     <div>
       <div
@@ -125,12 +155,13 @@ const Ques = ({ data, input }) => {
                     onchange={handlechangefile}
                     filename={filename}
                     btndis={disable}
+                    handleupload={handleupload}
                   />
                 </div>
 
                 <div className=" ml-8 2xl:ml-20 text-white font-700 text-lg 2xl:text-2xl">
                   Points: <br />
-                  {data.maxPoints}/100{" "}
+                  {getTeampoints}/{data.maxPoints}
                 </div>
               </div>
             </div>
