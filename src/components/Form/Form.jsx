@@ -3,6 +3,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -16,7 +18,7 @@ const Form = () => {
   const [name, setName] = useState("");
   const [fresher, setFresher] = useState("No");
   const [registration, setRegistration] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("+91");
 
   useEffect(() => {}, []);
 
@@ -117,11 +119,14 @@ const Form = () => {
                 />
               </div>
               <label>Phone Number</label>
-              <input
-                type="phone"
-                id="phone"
+              <PhoneInput
+                limitMaxLength
+                value={phone}
                 className="text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 py-1 mt-3 mb-5"
-                onChange={(e) => setPhone(e.target.value)}
+                onChange={setPhone}
+                defaultCountry="IN"
+                country="IN"
+                useNationalFormatForDefaultCountryValue
                 required
               />
               <div className="flex justify-center">

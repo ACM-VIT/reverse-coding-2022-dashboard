@@ -5,6 +5,9 @@
   background-repeat: no-repeat !important;
   background-size: cover !important;
 }
+.PhoneInputInput {
+  background: transparent !important;
+}
 
 .form-box {
   width: 425px !important;
