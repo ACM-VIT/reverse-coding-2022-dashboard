@@ -26,7 +26,7 @@ const Form = () => {
       authorization: "Bearer ",
     };
     axios
-      .get("http://20.204.89.226:5000/participants", { headers })
+      .get(`${process.env.BASEURL}/participants`, { headers })
       .then((res) => {
         console.log(res.data.name);
       })
@@ -81,7 +81,7 @@ const Form = () => {
     };
     axios
       .post(
-        "http://20.204.89.226:5000/participants/update",
+        `${process.env.BASEURL}/participants/update`,
         JSON.stringify(data),
         { headers }
       )
