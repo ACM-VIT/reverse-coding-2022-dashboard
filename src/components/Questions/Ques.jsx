@@ -12,9 +12,9 @@ import windows from "../../assets/images/windows.svg";
 import download from "../../assets/images/download.svg";
 import upload from "../../assets/images/upload.svg";
 import { getLaunch } from "../../redux/QuestionsLaunch/questionsLaunchActions";
-import { postJudge } from "../../redux/PostJudge/postJudgeActions";
+import { judgeMain, postJudge } from "../../redux/PostJudge/postJudgeActions";
 import "./Ques.css";
-
+import { CODE_STATES } from "../../redux/PostJudge/states";
 const Ques = ({ data, input }) => {
   const [active, setActive] = useState({
     windowsImage: true,
@@ -104,6 +104,10 @@ const Ques = ({ data, input }) => {
   const dispatch = useDispatch();
   const getData = useSelector((state) => state.questionsLaunch.launchState);
   const getTeam = useSelector((state) => state.getAll.teams);
+  const getJudgecolor = useSelector((state) => state.postJudge.judgestatecol);
+  const getJudgetext = useSelector((state) => state.postJudge.judgestatetext);
+  const getJudgeMain = useSelector((state) => state.postJudge.judgeMain);
+  console.log("getjudge", getJudgeMain[1]);
   const getTeamid = getTeam.id;
   const getTeampoints = getTeam.points;
   console.log(getData);
@@ -134,7 +138,74 @@ const Ques = ({ data, input }) => {
                       : "rgba(242, 201, 76, 1)",
                 }}
               >
-                {data.name}
+                <h1>Test Case 1</h1>
+                {CODE_STATES[getJudgeMain[1]]
+                  ? CODE_STATES[getJudgeMain[1]].text
+                  : ""}
+              </div>
+              <div
+                style={{
+                  color:
+                    data.name === "ACCEPTED"
+                      ? "rgba(39, 174, 96, 1)"
+                      : data.name === "WRONG"
+                      ? "rgba(235, 87, 87, 1)"
+                      : "rgba(242, 201, 76, 1)",
+                }}
+              >
+                <h1>Test Case 2</h1>
+
+                {CODE_STATES[getJudgeMain[2]]
+                  ? CODE_STATES[getJudgeMain[2]].text
+                  : ""}
+              </div>
+              <div
+                style={{
+                  color:
+                    data.name === "ACCEPTED"
+                      ? "rgba(39, 174, 96, 1)"
+                      : data.name === "WRONG"
+                      ? "rgba(235, 87, 87, 1)"
+                      : "rgba(242, 201, 76, 1)",
+                }}
+              >
+                <h1>Test Case 3</h1>
+
+                {CODE_STATES[getJudgeMain[3]]
+                  ? CODE_STATES[getJudgeMain[3]].text
+                  : ""}
+              </div>
+              <div
+                style={{
+                  color:
+                    data.name === "ACCEPTED"
+                      ? "rgba(39, 174, 96, 1)"
+                      : data.name === "WRONG"
+                      ? "rgba(235, 87, 87, 1)"
+                      : "rgba(242, 201, 76, 1)",
+                }}
+              >
+                <h1>Test Case 4</h1>
+
+                {CODE_STATES[getJudgeMain[4]]
+                  ? CODE_STATES[getJudgeMain[4]].text
+                  : ""}
+              </div>
+              <div
+                style={{
+                  color:
+                    data.name === "ACCEPTED"
+                      ? "rgba(39, 174, 96, 1)"
+                      : data.name === "WRONG"
+                      ? "rgba(235, 87, 87, 1)"
+                      : "rgba(242, 201, 76, 1)",
+                }}
+              >
+                <h1>Test Case 5</h1>
+
+                {CODE_STATES[getJudgeMain[5]]
+                  ? CODE_STATES[getJudgeMain[5]].text
+                  : ""}
               </div>
               <div className="flex absolute bottom-0 mb-4 2xl:mb-6">
                 <div>
