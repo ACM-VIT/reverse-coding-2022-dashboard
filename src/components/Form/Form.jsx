@@ -50,6 +50,7 @@ const Form = () => {
       registration: registration.trim(),
       phone: phone.trim(),
     };
+    console.log(data);
 
     // axios
     //   .post("https://firebase.acmvit.in/participants/update", { data })
