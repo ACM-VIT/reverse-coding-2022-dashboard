@@ -16,7 +16,7 @@ const Overview = () => {
     history.push("/questions");
   }
   return (
-    <div className="pl-52 2xl:pl-72">
+    <div className="pl-52 2xl:pl-72 md:ml-64 2xl:ml-80 3xl:ml-100">
       <div className="grid grid-cols-3 mr-60 font-dm font-bold pt-32 2xl:pt-52">
         <div className="text-white break-words break-normal">
           <h1 className="text-3xl 2xl:text-4.5xl 3xl:text-5xl pb-4 2xl:pb-7">
