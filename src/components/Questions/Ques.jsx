@@ -110,7 +110,7 @@ const Ques = ({ data, input }) => {
   const getJudgecolor = useSelector((state) => state.postJudge.judgestatecol);
   const getJudgetext = useSelector((state) => state.postJudge.judgestatetext);
   const getJudgeMain = useSelector((state) => state.postJudge.judgeMain);
-
+  const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
   const getTeamid = getTeam.id;
   const getTeampoints = getTeam.points;
   console.log(getData);
@@ -220,8 +220,12 @@ const Ques = ({ data, input }) => {
 
                 <div className=" ml-8 2xl:ml-20 text-white font-700 text-lg 2xl:text-2xl">
                   Points: <br />
-                  {getJudgeMain.points ? getJudgeMain.points : 0}/
-                  {data.maxPoints}
+                  {getJudgeMain.points
+                    ? getJudgeMain.points
+                    : data.points === null
+                    ? 0
+                    : data.points}
+                  /{data.maxPoints}
                 </div>
               </div>
             </div>
