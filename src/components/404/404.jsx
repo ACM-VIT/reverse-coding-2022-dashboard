@@ -9,7 +9,7 @@ import "./404.css";
 import Logo from "../../assets/images/logo.svg";
 
 const NotFound404 = () => (
-  <div className="bg-image">
+  <div className="bg-image-404">
     <div className="absolute xxs:pl-12 xs:pl-16 sm:pl-20 pl-24 pt-8">
       <Link to="/">
         <img src={Logo} alt="Logo" />
