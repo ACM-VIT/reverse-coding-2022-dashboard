@@ -13,6 +13,7 @@ import {
   getLeaderboard,
   getJudgePoints,
 } from "../../redux/GetAll/GetAllActions";
+
 const Overview = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -80,10 +81,11 @@ const Overview = () => {
   }, []);
   const team = useSelector((state) => state.getAll.teams);
   const submissions = useSelector((state) => state.getAll.judgePoints);
-  console.log(team);
+
   function submissionRedirect() {
     history.push("/questions");
   }
+
   return (
     <div className="pl-52 2xl:pl-72 md:ml-64 2xl:ml-80 3xl:ml-100">
       <div className="grid grid-cols-3 mr-60 font-dm font-bold pt-32 2xl:pt-52">
