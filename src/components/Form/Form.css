@@ -12,7 +12,12 @@
     outline: none;
   }
 }
-
+.grad-bg{
+  background: linear-gradient(
+106.25deg
+,#9d50bb,#6e48aa);
+border-radius: 16px;
+}
 .form-box {
   width: 425px !important;
   margin: 40px auto;
