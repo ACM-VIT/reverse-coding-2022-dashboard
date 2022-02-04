@@ -15,10 +15,13 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Instructions from "./components/Instructions/Instructions";
 import Leaderboard from "./containers/LeaderboardContainer/Leaderboard";
 import LargeScreen from "./containers/LargeScreen/LargeScreen";
+// import Roulette from "./components/Wheels/Hard";
+import Roulette from "./containers/Round2/Round2";
 import store from "./redux/store";
 import NotFound404 from "./components/404/404";
 import NotAuth401 from "./components/401/401";
 import Form from "./components/Form/Form";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 const App = () => {
   const size = useWindowSize();
@@ -58,8 +61,13 @@ const App = () => {
           <Sidebar />
           <Faq />
         </Route>
+        <Route exact path="/roulette">
+          <Redirect exact from="/" to="/overview" />
+          <Sidebar />
+          <Roulette />
+        </Route>
         <Route exact path="/login" component={Login} />
-        <Route exact path="/form" component={Form} />
+        <ProtectedRoute exact path="/form" component={Form} />
         <Route exact path="/401" component={NotAuth401} />
         <Route path="*" component={NotFound404} />
       </Switch>

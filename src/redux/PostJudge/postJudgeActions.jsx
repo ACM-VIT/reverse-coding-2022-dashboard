@@ -2,34 +2,37 @@
 import axios from "axios";
 import {
   POST_FILE,
-  CASE_ONE,
-  CASE_TWO,
-  CASE_THREE,
-  CASE_FOUR,
-  CASE_FIVE,
+  // CASE_ONE,
+  // CASE_TWO,
+  // CASE_THREE,
+  // CASE_FOUR,
+  // CASE_FIVE,
   JUDGE_MAIN,
+  CLEAR_ALL,
+  SET_DISABLE,
+  TASK_RUNNER,
 } from "./postJudgeTypes";
 
-export const caseOne = (stateone) => ({
-  type: CASE_ONE,
-  payload: stateone,
-});
-export const caseTwo = (statetwo) => ({
-  type: CASE_TWO,
-  payload: statetwo,
-});
-export const caseThree = (statethree) => ({
-  type: CASE_THREE,
-  payload: statethree,
-});
-export const caseFour = (statefour) => ({
-  type: CASE_FOUR,
-  payload: statefour,
-});
-export const caseFive = (statefive) => ({
-  type: CASE_FIVE,
-  payload: statefive,
-});
+// export const caseOne = (stateone) => ({
+//   type: CASE_ONE,
+//   payload: stateone,
+// });
+// export const caseTwo = (statetwo) => ({
+//   type: CASE_TWO,
+//   payload: statetwo,
+// });
+// export const caseThree = (statethree) => ({
+//   type: CASE_THREE,
+//   payload: statethree,
+// });
+// export const caseFour = (statefour) => ({
+//   type: CASE_FOUR,
+//   payload: statefour,
+// });
+// export const caseFive = (statefive) => ({
+//   type: CASE_FIVE,
+//   payload: statefive,
+// });
 export const postTrial = (judge) => ({
   type: POST_FILE,
   payload: judge,
@@ -39,13 +42,53 @@ export const judgeMain = (obj) => ({
   payload: obj,
 });
 
+export const clearAll = () => ({
+  type: CLEAR_ALL,
+});
+export const setDisable = (bool) => ({
+  type: SET_DISABLE,
+  payload: bool,
+});
+export const taskRunner = (obj) => ({
+  type: TASK_RUNNER,
+  payload: obj,
+});
+
+export const postTask = (input, id) => (dispatch) => {
+  console.log("postTask");
+  console.log(typeof input);
+  console.log(id);
+  dispatch(setDisable(true));
+  const WT = sessionStorage.getItem("WT");
+  axios
+    .post(
+      `${process.env.REACT_APP_BASEURL}/runner`,
+      {
+        id: id,
+        input: input,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${WT}`,
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res.data);
+      dispatch(taskRunner(res.data));
+    });
+};
+
 export const postJudge =
   (problemid, getTeamid, fileType, downloadFile) => (dispatch) => {
     console.log("problemid", problemid);
     console.log("getTeamid", getTeamid);
     console.log("fileType", fileType);
     console.log("downloadFile", downloadFile);
+    dispatch(setDisable(true));
     const TK = sessionStorage.getItem("TK");
+    const WT = sessionStorage.getItem("WT");
     axios
       .post(
         `${process.env.REACT_APP_BASEURL}/judge`,
@@ -58,18 +101,19 @@ export const postJudge =
         {
           headers: {
             "Content-Type": "application/json",
-            authorization: `Bearer ${TK}`,
+            authorization: `Bearer ${WT}`,
           },
         }
       )
       .then((res) => {
         console.log(res);
+        let runafter4 = 0;
         const polling = setInterval(() => {
           axios
             .get(`${process.env.REACT_APP_BASEURL}/judge/${res.data}`, {
               headers: {
                 "Content-Type": "application/json",
-                authorization: `Bearer ${TK}`,
+                authorization: `Bearer ${WT}`,
               },
             })
             .then((response) => {
@@ -116,16 +160,20 @@ export const postJudge =
               //     console.log("state:", testCase.state);
               //   });
               // }
-              if (response.data.returned_testcases > 4) {
+              if (response.data.returned_testcases >= 4) {
+                runafter4 += 1;
                 const objfinal = {};
                 response.data.testCase.forEach((testCase) => {
                   objfinal[testCase.testCaseNumber] = testCase.state;
                   console.log("final", testCase);
                   console.log("objfinal", objfinal);
                 });
-                objfinal.points = response.data.points;
-                dispatch(judgeMain(objfinal));
-                clearInterval(polling);
+                if (runafter4 === 5) {
+                  objfinal.points = response.data.points;
+                  dispatch(setDisable(false));
+                  dispatch(judgeMain(objfinal));
+                  clearInterval(polling);
+                }
               } else {
                 const obj = {};
                 console.log("done:", response.data.returned_testcases);
@@ -138,7 +186,7 @@ export const postJudge =
                 dispatch(judgeMain(obj));
               }
             });
-        }, 10000);
+        }, 3000);
       })
       .catch((err) => {
         console.log(err);
@@ -147,7 +195,7 @@ export const postJudge =
 
 // export const createTeam = (team) => (dispatch) => {
 //     // axios post to create team
-//     const TK = sessionStorage.getItem("TK");
+//     const WT = sessionStorage.getItem("WT");
 //     axios
 //       .post(
 //         `${url.SERVER_BASEURL}/participants/create-team`,
@@ -157,7 +205,7 @@ export const postJudge =
 //         {
 //           headers: {
 //             "content-type": "application/json",
-//             authorization: `Bearer ${TK}`,
+//             authorization: `Bearer ${WT}`,
 //           },
 //         }
 //       )

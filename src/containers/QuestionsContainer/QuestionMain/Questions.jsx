@@ -3,16 +3,29 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-plusplus */
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Ques from "../../../components/Questions/Ques";
 import Pages from "../../../components/Pagination/Pages";
 import nextarrow from "../../../assets/images/nextarrow.svg";
 import prevarrow from "../../../assets/images/prevarrow.svg";
+import { clearAll } from "../../../redux/PostJudge/postJudgeActions";
+
+import "./Questions.css";
 
 function Questions() {
   const getData = useSelector((state) => state.getAll.problems);
-  console.log("getData", getData);
+  const getDisable = useSelector((state) => state.postJudge.disable);
 
+  const dispatch = useDispatch();
+  console.log("getDataBefore", getData);
+  const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
+  for (let i = 0; i < getData.length; i++) {
+    getData[i] = {
+      ...getData[i],
+      points: getJudgePoints[i].points,
+    };
+  }
+  console.log("getDataAfter", getData);
   const [input, setInput] = useState(false);
 
   const [currentPage, setcurrentPage] = useState(1);
@@ -33,6 +46,7 @@ function Questions() {
   const handleClick = (e) => {
     setcurrentPage(Number(e.target.id));
     setInput(true);
+    dispatch(clearAll());
   };
 
   const handleNext = () => {
@@ -67,8 +81,20 @@ function Questions() {
   }
   return (
     <div className="md:ml-64 2xl:ml-80 3xl:ml-100">
-      <div className="flex justify-center mb-8 mt-24">
-        <ul className="pageNumbersquestion justify-end pb-1 text-white">
+      <div
+        className={
+          getDisable
+            ? "flex justify-center mb-8 mt-24 getcursorDisable"
+            : "flex justify-center mb-8 mt-24"
+        }
+      >
+        <ul
+          className={
+            getDisable
+              ? "pageNumbersquestion justify-end pb-1 text-white getDisable"
+              : "pageNumbersquestion justify-end pb-1 text-white"
+          }
+        >
           <div className="mx-1">
             <button onClick={handlePrev} disabled={currentPage === pages[0]}>
               <img src={prevarrow} alt="prev" />

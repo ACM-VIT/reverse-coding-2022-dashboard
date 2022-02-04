@@ -22,7 +22,7 @@
 //       .get(process.env.REACT_APP_GET_TEAM, {
 //         headers: {
 //           "Content-Type": "application/json",
-//           authorization: `Bearer TK`,
+//           authorization: `Bearer WT`,
 //         },
 //       })
 //       .then(async (responseteams) => {
@@ -32,7 +32,7 @@
 //           .get(process.env.REACT_APP_GET_PROBLEMS, {
 //             headers: {
 //               "Content-Type": "application/json",
-//               authorization: `Bearer TK`,
+//               authorization: `Bearer WT`,
 //             },
 //           })
 //           .then(async (responseproblems) => {
@@ -42,7 +42,7 @@
 //               .get(process.env.REACT_APP_GET_JUDGE, {
 //                 headers: {
 //                   "Content-Type": "application/json",
-//                   authorization: `Bearer TK`,
+//                   authorization: `Bearer WT`,
 //                 },
 //               })
 //               .then(async (responsejudge) => {
@@ -52,7 +52,7 @@
 //                   .get(process.env.REACT_APP_GET_LEADERBOARD, {
 //                     headers: {
 //                       "Content-Type": "application/json",
-//                       authorization: `Bearer TK`,
+//                       authorization: `Bearer WT`,
 //                     },
 //                   })
 //                   .then((responseleaderboard) => {
