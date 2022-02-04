@@ -96,6 +96,8 @@ const Overview = () => {
 
   const team = useSelector((state) => state.getAll.teams);
   const submissions = useSelector((state) => state.getAll.judgePoints);
+  console.log("submissions", typeof submissions);
+  console.log(team);
 
   function submissionRedirect() {
     history.push("/questions");
@@ -148,7 +150,7 @@ const Overview = () => {
       </div>
       <div className="font-dm font-bold text-white pt-20 2xl:pt-32">
         <h1 className="text-3xl 2xl:text-4.5xl 3xl:text-5xl">My Submissions</h1>
-        {submissions.length > 0 ? (
+        {typeof submissions !== "undefined" && submissions.length > 0 ? (
           <Submissions />
         ) : (
           <div className="flex flex-col items-center space-y-10 pr-40">

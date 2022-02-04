@@ -2,34 +2,37 @@
 import axios from "axios";
 import {
   POST_FILE,
-  CASE_ONE,
-  CASE_TWO,
-  CASE_THREE,
-  CASE_FOUR,
-  CASE_FIVE,
+  // CASE_ONE,
+  // CASE_TWO,
+  // CASE_THREE,
+  // CASE_FOUR,
+  // CASE_FIVE,
   JUDGE_MAIN,
+  CLEAR_ALL,
+  SET_DISABLE,
+  TASK_RUNNER,
 } from "./postJudgeTypes";
 
-export const caseOne = (stateone) => ({
-  type: CASE_ONE,
-  payload: stateone,
-});
-export const caseTwo = (statetwo) => ({
-  type: CASE_TWO,
-  payload: statetwo,
-});
-export const caseThree = (statethree) => ({
-  type: CASE_THREE,
-  payload: statethree,
-});
-export const caseFour = (statefour) => ({
-  type: CASE_FOUR,
-  payload: statefour,
-});
-export const caseFive = (statefive) => ({
-  type: CASE_FIVE,
-  payload: statefive,
-});
+// export const caseOne = (stateone) => ({
+//   type: CASE_ONE,
+//   payload: stateone,
+// });
+// export const caseTwo = (statetwo) => ({
+//   type: CASE_TWO,
+//   payload: statetwo,
+// });
+// export const caseThree = (statethree) => ({
+//   type: CASE_THREE,
+//   payload: statethree,
+// });
+// export const caseFour = (statefour) => ({
+//   type: CASE_FOUR,
+//   payload: statefour,
+// });
+// export const caseFive = (statefive) => ({
+//   type: CASE_FIVE,
+//   payload: statefive,
+// });
 export const postTrial = (judge) => ({
   type: POST_FILE,
   payload: judge,
@@ -39,12 +42,32 @@ export const judgeMain = (obj) => ({
   payload: obj,
 });
 
+export const clearAll = () => ({
+  type: CLEAR_ALL,
+});
+export const setDisable = (bool) => ({
+  type: SET_DISABLE,
+  payload: bool,
+});
+export const taskRunner = (obj) => ({
+  type: TASK_RUNNER,
+  payload: obj,
+});
+
+export const postTask = (input, id) => (dispatch) => {
+  console.log("postTask");
+  console.log(typeof input);
+  console.log(id);
+};
+
 export const postJudge =
   (problemid, getTeamid, fileType, downloadFile) => (dispatch) => {
     console.log("problemid", problemid);
     console.log("getTeamid", getTeamid);
     console.log("fileType", fileType);
     console.log("downloadFile", downloadFile);
+    dispatch(setDisable(true));
+    const TK = sessionStorage.getItem("TK");
     const WT = sessionStorage.getItem("WT");
     axios
       .post(
@@ -124,6 +147,7 @@ export const postJudge =
                   console.log("objfinal", objfinal);
                 });
                 objfinal.points = response.data.points;
+                dispatch(setDisable(false));
                 dispatch(judgeMain(objfinal));
                 clearInterval(polling);
               } else {
@@ -138,7 +162,7 @@ export const postJudge =
                 dispatch(judgeMain(obj));
               }
             });
-        }, 10000);
+        }, 3000);
       })
       .catch((err) => {
         console.log(err);
