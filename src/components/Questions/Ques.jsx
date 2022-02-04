@@ -3,6 +3,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Ide from "./ide";
 import Modals from "../Modals/Modals";
 import ModalsDownload from "../Modals/ModalsDownload";
@@ -15,6 +18,7 @@ import { getLaunch } from "../../redux/QuestionsLaunch/questionsLaunchActions";
 import { judgeMain, postJudge } from "../../redux/PostJudge/postJudgeActions";
 import "./Ques.css";
 import { CODE_STATES } from "../../redux/PostJudge/states";
+
 const Ques = ({ data, input }) => {
   const [active, setActive] = useState({
     windowsImage: true,
@@ -67,10 +71,12 @@ const Ques = ({ data, input }) => {
           setDisable(true);
           setFilename("");
           console.log("file not supported");
-        } else if (e.target.files[0].size > 47185920) {
+          toast.error("File type no supported");
+        } else if (e.target.files[0].size > 8000) {
           setDisable(true);
           console.log("file size is too big");
           setFilename("");
+          toast.error("File size too big");
         } else {
           const base64 = await convertBase64(file);
           console.log("base64insidehandle", base64);
@@ -230,10 +236,16 @@ const Ques = ({ data, input }) => {
 
                 <div className=" ml-8 2xl:ml-20 text-white font-700 text-lg 2xl:text-2xl">
                   Points: <br />
+                  {/* {getJudgeMain.points
+                    ? getJudgeMain.points
+                    : data.points === null
+                    ? "_"
+                    : data.points}
+                  /{data.maxPoints} */}
                   {getJudgeMain.points
                     ? getJudgeMain.points
                     : data.points === null
-                    ? 0
+                    ? "-"
                     : data.points}
                   /{data.maxPoints}
                 </div>
