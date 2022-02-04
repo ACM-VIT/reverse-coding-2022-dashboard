@@ -3,6 +3,7 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import ModalsDownload from "../Modals/ModalsDownload";
 import Modals from "../Modals/Modals";
 import linux from "../../assets/images/linux.svg";
@@ -11,12 +12,14 @@ import windows from "../../assets/images/windows.svg";
 import download from "../../assets/images/download.svg";
 import run from "../../assets/images/run.svg";
 import upload from "../../assets/images/upload.svg";
+import { postTask } from "../../redux/PostJudge/postJudgeActions";
 
 import "./ide.css";
 
 // const initialState = { inputTextArea: "" };
 
-const Ide = ({ name, id, input, maxPoints, data }) => {
+const Ide = ({ name, id, inputprop, maxPoints, data }) => {
+  const dispatch = useDispatch();
   const [active, setActive] = useState({
     windowsImage: true,
     linuxImage: false,
@@ -54,6 +57,8 @@ const Ide = ({ name, id, input, maxPoints, data }) => {
   const [open2, setOpen2] = useState(false);
   const [filename, setFilename] = useState("");
   const [disable, setDisable] = useState(true);
+  const [input, setInput] = useState("");
+
   console.log("ide open", open);
   console.log("ide open2", open2);
   const handleOpen = () => setOpen(true);
@@ -87,6 +92,9 @@ const Ide = ({ name, id, input, maxPoints, data }) => {
       setDisable(true);
       setFilename("");
     }
+  };
+  const handleClickRun = async () => {
+    await dispatch(postTask(input.toString(), id));
   };
 
   return (
@@ -229,13 +237,16 @@ const Ide = ({ name, id, input, maxPoints, data }) => {
                 <div className="bg-color pl-6 pt-6  input relative">
                   Input
                   <br />
-                  <textarea className="text-area" />
+                  <textarea
+                    className="text-area"
+                    onChange={(e) => setInput(e.target.value)}
+                  />
                   <div className="flex ">
-                    <Link to="/">
+                    <div onClick={handleClickRun}>
                       <div className="run-btn absolute bottom-0 mb-4 2xl:mb-6 text-white  flex">
                         <img className="2xl:h-5" src={run} alt="run" />
                       </div>
-                    </Link>
+                    </div>
                   </div>
                 </div>
               </div>
