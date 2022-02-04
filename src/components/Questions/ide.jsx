@@ -233,72 +233,77 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
           </div>
         </div>
         <div className="flex flex-row gap-9 ">
-          <div className="px-5 py-5 bg-color relative test-case box-radius">
-            <div
-              className={
-                CODE_STATES[getJudgeMain[1]]
-                  ? CODE_STATES[getJudgeMain[1]].color
-                  : ""
-              }
-            >
-              <h1 className="text-white">Test Case 1</h1>
-              {CODE_STATES[getJudgeMain[1]]
-                ? CODE_STATES[getJudgeMain[1]].text
-                : ""}
-            </div>
-            <div
-              className={
-                CODE_STATES[getJudgeMain[2]]
-                  ? CODE_STATES[getJudgeMain[2]].color
-                  : ""
-              }
-            >
-              <h1 className="text-white">Test Case 2</h1>
+          <div className="px-5 py-5 b2xl:px-8 bg-color relative test-case box-radius">
+            <h1 className="pt-1 pb-1 pr-2 2xl:pb-3 2xl:pt-2 2xl:pl-2 3xl:pt-3.5 text-lg 2xl:text-2xl">
+              Test Cases
+            </h1>
+            <div className="casess px-1 2xl:pl-3 overflow-y-auto">
+              <div
+                className={
+                  CODE_STATES[getJudgeMain[1]]
+                    ? CODE_STATES[getJudgeMain[1]].color
+                    : ""
+                }
+              >
+                <h1 className="text-white">Test Case 1</h1>
+                {CODE_STATES[getJudgeMain[1]]
+                  ? CODE_STATES[getJudgeMain[1]].text
+                  : ""}
+              </div>
+              <div
+                className={
+                  CODE_STATES[getJudgeMain[2]]
+                    ? CODE_STATES[getJudgeMain[2]].color
+                    : ""
+                }
+              >
+                <h1 className="text-white">Test Case 2</h1>
 
-              {CODE_STATES[getJudgeMain[2]]
-                ? CODE_STATES[getJudgeMain[2]].text
-                : ""}
-            </div>
-            <div
-              className={
-                CODE_STATES[getJudgeMain[3]]
-                  ? CODE_STATES[getJudgeMain[3]].color
-                  : ""
-              }
-            >
-              <h1 className="text-white">Test Case 3</h1>
+                {CODE_STATES[getJudgeMain[2]]
+                  ? CODE_STATES[getJudgeMain[2]].text
+                  : ""}
+              </div>
+              <div
+                className={
+                  CODE_STATES[getJudgeMain[3]]
+                    ? CODE_STATES[getJudgeMain[3]].color
+                    : ""
+                }
+              >
+                <h1 className="text-white">Test Case 3</h1>
 
-              {CODE_STATES[getJudgeMain[3]]
-                ? CODE_STATES[getJudgeMain[3]].text
-                : ""}
-            </div>
-            <div
-              className={
-                CODE_STATES[getJudgeMain[4]]
-                  ? CODE_STATES[getJudgeMain[4]].color
-                  : ""
-              }
-            >
-              <h1 className="text-white">Test Case 4</h1>
+                {CODE_STATES[getJudgeMain[3]]
+                  ? CODE_STATES[getJudgeMain[3]].text
+                  : ""}
+              </div>
+              <div
+                className={
+                  CODE_STATES[getJudgeMain[4]]
+                    ? CODE_STATES[getJudgeMain[4]].color
+                    : ""
+                }
+              >
+                <h1 className="text-white">Test Case 4</h1>
 
-              {CODE_STATES[getJudgeMain[4]]
-                ? CODE_STATES[getJudgeMain[4]].text
-                : ""}
-            </div>
-            <div
-              className={
-                CODE_STATES[getJudgeMain[5]]
-                  ? CODE_STATES[getJudgeMain[5]].color
-                  : ""
-              }
-            >
-              <h1 className="text-white">Test Case 5</h1>
+                {CODE_STATES[getJudgeMain[4]]
+                  ? CODE_STATES[getJudgeMain[4]].text
+                  : ""}
+              </div>
+              <div
+                className={
+                  CODE_STATES[getJudgeMain[5]]
+                    ? CODE_STATES[getJudgeMain[5]].color
+                    : ""
+                }
+              >
+                <h1 className="text-white">Test Case 5</h1>
 
-              {CODE_STATES[getJudgeMain[5]]
-                ? CODE_STATES[getJudgeMain[5]].text
-                : ""}
+                {CODE_STATES[getJudgeMain[5]]
+                  ? CODE_STATES[getJudgeMain[5]].text
+                  : ""}
+              </div>
             </div>
-            <div className="flex absolute bottom-0 mb-4 2xl:mb-6">
+            <div className="flex absolute bottom-0 mb-4 2xl:mb-6 2xl:pl-2">
               <div className={getDisable ? "getcursorDisable" : ""}>
                 <div
                   className={
@@ -325,7 +330,7 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
                 />
               </div>
 
-              <div className=" ml-8 2xl:ml-20 text-white font-700 text-lg 2xl:text-2xl">
+              <div className=" ml-8 2xl:ml-14 text-white font-700 text-lg 2xl:text-2xl">
                 Points: <br />
                 {getJudgeMain.points
                   ? getJudgeMain.points
