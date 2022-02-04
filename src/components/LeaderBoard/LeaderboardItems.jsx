@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "./LeaderboardItems.css";
-function LeaderboardItems({ person }) {
+
+const LeaderboardItems = ({ person }) => {
+  const getMyTeam = useSelector((state) => state.getAll.teams);
+
+  const [purple, setPurple] = useState("");
+
+  useEffect(() => {
+    if (getMyTeam.name === person.team) {
+      setPurple("purple");
+    }
+  }, [getMyTeam.name, person.team]);
+
   return (
     // <tr>
     //   <td>{person.id}</td>
@@ -11,7 +23,9 @@ function LeaderboardItems({ person }) {
       <td className=" justify-start text-left text-xl 3xl:text-3xl 2xl:text-3xl py-4 3xl:py-6 2xl:py-6">
         {person.rank}
       </td>
-      <td className="justify-center text-center text-xl 3xl:text-3xl 2xl:text-3xl py-4 3xl:py-6 2xl:py-6">
+      <td
+        className={`${purple} justify-center text-center text-xl 3xl:text-3xl 2xl:text-3xl py-4 3xl:py-6 2xl:py-6`}
+      >
         {person.name}
       </td>
       <td className="justify-end text-right text-xl 3xl:text-3xl 2xl:text-3xl py-4 3xl:py-6 2xl:py-6">
@@ -20,6 +34,6 @@ function LeaderboardItems({ person }) {
       <hr className="hr-bottom col-span-3" />
     </div>
   );
-}
+};
 
 export default LeaderboardItems;
