@@ -34,7 +34,7 @@ const Sidebar = () => {
   // });
 
   const logoutfunc = () => {
-    sessionStorage.removeItem("TK");
+    sessionStorage.removeItem("WT");
     sessionStorage.removeItem("cc");
     window.location.href = "https://rcpc.acmvit.in";
   };

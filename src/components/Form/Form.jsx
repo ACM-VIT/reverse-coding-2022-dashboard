@@ -22,7 +22,7 @@ const Form = () => {
   const [displayName, setDisplayName] = useState("");
 
   useEffect(() => {
-    const token = sessionStorage.getItem("TK");
+    const token = sessionStorage.getItem("WT");
     const headers = {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
@@ -77,7 +77,7 @@ const Form = () => {
       isForm: true,
     };
 
-    const token = sessionStorage.getItem("TK");
+    const token = sessionStorage.getItem("WT");
     const headers = {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
