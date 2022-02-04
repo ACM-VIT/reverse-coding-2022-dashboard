@@ -12,7 +12,11 @@ import windows from "../../assets/images/windows.svg";
 import download from "../../assets/images/download.svg";
 import run from "../../assets/images/run.svg";
 import upload from "../../assets/images/upload.svg";
-import { postTask, postJudge } from "../../redux/PostJudge/postJudgeActions";
+import {
+  postTask,
+  postJudge,
+  taskRunner,
+} from "../../redux/PostJudge/postJudgeActions";
 
 import "./ide.css";
 import { CODE_STATES } from "../../redux/PostJudge/states";
@@ -95,7 +99,9 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
       const file = e.target.files[0];
       try {
         if (
-          !e.target.files[0].name.split(".")[1].match(/^(java|js|go|py|cpp|c)$/)
+          !e.target.files[0].name
+            .split(".")[1]
+            .match(/^(java|js|go|py|cpp|c|kt|php)$/)
         ) {
           setDisable(true);
           setFilename("");
@@ -129,7 +135,7 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
   const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
   const getDisable = useSelector((state) => state.postJudge.disable);
   const getTeamid = getTeam.id;
-
+  const taskrunner = useSelector((state) => state.postJudge.taskRunner);
   const handleupload = async () => {
     console.log("handleuplaod");
     await dispatch(postJudge(problemid, getTeamid, fileType, downloadFile));
@@ -229,72 +235,77 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
           </div>
         </div>
         <div className="flex flex-row gap-9 ">
-          <div className="px-5 py-5 bg-color relative test-case box-radius">
-            <div
-              className={
-                CODE_STATES[getJudgeMain[1]]
-                  ? CODE_STATES[getJudgeMain[1]].color
-                  : ""
-              }
-            >
-              <h1 className="text-white">Test Case 1</h1>
-              {CODE_STATES[getJudgeMain[1]]
-                ? CODE_STATES[getJudgeMain[1]].text
-                : ""}
-            </div>
-            <div
-              className={
-                CODE_STATES[getJudgeMain[2]]
-                  ? CODE_STATES[getJudgeMain[2]].color
-                  : ""
-              }
-            >
-              <h1 className="text-white">Test Case 2</h1>
+          <div className="px-5 py-5 b2xl:px-8 bg-color relative test-case box-radius">
+            <h1 className="pt-1 pb-1 pr-2 2xl:pb-3 2xl:pt-2 2xl:pl-2 3xl:pt-3.5 text-lg 2xl:text-2xl">
+              Test Cases
+            </h1>
+            <div className="casess px-1 2xl:pl-3 overflow-y-auto">
+              <div
+                className={
+                  CODE_STATES[getJudgeMain[1]]
+                    ? CODE_STATES[getJudgeMain[1]].color
+                    : ""
+                }
+              >
+                <h1 className="text-white">Test Case 1</h1>
+                {CODE_STATES[getJudgeMain[1]]
+                  ? CODE_STATES[getJudgeMain[1]].text
+                  : ""}
+              </div>
+              <div
+                className={
+                  CODE_STATES[getJudgeMain[2]]
+                    ? CODE_STATES[getJudgeMain[2]].color
+                    : ""
+                }
+              >
+                <h1 className="text-white">Test Case 2</h1>
 
-              {CODE_STATES[getJudgeMain[2]]
-                ? CODE_STATES[getJudgeMain[2]].text
-                : ""}
-            </div>
-            <div
-              className={
-                CODE_STATES[getJudgeMain[3]]
-                  ? CODE_STATES[getJudgeMain[3]].color
-                  : ""
-              }
-            >
-              <h1 className="text-white">Test Case 3</h1>
+                {CODE_STATES[getJudgeMain[2]]
+                  ? CODE_STATES[getJudgeMain[2]].text
+                  : ""}
+              </div>
+              <div
+                className={
+                  CODE_STATES[getJudgeMain[3]]
+                    ? CODE_STATES[getJudgeMain[3]].color
+                    : ""
+                }
+              >
+                <h1 className="text-white">Test Case 3</h1>
 
-              {CODE_STATES[getJudgeMain[3]]
-                ? CODE_STATES[getJudgeMain[3]].text
-                : ""}
-            </div>
-            <div
-              className={
-                CODE_STATES[getJudgeMain[4]]
-                  ? CODE_STATES[getJudgeMain[4]].color
-                  : ""
-              }
-            >
-              <h1 className="text-white">Test Case 4</h1>
+                {CODE_STATES[getJudgeMain[3]]
+                  ? CODE_STATES[getJudgeMain[3]].text
+                  : ""}
+              </div>
+              <div
+                className={
+                  CODE_STATES[getJudgeMain[4]]
+                    ? CODE_STATES[getJudgeMain[4]].color
+                    : ""
+                }
+              >
+                <h1 className="text-white">Test Case 4</h1>
 
-              {CODE_STATES[getJudgeMain[4]]
-                ? CODE_STATES[getJudgeMain[4]].text
-                : ""}
-            </div>
-            <div
-              className={
-                CODE_STATES[getJudgeMain[5]]
-                  ? CODE_STATES[getJudgeMain[5]].color
-                  : ""
-              }
-            >
-              <h1 className="text-white">Test Case 5</h1>
+                {CODE_STATES[getJudgeMain[4]]
+                  ? CODE_STATES[getJudgeMain[4]].text
+                  : ""}
+              </div>
+              <div
+                className={
+                  CODE_STATES[getJudgeMain[5]]
+                    ? CODE_STATES[getJudgeMain[5]].color
+                    : ""
+                }
+              >
+                <h1 className="text-white">Test Case 5</h1>
 
-              {CODE_STATES[getJudgeMain[5]]
-                ? CODE_STATES[getJudgeMain[5]].text
-                : ""}
+                {CODE_STATES[getJudgeMain[5]]
+                  ? CODE_STATES[getJudgeMain[5]].text
+                  : ""}
+              </div>
             </div>
-            <div className="flex absolute bottom-0 mb-4 2xl:mb-6">
+            <div className="flex absolute bottom-0 mb-4 2xl:mb-6 2xl:pl-2">
               <div className={getDisable ? "getcursorDisable" : ""}>
                 <div
                   className={
@@ -321,7 +332,7 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
                 />
               </div>
 
-              <div className=" ml-8 2xl:ml-20 text-white font-700 text-lg 2xl:text-2xl">
+              <div className=" ml-8 2xl:ml-14 text-white font-700 text-lg 2xl:text-2xl">
                 Points: <br />
                 {getJudgeMain.points
                   ? getJudgeMain.points
@@ -335,10 +346,10 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
           <div className="flex flex-col gap-9 ">
             <div className="flex flex-row gap-9">
               <div>
-                <div className="bg-color pl-6 pt-6  input relative">
-                  <p className="pb-2">Input</p>
+                <div className="bg-color pl-6 pt-6 input relative">
+                  <p className="pb-2 2xl:pb-3">Input</p>
                   <textarea
-                    className="text-area overflow-auto"
+                    className="text-area overflow-y-auto"
                     onChange={(e) => setInput(e.target.value)}
                   />
                   <div className="flex ">
@@ -351,7 +362,10 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
                 </div>
               </div>
 
-              <div className="bg-color pl-6 pt-6 output">Output</div>
+              <div className="bg-color pl-6 pt-6 output">
+                <h1>Output</h1>
+                {taskrunner}
+              </div>
             </div>
           </div>
         </div>
