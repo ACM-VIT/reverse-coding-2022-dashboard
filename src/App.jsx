@@ -15,6 +15,8 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Instructions from "./components/Instructions/Instructions";
 import Leaderboard from "./containers/LeaderboardContainer/Leaderboard";
 import LargeScreen from "./containers/LargeScreen/LargeScreen";
+// import Roulette from "./components/Wheels/Hard";
+import Roulette from "./containers/Round2/Round2";
 import store from "./redux/store";
 import NotFound404 from "./components/404/404";
 import NotAuth401 from "./components/401/401";
@@ -57,6 +59,11 @@ const App = () => {
           <Redirect exact from="/" to="/overview" />
           <Sidebar />
           <Faq />
+        </Route>
+        <Route exact path="/roulette">
+          <Redirect exact from="/" to="/overview" />
+          <Sidebar />
+          <Roulette />
         </Route>
         <Route exact path="/login" component={Login} />
         <Route exact path="/form" component={Form} />

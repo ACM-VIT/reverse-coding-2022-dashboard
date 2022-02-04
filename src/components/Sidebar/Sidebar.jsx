@@ -79,6 +79,19 @@ const Sidebar = () => {
             </li>
             <li
               className={`${
+                splitLocation[1] === "roulette" ? "activeClass" : ""
+              } rounded-lg mb-2 2xl:mb-3`}
+            >
+              <Link
+                to="/roulette"
+                exact
+                className="flex items-center text-white px-4 py-3 3xl:py-4 rounded-lg 2xl:rounded-xl 3xl:rounded-2xl 2xl:pl-6"
+              >
+                Roulette
+              </Link>
+            </li>
+            <li
+              className={`${
                 splitLocation[1] === "questions" ? "activeClass" : ""
               } rounded-lg cursor-pointer mb-2 2xl:mb-3`}
             >
