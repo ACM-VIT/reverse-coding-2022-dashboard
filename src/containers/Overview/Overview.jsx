@@ -34,47 +34,59 @@ const Overview = () => {
       window.location.href = "/login";
     } else {
       const WT = sessionStorage.getItem("WT");
-
       await axios
-        .get(`${process.env.REACT_APP_BASEURL}/teams`, {
+        .get(`${process.env.REACT_APP_BASEURL}/participants`, {
           headers: {
             "Content-Type": "application/json",
             authorization: `Bearer ${WT}`,
           },
         })
-        .then(async (responseteams) => {
-          console.log("teams", responseteams);
-          dispatch(getTeams(responseteams.data));
+        .then(async (responseparticipant) => {
+          dispatch(getPeople(responseparticipant.data));
           await axios
-            .get(`${process.env.REACT_APP_BASEURL}/problems`, {
+            .get(`${process.env.REACT_APP_BASEURL}/teams`, {
               headers: {
                 "Content-Type": "application/json",
                 authorization: `Bearer ${WT}`,
               },
             })
-            .then(async (responseproblems) => {
-              console.log("problems", responseproblems);
-              dispatch(getProblems(responseproblems.data));
+            .then(async (responseteams) => {
+              console.log("teams", responseteams);
+              dispatch(getTeams(responseteams.data));
               await axios
-                .get(`${process.env.REACT_APP_BASEURL}/judge`, {
+                .get(`${process.env.REACT_APP_BASEURL}/problems`, {
                   headers: {
                     "Content-Type": "application/json",
                     authorization: `Bearer ${WT}`,
                   },
                 })
-                .then(async (responsejudge) => {
-                  console.log("leaderboard", responsejudge);
-                  dispatch(getJudgePoints(responsejudge.data));
+                .then(async (responseproblems) => {
+                  console.log("problems", responseproblems);
+                  dispatch(getProblems(responseproblems.data));
                   await axios
-                    .get(`${process.env.REACT_APP_BASEURL}/teams/leader`, {
+                    .get(`${process.env.REACT_APP_BASEURL}/judge`, {
                       headers: {
                         "Content-Type": "application/json",
                         authorization: `Bearer ${WT}`,
                       },
                     })
-                    .then((responseleaderboard) => {
-                      console.log("leaderboard", responseleaderboard);
-                      dispatch(getLeaderboard(responseleaderboard.data));
+                    .then(async (responsejudge) => {
+                      console.log("leaderboard", responsejudge);
+                      dispatch(getJudgePoints(responsejudge.data));
+                      await axios
+                        .get(`${process.env.REACT_APP_BASEURL}/teams/leader`, {
+                          headers: {
+                            "Content-Type": "application/json",
+                            authorization: `Bearer ${WT}`,
+                          },
+                        })
+                        .then((responseleaderboard) => {
+                          console.log("leaderboard", responseleaderboard);
+                          dispatch(getLeaderboard(responseleaderboard.data));
+                        })
+                        .catch((err) => {
+                          console.log(err);
+                        });
                     })
                     .catch((err) => {
                       console.log(err);
@@ -85,7 +97,7 @@ const Overview = () => {
                 });
             })
             .catch((err) => {
-              console.log(err);
+              console.log("err", err);
             });
         })
         .catch((err) => {
