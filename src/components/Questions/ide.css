@@ -65,10 +65,23 @@
   cursor: pointer;
 }
 .text-area {
-  overflow: hidden;
   background-color: rgba(29, 33, 38, 1);
   resize: none;
   outline: none;
+  height: 19rem;
+  width: 14.1rem;
+  padding-right: 1.25rem;
+}
+.text-area::-webkit-scrollbar {
+  width: 11.5px;
+}
+.text-area::-webkit-scrollbar-thumb {
+  background: #4f4f4f;
+  border-radius: 48px;
+}
+.text-area::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0 50px rgba(0, 0, 0, 1);
+  border-radius: 48px;
 }
 
 @media screen and (min-width: 1550px) {
