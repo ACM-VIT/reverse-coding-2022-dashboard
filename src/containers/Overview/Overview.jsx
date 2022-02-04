@@ -24,57 +24,88 @@ const Overview = () => {
     const token = path.pathname.slice(10);
 
     if (token) {
-      sessionStorage.setItem("TK", token);
+      sessionStorage.setItem("WT", token);
+      sessionStorage.setItem("FF", null);
       window.history.replaceState(null, null, "/overview");
     }
     if (
-      sessionStorage.getItem("TK") === null ||
-      sessionStorage.getItem("TK") === ""
+      sessionStorage.getItem("WT") === null ||
+      sessionStorage.getItem("WT") === "null" ||
+      sessionStorage.getItem("WT") === undefined ||
+      sessionStorage.getItem("WT") === ""
     ) {
       window.location.href = "/login";
+    } else if (
+      sessionStorage.getItem("FF") === "null" ||
+      sessionStorage.getItem("FF") === null ||
+      sessionStorage.getItem("FF") === undefined
+    ) {
+      console.log("From else if ", sessionStorage.getItem("FF"));
+      window.location.href = "/form";
     } else {
-      const TK = sessionStorage.getItem("TK");
+      const WT = sessionStorage.getItem("WT");
 
       await axios
-        .get(`${process.env.REACT_APP_BASEURL}/teams`, {
+        .get(`${process.env.REACT_APP_BASEURL}/participants`, {
           headers: {
             "Content-Type": "application/json",
-            authorization: `Bearer ${TK}`,
+            authorization: `Bearer ${WT}`,
           },
         })
-        .then(async (responseteams) => {
-          console.log("teams", responseteams);
-          dispatch(getTeams(responseteams.data));
+        .then(async (responseparticipant) => {
+          // Check if the form is filled or not
+          if (sessionStorage.getItem("FF") !== "null") {
+            if (responseparticipant.data.phoneNumber === "0000000000") {
+              window.location.href = "/form";
+            } else {
+              dispatch(getPeople(responseparticipant.data));
+            }
+          }
+
           await axios
-            .get(`${process.env.REACT_APP_BASEURL}/problems`, {
+            .get(`${process.env.REACT_APP_BASEURL}/teams`, {
               headers: {
                 "Content-Type": "application/json",
-                authorization: `Bearer ${TK}`,
+                authorization: `Bearer ${WT}`,
               },
             })
-            .then(async (responseproblems) => {
-              console.log("problems", responseproblems);
-              dispatch(getProblems(responseproblems.data));
+            .then(async (responseteams) => {
+              console.log("teams", responseteams);
+              dispatch(getTeams(responseteams.data));
               await axios
-                .get(`${process.env.REACT_APP_BASEURL}/judge`, {
+                .get(`${process.env.REACT_APP_BASEURL}/problems`, {
                   headers: {
                     "Content-Type": "application/json",
-                    authorization: `Bearer ${TK}`,
+                    authorization: `Bearer ${WT}`,
                   },
                 })
-                .then(async (responsejudge) => {
-                  console.log("leaderboard", responsejudge);
-                  dispatch(getJudgePoints(responsejudge.data));
+                .then(async (responseproblems) => {
+                  console.log("problems", responseproblems);
+                  dispatch(getProblems(responseproblems.data));
                   await axios
-                    .get(`${process.env.REACT_APP_BASEURL}/teams/leader`, {
+                    .get(`${process.env.REACT_APP_BASEURL}/judge`, {
                       headers: {
                         "Content-Type": "application/json",
-                        authorization: `Bearer ${TK}`,
+                        authorization: `Bearer ${WT}`,
                       },
                     })
-                    .then((responseleaderboard) => {
-                      console.log("leaderboard", responseleaderboard);
-                      dispatch(getLeaderboard(responseleaderboard.data));
+                    .then(async (responsejudge) => {
+                      console.log("leaderboard", responsejudge);
+                      dispatch(getJudgePoints(responsejudge.data));
+                      await axios
+                        .get(`${process.env.REACT_APP_BASEURL}/teams/leader`, {
+                          headers: {
+                            "Content-Type": "application/json",
+                            authorization: `Bearer ${WT}`,
+                          },
+                        })
+                        .then((responseleaderboard) => {
+                          console.log("leaderboard", responseleaderboard);
+                          dispatch(getLeaderboard(responseleaderboard.data));
+                        })
+                        .catch((err) => {
+                          console.log(err);
+                        });
                     })
                     .catch((err) => {
                       console.log(err);
@@ -85,7 +116,7 @@ const Overview = () => {
                 });
             })
             .catch((err) => {
-              console.log(err);
+              console.log("err", err);
             });
         })
         .catch((err) => {
@@ -96,6 +127,8 @@ const Overview = () => {
 
   const team = useSelector((state) => state.getAll.teams);
   const submissions = useSelector((state) => state.getAll.judgePoints);
+  console.log("submissions", typeof submissions);
+  console.log(team);
 
   function submissionRedirect() {
     history.push("/questions");
@@ -148,7 +181,7 @@ const Overview = () => {
       </div>
       <div className="font-dm font-bold text-white pt-20 2xl:pt-32">
         <h1 className="text-3xl 2xl:text-4.5xl 3xl:text-5xl">My Submissions</h1>
-        {submissions.length > 0 ? (
+        {typeof submissions !== "undefined" && submissions.length > 0 ? (
           <Submissions />
         ) : (
           <div className="flex flex-col items-center space-y-10 pr-40">

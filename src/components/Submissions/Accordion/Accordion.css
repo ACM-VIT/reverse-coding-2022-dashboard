@@ -77,6 +77,18 @@
   display: none;
 }
 
+.three {
+  margin-right: 0rem;
+}
+
+.two {
+  margin-right: 1rem;
+}
+
+.one {
+  margin-right: 2rem;
+}
+
 /* Style the accordion content text */
 .accordion__text {
   font-weight: 400;

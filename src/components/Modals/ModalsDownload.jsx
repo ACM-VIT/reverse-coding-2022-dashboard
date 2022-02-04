@@ -72,7 +72,7 @@ function ModalsDownload(props) {
           <Box className=" shadows stile">
             <div className="flex flex-col text-center pt-2">
               <div className=" pb-4 text-xl fontdmteam font-700">
-                Your Downlaod is Done
+                Your Download is Done
               </div>
               <div className=" pb-4 text-base fontdmteam font-700">
                 Selection: {props.selection}

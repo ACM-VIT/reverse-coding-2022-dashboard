@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import Leaderboard from "../../../containers/LeaderboardContainer/Leaderboard";
@@ -11,6 +11,7 @@ const Accordion = (props) => {
   const [setHeight, setHeightState] = useState("0px");
   const [setRotate, setRotateState] = useState("accordion__icon");
   const [setColor, setColorState] = useState("#984FB9");
+  const [setMargin, setMarginState] = useState("0px");
   const [setTextColor, setTextColorState] = useState("gray");
   const [setDisplay, setDisplayState] = useState("displayBorder");
   const [hideBorder, setHideBorder] = useState("accordion");
@@ -37,6 +38,20 @@ const Accordion = (props) => {
     history.push("/questions");
   };
 
+  useEffect(() => {
+    if (props.score !== null) {
+      if (props.score.toString().length === 3) {
+        setMarginState("three");
+      }
+      if (props.score.toString().length === 2) {
+        setMarginState("two");
+      }
+      if (props.score.toString().length === 1) {
+        setMarginState("one");
+      }
+    }
+  }, [props.score]);
+
   return (
     <div className="accordion__section z-0">
       {props.score !== null ? (
@@ -48,7 +63,7 @@ const Accordion = (props) => {
           <div className={`${setActive}`}>{props.question}</div>
           <button
             type="button"
-            className={`${setTextColor} accordion__title`}
+            className={`${setTextColor} ${setMargin} accordion__title`}
             onClick={questionRedirect}
           >
             Open
