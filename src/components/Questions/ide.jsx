@@ -219,7 +219,7 @@ const Ide = ({ name, id, input, maxPoints, data }) => {
 
               <div className=" ml-10 2xl:ml-20  text-white font-700 text-lg 2xl:text-2xl">
                 Points: <br />
-                {maxPoints}/100{" "}
+                {maxPoints}/100
               </div>
             </div>
           </div>
