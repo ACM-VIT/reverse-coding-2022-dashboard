@@ -24,22 +24,22 @@ const Overview = () => {
     const token = path.pathname.slice(10);
 
     if (token) {
-      sessionStorage.setItem("TK", token);
+      sessionStorage.setItem("WT", token);
       window.history.replaceState(null, null, "/overview");
     }
     if (
-      sessionStorage.getItem("TK") === null ||
-      sessionStorage.getItem("TK") === ""
+      sessionStorage.getItem("WT") === null ||
+      sessionStorage.getItem("WT") === ""
     ) {
       window.location.href = "/login";
     } else {
-      const TK = sessionStorage.getItem("TK");
+      const WT = sessionStorage.getItem("WT");
 
       await axios
         .get(`${process.env.REACT_APP_BASEURL}/teams`, {
           headers: {
             "Content-Type": "application/json",
-            authorization: `Bearer ${TK}`,
+            authorization: `Bearer ${WT}`,
           },
         })
         .then(async (responseteams) => {
@@ -49,7 +49,7 @@ const Overview = () => {
             .get(`${process.env.REACT_APP_BASEURL}/problems`, {
               headers: {
                 "Content-Type": "application/json",
-                authorization: `Bearer ${TK}`,
+                authorization: `Bearer ${WT}`,
               },
             })
             .then(async (responseproblems) => {
@@ -59,7 +59,7 @@ const Overview = () => {
                 .get(`${process.env.REACT_APP_BASEURL}/judge`, {
                   headers: {
                     "Content-Type": "application/json",
-                    authorization: `Bearer ${TK}`,
+                    authorization: `Bearer ${WT}`,
                   },
                 })
                 .then(async (responsejudge) => {
@@ -69,7 +69,7 @@ const Overview = () => {
                     .get(`${process.env.REACT_APP_BASEURL}/teams/leader`, {
                       headers: {
                         "Content-Type": "application/json",
-                        authorization: `Bearer ${TK}`,
+                        authorization: `Bearer ${WT}`,
                       },
                     })
                     .then((responseleaderboard) => {
