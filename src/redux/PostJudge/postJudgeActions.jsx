@@ -68,9 +68,10 @@ export const postJudge =
     console.log("downloadFile", downloadFile);
     dispatch(setDisable(true));
     const TK = sessionStorage.getItem("TK");
+    const WT = sessionStorage.getItem("WT");
     axios
       .post(
-        "http://20.204.89.226:5000/judge",
+        `${process.env.REACT_APP_BASEURL}/judge`,
         {
           problemID: problemid,
           teamID: getTeamid,
@@ -80,7 +81,7 @@ export const postJudge =
         {
           headers: {
             "Content-Type": "application/json",
-            authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0aWNpcGFudCI6eyJpZCI6MzUsImdvb2dsZUlEIjoiMTE1MDAzOTM2NjM3MDg0NjEwNTkwIiwibmFtZSI6IlByYW5hdiBEZXNhaSIsImlzQWRtaW4iOnRydWUsImVtYWlsIjoicHJhbmF2ZGVzYWkucHNkQGdtYWlsLmNvbSIsInRlYW1faWQiOjE1MjZ9LCJpYXQiOjE2NDM4MTQ3OTQsImV4cCI6MTY1MjQ1NDc5NCwiaXNzIjoiaGVwaGFlc3R1cyJ9.nrLHJlPnEZHIaU29bw5XtG4ywQ7R_0PPWUDLFK4vA6I`,
+            authorization: `Bearer ${WT}`,
           },
         }
       )
@@ -88,10 +89,10 @@ export const postJudge =
         console.log(res);
         const polling = setInterval(() => {
           axios
-            .get(`http://20.204.89.226:5000/judge/${res.data}`, {
+            .get(`${process.env.REACT_APP_BASEURL}/judge/${res.data}`, {
               headers: {
                 "Content-Type": "application/json",
-                authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0aWNpcGFudCI6eyJpZCI6MzUsImdvb2dsZUlEIjoiMTE1MDAzOTM2NjM3MDg0NjEwNTkwIiwibmFtZSI6IlByYW5hdiBEZXNhaSIsImlzQWRtaW4iOnRydWUsImVtYWlsIjoicHJhbmF2ZGVzYWkucHNkQGdtYWlsLmNvbSIsInRlYW1faWQiOjE1MjZ9LCJpYXQiOjE2NDM4MTQ3OTQsImV4cCI6MTY1MjQ1NDc5NCwiaXNzIjoiaGVwaGFlc3R1cyJ9.nrLHJlPnEZHIaU29bw5XtG4ywQ7R_0PPWUDLFK4vA6I`,
+                authorization: `Bearer ${WT}`,
               },
             })
             .then((response) => {
@@ -170,7 +171,7 @@ export const postJudge =
 
 // export const createTeam = (team) => (dispatch) => {
 //     // axios post to create team
-//     const TK = sessionStorage.getItem("TK");
+//     const WT = sessionStorage.getItem("WT");
 //     axios
 //       .post(
 //         `${url.SERVER_BASEURL}/participants/create-team`,
@@ -180,7 +181,7 @@ export const postJudge =
 //         {
 //           headers: {
 //             "content-type": "application/json",
-//             authorization: `Bearer ${TK}`,
+//             authorization: `Bearer ${WT}`,
 //           },
 //         }
 //       )
