@@ -77,7 +77,7 @@ const Accordion = (props) => {
           </div>
         </button>
       ) : (
-        <div className="none">Hidden</div>
+        <div className="none">...</div>
       )}
       <div
         ref={desc}
