@@ -90,7 +90,7 @@ export const postJudge =
     console.log("fileType", fileType);
     console.log("downloadFile", downloadFile);
     dispatch(setDisable(true));
-    const TK = sessionStorage.getItem("TK");
+    // const TK = sessionStorage.getItem("TK");
     const WT = sessionStorage.getItem("WT");
     axios
       .post(
