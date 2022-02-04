@@ -25,13 +25,23 @@ const Overview = () => {
 
     if (token) {
       sessionStorage.setItem("WT", token);
+      sessionStorage.setItem("FF", null);
       window.history.replaceState(null, null, "/overview");
     }
     if (
       sessionStorage.getItem("WT") === null ||
+      sessionStorage.getItem("WT") === "null" ||
+      sessionStorage.getItem("WT") === undefined ||
       sessionStorage.getItem("WT") === ""
     ) {
       window.location.href = "/login";
+    } else if (
+      sessionStorage.getItem("FF") === "null" ||
+      sessionStorage.getItem("FF") === null ||
+      sessionStorage.getItem("FF") === undefined
+    ) {
+      console.log("From else if ", sessionStorage.getItem("FF"));
+      window.location.href = "/form";
     } else {
       const WT = sessionStorage.getItem("WT");
 
