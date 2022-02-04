@@ -11,7 +11,7 @@ const ProtectedRoute = ({ component: Component, redirect, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        key === "null" || key === "" || key === undefined ? (
+        key === null || key === "" || key === undefined ? (
           <Redirect to="/login" />
         ) : (
           <Component {...props} />

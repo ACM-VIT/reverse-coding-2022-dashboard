@@ -75,7 +75,6 @@ const Form = () => {
       fresher: fresher.value === "Yes" ? true : false,
       registrationNumber: registration.trim(),
       phoneNumber: phone.trim(),
-      isForm: true,
     };
 
     const token = sessionStorage.getItem("WT");

@@ -44,6 +44,7 @@ const Overview = () => {
       window.location.href = "/form";
     } else {
       const WT = sessionStorage.getItem("WT");
+
       await axios
         .get(`${process.env.REACT_APP_BASEURL}/participants`, {
           headers: {
@@ -52,7 +53,15 @@ const Overview = () => {
           },
         })
         .then(async (responseparticipant) => {
-          dispatch(getPeople(responseparticipant.data));
+          // Check if the form is filled or not
+          if (sessionStorage.getItem("FF") !== "null") {
+            if (responseparticipant.data.phoneNumber === "0000000000") {
+              window.location.href = "/form";
+            } else {
+              dispatch(getPeople(responseparticipant.data));
+            }
+          }
+
           await axios
             .get(`${process.env.REACT_APP_BASEURL}/teams`, {
               headers: {
