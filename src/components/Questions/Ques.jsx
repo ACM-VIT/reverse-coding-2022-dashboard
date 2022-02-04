@@ -111,12 +111,18 @@ const Ques = ({ data, input }) => {
   const getJudgetext = useSelector((state) => state.postJudge.judgestatetext);
   const getJudgeMain = useSelector((state) => state.postJudge.judgeMain);
   const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
+  // const allDisable = () => {
+  //   if (getJudgeMain === "") { }
+  // }
+  const getDisable = useSelector((state) => state.postJudge.disable);
+  console.log("DISABLED?", getDisable);
   const getTeamid = getTeam.id;
   const getTeampoints = getTeam.points;
   console.log(getData);
   const handleupload = async () => {
     console.log("handleuplaod");
     await dispatch(postJudge(problemid, getTeamid, fileType, downloadFile));
+    setDisable(true);
     handleClose();
   };
   return (
@@ -196,9 +202,13 @@ const Ques = ({ data, input }) => {
                   : ""}
               </div>
               <div className="flex absolute bottom-0 mb-4 2xl:mb-6">
-                <div>
+                <div className={getDisable ? "getcursorDisable" : ""}>
                   <div
-                    className="upload-btn text-white flex"
+                    className={
+                      getDisable
+                        ? "upload-btn text-white flex getDisable"
+                        : "upload-btn text-white flex"
+                    }
                     onClick={handleOpen}
                   >
                     Upload
@@ -328,13 +338,19 @@ const Ques = ({ data, input }) => {
                 <div className="pl-6 pt-6">
                   Try with your own custom I/O online
                 </div>
-                <div
-                  onClick={() => {
-                    dispatch(getLaunch(true));
-                  }}
-                  className="launch-btn text-white mt-12 2xl:mt-20 mx-auto flex"
-                >
-                  <span>Launch</span>
+                <div className={getDisable ? "getcursorDisable" : ""}>
+                  <div
+                    onClick={() => {
+                      dispatch(getLaunch(true));
+                    }}
+                    className={
+                      getDisable
+                        ? "launch-btn text-white mt-12 2xl:mt-20 mx-auto flex getDisable"
+                        : "launch-btn text-white mt-12 2xl:mt-20 mx-auto flex"
+                    }
+                  >
+                    <span>Launch</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -347,7 +363,7 @@ const Ques = ({ data, input }) => {
           id={data.id}
           maxPoints={data.maxPoints}
           data={data}
-          input={input}
+          inputprop={input}
         />
       </div>
     </div>

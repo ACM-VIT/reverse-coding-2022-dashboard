@@ -9,8 +9,13 @@ import Pages from "../../../components/Pagination/Pages";
 import nextarrow from "../../../assets/images/nextarrow.svg";
 import prevarrow from "../../../assets/images/prevarrow.svg";
 import { clearAll } from "../../../redux/PostJudge/postJudgeActions";
+
+import "./Questions.css";
+
 function Questions() {
   const getData = useSelector((state) => state.getAll.problems);
+  const getDisable = useSelector((state) => state.postJudge.disable);
+
   const dispatch = useDispatch();
   console.log("getDataBefore", getData);
   const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
@@ -76,8 +81,20 @@ function Questions() {
   }
   return (
     <div className="md:ml-64 2xl:ml-80 3xl:ml-100">
-      <div className="flex justify-center mb-8 mt-24">
-        <ul className="pageNumbersquestion justify-end pb-1 text-white">
+      <div
+        className={
+          getDisable
+            ? "flex justify-center mb-8 mt-24 getcursorDisable"
+            : "flex justify-center mb-8 mt-24"
+        }
+      >
+        <ul
+          className={
+            getDisable
+              ? "pageNumbersquestion justify-end pb-1 text-white getDisable"
+              : "pageNumbersquestion justify-end pb-1 text-white"
+          }
+        >
           <div className="mx-1">
             <button onClick={handlePrev} disabled={currentPage === pages[0]}>
               <img src={prevarrow} alt="prev" />
