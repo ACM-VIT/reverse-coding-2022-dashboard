@@ -125,10 +125,27 @@ const Overview = () => {
     }
   }, []);
 
+  const [Null, setNull] = useState(false);
+  const [hidden, setHidden] = useState("");
+
   const team = useSelector((state) => state.getAll.teams);
   const submissions = useSelector((state) => state.getAll.judgePoints);
   console.log("submissions", typeof submissions);
   console.log(team);
+
+  useEffect(() => {
+    let count = 0;
+    // eslint-disable-next-line array-callback-return
+    submissions.map((sub) => {
+      if (sub.points === null) {
+        count += 1;
+      }
+    });
+    console.log("totalNulls", count);
+    if (count === submissions.length) {
+      setNull(true);
+    }
+  }, [submissions]);
 
   function submissionRedirect() {
     history.push("/questions");
@@ -181,9 +198,7 @@ const Overview = () => {
       </div>
       <div className="font-dm font-bold text-white pt-20 2xl:pt-32">
         <h1 className="text-3xl 2xl:text-4.5xl 3xl:text-5xl">My Submissions</h1>
-        {typeof submissions !== "undefined" && submissions.length > 0 ? (
-          <Submissions />
-        ) : (
+        {Null === true ? (
           <div className="flex flex-col items-center space-y-10 pr-40">
             <h1 className="text-4xl 2xl:text-5.5xl 3xl:text-6xl text-grey pt-32 2xl:pt-40 2xl:pb-4">
               No Submissions
@@ -197,6 +212,8 @@ const Overview = () => {
               </div>
             </div>
           </div>
+        ) : (
+          <Submissions />
         )}
       </div>
     </div>

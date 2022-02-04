@@ -6,6 +6,10 @@
   background-color: #984fb9;
 }
 
+.hidden {
+  display: none;
+}
+
 .text-grey {
   color: #bdbdbd;
 }

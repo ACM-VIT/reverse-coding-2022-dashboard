@@ -91,11 +91,9 @@ function Modals(props) {
                 Instructions
               </div>
               <div className=" text-left text-lg pt-7 font-400">
-                {" "}
                 It should not exceed
               </div>
               <div className=" text-left text-lg font-400">
-                {" "}
                 Supported languages are
               </div>
               {/* <div

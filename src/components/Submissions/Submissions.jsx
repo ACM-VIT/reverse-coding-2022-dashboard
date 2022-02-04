@@ -13,7 +13,7 @@ const Submissions = () => {
   return (
     <div
       id="sub"
-      className="overflow-y-scroll min-h-fit max-h-80 2xl:max-h-100 mt-4 2xl:mt-8 w-9/12 2xl:w-10/12"
+      className="overflow-y-auto min-h-fit max-h-80 2xl:max-h-100 mt-4 2xl:mt-8 w-9/12 2xl:w-10/12"
     >
       <article>
         <div className="mr-5">
