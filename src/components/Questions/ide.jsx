@@ -339,10 +339,10 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
           <div className="flex flex-col gap-9 ">
             <div className="flex flex-row gap-9">
               <div>
-                <div className="bg-color pl-6 pt-6  input relative">
-                  <p className="pb-2">Input</p>
+                <div className="bg-color pl-6 pt-6 input relative">
+                  <p className="pb-2 2xl:pb-3">Input</p>
                   <textarea
-                    className="text-area overflow-auto"
+                    className="text-area overflow-y-auto"
                     onChange={(e) => setInput(e.target.value)}
                   />
                   <div className="flex ">
