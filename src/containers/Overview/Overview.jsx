@@ -25,15 +25,26 @@ const Overview = () => {
 
     if (token) {
       sessionStorage.setItem("WT", token);
+      sessionStorage.setItem("FF", null);
       window.history.replaceState(null, null, "/overview");
     }
     if (
       sessionStorage.getItem("WT") === null ||
+      sessionStorage.getItem("WT") === "null" ||
+      sessionStorage.getItem("WT") === undefined ||
       sessionStorage.getItem("WT") === ""
     ) {
       window.location.href = "/login";
+    } else if (
+      sessionStorage.getItem("FF") === "null" ||
+      sessionStorage.getItem("FF") === null ||
+      sessionStorage.getItem("FF") === undefined
+    ) {
+      console.log("From else if ", sessionStorage.getItem("FF"));
+      window.location.href = "/form";
     } else {
       const WT = sessionStorage.getItem("WT");
+
       await axios
         .get(`${process.env.REACT_APP_BASEURL}/participants`, {
           headers: {
@@ -42,7 +53,15 @@ const Overview = () => {
           },
         })
         .then(async (responseparticipant) => {
-          dispatch(getPeople(responseparticipant.data));
+          // Check if the form is filled or not
+          if (sessionStorage.getItem("FF") !== "null") {
+            if (responseparticipant.data.phoneNumber === "0000000000") {
+              window.location.href = "/form";
+            } else {
+              dispatch(getPeople(responseparticipant.data));
+            }
+          }
+
           await axios
             .get(`${process.env.REACT_APP_BASEURL}/teams`, {
               headers: {
