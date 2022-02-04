@@ -17,25 +17,25 @@
   width: 290px;
 }
 
-.test-cases {
-  height: 18rem;
+.casess {
+  height: 17rem;
   width: 15.5rem;
 }
 
-.test-cases::-webkit-scrollbar {
-  width: 20px;
+.casess::-webkit-scrollbar {
+  visibility: visible;
+  width: 11.5px;
 }
 
-/* 
-.text-cases::-webkit-scrollbar-thumb {
-  background: #d61717;
+.casess::-webkit-scrollbar-thumb {
+  background: #4f4f4f;
   border-radius: 48px;
-} */
+}
 
-/* .text-cases::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 0 50px rgb(189, 26, 26);
+.casess::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0 50px rgba(0, 0, 0, 1);
   border-radius: 48px;
-} */
+}
 
 .exec {
   width: 359px;
@@ -100,8 +100,8 @@
     width: 390px;
   }
 
-  .test-cases {
-    height: 27rem;
+  .casess {
+    height: 24.5rem;
     width: 20.75rem;
   }
 
