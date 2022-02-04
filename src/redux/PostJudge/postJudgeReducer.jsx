@@ -18,6 +18,7 @@ const initialState = {
   // judgestatetext: "",
   judgeMain: [],
   disable: false,
+  taskRunner: [],
 };
 
 const postJudgeReducer = (state = initialState, action) => {
