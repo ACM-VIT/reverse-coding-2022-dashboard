@@ -91,10 +91,11 @@ function Modals(props) {
                 Instructions
               </div>
               <div className=" text-left text-lg pt-7 font-400">
-                It should not exceed
+                It should not exceed 5KB.
               </div>
               <div className=" text-left text-lg font-400">
-                Supported languages are
+                Supported languages are Java, JavaScript, C, C++, Go, Kotlin,
+                PHP ,Python
               </div>
               {/* <div
                 className=" text-right input-file mt-4"
