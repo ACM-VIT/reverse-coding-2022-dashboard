@@ -68,12 +68,12 @@
   background-color: rgba(29, 33, 38, 1);
   resize: none;
   outline: none;
-  height: 19rem;
+  height: 18.5rem;
   width: 14.1rem;
   padding-right: 1.25rem;
 }
 .text-area::-webkit-scrollbar {
-  width: 11.5px;
+  width: 11px;
 }
 .text-area::-webkit-scrollbar-thumb {
   background: #4f4f4f;
