@@ -226,13 +226,12 @@ const Ide = ({ name, id, input, maxPoints, data }) => {
           <div className="flex flex-col gap-9 ">
             <div className="flex flex-row gap-9">
               <div>
-                <div className="bg-color pl-6 pt-6  input relative">
-                  Input
-                  <br />
-                  <textarea className="text-area" />
+                <div className="bg-color pl-6 pt-6 input relative">
+                  <p className="pb-1.5">Input</p>
+                  <textarea className="text-area overflow-y-auto" />
                   <div className="flex ">
                     <Link to="/">
-                      <div className="run-btn absolute bottom-0 mb-4 2xl:mb-6 text-white  flex">
+                      <div className="run-btn absolute bottom-0 mb-4 2xl:mb-6 text-white flex">
                         <img className="2xl:h-5" src={run} alt="run" />
                       </div>
                     </Link>
@@ -240,7 +239,9 @@ const Ide = ({ name, id, input, maxPoints, data }) => {
                 </div>
               </div>
 
-              <div className="bg-color pl-6 pt-6 output">Output</div>
+              <div className="bg-color pl-6 pt-6 output">
+                <p className="pb-1.5">Output</p>
+              </div>
             </div>
           </div>
         </div>
