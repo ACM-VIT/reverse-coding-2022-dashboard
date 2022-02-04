@@ -12,7 +12,11 @@ import windows from "../../assets/images/windows.svg";
 import download from "../../assets/images/download.svg";
 import run from "../../assets/images/run.svg";
 import upload from "../../assets/images/upload.svg";
-import { postTask, postJudge } from "../../redux/PostJudge/postJudgeActions";
+import {
+  postTask,
+  postJudge,
+  taskRunner,
+} from "../../redux/PostJudge/postJudgeActions";
 
 import "./ide.css";
 import { CODE_STATES } from "../../redux/PostJudge/states";
@@ -129,7 +133,7 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
   const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
   const getDisable = useSelector((state) => state.postJudge.disable);
   const getTeamid = getTeam.id;
-
+  const taskrunner = useSelector((state) => state.postJudge.taskRunner);
   const handleupload = async () => {
     console.log("handleuplaod");
     await dispatch(postJudge(problemid, getTeamid, fileType, downloadFile));
@@ -335,10 +339,10 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
           <div className="flex flex-col gap-9 ">
             <div className="flex flex-row gap-9">
               <div>
-                <div className="bg-color pl-6 pt-6  input relative">
-                  <p className="pb-2">Input</p>
+                <div className="bg-color pl-6 pt-6 input relative">
+                  <p className="pb-2 2xl:pb-3">Input</p>
                   <textarea
-                    className="text-area overflow-auto"
+                    className="text-area overflow-y-auto"
                     onChange={(e) => setInput(e.target.value)}
                   />
                   <div className="flex ">
@@ -351,7 +355,10 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
                 </div>
               </div>
 
-              <div className="bg-color pl-6 pt-6 output">Output</div>
+              <div className="bg-color pl-6 pt-6 output">
+                <h1>Output</h1>
+                {taskrunner}
+              </div>
             </div>
           </div>
         </div>

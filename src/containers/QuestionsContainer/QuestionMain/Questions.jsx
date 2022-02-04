@@ -84,8 +84,8 @@ function Questions() {
       <div
         className={
           getDisable
-            ? "flex justify-center mb-8 mt-24 getcursorDisable"
-            : "flex justify-center mb-8 mt-24"
+            ? "flex justify-center mb-8 pt-8 getcursorDisable"
+            : "flex justify-center mb-8 pt-8"
         }
       >
         <ul

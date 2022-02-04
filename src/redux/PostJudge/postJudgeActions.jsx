@@ -57,8 +57,8 @@ export const taskRunner = (obj) => ({
 export const postTask = (input, id) => (dispatch) => {
   console.log("postTask");
   console.log(typeof input);
-  console.log(id);
-  dispatch(setDisable(true));
+  console.log("runner", id);
+  // dispatch(setDisable(true));
   const WT = sessionStorage.getItem("WT");
   axios
     .post(
@@ -75,8 +75,11 @@ export const postTask = (input, id) => (dispatch) => {
       }
     )
     .then((res) => {
-      console.log(res.data);
+      console.log("response runner", res);
       dispatch(taskRunner(res.data));
+    })
+    .catch((err) => {
+      console.log("runner", err);
     });
 };
 
@@ -105,10 +108,10 @@ export const postJudge =
           },
         }
       )
-      .then((res) => {
+      .then(async (res) => {
         console.log(res);
         let runafter4 = 0;
-        const polling = setInterval(() => {
+        const polling = await setInterval(() => {
           axios
             .get(`${process.env.REACT_APP_BASEURL}/judge/${res.data}`, {
               headers: {
@@ -168,8 +171,16 @@ export const postJudge =
                   console.log("final", testCase);
                   console.log("objfinal", objfinal);
                 });
-                if (runafter4 === 5) {
-                  objfinal.points = response.data.points;
+                if (runafter4 === 5 || response.data.returned_testcases === 5) {
+                  axios
+                    .get(`${process.env.REACT_APP_BASEURL}/judge`, {
+                      "Content-Type": "application/json",
+                      authorization: `Bearer ${WT}`,
+                    })
+                    .then((responsepoints) => {
+                      console.log("after poll", responsepoints.data);
+                    });
+                  objfinal.points = response.data.points.toString();
                   dispatch(setDisable(false));
                   dispatch(judgeMain(objfinal));
                   clearInterval(polling);
@@ -187,6 +198,7 @@ export const postJudge =
               }
             });
         }, 3000);
+        // axios.get
       })
       .catch((err) => {
         console.log(err);
