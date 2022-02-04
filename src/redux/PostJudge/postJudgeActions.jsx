@@ -172,14 +172,14 @@ export const postJudge =
                   console.log("objfinal", objfinal);
                 });
                 if (runafter4 === 5 || response.data.returned_testcases === 5) {
-                  // axios
-                  //   .get(`${process.env.REACT_APP_BASEURL}/judge`, {
-                  //     "Content-Type": "application/json",
-                  //     authorization: `Bearer ${WT}`,
-                  //   })
-                  //   .then((responsepoints) => {
-                  //     console.log("after poll", responsepoints.data);
-                  //   });
+                  axios
+                    .get(`${process.env.REACT_APP_BASEURL}/judge`, {
+                      "Content-Type": "application/json",
+                      authorization: `Bearer ${WT}`,
+                    })
+                    .then((responsepoints) => {
+                      console.log("after poll", responsepoints.data);
+                    });
                   objfinal.points = response.data.points.toString();
                   dispatch(setDisable(false));
                   dispatch(judgeMain(objfinal));
