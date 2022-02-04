@@ -14,7 +14,7 @@ import "./Form.css";
 
 const Form = () => {
   const [college, setCollege] = useState("");
-  const [fresher, setFresher] = useState("No");
+  const [fresher, setFresher] = useState({ value: "Yes" });
   const [resFresher, setResFresher] = useState();
   const [registration, setRegistration] = useState("21BCE0999");
   const [phone, setPhone] = useState("");
@@ -46,9 +46,9 @@ const Form = () => {
   const notifySuccess = () => toast.success("Form submitted successfully!");
 
   const handleChange = (e) => {
-    const { value } = e.target;
+    //  { value } = e.target;
     setFresher({
-      value,
+      value: e.target.value,
     });
   };
 
@@ -61,6 +61,9 @@ const Form = () => {
     /** Regex for college name */
     const collegeRegEx = /^[A-Za-z]+$/;
 
+    /** Regex for phone number */
+    const phoneRegEx = /^\+[0-9]{8,15}$/;
+
     /** Validations */
     if (college.trim() === "" || phone.trim() === "") {
       toast.error("Fill all the fields!");
@@ -70,34 +73,37 @@ const Form = () => {
       toast.error("College name should be in alphabets!");
     } else if (fresher.value === "Yes" && reg.test(registration) === false) {
       toast.error("Invalid registration number!");
+    } else if (phoneRegEx.test(phone) === false) {
+      toast.error("Invalid phone number!");
     } else {
       notifySuccess();
+
+      const data = {
+        college: college.trim(),
+        fresher: fresher.value === "Yes" ? true : false,
+        registrationNumber: registration.trim(),
+        phoneNumber: phone.trim(),
+      };
+
+      const token = sessionStorage.getItem("WT");
+      const headers = {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      };
+
+      axios
+        .post(
+          `${process.env.REACT_APP_BASEURL}/participants/update`,
+          JSON.stringify(data),
+          { headers }
+        )
+        .then(() => {
+          window.location.href = "/overview";
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-    const data = {
-      college: college.trim(),
-      fresher: fresher.value === "Yes" ? true : false,
-      registrationNumber: registration.trim(),
-      phoneNumber: phone.trim(),
-    };
-
-    const token = sessionStorage.getItem("WT");
-    const headers = {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    };
-
-    axios
-      .post(
-        `${process.env.REACT_APP_BASEURL}/participants/update`,
-        JSON.stringify(data),
-        { headers }
-      )
-      .then(() => {
-        window.location.href = "/overview";
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   return (
@@ -155,14 +161,15 @@ const Form = () => {
                 </label>
               </div>
               <div
-                className={`${
-                  (resFresher === true || fresher.value === "Yes"
-                    ? ""
-                    : "hidden",
-                  resFresher === false || fresher.value === "No"
-                    ? "hidden"
-                    : "")
-                }`}
+                className={`${fresher.value === "Yes" ? "" : "hidden"}`}
+                // className={`${
+                //   (resFresher === true || fresher.value === "Yes"
+                //     ? ""
+                //     : "hidden",
+                //   resFresher === false || fresher.value === "No"
+                //     ? "hidden"
+                //     : "")
+                // }`}
               >
                 <label className="text-normal 2xl:text-md 3xl:text-lg">
                   Registration Number (fill only if you are a Fresher)
