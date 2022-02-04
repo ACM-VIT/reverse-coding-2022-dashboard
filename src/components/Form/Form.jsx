@@ -3,8 +3,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PhoneInput from "react-phone-number-input";
-import "react-phone-number-input/style.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -15,10 +13,11 @@ import logo from "../../assets/images/logo.svg";
 import "./Form.css";
 
 const Form = () => {
-  const [name, setName] = useState("");
+  const [college, setCollege] = useState("");
   const [fresher, setFresher] = useState("No");
+  const [resFresher, setResFresher] = useState();
   const [registration, setRegistration] = useState("21BCE0999");
-  const [phone, setPhone] = useState("+91");
+  const [phone, setPhone] = useState("");
   const [displayName, setDisplayName] = useState("");
 
   useEffect(() => {
@@ -31,8 +30,13 @@ const Form = () => {
       .get(`${process.env.REACT_APP_BASEURL}/participants`, { headers })
       .then((res) => {
         const firstName = res.data.name.split(" ")[0];
-        console.log(firstName);
         setDisplayName(firstName);
+        if (res.data.phoneNumber !== "0000000000") {
+          setCollege(res.data.college);
+          setRegistration(res.data.registrationNumber);
+          setPhone(res.data.phoneNumber);
+          setResFresher(res.data.fresher);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -58,20 +62,19 @@ const Form = () => {
     const collegeRegEx = /^[A-Za-z]+$/;
 
     /** Validations */
-    if (name.trim() === "" || phone.trim() === "+91" || phone.trim() === "") {
+    if (college.trim() === "" || phone.trim() === "") {
       toast.error("Fill all the fields!");
     } else if (fresher.value === "Yes" && registration.trim() === "") {
       toast.error("Fill all the fields!");
-    } else if (collegeRegEx.test(name) === false) {
+    } else if (collegeRegEx.test(college) === false) {
       toast.error("College name should be in alphabets!");
     } else if (fresher.value === "Yes" && reg.test(registration) === false) {
       toast.error("Invalid registration number!");
     } else {
       notifySuccess();
-      console.log("submitted");
     }
     const data = {
-      college: name.trim(),
+      college: college.trim(),
       fresher: fresher.value === "Yes" ? true : false,
       registrationNumber: registration.trim(),
       phoneNumber: phone.trim(),
@@ -91,7 +94,6 @@ const Form = () => {
       )
       .then(() => {
         window.location.href = "/overview";
-        sessionStorage.setItem("FF", true);
       })
       .catch((err) => {
         console.log(err);
@@ -121,7 +123,8 @@ const Form = () => {
                 type="text"
                 id="college"
                 className="text-normal 2xl:text-md 3xl:text-lg text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 2X2xl:px-3 3xl:px-4 py-1 2xl:py-2 3xl:py-3 mt-3 2xl:mt-4 3xl:mt-5 mb-5 2xl:mb-6 3xl:mb-7"
-                onChange={(e) => setName(e.target.value)}
+                value={college}
+                onChange={(e) => setCollege(e.target.value)}
               />
               <label className="text-normal 2xl:text-md 3xl:text-lg">
                 Are you a Fresher? (eligible for only VIT Students)
@@ -133,6 +136,7 @@ const Form = () => {
                   name="fresher"
                   value="Yes"
                   id="Yes"
+                  defaultChecked
                   onChange={handleChange}
                 />
                 <label className="text-normal 2xl:text-md 3xl:text-lg ml-2">
@@ -143,15 +147,23 @@ const Form = () => {
                   type="radio"
                   name="fresher"
                   value="No"
-                  id="Yes"
-                  defaultChecked
+                  id="No"
                   onChange={handleChange}
                 />
                 <label className="text-normal 2xl:text-md 3xl:text-lg ml-2">
                   No
                 </label>
               </div>
-              <div className={`${fresher.value === "Yes" ? "" : "hidden"}`}>
+              <div
+                className={`${
+                  (resFresher === true || fresher.value === "Yes"
+                    ? ""
+                    : "hidden",
+                  resFresher === false || fresher.value === "No"
+                    ? "hidden"
+                    : "")
+                }`}
+              >
                 <label className="text-normal 2xl:text-md 3xl:text-lg">
                   Registration Number (fill only if you are a Fresher)
                 </label>
@@ -159,20 +171,17 @@ const Form = () => {
                   type="text"
                   id="registration"
                   className="text-normal 2xl:text-md 3xl:text-lg text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 2xl:px-3 3xl:px-4 py-1 2xl:py-2 3xl:py-3 mt-3 2xl:mt-4 3xl:mt-5 mb-5 2xl:mb-6 3xl:mb-7 w-full"
+                  value={registration}
                   onChange={(e) => setRegistration(e.target.value)}
                 />
               </div>
               <label className="text-normal 2xl:text-md 3xl:text-lg">
                 Phone Number
               </label>
-              <PhoneInput
-                limitMaxLength
-                value={phone}
+              <input
                 className="text-normal 2xl:text-md 3xl:text-lg text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 2xl:px-3 3xl:px-4 py-1 2xl:py-2 3xl:py-3 mt-3 2xl:mt-4 3xl:mt-5 mb-5 2xl:mb-6 3xl:mb-7"
-                onChange={setPhone}
-                defaultCountry="IN"
-                country="IN"
-                rules={{ required: true }}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
               />
               <div className="flex justify-center">
                 <button
