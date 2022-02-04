@@ -28,9 +28,10 @@ const Form = () => {
       authorization: `Bearer ${token}`,
     };
     axios
-      .get(`${process.env.BASEURL}/participants`, { headers })
+      .get(`${process.env.REACT_APP_BASEURL}/participants`, { headers })
       .then((res) => {
         const firstName = res.data.name.split(" ")[0];
+        console.log(firstName);
         setDisplayName(firstName);
       })
       .catch((err) => {
@@ -74,7 +75,6 @@ const Form = () => {
       fresher: fresher.value === "Yes" ? true : false,
       registrationNumber: registration.trim(),
       phoneNumber: phone.trim(),
-      isForm: true,
     };
 
     const token = sessionStorage.getItem("WT");
@@ -85,12 +85,13 @@ const Form = () => {
 
     axios
       .post(
-        `${process.env.BASEURL}/participants/update`,
+        `${process.env.REACT_APP_BASEURL}/participants/update`,
         JSON.stringify(data),
         { headers }
       )
       .then(() => {
         window.location.href = "/overview";
+        sessionStorage.setItem("FF", true);
       })
       .catch((err) => {
         console.log(err);

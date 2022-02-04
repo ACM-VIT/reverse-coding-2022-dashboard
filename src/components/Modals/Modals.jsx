@@ -137,21 +137,24 @@ function Modals(props) {
                   <p>Drag drop some files here, or click to select files</p>
                 )} */}
               </div>
-              <div onClick={props.handleupload}>
-                <button
-                  type="button"
-                  className={`mt-8 upload-btn-modal p-3 ${
-                    props.btndis ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
-                  disabled={props.btndis}
+              <div className={props.btndis ? "getcursorDisable" : ""}>
+                <div
+                  onClick={props.handleupload}
+                  className={props.btndis ? "getDisable" : ""}
                 >
-                  <div className="flex">
-                    <div className="px-1 font-400">Upload</div>
-                    <div>
-                      <img src={upload} alt="upload" />
+                  <button
+                    type="button"
+                    className="mt-8 upload-btn-modal p-3"
+                    disabled={props.btndis}
+                  >
+                    <div className="flex">
+                      <div className="px-1 font-400">Upload</div>
+                      <div>
+                        <img src={upload} alt="upload" />
+                      </div>
                     </div>
-                  </div>
-                </button>
+                  </button>
+                </div>
               </div>
             </div>
           </Box>
