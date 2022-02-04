@@ -45,7 +45,7 @@ export const postJudge =
     console.log("getTeamid", getTeamid);
     console.log("fileType", fileType);
     console.log("downloadFile", downloadFile);
-    const TK = sessionStorage.getItem("TK");
+    const WT = sessionStorage.getItem("WT");
     axios
       .post(
         `${process.env.REACT_APP_BASEURL}/judge`,
@@ -58,7 +58,7 @@ export const postJudge =
         {
           headers: {
             "Content-Type": "application/json",
-            authorization: `Bearer ${TK}`,
+            authorization: `Bearer ${WT}`,
           },
         }
       )
@@ -69,7 +69,7 @@ export const postJudge =
             .get(`${process.env.REACT_APP_BASEURL}/judge/${res.data}`, {
               headers: {
                 "Content-Type": "application/json",
-                authorization: `Bearer ${TK}`,
+                authorization: `Bearer ${WT}`,
               },
             })
             .then((response) => {
@@ -147,7 +147,7 @@ export const postJudge =
 
 // export const createTeam = (team) => (dispatch) => {
 //     // axios post to create team
-//     const TK = sessionStorage.getItem("TK");
+//     const WT = sessionStorage.getItem("WT");
 //     axios
 //       .post(
 //         `${url.SERVER_BASEURL}/participants/create-team`,
@@ -157,7 +157,7 @@ export const postJudge =
 //         {
 //           headers: {
 //             "content-type": "application/json",
-//             authorization: `Bearer ${TK}`,
+//             authorization: `Bearer ${WT}`,
 //           },
 //         }
 //       )
