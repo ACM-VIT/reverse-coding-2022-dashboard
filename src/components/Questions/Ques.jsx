@@ -66,7 +66,9 @@ const Ques = ({ data, input }) => {
       const file = e.target.files[0];
       try {
         if (
-          !e.target.files[0].name.split(".")[1].match(/^(java|js|go|py|cpp|c)$/)
+          !e.target.files[0].name
+            .split(".")[1]
+            .match(/^(java|php|js|go|py|cpp|c|kt)$/)
         ) {
           setDisable(true);
           setFilename("");
