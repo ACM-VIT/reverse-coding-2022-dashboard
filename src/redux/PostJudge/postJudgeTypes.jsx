@@ -7,3 +7,5 @@ export const POST_FILE = "POST_FILE";
 // export const CASE_FIVE = "CASE_FIVE";
 export const JUDGE_MAIN = "JUDGE_MAIN";
 export const CLEAR_ALL = "CLEAR_ALL";
+export const SET_DISABLE = "SET_DISABLE";
+export const TASK_RUNNER = "TASK_RUNNER";

@@ -8,6 +8,8 @@ import {
   // CASE_FIVE,
   JUDGE_MAIN,
   CLEAR_ALL,
+  SET_DISABLE,
+  TASK_RUNNER,
 } from "./postJudgeTypes";
 import { CODE_STATES } from "./states";
 const initialState = {
@@ -15,6 +17,7 @@ const initialState = {
   // judgestatecol: "",
   // judgestatetext: "",
   judgeMain: [],
+  disable: false,
 };
 
 const postJudgeReducer = (state = initialState, action) => {
@@ -63,6 +66,16 @@ const postJudgeReducer = (state = initialState, action) => {
       return {
         ...state,
         judgeMain: [],
+      };
+    case SET_DISABLE:
+      return {
+        ...state,
+        disable: action.payload,
+      };
+    case TASK_RUNNER:
+      return {
+        ...state,
+        taskRunner: action.payload,
       };
     default:
       return state;
