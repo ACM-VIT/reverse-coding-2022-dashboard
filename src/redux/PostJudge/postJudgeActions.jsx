@@ -58,6 +58,26 @@ export const postTask = (input, id) => (dispatch) => {
   console.log("postTask");
   console.log(typeof input);
   console.log(id);
+  dispatch(setDisable(true));
+  const WT = sessionStorage.getItem("WT");
+  axios
+    .post(
+      `${process.env.REACT_APP_BASEURL}/runner`,
+      {
+        id: id,
+        input: input,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${WT}`,
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res.data);
+      dispatch(taskRunner(res.data));
+    });
 };
 
 export const postJudge =
@@ -87,6 +107,7 @@ export const postJudge =
       )
       .then((res) => {
         console.log(res);
+        let runafter4 = 0;
         const polling = setInterval(() => {
           axios
             .get(`${process.env.REACT_APP_BASEURL}/judge/${res.data}`, {
@@ -139,17 +160,20 @@ export const postJudge =
               //     console.log("state:", testCase.state);
               //   });
               // }
-              if (response.data.returned_testcases > 4) {
+              if (response.data.returned_testcases >= 4) {
+                runafter4 += 1;
                 const objfinal = {};
                 response.data.testCase.forEach((testCase) => {
                   objfinal[testCase.testCaseNumber] = testCase.state;
                   console.log("final", testCase);
                   console.log("objfinal", objfinal);
                 });
-                objfinal.points = response.data.points;
-                dispatch(setDisable(false));
-                dispatch(judgeMain(objfinal));
-                clearInterval(polling);
+                if (runafter4 === 5) {
+                  objfinal.points = response.data.points;
+                  dispatch(setDisable(false));
+                  dispatch(judgeMain(objfinal));
+                  clearInterval(polling);
+                }
               } else {
                 const obj = {};
                 console.log("done:", response.data.returned_testcases);
