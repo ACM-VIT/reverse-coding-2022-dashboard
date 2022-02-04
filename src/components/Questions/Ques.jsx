@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoadingOverlay from "react-loading-overlay";
 
 import Ide from "./ide";
 import Modals from "../Modals/Modals";
@@ -72,7 +73,7 @@ const Ques = ({ data, input }) => {
           setFilename("");
           console.log("file not supported");
           toast.error("File type no supported");
-        } else if (e.target.files[0].size > 8000) {
+        } else if (e.target.files[0].size > 5000) {
           setDisable(true);
           console.log("file size is too big");
           setFilename("");
@@ -242,8 +243,8 @@ const Ques = ({ data, input }) => {
                     ? "_"
                     : data.points}
                   /{data.maxPoints} */}
-                  {getJudgeMain.points
-                    ? getJudgeMain.points
+                  {data.pointsJudgeMain
+                    ? data.pointsJudgeMain
                     : data.points === null
                     ? "-"
                     : data.points}

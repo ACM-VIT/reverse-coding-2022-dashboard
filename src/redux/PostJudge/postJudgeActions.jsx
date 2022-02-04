@@ -11,6 +11,7 @@ import {
   CLEAR_ALL,
   SET_DISABLE,
   TASK_RUNNER,
+  SET_LOADING,
 } from "./postJudgeTypes";
 
 // export const caseOne = (stateone) => ({
@@ -52,6 +53,10 @@ export const setDisable = (bool) => ({
 export const taskRunner = (obj) => ({
   type: TASK_RUNNER,
   payload: obj,
+});
+export const setLoading = (bool) => ({
+  type: SET_LOADING,
+  payload: bool,
 });
 
 export const postTask = (input, id) => (dispatch) => {
@@ -165,6 +170,7 @@ export const postJudge =
               // }
               if (response.data.returned_testcases >= 4) {
                 runafter4 += 1;
+                console.log("RUNAFTER4", runafter4);
                 const objfinal = {};
                 response.data.testCase.forEach((testCase) => {
                   objfinal[testCase.testCaseNumber] = testCase.state;
@@ -172,15 +178,21 @@ export const postJudge =
                   console.log("objfinal", objfinal);
                 });
                 if (runafter4 === 5 || response.data.returned_testcases === 5) {
+                  console.log(WT);
                   axios
                     .get(`${process.env.REACT_APP_BASEURL}/judge`, {
-                      "Content-Type": "application/json",
-                      authorization: `Bearer ${WT}`,
+                      headers: {
+                        "Content-Type": "application/json",
+                        authorization: `Bearer ${WT}`,
+                      },
                     })
                     .then((responsepoints) => {
                       console.log("after poll", responsepoints.data);
+                      objfinal.points = responsepoints.data;
+                    })
+                    .catch((err) => {
+                      console.log("after poll", err);
                     });
-                  objfinal.points = response.data.points.toString();
                   dispatch(setDisable(false));
                   dispatch(judgeMain(objfinal));
                   clearInterval(polling);

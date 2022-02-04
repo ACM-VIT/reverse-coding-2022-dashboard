@@ -10,6 +10,7 @@ import {
   CLEAR_ALL,
   SET_DISABLE,
   TASK_RUNNER,
+  SET_LOADING,
 } from "./postJudgeTypes";
 import { CODE_STATES } from "./states";
 const initialState = {
@@ -19,6 +20,7 @@ const initialState = {
   judgeMain: [],
   disable: false,
   taskRunner: [],
+  loading: false,
 };
 
 const postJudgeReducer = (state = initialState, action) => {
@@ -77,6 +79,11 @@ const postJudgeReducer = (state = initialState, action) => {
       return {
         ...state,
         taskRunner: action.payload,
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: action.payload,
       };
     default:
       return state;
