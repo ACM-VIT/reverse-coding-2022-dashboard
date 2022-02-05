@@ -93,6 +93,7 @@ export const postJudge =
     dispatch(setDisable(true));
     dispatch(setLoading(true));
     const TK = sessionStorage.getItem("TK");
+    // const TK = sessionStorage.getItem("TK");
     const WT = sessionStorage.getItem("WT");
     axios
       .post(

@@ -124,7 +124,7 @@ function Modals(props) {
                   className=" "
                   hidden
                   onChange={(e) => props.onchange(e)}
-                  accept=".cpp,.py,.java,.js,.go,.kt,.kts,.ktm"
+                  accept=".cpp,.py,.java,.js,.go,.kt,.kts,.ktm,.c,.php"
                 />
 
                 {/* <input type="file" id="upload2" className="  " /> */}

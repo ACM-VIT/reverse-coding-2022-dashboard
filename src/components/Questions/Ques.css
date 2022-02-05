@@ -17,6 +17,26 @@
   width: 290px;
 }
 
+.casess {
+  height: 17rem;
+  width: 15.5rem;
+}
+
+.casess::-webkit-scrollbar {
+  visibility: visible;
+  width: 11.5px;
+}
+
+.casess::-webkit-scrollbar-thumb {
+  background: #4f4f4f;
+  border-radius: 48px;
+}
+
+.casess::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0 50px rgba(0, 0, 0, 1);
+  border-radius: 48px;
+}
+
 .exec {
   width: 359px;
   height: 200px;
@@ -78,6 +98,11 @@
 
   .test-case {
     width: 390px;
+  }
+
+  .casess {
+    height: 24.5rem;
+    width: 20.75rem;
   }
 
   .exec {
