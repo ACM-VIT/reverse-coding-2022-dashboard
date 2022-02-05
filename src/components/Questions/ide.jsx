@@ -88,7 +88,7 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
     };
     reader.onerror = (error) => {
       toast.error("Try Again");
-      console.log("Error: ", error);
+      // console.log("Error: ", error);
     };
   };
   const handlechangefile = async (e) => {
@@ -105,7 +105,7 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
           toast.error("File type not supported");
         } else if (e.target.files[0].size > 5000) {
           setDisable(true);
-          console.log("file size is too big");
+          // console.log("file size is too big");
           setFilename("");
           toast.error("File size too big");
         } else {
@@ -115,7 +115,7 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
           setFilename(e.target.files[0].name);
         }
       } catch (error) {
-        console.log("errorfew", error);
+        // console.log("errorfew", error);
         toast.error("Error in uploading");
       }
     } else {

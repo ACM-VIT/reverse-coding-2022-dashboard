@@ -27,7 +27,7 @@ const Ques = ({ data, input, postJudgepoints }) => {
     macImage: false,
   });
   const [problemid, setProblemid] = useState(data.id);
-  console.log(input);
+  // console.log(input);
   const [selection, setSelection] = useState("");
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
@@ -36,8 +36,8 @@ const Ques = ({ data, input, postJudgepoints }) => {
   const [downloadFile, setDownloadFile] = useState("");
   const [fileType, setFileType] = useState("");
 
-  console.log("doenloadfiel", downloadFile);
-  console.log(open);
+  // console.log("doenloadfiel", downloadFile);
+  // console.log(open);
   const handleOpen = () => setOpen(true);
   const handleOpen2 = () => setOpen2(true);
 
@@ -54,7 +54,7 @@ const Ques = ({ data, input, postJudgepoints }) => {
     };
     reader.onerror = (error) => {
       toast.error("Try Again");
-      console.log("Error: ", error);
+      // console.log("Error: ", error);
     };
   };
   const handleClose2 = () => {
@@ -71,22 +71,22 @@ const Ques = ({ data, input, postJudgepoints }) => {
         ) {
           setDisable(true);
           setFilename("");
-          console.log("file not supported");
+          // console.log("file not supported");
           toast.error("File type not supported");
         } else if (e.target.files[0].size > 5000) {
           setDisable(true);
-          console.log("file size is too big");
+          // console.log("file size is too big");
           setFilename("");
           toast.error("File size too big");
         } else {
           const base64 = await convertBase64(file);
-          console.log("base64insidehandle", base64);
+          // console.log("base64insidehandle", base64);
           setFileType(e.target.files[0].name.split(".")[1]);
           setDisable(false);
           setFilename(e.target.files[0].name);
         }
       } catch (error) {
-        console.log("errorfew", error);
+        // console.log("errorfew", error);
         toast.error("Error in uploading");
       }
     } else {
@@ -123,12 +123,12 @@ const Ques = ({ data, input, postJudgepoints }) => {
   //   if (getJudgeMain === "") { }
   // }
   const getDisable = useSelector((state) => state.postJudge.disable);
-  console.log("DISABLED?", getDisable);
+  // console.log("DISABLED?", getDisable);
   const getTeamid = getTeam.id;
   const getTeampoints = getTeam.points;
-  console.log(getData);
+  // console.log(getData);
   const handleupload = async () => {
-    console.log("handleuplaod");
+    // console.log("handleuplaod");
     await dispatch(postJudge(data.id, getTeamid, fileType, downloadFile));
     setDisable(true);
     handleClose();

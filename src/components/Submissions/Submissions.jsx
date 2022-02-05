@@ -8,7 +8,7 @@ import "./Submissions.css";
 
 const Submissions = () => {
   const submissions = useSelector((state) => state.getAll.judgePoints);
-  console.log(submissions);
+  // console.log(submissions);
 
   return (
     <div
