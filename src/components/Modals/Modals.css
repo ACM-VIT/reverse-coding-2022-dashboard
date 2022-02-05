@@ -34,8 +34,8 @@
   margin: 40px auto;
   background: linear-gradient(
     135.61deg,
-    rgba(0, 0, 0, 0.14) -94.15%,
-    rgba(0, 0, 0, 0) 102.34%
+    rgba(0, 0, 0, 0.74),
+    rgba(0, 0, 0, 0.54)
   );
   backdrop-filter: blur(20px);
   border-radius: 16px;
