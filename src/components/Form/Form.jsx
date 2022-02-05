@@ -16,7 +16,7 @@ const Form = () => {
   const [college, setCollege] = useState("");
   const [fresher, setFresher] = useState({ value: "Yes" });
   const [resFresher, setResFresher] = useState();
-  const [registration, setRegistration] = useState("21BCE0999");
+  const [registration, setRegistration] = useState("");
   const [phone, setPhone] = useState("");
   const [displayName, setDisplayName] = useState("");
 
@@ -35,7 +35,7 @@ const Form = () => {
           setCollege(res.data.college);
           setRegistration(res.data.registrationNumber);
           setPhone(res.data.phoneNumber);
-          setResFresher(res.data.fresher);
+          // setResFresher(res.data.fresher);
         }
       })
       .catch((err) => {
