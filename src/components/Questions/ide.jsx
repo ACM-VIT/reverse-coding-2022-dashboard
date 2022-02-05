@@ -69,8 +69,6 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
   const [downloadFile, setDownloadFile] = useState("");
   const [fileType, setFileType] = useState("");
 
-  console.log("ide open", open);
-  console.log("ide open2", open2);
   const handleOpen = () => setOpen(true);
   const handleOpen2 = () => setOpen2(true);
 
@@ -112,7 +110,6 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
           toast.error("File size too big");
         } else {
           const base64 = await convertBase64(file);
-          console.log("base64insidehandle", base64);
           setFileType(e.target.files[0].name.split(".")[1]);
           setDisable(false);
           setFilename(e.target.files[0].name);
@@ -143,7 +140,6 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
   const taskrunner = useSelector((state) => state.postJudge.taskRunner);
   // const taskrunnerenter = taskrunner.replaceAll("\n", "");
   const handleupload = async () => {
-    console.log("handleuplaod");
     await dispatch(postJudge(problemid, getTeamid, fileType, downloadFile));
     setDisable(true);
     handleClose();

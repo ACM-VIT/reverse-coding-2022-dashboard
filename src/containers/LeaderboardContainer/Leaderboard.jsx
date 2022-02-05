@@ -2,8 +2,11 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable no-plusplus */
 /* eslint-disable react/jsx-key */
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import { toast } from "react-toastify";
+
 import Pages from "../../components/Pagination/Pages";
 import nextarrow from "../../assets/images/nextarrow.svg";
 import prevarrow from "../../assets/images/prevarrow.svg";
@@ -11,7 +14,31 @@ import Countdown from "../../components/CountDown/CountDown";
 import LeaderboardItems from "../../components/LeaderBoard/LeaderboardItems";
 import "./Leaderboard.css";
 
+import { getLeaderboard, loggedOnce } from "../../redux/GetAll/GetAllActions";
+
+import { setLoading } from "../../redux/PostJudge/postJudgeActions";
 function Leaderboard() {
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   const WT = sessionStorage.getItem("WT");
+  //   axios
+  //     .get(`${process.env.REACT_APP_BASEURL}/teams/leader`, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         authorization: `Bearer ${WT}`,
+  //       },
+  //     })
+  //     .then((responseleaderboard) => {
+  //       console.log("leaderboard", responseleaderboard);
+  //       dispatch(getLeaderboard(responseleaderboard.data));
+  //       dispatch(loggedOnce(true));
+  //     })
+  //     .catch((err) => {
+  //       dispatch(setLoading(false));
+  //       toast.error("Error in fetching resources");
+  //     });
+  // });
+
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(6);
 
