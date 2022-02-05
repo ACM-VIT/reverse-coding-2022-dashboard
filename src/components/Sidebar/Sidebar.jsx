@@ -33,7 +33,7 @@ const Sidebar = () => {
   // team.participants.map((part) => {
   //   console.log(part.name);
   // });
-  console.log("participant", participant);
+  // console.log("participant", participant);
   const logoutfunc = () => {
     sessionStorage.removeItem("WT");
     sessionStorage.removeItem("cc");

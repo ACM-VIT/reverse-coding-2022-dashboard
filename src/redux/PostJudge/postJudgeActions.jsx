@@ -91,7 +91,7 @@ export const postTask = (input, id) => (dispatch) => {
     .then((res) => {
       dispatch(setDisable(false));
       dispatch(setLoading(false));
-      console.log("response runner", res);
+      // console.log("response runner", res);
       let result = res.data;
       result = result.toString().replace(/\n\r?/g, "<br />");
       dispatch(taskRunner(result));
@@ -99,7 +99,7 @@ export const postTask = (input, id) => (dispatch) => {
     .catch((err) => {
       dispatch(setDisable(false));
       dispatch(setLoading(false));
-      console.log("runner", err);
+      // console.log("runner", err);
       toast.error("Error. Please try again");
     });
 };
@@ -130,7 +130,7 @@ export const postJudge =
       .then(async (res) => {
         dispatch(setLoading(false));
         toast.success("Running Test Cases");
-        console.log(res);
+        // console.log(res);
         // let runafter4 = 0;
         const polling = await setInterval(() => {
           axios
@@ -224,13 +224,13 @@ export const postJudge =
                 // }
               } else {
                 const obj = {};
-                console.log("done:", response.data.returned_testcases);
+                // console.log("done:", response.data.returned_testcases);
                 response.data.testCase.forEach((testCase) => {
                   obj[testCase.testCaseNumber] = testCase.state;
-                  console.log("Test CAse:", testCase.testCaseNumber);
-                  console.log("state:", testCase.state);
+                  // console.log("Test CAse:", testCase.testCaseNumber);
+                  // console.log("state:", testCase.state);
                 });
-                console.log("obj:", obj);
+                // console.log("obj:", obj);
                 dispatch(judgeMain(obj));
               }
             });

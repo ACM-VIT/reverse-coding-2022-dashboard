@@ -77,7 +77,7 @@ const Overview = () => {
               },
             })
             .then(async (responseteams) => {
-              console.log("teams", responseteams);
+              // console.log("teams", responseteams);
               dispatch(getTeams(responseteams.data));
               await axios
                 .get(`${process.env.REACT_APP_BASEURL}/problems`, {
@@ -87,7 +87,7 @@ const Overview = () => {
                   },
                 })
                 .then(async (responseproblems) => {
-                  console.log("problems", responseproblems);
+                  // console.log("problems", responseproblems);
                   dispatch(getProblems(responseproblems.data));
                   await axios
                     .get(`${process.env.REACT_APP_BASEURL}/judge`, {
@@ -97,7 +97,7 @@ const Overview = () => {
                       },
                     })
                     .then(async (responsejudge) => {
-                      console.log("leaderboard", responsejudge);
+                      // console.log("leaderboard", responsejudge);
                       dispatch(getJudgePoints(responsejudge.data));
                       await axios
                         .get(`${process.env.REACT_APP_BASEURL}/teams/leader`, {
@@ -107,7 +107,7 @@ const Overview = () => {
                           },
                         })
                         .then((responseleaderboard) => {
-                          console.log("leaderboard", responseleaderboard);
+                          // console.log("leaderboard", responseleaderboard);
                           dispatch(getLeaderboard(responseleaderboard.data));
                           axios
                             .get(
@@ -168,7 +168,7 @@ const Overview = () => {
           },
         })
         .then(async (responsejudge) => {
-          console.log("leaderboard", responsejudge);
+          // console.log("leaderboard", responsejudge);
           dispatch(getJudgePoints(responsejudge.data));
           await axios
             .get(`${process.env.REACT_APP_BASEURL}/teams/leader`, {
@@ -178,7 +178,7 @@ const Overview = () => {
               },
             })
             .then((responseleaderboard) => {
-              console.log("leaderboard", responseleaderboard);
+              // console.log("leaderboard", responseleaderboard);
               dispatch(getLeaderboard(responseleaderboard.data));
               dispatch(loggedOnce(true));
             })
@@ -200,8 +200,8 @@ const Overview = () => {
 
   const team = useSelector((state) => state.getAll.teams);
   const submissions = useSelector((state) => state.getAll.judgePoints);
-  console.log("submissions", typeof submissions);
-  console.log(team, "tewammme");
+  // console.log("submissions", typeof submissions);
+  // console.log(team, "tewammme");
 
   // useEffect(() => {
   //   let count = 0;
