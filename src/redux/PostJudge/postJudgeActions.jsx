@@ -77,7 +77,7 @@ export const postTask = (input, id) => (dispatch) => {
   if (inputData.endsWith("\n") === false) {
     inputData += "\n";
   }
-  console.log(input);
+  // console.log(input);
   axios
     .post(
       `${process.env.REACT_APP_BASEURL}/runner`,

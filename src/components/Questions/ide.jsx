@@ -85,7 +85,7 @@ const Ide = ({
   const getTeamid = getTeam.id;
   const taskrunner = useSelector((state) => state.postJudge.taskRunner);
   const remove = useSelector((state) => state.postJudge.setRemove);
-  console.log(remove);
+  // console.log(remove);
   const handleOpen = () => setOpen(true);
   const handleOpen2 = () => setOpen2(true);
   useEffect(() => {
