@@ -201,22 +201,22 @@ export const postJudge =
                 });
                 if (runafter4 === 5 || response.data.returned_testcases === 5) {
                   console.log(WT);
-                  axios
-                    .get(`${process.env.REACT_APP_BASEURL}/judge`, {
-                      headers: {
-                        "Content-Type": "application/json",
-                        authorization: `Bearer ${WT}`,
-                      },
-                    })
-                    .then((responsepoints) => {
-                      console.log("after poll", responsepoints.data);
-                      objfinal.points = responsepoints.data;
-                    })
-                    .catch((err) => {
-                      console.log("after poll", err);
-                      objfinal.points = response.data.points;
-                    });
-                  // objfinal.points = response.data.points;
+                  // axios
+                  //   .get(`${process.env.REACT_APP_BASEURL}/judge`, {
+                  //     headers: {
+                  //       "Content-Type": "application/json",
+                  //       authorization: `Bearer ${WT}`,
+                  //     },
+                  //   })
+                  //   .then((responsepoints) => {
+                  //     console.log("after poll", responsepoints.data);
+                  //     objfinal.points = responsepoints.data;
+                  //   })
+                  //   .catch((err) => {
+                  //     console.log("after poll", err);
+                  //     objfinal.points = response.data.points;
+                  //   });
+                  objfinal.points = response.data.points;
                   dispatch(setTrue(true));
                   dispatch(setDisable(false));
                   dispatch(judgeMain(objfinal));

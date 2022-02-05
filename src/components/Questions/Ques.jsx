@@ -16,11 +16,7 @@ import windows from "../../assets/images/windows.svg";
 import download from "../../assets/images/download.svg";
 import upload from "../../assets/images/upload.svg";
 import { getLaunch } from "../../redux/QuestionsLaunch/questionsLaunchActions";
-import {
-  judgeMain,
-  postJudge,
-  setTrue,
-} from "../../redux/PostJudge/postJudgeActions";
+import { judgeMain, postJudge } from "../../redux/PostJudge/postJudgeActions";
 import "./Ques.css";
 import { CODE_STATES } from "../../redux/PostJudge/states";
 
@@ -123,7 +119,6 @@ const Ques = ({ data, input, postJudgepoints }) => {
   const getJudgetext = useSelector((state) => state.postJudge.judgestatetext);
   const getJudgeMain = useSelector((state) => state.postJudge.judgeMain);
   const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
-  const settrue = useSelector((state) => state.postJudge.setTrue);
   // const allDisable = () => {
   //   if (getJudgeMain === "") { }
   // }
@@ -134,7 +129,7 @@ const Ques = ({ data, input, postJudgepoints }) => {
   console.log(getData);
   const handleupload = async () => {
     console.log("handleuplaod");
-    await dispatch(postJudge(problemid, getTeamid, fileType, downloadFile));
+    await dispatch(postJudge(data.id, getTeamid, fileType, downloadFile));
     setDisable(true);
     handleClose();
   };
@@ -153,7 +148,7 @@ const Ques = ({ data, input, postJudgepoints }) => {
               <h1 className="pt-1 pb-1 pr-2 2xl:pb-3 2xl:pt-2 3xl:pt-3.5 text-lg 2xl:text-2xl">
                 Test Cases
               </h1>
-              <div className="casess px-1 overflow-y-auto space-y-2">
+              <div className="casess px-1 overflow-y-auto">
                 <div
                   className={
                     CODE_STATES[getJudgeMain[1]]
@@ -248,26 +243,20 @@ const Ques = ({ data, input, postJudgepoints }) => {
 
                 <div className="ml-8 2xl:ml-16 text-white font-700 text-lg 2xl:text-2xl">
                   Points: <br />
-                  {/* {getJudgeMain.points
+                  {getJudgeMain.points
                     ? getJudgeMain.points
                     : data.points === null
                     ? "-"
                     : data.points}
-                  /{data.maxPoints} */}
+                  /{data.maxPoints}
                   {/* {data.pointsJudgeMain !== null
                     ? data.pointsJudgeMain
                     : data.points === null
                     ? "-"
                     : data.points}
                   /{data.maxPoints} */}
-                  {settrue
-                    ? postJudgepoints.points
-                    : data.points === null
-                    ? "-"
-                    : data.points}
-                  /{data.maxPoints}
-                  {/* {postJudgepoints.points !== null
-                    ? postJudgepoints.points
+                  {/* {data.pointsJudgeMain !== null
+                    ? data.pointsJudgeMain
                     : data.points === null
                     ? "-"
                     : data.points}
