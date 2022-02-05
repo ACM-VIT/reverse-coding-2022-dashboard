@@ -4,6 +4,7 @@ import {
   GET_PROBLEMS,
   GET_TEAMS,
   GET_LEADERBOARD,
+  GET_RANK,
   GET_JUDGEPOINTS,
   LOGGED_ONCE,
 } from "./GetAllTypes";
@@ -23,6 +24,10 @@ export const getProblems = (problems) => ({
 export const getLeaderboard = (leaderboard) => ({
   type: GET_LEADERBOARD,
   payload: leaderboard,
+});
+export const getRank = (rank) => ({
+  type: GET_RANK,
+  payload: rank,
 });
 export const getJudgePoints = (points) => ({
   type: GET_JUDGEPOINTS,
