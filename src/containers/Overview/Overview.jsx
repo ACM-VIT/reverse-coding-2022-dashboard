@@ -182,21 +182,21 @@ const Overview = () => {
   const team = useSelector((state) => state.getAll.teams);
   const submissions = useSelector((state) => state.getAll.judgePoints);
   console.log("submissions", typeof submissions);
-  console.log(team);
+  console.log(team, "tewammme");
 
-  useEffect(() => {
-    let count = 0;
-    // eslint-disable-next-line array-callback-return
-    submissions.map((sub) => {
-      if (sub.points === null) {
-        count += 1;
-      }
-    });
-    console.log("totalNulls", count);
-    if (count === submissions.length) {
-      setNull(true);
-    }
-  }, [submissions]);
+  // useEffect(() => {
+  //   let count = 0;
+  //   // eslint-disable-next-line array-callback-return
+  //   submissions.map((sub) => {
+  //     if (sub.points === null) {
+  //       count += 1;
+  //     }
+  //   });
+  //   console.log("totalNulls", count);
+  //   if (count === submissions.length) {
+  //     setNull(true);
+  //   }
+  // }, [submissions]);
 
   function submissionRedirect() {
     history.push("/questions");
