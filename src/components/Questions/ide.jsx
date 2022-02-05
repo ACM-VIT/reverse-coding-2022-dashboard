@@ -140,7 +140,7 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
   const taskrunner = useSelector((state) => state.postJudge.taskRunner);
   // const taskrunnerenter = taskrunner.replaceAll("\n", "");
   const handleupload = async () => {
-    await dispatch(postJudge(problemid, getTeamid, fileType, downloadFile));
+    await dispatch(postJudge(data.id, getTeamid, fileType, downloadFile));
     setDisable(true);
     handleClose();
   };
