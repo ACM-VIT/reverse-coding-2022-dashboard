@@ -1,18 +1,44 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-plusplus */
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import LoadingOverlay from "react-loading-overlay";
+
 import Ques from "../../../components/Questions/Ques";
 import Pages from "../../../components/Pagination/Pages";
 import nextarrow from "../../../assets/images/nextarrow.svg";
 import prevarrow from "../../../assets/images/prevarrow.svg";
+import { clearAll } from "../../../redux/PostJudge/postJudgeActions";
+
+import "./Questions.css";
 
 function Questions() {
   const getData = useSelector((state) => state.getAll.problems);
-  console.log("getData", getData);
+  const getDisable = useSelector((state) => state.postJudge.disable);
+  const loading = useSelector((state) => state.postJudge.loading);
 
+  const dispatch = useDispatch();
+  // console.log("getDataBefore", getData);
+  const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
+  const postJudgePoints = useSelector((state) => state.postJudge.judgeMain);
+  // console.log("GETJUDGEMAIN", postJudgePoints);
+  for (let i = 0; i < getData.length; i++) {
+    getData[i] = {
+      ...getData[i],
+      points: getJudgePoints[i].points,
+      // pointsJudgeMain:
+      //   getJudgeMain.points === null
+      //     ? "-"
+      //     : getJudgeMain.points[i].points === null
+      //     ? "-"
+      //     : getJudgeMain.points[i].points,
+      // getJudgeMain[i].points === undefined ? "-" : getJudgeMain[i].points,
+    };
+  }
+  // console.log("getDataAfter", getData);
   const [input, setInput] = useState(false);
 
   const [currentPage, setcurrentPage] = useState(1);
@@ -29,10 +55,11 @@ function Questions() {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = getData.slice(indexOfFirstItem, indexOfLastItem);
-  console.log(currentItems);
+  // console.log(currentItems);
   const handleClick = (e) => {
     setcurrentPage(Number(e.target.id));
     setInput(true);
+    dispatch(clearAll());
   };
 
   const handleNext = () => {
@@ -66,41 +93,70 @@ function Questions() {
     );
   }
   return (
-    <div className="md:ml-64 2xl:ml-80 3xl:ml-100">
-      <div className="flex justify-center mb-8 mt-24">
-        <ul className="pageNumbersquestion justify-end pb-1 text-white">
-          <div className="mx-1">
-            <button onClick={handlePrev} disabled={currentPage === pages[0]}>
-              <img src={prevarrow} alt="prev" />
-            </button>
-          </div>
-          {pageDecrementBtn}
-          <Pages
-            pages={pages}
-            currentPage={currentPage}
-            setcurrentPage={setcurrentPage}
-            onclick={handleClick}
-            pageNumberLimit={pageNumberLimit}
-            setPageNumberLimit={setPageNumberLimit}
-            maxpageNumberLimit={maxpageNumberLimit}
-            minpageNumberLimit={minpageNumberLimit}
-          />
-          {pageIncrementBtn}
-          <div className="mx-1">
-            <button
-              onClick={handleNext}
-              disabled={currentPage === pages[pages.length - 1]}
-            >
-              <img src={nextarrow} alt="next" />
-            </button>
-          </div>
-        </ul>
-      </div>
+    <LoadingOverlay
+      active={loading}
+      spinner
+      text="Hold up!..."
+      styles={{
+        wrapper: {
+          height: "100vh",
+        },
+      }}
+    >
+      <div className="md:ml-64 2xl:ml-80 3xl:ml-100">
+        <div
+          className={
+            getDisable
+              ? "flex justify-center mb-8 pt-8 getcursorDisable"
+              : "flex justify-center mb-8 pt-8"
+          }
+        >
+          <ul
+            className={
+              getDisable
+                ? "pageNumbersquestion justify-end pb-1 text-white getDisable"
+                : "pageNumbersquestion justify-end pb-1 text-white"
+            }
+          >
+            <div className="mx-1">
+              <button onClick={handlePrev} disabled={currentPage === pages[0]}>
+                <img src={prevarrow} alt="prev" />
+              </button>
+            </div>
+            {pageDecrementBtn}
+            <Pages
+              pages={pages}
+              currentPage={currentPage}
+              setcurrentPage={setcurrentPage}
+              onclick={handleClick}
+              pageNumberLimit={pageNumberLimit}
+              setPageNumberLimit={setPageNumberLimit}
+              maxpageNumberLimit={maxpageNumberLimit}
+              minpageNumberLimit={minpageNumberLimit}
+            />
+            {pageIncrementBtn}
+            <div className="mx-1">
+              <button
+                onClick={handleNext}
+                disabled={currentPage === pages[pages.length - 1]}
+              >
+                <img src={nextarrow} alt="next" />
+              </button>
+            </div>
+          </ul>
+        </div>
 
-      {currentItems.map((data) => (
-        <Ques data={data} input={input} />
-      ))}
-    </div>
+        {currentItems.map((data) => (
+          <Ques
+            data={data}
+            input={input}
+            postJudgePoints={
+              postJudgePoints.points === null ? "-" : postJudgePoints.points
+            }
+          />
+        ))}
+      </div>
+    </LoadingOverlay>
   );
 }
 

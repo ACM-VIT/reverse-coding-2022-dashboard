@@ -26,6 +26,7 @@
 .output {
   width: 250px;
   height: 424px;
+  overflow-y: auto;
   border-radius: 4px;
 }
 
@@ -41,20 +42,24 @@
   width: 190px;
   display: flex;
 }
+
 .download {
   background: rgba(152, 79, 185, 1);
   height: 100%;
   width: 2.75rem;
 }
+
 .icon {
   margin: 0 0.3rem;
 }
+
 .run-btn {
   background: #27ae60;
   border-radius: 64px;
   padding: 12px 12px;
   /* margin-top: 379px; */
 }
+
 .upload-btn {
   font-weight: 400;
   background: #984fb9;
@@ -64,21 +69,25 @@
   padding: 11px 22px;
   cursor: pointer;
 }
+
 .text-area {
   background-color: rgba(29, 33, 38, 1);
   resize: none;
   outline: none;
-  height: 19.5rem;
-  width: 14.1rem;
-  padding-right: 2rem;
+  height: 18rem;
+  width: 13rem;
+  padding-right: 1.25rem;
 }
+
 .text-area::-webkit-scrollbar {
-  width: 12px;
+  width: 11.5px;
 }
+
 .text-area::-webkit-scrollbar-thumb {
   background: #4f4f4f;
   border-radius: 48px;
 }
+
 .text-area::-webkit-scrollbar-track {
   box-shadow: inset 0 0 0 50px rgba(0, 0, 0, 1);
   border-radius: 48px;
@@ -97,6 +106,15 @@
     width: 390px;
     height: 624px;
     border-radius: 4px;
+  }
+
+  .text-area {
+    background-color: rgba(29, 33, 38, 1);
+    resize: none;
+    outline: none;
+    height: 27.5rem;
+    width: 20rem;
+    padding-right: 1.25rem;
   }
 
   .input {

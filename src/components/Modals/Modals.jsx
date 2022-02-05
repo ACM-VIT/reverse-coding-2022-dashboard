@@ -16,8 +16,6 @@ import upload from "../../assets/images/upload.svg";
 import "./Modals.css";
 function Modals(props) {
   // const [filename, setFilename] = useState("");
-  console.log(props.filename);
-  console.log("modal props", props);
   const limit = 100;
   const normalise = (value) => ((value - 0) * 100) / (limit - 0);
   // if (props.open === false) {
@@ -87,16 +85,15 @@ function Modals(props) {
               <div className=" pb-4 text-xl fontdmteam font-700">
                 Select Code File To Upload
               </div>
-              <div className=" pb-4 text-base fontdmteam font-700">
+              <div className=" pb-4 text-lg fontdmteam font-700">
                 Instructions
               </div>
               <div className=" text-left text-lg pt-7 font-400">
-                {" "}
-                It should not exceed
+                It should not exceed 5KB.
               </div>
               <div className=" text-left text-lg font-400">
-                {" "}
-                Supported languages are
+                Supported languages are Java, JavaScript, C, C++, Go, Kotlin,
+                PHP ,Python.
               </div>
               {/* <div
                 className=" text-right input-file mt-4"
@@ -125,7 +122,7 @@ function Modals(props) {
                   className=" "
                   hidden
                   onChange={(e) => props.onchange(e)}
-                  accept=".cpp,.py,.java,.js,.go,.kt,.kts,.ktm"
+                  accept=".cpp,.py,.java,.js,.go,.kt,.kts,.ktm,.c,.php"
                 />
 
                 {/* <input type="file" id="upload2" className="  " /> */}
@@ -137,21 +134,24 @@ function Modals(props) {
                   <p>Drag drop some files here, or click to select files</p>
                 )} */}
               </div>
-              <div onClick={props.handleupload}>
-                <button
-                  type="button"
-                  className={`mt-8 upload-btn-modal p-3 ${
-                    props.btndis ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
-                  disabled={props.btndis}
+              <div className={props.btndis ? "getcursorDisable" : ""}>
+                <div
+                  onClick={props.handleupload}
+                  className={props.btndis ? "getDisable" : ""}
                 >
-                  <div className="flex">
-                    <div className="px-1 font-400">Upload</div>
-                    <div>
-                      <img src={upload} alt="upload" />
+                  <button
+                    type="button"
+                    className="mt-8 upload-btn-modal p-3"
+                    disabled={props.btndis}
+                  >
+                    <div className="flex">
+                      <div className="px-1 font-400">Upload</div>
+                      <div>
+                        <img src={upload} alt="upload" />
+                      </div>
                     </div>
-                  </div>
-                </button>
+                  </button>
+                </div>
               </div>
             </div>
           </Box>

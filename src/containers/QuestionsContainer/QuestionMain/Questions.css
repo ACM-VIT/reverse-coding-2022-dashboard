@@ -1,0 +1,7 @@
+.getDisable{
+    pointer-events: none;
+    opacity: 0.5;
+}
+.getcursorDisable{
+    cursor: not-allowed;
+}

@@ -28,11 +28,12 @@ const Sidebar = () => {
   const splitLocation = pathname.split("/");
 
   const team = useSelector((state) => state.getAll.teams);
+  const participant = useSelector((state) => state.getAll.people);
   // eslint-disable-next-line array-callback-return
   // team.participants.map((part) => {
   //   console.log(part.name);
   // });
-
+  // console.log("participant", participant);
   const logoutfunc = () => {
     sessionStorage.removeItem("WT");
     sessionStorage.removeItem("cc");
@@ -40,7 +41,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="h-screen fixed top-0 md:left-0 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-3xl bg-black w-64 2xl:w-80 3xl:w-100 z-10 py-4 px-6 2xl:px-7 transition-all duration-300">
+    <div className="h-screen fixed top-0 md:left-0 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-3xl bg-black w-64 2xl:w-80 3xl:w-80 z-10 py-4 px-6 2xl:px-7 transition-all duration-300">
       <div className="flex-col items-stretch min-h-full w-full flex-nowrap relative">
         {/* <a href="#" className="mt-2 text-center w-full inline-block"> */}
         <img
@@ -77,6 +78,19 @@ const Sidebar = () => {
                 Overview
               </Link>
             </li>
+            {/* <li
+              className={`${
+                splitLocation[1] === "roulette" ? "activeClass" : ""
+              } rounded-lg mb-2 2xl:mb-3`}
+            >
+              <Link
+                to="/roulette"
+                exact
+                className="flex items-center text-white px-4 py-3 3xl:py-4 rounded-lg 2xl:rounded-xl 3xl:rounded-2xl 2xl:pl-6"
+              >
+                Roulette
+              </Link>
+            </li> */}
             <li
               className={`${
                 splitLocation[1] === "questions" ? "activeClass" : ""
@@ -124,7 +138,7 @@ const Sidebar = () => {
           className="flex mt-2 text-center w-full absolute bottom-0 pb-10 text-white break-words break-normal justify-around brdr p-5 3xl:text-3xl 2xl:text-2.5xl text-lg font-robo"
           // key={part.id}
         >
-          <p className="2xl:pt-3">{team.name}</p>
+          <p className="2xl:pt-3">{participant.name}</p>
           <img
             src={logout}
             className="2xl:pt-2 3xl:pt-2.5 w-6 2xl:w-8 3xl:w-10 cursor-pointer"

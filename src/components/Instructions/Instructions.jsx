@@ -9,7 +9,10 @@ const Instructions = () => (
       {data.map((ques) => (
         <>
           <div className="title">{ques.title}</div>
-          <div className="content">{ques.content}</div>
+          <div
+            className="content"
+            dangerouslySetInnerHTML={{ __html: ques.content }}
+          />
         </>
       ))}
     </article>

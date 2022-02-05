@@ -2,8 +2,11 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable no-plusplus */
 /* eslint-disable react/jsx-key */
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import { toast } from "react-toastify";
+
 import Pages from "../../components/Pagination/Pages";
 import nextarrow from "../../assets/images/nextarrow.svg";
 import prevarrow from "../../assets/images/prevarrow.svg";
@@ -11,7 +14,31 @@ import Countdown from "../../components/CountDown/CountDown";
 import LeaderboardItems from "../../components/LeaderBoard/LeaderboardItems";
 import "./Leaderboard.css";
 
+import { getLeaderboard, loggedOnce } from "../../redux/GetAll/GetAllActions";
+
+import { setLoading } from "../../redux/PostJudge/postJudgeActions";
 function Leaderboard() {
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   const WT = sessionStorage.getItem("WT");
+  //   axios
+  //     .get(`${process.env.REACT_APP_BASEURL}/teams/leader`, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         authorization: `Bearer ${WT}`,
+  //       },
+  //     })
+  //     .then((responseleaderboard) => {
+  //       console.log("leaderboard", responseleaderboard);
+  //       dispatch(getLeaderboard(responseleaderboard.data));
+  //       dispatch(loggedOnce(true));
+  //     })
+  //     .catch((err) => {
+  //       dispatch(setLoading(false));
+  //       toast.error("Error in fetching resources");
+  //     });
+  // });
+
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(6);
 
@@ -24,8 +51,8 @@ function Leaderboard() {
   // for (const i in getTeams) {
   //   console.log(getTeams[i].id);
   // }
-  console.log("teams", typeof getTeams);
-  console.log(getData);
+  // console.log("teams", typeof getTeams);
+  // console.log(getData);
 
   const pages = [];
   for (let i = 1; i <= Math.ceil(getData.length / itemsPerPage); i++) {
@@ -74,8 +101,7 @@ function Leaderboard() {
       <div className=" flex flex-col text-center text-white font-700">
         <div className="flex flex-col">
           <h1 className="primary-purple mt-16 text-xl 3xl:text-3xl 3xl:mt-20 2xl:text-3xl 2xl:mt-20">
-            {" "}
-            Event Ends in
+            Round 1 ends in
           </h1>
 
           <Countdown />
