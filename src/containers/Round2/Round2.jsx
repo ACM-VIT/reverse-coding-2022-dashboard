@@ -7,7 +7,7 @@ const Round2 = () => {
   console.log("abc");
   return (
     <div className="ml-64 2xl:ml-80 3xl:ml-100 mt-56 flex justify-center ">
-      <div>
+      <div className="">
         <Hard />
         <div className="hidden">
           <Medium />
