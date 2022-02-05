@@ -27,7 +27,7 @@ function ModalForm(props) {
         }}
       >
         <Fade in={props.open}>
-          <Box className=" shadows stile">
+          <Box className=" shadows form-box-modal">
             <div className="flex flex-col text-center pt-2">
               Add your content here
             </div>

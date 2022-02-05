@@ -28,3 +28,33 @@
   background: #9b51e0;
   border-radius: 0.5rem;
 }
+
+.form-box-modal {
+  width: 425px !important;
+  margin: 40px auto;
+  background: linear-gradient(
+    135.61deg,
+    rgba(0, 0, 0, 0.14) -94.15%,
+    rgba(0, 0, 0, 0) 102.34%
+  );
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (min-width: 1550px) and (max-width: 1950px) {
+  .form-box-modal {
+    width: 450px !important;
+    margin: 150px auto;
+  }
+}
+
+@media (min-width: 1951px) and (max-width: 2560px) {
+  .form-box-modal {
+    width: 470px !important;
+    margin: 190px auto;
+  }
+}

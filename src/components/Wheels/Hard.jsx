@@ -5,7 +5,7 @@ import { Wheel } from "react-custom-roulette";
 import $ from "jquery";
 
 // useEffect(() => {
-//   $(".gTLZXx").attr("src", "test2.png");
+//   $(".gTLZXx").attr("src", "mac.svg");
 // });
 
 const data = [
