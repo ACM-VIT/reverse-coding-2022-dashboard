@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import axios from "axios";
+import { toast } from "react-toastify";
 import {
   POST_FILE,
   // CASE_ONE,
@@ -60,10 +61,7 @@ export const setLoading = (bool) => ({
 });
 
 export const postTask = (input, id) => (dispatch) => {
-  console.log("postTask");
-  console.log(typeof input);
-  console.log("runner", id);
-  // dispatch(setDisable(true));
+  dispatch(setDisable(true));
   const WT = sessionStorage.getItem("WT");
   axios
     .post(
@@ -82,9 +80,12 @@ export const postTask = (input, id) => (dispatch) => {
     .then((res) => {
       console.log("response runner", res);
       dispatch(taskRunner(res.data));
+      setDisable(false);
     })
     .catch((err) => {
       console.log("runner", err);
+      toast.error("Error. Please try again");
+      setDisable(false);
     });
 };
 
@@ -113,6 +114,7 @@ export const postJudge =
       )
       .then(async (res) => {
         dispatch(setLoading(false));
+        toast.success("Running Test Cases");
         console.log(res);
         let runafter4 = 0;
         const polling = await setInterval(() => {
@@ -191,6 +193,7 @@ export const postJudge =
                     })
                     .catch((err) => {
                       console.log("after poll", err);
+                      objfinal.points = response.data.points;
                     });
                   dispatch(setDisable(false));
                   dispatch(judgeMain(objfinal));
@@ -213,6 +216,8 @@ export const postJudge =
       })
       .catch((err) => {
         console.log(err);
+        setDisable(false);
+        toast.error("Error in running test cases. Please try again");
       });
   };
 

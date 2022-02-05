@@ -69,6 +69,7 @@ const postJudgeReducer = (state = initialState, action) => {
       return {
         ...state,
         judgeMain: [],
+        taskRunner: [],
       };
     case SET_DISABLE:
       return {

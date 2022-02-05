@@ -50,16 +50,14 @@ const Ques = ({ data, input }) => {
     reader.readAsDataURL(file);
     reader.onload = () => {
       const base64 = reader.result;
-      console.log("base6444", base64.split(",")[1]);
-      console.log("base64", window.btoa(base64));
       setDownloadFile(base64.split(",")[1]);
     };
     reader.onerror = (error) => {
+      toast.error("Try Again");
       console.log("Error: ", error);
     };
   };
   const handleClose2 = () => {
-    console.log("close");
     setOpen2(false);
   };
   const handlechangefile = async (e) => {
@@ -74,7 +72,7 @@ const Ques = ({ data, input }) => {
           setDisable(true);
           setFilename("");
           console.log("file not supported");
-          toast.error("File type no supported");
+          toast.error("File type not supported");
         } else if (e.target.files[0].size > 5000) {
           setDisable(true);
           console.log("file size is too big");
@@ -89,6 +87,7 @@ const Ques = ({ data, input }) => {
         }
       } catch (error) {
         console.log("errorfew", error);
+        toast.error("Error in uploading");
       }
     } else {
       setDisable(true);
