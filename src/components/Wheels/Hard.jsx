@@ -3,11 +3,6 @@ import "./Wheels.css";
 
 import { Wheel } from "react-custom-roulette";
 import ModalRoulette from "../Modals/ModalRoulette";
-// import $ from "jquery";
-
-// useEffect(() => {
-//   $(".gTLZXx").attr("src", );
-// });
 
 const data = [
   { option: "0", style: { backgroundColor: "#006900" } },
@@ -69,7 +64,7 @@ const Hard = () => {
     // The Wheel component will call this function when spin is clicked
     // The next line will set the prize number to a random number between 0 and end of data array(which will be no. of questions)
     // You can then access the question number(option name) through indexing(newPrizeNumber is the index value).
-    const newPrizeNumber = Math.floor(Math.random() * data.length);
+    const newPrizeNumber = Math.floor(Math.random() * 5);
     const a = data[newPrizeNumber].option;
     // console.log("aaaa", a);
     setPrizeSelected(a);
