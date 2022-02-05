@@ -14,6 +14,7 @@ import {
   TASK_RUNNER,
   SET_LOADING,
   SET_TRUE,
+  SET_REMOVE,
 } from "./postJudgeTypes";
 
 // export const caseOne = (stateone) => ({
@@ -64,7 +65,10 @@ export const setTrue = (bool) => ({
   type: SET_TRUE,
   payload: bool,
 });
-
+export const setRemove = (bool) => ({
+  type: SET_REMOVE,
+  payload: bool,
+});
 export const postTask = (input, id) => (dispatch) => {
   dispatch(setDisable(true));
   dispatch(setLoading(true));
@@ -73,7 +77,7 @@ export const postTask = (input, id) => (dispatch) => {
   if (inputData.endsWith("\n") === false) {
     inputData += "\n";
   }
-
+  console.log(input);
   axios
     .post(
       `${process.env.REACT_APP_BASEURL}/runner`,
