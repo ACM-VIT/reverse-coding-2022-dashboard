@@ -64,12 +64,17 @@ export const postTask = (input, id) => (dispatch) => {
   dispatch(setDisable(true));
   dispatch(setLoading(true));
   const WT = sessionStorage.getItem("WT");
+  let inputData = input.toString();
+  if (inputData.endsWith("\n") === false) {
+    inputData += "\n";
+  }
+
   axios
     .post(
       `${process.env.REACT_APP_BASEURL}/runner`,
       {
         id: id,
-        input: input,
+        input: inputData,
       },
       {
         headers: {
@@ -82,7 +87,9 @@ export const postTask = (input, id) => (dispatch) => {
       dispatch(setDisable(false));
       dispatch(setLoading(false));
       console.log("response runner", res);
-      dispatch(taskRunner(res.data));
+      let result = res.data;
+      result = result.toString().replace(/\n\r?/g, "<br />");
+      dispatch(taskRunner(result));
     })
     .catch((err) => {
       dispatch(setDisable(false));

@@ -59,10 +59,10 @@ const Form = () => {
     const reg = /^21[A-Z]{3}[0-9]{4}$/;
 
     /** Regex for college name */
-    const collegeRegEx = /^[A-Za-z]+$/;
+    const collegeRegEx = /^[A-Za-z ]+$/;
 
     /** Regex for phone number */
-    const phoneRegEx = /^\+[0-9]{8,15}$/;
+    const phoneRegEx = /^\+[1-9]{1}[0-9]{3,14}$/;
 
     /** Validations */
     if (college.trim() === "" || phone.trim() === "") {
@@ -171,17 +171,7 @@ const Form = () => {
                   No
                 </label>
               </div>
-              <div
-                className={`${fresher.value === "Yes" ? "" : "hidden"}`}
-                // className={`${
-                //   (resFresher === true || fresher.value === "Yes"
-                //     ? ""
-                //     : "hidden",
-                //   resFresher === false || fresher.value === "No"
-                //     ? "hidden"
-                //     : "")
-                // }`}
-              >
+              <div className={`${fresher.value === "Yes" ? "" : "hidden"}`}>
                 <label className="text-normal 2xl:text-md 3xl:text-lg">
                   Registration Number (fill only if you are a Fresher)
                 </label>
@@ -194,7 +184,7 @@ const Form = () => {
                 />
               </div>
               <label className="text-normal 2xl:text-md 3xl:text-lg">
-                Phone Number
+                Phone Number (with country code)
               </label>
               <input
                 className="text-normal 2xl:text-md 3xl:text-lg text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 2xl:px-3 3xl:px-4 py-1 2xl:py-2 3xl:py-3 mt-3 2xl:mt-4 3xl:mt-5 mb-5 2xl:mb-6 3xl:mb-7"
