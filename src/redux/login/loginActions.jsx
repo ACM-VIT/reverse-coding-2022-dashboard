@@ -30,7 +30,7 @@ export const signOutFailure = (error) => ({
 export const gauthSignIn = () => (dispatch) => {
   // dispatch signIn
   // gauth
-  window.open(`https://heimdall.acmvit.in/auth/google`, "_self");
+  window.open(`https://prod.acmvit.in/auth/google`, "_self");
 
   // dispatch(signIn(1));
   // catch error
