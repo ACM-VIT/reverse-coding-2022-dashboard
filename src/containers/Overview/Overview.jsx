@@ -14,6 +14,7 @@ import {
   getProblems,
   getTeams,
   getLeaderboard,
+  getRank,
   getJudgePoints,
   loggedOnce,
 } from "../../redux/GetAll/GetAllActions";
@@ -24,6 +25,7 @@ const Overview = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const loading = useSelector((state) => state.postJudge.loading);
+  const getMyRank = useSelector((state) => state.getAll.rank);
   const path = useLocation();
   const loggedonce = useSelector((state) => state.getAll.loggedOnce);
   useEffect(async () => {
@@ -107,7 +109,24 @@ const Overview = () => {
                         .then((responseleaderboard) => {
                           console.log("leaderboard", responseleaderboard);
                           dispatch(getLeaderboard(responseleaderboard.data));
-                          dispatch(loggedOnce(true));
+                          axios
+                            .get(
+                              `${process.env.REACT_APP_BASEURL}/teams/getRank`,
+                              {
+                                headers: {
+                                  "Content-Type": "application/json",
+                                  authorization: `Bearer ${WT}`,
+                                },
+                              }
+                            )
+                            .then((responserank) => {
+                              dispatch(getRank(responserank.data));
+                              dispatch(loggedOnce(true));
+                            })
+                            .catch((err) => {
+                              dispatch(setLoading(false));
+                              toast.error("Error in fetching rank");
+                            });
                         })
                         .catch((err) => {
                           dispatch(setLoading(false));
@@ -182,21 +201,21 @@ const Overview = () => {
   const team = useSelector((state) => state.getAll.teams);
   const submissions = useSelector((state) => state.getAll.judgePoints);
   console.log("submissions", typeof submissions);
-  console.log(team);
+  console.log(team, "tewammme");
 
-  useEffect(() => {
-    let count = 0;
-    // eslint-disable-next-line array-callback-return
-    submissions.map((sub) => {
-      if (sub.points === null) {
-        count += 1;
-      }
-    });
-    console.log("totalNulls", count);
-    if (count === submissions.length) {
-      setNull(true);
-    }
-  }, [submissions]);
+  // useEffect(() => {
+  //   let count = 0;
+  //   // eslint-disable-next-line array-callback-return
+  //   submissions.map((sub) => {
+  //     if (sub.points === null) {
+  //       count += 1;
+  //     }
+  //   });
+  //   console.log("totalNulls", count);
+  //   if (count === submissions.length) {
+  //     setNull(true);
+  //   }
+  // }, [submissions]);
 
   function submissionRedirect() {
     history.push("/questions");
@@ -224,37 +243,49 @@ const Overview = () => {
             </p>
           </div>
           <div className="text-white break-words break-normal">
-            <div className="flex flex-col float-right items-start">
-              <h1 className="text-3xl 2xl:text-4.5xl 3xl:text-5xl pb-2 2xl:pb-5 3xl:pb-6">
-                Members
-              </h1>
-              {Object.keys(team).length === 0 ? (
-                <p>Loading...</p>
-              ) : (
-                team.participants.map((part) => (
-                  <div className="flex" key={part.id}>
-                    <p className="text-gre 2xl:text-1.5xl 3xl:text-2xl pl-1 pr-2 pb-0.5">
-                      {part.name}
-                    </p>
-                    {part.isAdmin && (
-                      <img
-                        className="2xl:w-6 2xl:ml-1 mb-0.5 2xl:mb-0.5"
-                        src={admin}
-                        alt="admin"
-                      />
-                    )}
-                  </div>
-                ))
-              )}
+            <div className="flex flex-col justify-center items-center">
+              <div className="text-left">
+                <h1 className="text-3xl 2xl:text-4.5xl 3xl:text-5xl pb-2 2xl:pb-5 3xl:pb-6">
+                  Members
+                </h1>
+                {Object.keys(team).length === 0 ? (
+                  <p>Loading...</p>
+                ) : (
+                  team.participants.map((part) => (
+                    <div className="flex" key={part.id}>
+                      <p className="text-gre 2xl:text-1.5xl 3xl:text-2xl pl-1 pr-2 pb-0.5">
+                        {part.name}
+                      </p>
+                      {part.isAdmin && (
+                        <img
+                          className="2xl:w-6 2xl:ml-1 mb-0.5 2xl:mb-0.5"
+                          src={admin}
+                          alt="admin"
+                        />
+                      )}
+                    </div>
+                  ))
+                )}
+              </div>
             </div>
           </div>
-          <div className="text-white text-right">
-            <h1 className="text-3xl 2xl:text-4.5xl 3xl:text-5xl pb-4 2xl:pb-9 3xl:pb-7">
-              Score
-            </h1>
-            <p className="text-4xl 2xl:text-5.5xl 3xl:text-6xl pt-1">
-              {team.points}
-            </p>
+          <div className="flex text-white text-right justify-around">
+            <div className="flex flex-col">
+              <h1 className="text-3xl 2xl:text-4.5xl 3xl:text-5xl pb-4 2xl:pb-7">
+                Score
+              </h1>
+              <p className="text-4xl 2xl:text-5.5xl 3xl:text-6xl pt-1">
+                {team.points}
+              </p>
+            </div>
+            <div className="flex flex-col">
+              <h1 className="text-3xl 2xl:text-4.5xl 3xl:text-5xl pb-4 2xl:pb-7">
+                Rank
+              </h1>
+              <p className="text-4xl 2xl:text-5.5xl 3xl:text-6xl pt-1">
+                {getMyRank.rank}
+              </p>
+            </div>
           </div>
         </div>
         <div className="font-dm font-bold text-white pt-20 2xl:pt-32">

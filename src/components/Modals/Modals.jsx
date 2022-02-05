@@ -16,8 +16,6 @@ import upload from "../../assets/images/upload.svg";
 import "./Modals.css";
 function Modals(props) {
   // const [filename, setFilename] = useState("");
-  console.log(props.filename);
-  console.log("modal props", props);
   const limit = 100;
   const normalise = (value) => ((value - 0) * 100) / (limit - 0);
   // if (props.open === false) {
