@@ -74,14 +74,19 @@ const App = () => {
           <Sidebar />
           <Faq />
         </Route>
-        <Route exact path="/roulette">
+        {/* <Route exact path="/roulette">
           <Redirect exact from="/" to="/overview" />
           <Sidebar />
           <Roulette />
-        </Route>
+        </Route> */}
         <Route exact path="/login" component={Login} />
+
+        <Route exact path="/" component={Login}>
+          <Redirect exact from="/" to="/login" />
+        </Route>
+
         <ProtectedRoute exact path="/form" component={Form} />
-        <Route exact path="/overview/401" component={NotAuth401} />
+        <Route exact path="/401" component={NotAuth401} />
         <Route path="*" component={NotFound404} />
       </Switch>
     </Provider>
