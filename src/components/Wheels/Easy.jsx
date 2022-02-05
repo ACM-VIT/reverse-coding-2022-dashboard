@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Wheels.css";
 
 import { Wheel } from "react-custom-roulette";
+import ModalRoulette from "../Modals/ModalRoulette";
 
 const data = [
   { option: "0", style: { backgroundColor: "#006900" } },
@@ -15,22 +16,22 @@ const data = [
   { option: "8" },
   { option: "9" },
   { option: "10" },
-  // { option: "11" },
-  // { option: "12" },
-  // { option: "13" },
-  // { option: "14" },
-  // { option: "15" },
-  // { option: "16" },
-  // { option: "17" },
-  // { option: "18" },
-  // { option: "19" },
-  // { option: "20" },
-  // { option: "21" },
-  // { option: "22" },
-  // { option: "23" },
-  // { option: "24" },
-  // { option: "25" },
-  // { option: "26" },
+  { option: "11" },
+  { option: "12" },
+  { option: "13" },
+  { option: "14" },
+  { option: "15" },
+  { option: "16" },
+  { option: "17" },
+  { option: "18" },
+  { option: "19" },
+  { option: "20" },
+  { option: "21" },
+  { option: "22" },
+  { option: "23" },
+  { option: "24" },
+  { option: "25" },
+  { option: "26" },
 ];
 
 const backgroundColors = ["#000000", "#df3428"];
@@ -45,46 +46,70 @@ const radiusLineWidth = 3;
 const fontSize = 20;
 const textDistance = 86;
 
-const Easy = () => {
+const Hard = () => {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
+  const [prizeSelected, setPrizeSelected] = useState("0");
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleSpinClick = () => {
     // The Wheel component will call this function when spin is clicked
     // The next line will set the prize number to a random number between 0 and end of data array(which will be no. of questions)
     // You can then access the question number(option name) through indexing(newPrizeNumber is the index value).
-    const newPrizeNumber = Math.floor(Math.random() * data.length);
-    console.log("newPrizeNumber", newPrizeNumber);
-    console.log(data.length);
-    console.log("prize selected", data[newPrizeNumber].option);
+    const newPrizeNumber = Math.floor(Math.random() * 10);
+    const a = data[newPrizeNumber].option;
+    // console.log("aaaa", a);
+    setPrizeSelected(a);
+    // console.log("newPrizeNumber", newPrizeNumber);
+    // console.log(data.length);
+    // console.log("prize selected", prizeSelected);
     setPrizeNumber(newPrizeNumber);
     setMustSpin(true);
   };
 
   return (
-    <div className="App ">
-      <header className="App-header">
-        <Wheel
-          mustStartSpinning={mustSpin}
-          prizeNumber={prizeNumber}
-          data={data}
-          backgroundColors={backgroundColors}
-          textColors={textColors}
-          fontSize={fontSize}
-          outerBorderColor={outerBorderColor}
-          outerBorderWidth={outerBorderWidth}
-          innerRadius={innerRadius}
-          innerBorderColor={innerBorderColor}
-          innerBorderWidth={innerBorderWidth}
-          radiusLineColor={radiusLineColor}
-          radiusLineWidth={radiusLineWidth}
-          perpendicularText
-          textDistance={textDistance}
-          onStopSpinning={() => {
-            setMustSpin(false);
-          }}
-        />
-        <div className="spin-btn" onClick={handleSpinClick}>
+    <div className="">
+      <header className="">
+        <div>
+          <Wheel
+            mustStartSpinning={mustSpin}
+            prizeNumber={prizeNumber}
+            data={data}
+            backgroundColors={backgroundColors}
+            textColors={textColors}
+            fontSize={fontSize}
+            outerBorderColor={outerBorderColor}
+            outerBorderWidth={outerBorderWidth}
+            innerRadius={innerRadius}
+            innerBorderColor={innerBorderColor}
+            innerBorderWidth={innerBorderWidth}
+            radiusLineColor={radiusLineColor}
+            radiusLineWidth={radiusLineWidth}
+            perpendicularText
+            textDistance={textDistance}
+            onStopSpinning={() => {
+              setMustSpin(false);
+              handleOpen();
+            }}
+          />
+          <ModalRoulette
+            open={open}
+            onClose={handleClose}
+            problemNo={prizeSelected}
+          />
+        </div>
+        <div
+          className="spin-btn font-robo text-2xl mx-auto mt-16"
+          onClick={handleSpinClick}
+        >
           SPIN
         </div>
       </header>
@@ -92,4 +117,4 @@ const Easy = () => {
   );
 };
 
-export default Easy;
+export default Hard;

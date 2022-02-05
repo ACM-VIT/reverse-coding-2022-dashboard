@@ -4,11 +4,6 @@ import "./Wheels.css";
 import { Wheel } from "react-custom-roulette";
 import { useSelector, useDispatch } from "react-redux";
 import ModalRoulette from "../Modals/ModalRoulette";
-// import $ from "jquery";
-
-// useEffect(() => {
-//   $(".gTLZXx").attr("src", );
-// });
 
 const data = [
   { option: "0", style: { backgroundColor: "#006900" } },
