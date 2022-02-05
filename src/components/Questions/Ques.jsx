@@ -3,6 +3,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import LoadingOverlay from "react-loading-overlay";
+import "react-toastify/dist/ReactToastify.css";
+
 import Ide from "./ide";
 import Modals from "../Modals/Modals";
 import ModalsDownload from "../Modals/ModalsDownload";
@@ -15,6 +19,7 @@ import { getLaunch } from "../../redux/QuestionsLaunch/questionsLaunchActions";
 import { judgeMain, postJudge } from "../../redux/PostJudge/postJudgeActions";
 import "./Ques.css";
 import { CODE_STATES } from "../../redux/PostJudge/states";
+
 const Ques = ({ data, input }) => {
   const [active, setActive] = useState({
     windowsImage: true,
@@ -45,16 +50,14 @@ const Ques = ({ data, input }) => {
     reader.readAsDataURL(file);
     reader.onload = () => {
       const base64 = reader.result;
-      console.log("base6444", base64.split(",")[1]);
-      console.log("base64", window.btoa(base64));
       setDownloadFile(base64.split(",")[1]);
     };
     reader.onerror = (error) => {
+      toast.error("Try Again");
       console.log("Error: ", error);
     };
   };
   const handleClose2 = () => {
-    console.log("close");
     setOpen2(false);
   };
   const handlechangefile = async (e) => {
@@ -62,15 +65,19 @@ const Ques = ({ data, input }) => {
       const file = e.target.files[0];
       try {
         if (
-          !e.target.files[0].name.split(".")[1].match(/^(java|js|go|py|cpp|c)$/)
+          !e.target.files[0].name
+            .split(".")[1]
+            .match(/^(java|php|js|go|py|cpp|c|kt)$/)
         ) {
           setDisable(true);
           setFilename("");
           console.log("file not supported");
-        } else if (e.target.files[0].size > 47185920) {
+          toast.error("File type not supported");
+        } else if (e.target.files[0].size > 5000) {
           setDisable(true);
           console.log("file size is too big");
           setFilename("");
+          toast.error("File size too big");
         } else {
           const base64 = await convertBase64(file);
           console.log("base64insidehandle", base64);
@@ -80,6 +87,7 @@ const Ques = ({ data, input }) => {
         }
       } catch (error) {
         console.log("errorfew", error);
+        toast.error("Error in uploading");
       }
     } else {
       setDisable(true);
@@ -136,70 +144,75 @@ const Ques = ({ data, input }) => {
             {data.instructionsText}
           </div>
           <div className="flex flex-row gap-7 sec-height">
-            <div className="px-5 py-5 bg-color relative test-case box-radius">
-              <div
-                className={
-                  CODE_STATES[getJudgeMain[1]]
-                    ? CODE_STATES[getJudgeMain[1]].color
-                    : ""
-                }
-              >
-                <h1 className="text-white">Test Case 1</h1>
-                {CODE_STATES[getJudgeMain[1]]
-                  ? CODE_STATES[getJudgeMain[1]].text
-                  : ""}
-              </div>
-              <div
-                className={
-                  CODE_STATES[getJudgeMain[2]]
-                    ? CODE_STATES[getJudgeMain[2]].color
-                    : ""
-                }
-              >
-                <h1 className="text-white">Test Case 2</h1>
+            <div className="px-6 py-5 2xl:px-8 bg-color relative test-case box-radius">
+              <h1 className="pt-1 pb-1 pr-2 2xl:pb-3 2xl:pt-2 3xl:pt-3.5 text-lg 2xl:text-2xl">
+                Test Cases
+              </h1>
+              <div className="casess px-1 overflow-y-auto">
+                <div
+                  className={
+                    CODE_STATES[getJudgeMain[1]]
+                      ? CODE_STATES[getJudgeMain[1]].color
+                      : ""
+                  }
+                >
+                  <h1 className="text-white">Test Case 1</h1>
+                  {CODE_STATES[getJudgeMain[1]]
+                    ? CODE_STATES[getJudgeMain[1]].text
+                    : ""}
+                </div>
+                <div
+                  className={
+                    CODE_STATES[getJudgeMain[2]]
+                      ? CODE_STATES[getJudgeMain[2]].color
+                      : ""
+                  }
+                >
+                  <h1 className="text-white">Test Case 2</h1>
 
-                {CODE_STATES[getJudgeMain[2]]
-                  ? CODE_STATES[getJudgeMain[2]].text
-                  : ""}
-              </div>
-              <div
-                className={
-                  CODE_STATES[getJudgeMain[3]]
-                    ? CODE_STATES[getJudgeMain[3]].color
-                    : ""
-                }
-              >
-                <h1 className="text-white">Test Case 3</h1>
+                  {CODE_STATES[getJudgeMain[2]]
+                    ? CODE_STATES[getJudgeMain[2]].text
+                    : ""}
+                </div>
+                <div
+                  className={
+                    CODE_STATES[getJudgeMain[3]]
+                      ? CODE_STATES[getJudgeMain[3]].color
+                      : ""
+                  }
+                >
+                  <h1 className="text-white">Test Case 3</h1>
 
-                {CODE_STATES[getJudgeMain[3]]
-                  ? CODE_STATES[getJudgeMain[3]].text
-                  : ""}
-              </div>
-              <div
-                className={
-                  CODE_STATES[getJudgeMain[4]]
-                    ? CODE_STATES[getJudgeMain[4]].color
-                    : ""
-                }
-              >
-                <h1 className="text-white">Test Case 4</h1>
+                  {CODE_STATES[getJudgeMain[3]]
+                    ? CODE_STATES[getJudgeMain[3]].text
+                    : ""}
+                </div>
+                <div
+                  className={
+                    CODE_STATES[getJudgeMain[4]]
+                      ? CODE_STATES[getJudgeMain[4]].color
+                      : ""
+                  }
+                >
+                  <h1 className="text-white">Test Case 4</h1>
 
-                {CODE_STATES[getJudgeMain[4]]
-                  ? CODE_STATES[getJudgeMain[4]].text
-                  : ""}
-              </div>
-              <div
-                className={
-                  CODE_STATES[getJudgeMain[5]]
-                    ? CODE_STATES[getJudgeMain[5]].color
-                    : ""
-                }
-              >
-                <h1 className="text-white">Test Case 5</h1>
+                  {CODE_STATES[getJudgeMain[4]]
+                    ? CODE_STATES[getJudgeMain[4]].text
+                    : ""}
+                </div>
+                <div
+                  className={
+                    CODE_STATES[getJudgeMain[5]]
+                      ? CODE_STATES[getJudgeMain[5]].color
+                      : ""
+                  }
+                >
+                  <h1 className="text-white">Test Case 5</h1>
 
-                {CODE_STATES[getJudgeMain[5]]
-                  ? CODE_STATES[getJudgeMain[5]].text
-                  : ""}
+                  {CODE_STATES[getJudgeMain[5]]
+                    ? CODE_STATES[getJudgeMain[5]].text
+                    : ""}
+                </div>
               </div>
               <div className="flex absolute bottom-0 mb-4 2xl:mb-6">
                 <div className={getDisable ? "getcursorDisable" : ""}>
@@ -228,14 +241,20 @@ const Ques = ({ data, input }) => {
                   />
                 </div>
 
-                <div className=" ml-8 2xl:ml-20 text-white font-700 text-lg 2xl:text-2xl">
+                <div className="ml-8 2xl:ml-16 text-white font-700 text-lg 2xl:text-2xl">
                   Points: <br />
                   {getJudgeMain.points
                     ? getJudgeMain.points
                     : data.points === null
-                    ? 0
+                    ? "-"
                     : data.points}
                   /{data.maxPoints}
+                  {/* {data.pointsJudgeMain !== null
+                    ? data.pointsJudgeMain
+                    : data.points === null
+                    ? "-"
+                    : data.points}
+                  /{data.maxPoints} */}
                 </div>
               </div>
             </div>

@@ -3,8 +3,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PhoneInput from "react-phone-number-input";
-import "react-phone-number-input/style.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -15,10 +13,11 @@ import logo from "../../assets/images/logo.svg";
 import "./Form.css";
 
 const Form = () => {
-  const [name, setName] = useState("");
-  const [fresher, setFresher] = useState("No");
-  const [registration, setRegistration] = useState("21BCE0999");
-  const [phone, setPhone] = useState("+91");
+  const [college, setCollege] = useState("");
+  const [fresher, setFresher] = useState({ value: "Yes" });
+  const [resFresher, setResFresher] = useState();
+  const [registration, setRegistration] = useState("");
+  const [phone, setPhone] = useState("");
   const [displayName, setDisplayName] = useState("");
 
   useEffect(() => {
@@ -31,8 +30,13 @@ const Form = () => {
       .get(`${process.env.REACT_APP_BASEURL}/participants`, { headers })
       .then((res) => {
         const firstName = res.data.name.split(" ")[0];
-        console.log(firstName);
         setDisplayName(firstName);
+        if (res.data.phoneNumber !== "0000000000") {
+          setCollege(res.data.college);
+          setRegistration(res.data.registrationNumber);
+          setPhone(res.data.phoneNumber);
+          // setResFresher(res.data.fresher);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -42,9 +46,9 @@ const Form = () => {
   const notifySuccess = () => toast.success("Form submitted successfully!");
 
   const handleChange = (e) => {
-    const { value } = e.target;
+    //  { value } = e.target;
     setFresher({
-      value,
+      value: e.target.value,
     });
   };
 
@@ -55,49 +59,56 @@ const Form = () => {
     const reg = /^21[A-Z]{3}[0-9]{4}$/;
 
     /** Regex for college name */
-    const collegeRegEx = /^[A-Za-z]+$/;
+    const collegeRegEx = /^[A-Za-z ]+$/;
+
+    /** Regex for phone number */
+    const phoneRegEx = /^\+[1-9]{1}[0-9]{3,14}$/;
 
     /** Validations */
-    if (name.trim() === "" || phone.trim() === "+91" || phone.trim() === "") {
+    if (college.trim() === "" || phone.trim() === "") {
       toast.error("Fill all the fields!");
     } else if (fresher.value === "Yes" && registration.trim() === "") {
       toast.error("Fill all the fields!");
-    } else if (collegeRegEx.test(name) === false) {
+    } else if (collegeRegEx.test(college) === false) {
       toast.error("College name should be in alphabets!");
     } else if (fresher.value === "Yes" && reg.test(registration) === false) {
       toast.error("Invalid registration number!");
+    } else if (phoneRegEx.test(phone) === false) {
+      toast.error("Invalid phone number!");
     } else {
       notifySuccess();
-      console.log("submitted");
+
+      const data = {
+        college: college.trim(),
+        fresher: fresher.value === "Yes" ? true : false,
+        registrationNumber: registration.trim(),
+        phoneNumber: phone.trim(),
+      };
+
+      const token = sessionStorage.getItem("WT");
+      const headers = {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      };
+
+      axios
+        .post(
+          `${process.env.REACT_APP_BASEURL}/participants/update`,
+          JSON.stringify(data),
+          { headers }
+        )
+        .then(() => {
+          window.location.href = "/overview";
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-    const data = {
-      college: name.trim(),
-      fresher: fresher.value === "Yes" ? true : false,
-      registrationNumber: registration.trim(),
-      phoneNumber: phone.trim(),
-    };
-
-    const token = sessionStorage.getItem("WT");
-    const headers = {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    };
-
-    axios
-      .post(
-        `${process.env.REACT_APP_BASEURL}/participants/update`,
-        JSON.stringify(data),
-        { headers }
-      )
-      .then(() => {
-        window.location.href = "/overview";
-        sessionStorage.setItem("FF", true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
-
+  const redirectFunc = () => {
+    sessionStorage.clear();
+    window.location.href = `/login`;
+  };
   return (
     <>
       <ToastContainer theme="colored" />
@@ -107,7 +118,15 @@ const Form = () => {
           alt="RC"
           className="inline pt-8 pl-20 w-44 xl:w-56 2xl:w-64 3xl:w-72"
         />
-
+        <div
+          alt="RC"
+          className="inline absolute  right-0 pt-10 pr-20 w-44 xl:w-56 2xl:w-64 3xl:w-72 cursor-pointer "
+          onClick={redirectFunc}
+        >
+          <div className="grad-bg text-white text-center py-2 2xl:py-3 2xl:text-lg 3xl:py-4 3xl:text-xl rounded-md">
+            Log out
+          </div>
+        </div>
         <div className="flex flex-col form-box font-400">
           <div className="flex justify-center pt-8 text-4xl 2xl:text-5xl primary-purple">
             Hey, {displayName}
@@ -121,7 +140,8 @@ const Form = () => {
                 type="text"
                 id="college"
                 className="text-normal 2xl:text-md 3xl:text-lg text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 2X2xl:px-3 3xl:px-4 py-1 2xl:py-2 3xl:py-3 mt-3 2xl:mt-4 3xl:mt-5 mb-5 2xl:mb-6 3xl:mb-7"
-                onChange={(e) => setName(e.target.value)}
+                value={college}
+                onChange={(e) => setCollege(e.target.value)}
               />
               <label className="text-normal 2xl:text-md 3xl:text-lg">
                 Are you a Fresher? (eligible for only VIT Students)
@@ -133,6 +153,7 @@ const Form = () => {
                   name="fresher"
                   value="Yes"
                   id="Yes"
+                  defaultChecked
                   onChange={handleChange}
                 />
                 <label className="text-normal 2xl:text-md 3xl:text-lg ml-2">
@@ -143,8 +164,7 @@ const Form = () => {
                   type="radio"
                   name="fresher"
                   value="No"
-                  id="Yes"
-                  defaultChecked
+                  id="No"
                   onChange={handleChange}
                 />
                 <label className="text-normal 2xl:text-md 3xl:text-lg ml-2">
@@ -159,20 +179,17 @@ const Form = () => {
                   type="text"
                   id="registration"
                   className="text-normal 2xl:text-md 3xl:text-lg text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 2xl:px-3 3xl:px-4 py-1 2xl:py-2 3xl:py-3 mt-3 2xl:mt-4 3xl:mt-5 mb-5 2xl:mb-6 3xl:mb-7 w-full"
+                  value={registration}
                   onChange={(e) => setRegistration(e.target.value)}
                 />
               </div>
               <label className="text-normal 2xl:text-md 3xl:text-lg">
-                Phone Number
+                Phone Number (with country code)
               </label>
-              <PhoneInput
-                limitMaxLength
-                value={phone}
+              <input
                 className="text-normal 2xl:text-md 3xl:text-lg text-white bg-transparent border border-gray-500 outline-none focus:outline-none px-2 2xl:px-3 3xl:px-4 py-1 2xl:py-2 3xl:py-3 mt-3 2xl:mt-4 3xl:mt-5 mb-5 2xl:mb-6 3xl:mb-7"
-                onChange={setPhone}
-                defaultCountry="IN"
-                country="IN"
-                rules={{ required: true }}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
               />
               <div className="flex justify-center">
                 <button

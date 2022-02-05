@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable import/prefer-default-export */
+import React, { memo } from "react";
 import "./LeaderboardItems.css";
 function LeaderboardItems({ person }) {
   return (
@@ -22,4 +23,4 @@ function LeaderboardItems({ person }) {
   );
 }
 
-export default LeaderboardItems;
+export default memo(LeaderboardItems);
