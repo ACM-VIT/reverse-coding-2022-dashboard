@@ -5,6 +5,7 @@ import {
   GET_TEAMS,
   GET_LEADERBOARD,
   GET_JUDGEPOINTS,
+  LOGGED_ONCE,
 } from "./GetAllTypes";
 
 export const getPeople = (people) => ({
@@ -26,4 +27,8 @@ export const getLeaderboard = (leaderboard) => ({
 export const getJudgePoints = (points) => ({
   type: GET_JUDGEPOINTS,
   payload: points,
+});
+export const loggedOnce = (bool) => ({
+  type: LOGGED_ONCE,
+  payload: bool,
 });
