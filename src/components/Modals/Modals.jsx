@@ -87,14 +87,15 @@ function Modals(props) {
               <div className=" pb-4 text-xl fontdmteam font-700">
                 Select Code File To Upload
               </div>
-              <div className=" pb-4 text-base fontdmteam font-700">
+              <div className=" pb-4 text-lg fontdmteam font-700">
                 Instructions
               </div>
               <div className=" text-left text-lg pt-7 font-400">
-                It should not exceed
+                It should not exceed 5KB.
               </div>
               <div className=" text-left text-lg font-400">
-                Supported languages are
+                Supported languages are Java, JavaScript, C, C++, Go, Kotlin,
+                PHP ,Python.
               </div>
               {/* <div
                 className=" text-right input-file mt-4"

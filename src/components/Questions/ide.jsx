@@ -4,6 +4,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import ModalsDownload from "../Modals/ModalsDownload";
 import Modals from "../Modals/Modals";
 import linux from "../../assets/images/linux.svg";
@@ -78,7 +79,6 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
     setFilename("");
   };
   const handleClose2 = () => {
-    console.log("close");
     setOpen2(false);
   };
   const convertBase64 = (file) => {
@@ -86,11 +86,10 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
     reader.readAsDataURL(file);
     reader.onload = () => {
       const base64 = reader.result;
-      console.log("base6444", base64.split(",")[1]);
-      console.log("base64", window.btoa(base64));
       setDownloadFile(base64.split(",")[1]);
     };
     reader.onerror = (error) => {
+      toast.error("Try Again");
       console.log("Error: ", error);
     };
   };
@@ -105,11 +104,12 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
         ) {
           setDisable(true);
           setFilename("");
-          console.log("file not supported");
-        } else if (e.target.files[0].size > 47185920) {
+          toast.error("File type not supported");
+        } else if (e.target.files[0].size > 5000) {
           setDisable(true);
           console.log("file size is too big");
           setFilename("");
+          toast.error("File size too big");
         } else {
           const base64 = await convertBase64(file);
           console.log("base64insidehandle", base64);
@@ -119,6 +119,7 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
         }
       } catch (error) {
         console.log("errorfew", error);
+        toast.error("Error in uploading");
       }
     } else {
       setDisable(true);
@@ -126,7 +127,11 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
     }
   };
   const handleClickRun = async () => {
-    await dispatch(postTask(input.toString(), id));
+    if (input.length === 0) {
+      toast.error("Please enter a valid input");
+    } else {
+      await dispatch(postTask(input.toString(), id));
+    }
   };
 
   const getData = useSelector((state) => state.questionsLaunch.launchState);
@@ -136,6 +141,7 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
   const getDisable = useSelector((state) => state.postJudge.disable);
   const getTeamid = getTeam.id;
   const taskrunner = useSelector((state) => state.postJudge.taskRunner);
+  // const taskrunnerenter = taskrunner.replaceAll("\n", "");
   const handleupload = async () => {
     console.log("handleuplaod");
     await dispatch(postJudge(problemid, getTeamid, fileType, downloadFile));
@@ -337,7 +343,7 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
                 {getJudgeMain.points
                   ? getJudgeMain.points
                   : data.points === null
-                  ? 0
+                  ? "-"
                   : data.points}
                 /{data.maxPoints}
               </div>
@@ -354,7 +360,7 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
                   />
                   <div className="flex ">
                     <div onClick={handleClickRun}>
-                      <div className="run-btn absolute bottom-0 mb-4 2xl:mb-6 text-white  flex">
+                      <div className="run-btn absolute bottom-0 mb-4 2xl:mb-6 text-white  flex cursor-pointer">
                         <img className="2xl:h-5" src={run} alt="run" />
                       </div>
                     </div>

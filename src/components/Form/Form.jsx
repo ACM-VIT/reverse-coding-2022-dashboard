@@ -105,7 +105,10 @@ const Form = () => {
         });
     }
   };
-
+  const redirectFunc = () => {
+    sessionStorage.clear();
+    window.location.href = `/login`;
+  };
   return (
     <>
       <ToastContainer theme="colored" />
@@ -115,7 +118,15 @@ const Form = () => {
           alt="RC"
           className="inline pt-8 pl-20 w-44 xl:w-56 2xl:w-64 3xl:w-72"
         />
-
+        <div
+          alt="RC"
+          className="inline absolute  right-0 pt-10 pr-20 w-44 xl:w-56 2xl:w-64 3xl:w-72 cursor-pointer "
+          onClick={redirectFunc}
+        >
+          <div className="grad-bg text-white text-center py-2 2xl:py-3 2xl:text-lg 3xl:py-4 3xl:text-xl rounded-md">
+            Log out
+          </div>
+        </div>
         <div className="flex flex-col form-box font-400">
           <div className="flex justify-center pt-8 text-4xl 2xl:text-5xl primary-purple">
             Hey, {displayName}
