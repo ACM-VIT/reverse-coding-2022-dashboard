@@ -5,7 +5,7 @@ import "./CountDown.css";
 const Countdown = () => {
   const renderer = ({ hours, minutes, seconds, completed }) => {
     if (completed) {
-      return <h1 className="mb-4">Round 1 has ended!</h1>;
+      return <h1 className=""> </h1>;
     }
     const addZero = (num) => {
       let time = num.toString();
