@@ -9,17 +9,14 @@ const LeaderboardItems = ({ person }) => {
   const [purple, setPurple] = useState("");
 
   useEffect(() => {
+    console.log("teams", person.name);
+    console.log("myteam", getMyTeam.name);
     if (getMyTeam.name === person.name) {
       setPurple("purple");
     }
-  }, [getMyTeam.name, person.team]);
+  }, [getMyTeam.name, person.name]);
 
   return (
-    // <tr>
-    //   <td>{person.id}</td>
-    //   <td>{person.name}</td>
-    //   <td>{person.name}</td>
-    // </tr>
     <div className="grid grid-cols-3 mx-40">
       <td className=" justify-start text-left text-xl 3xl:text-3xl 2xl:text-3xl py-4 3xl:py-6 2xl:py-6">
         {person.rank}

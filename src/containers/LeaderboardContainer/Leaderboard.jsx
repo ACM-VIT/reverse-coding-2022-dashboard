@@ -51,8 +51,8 @@ function Leaderboard() {
   // for (const i in getTeams) {
   //   console.log(getTeams[i].id);
   // }
-  console.log("teams", typeof getTeams);
-  console.log(getData);
+  // console.log("teams", typeof getTeams);
+  // console.log(getData);
 
   const pages = [];
   for (let i = 1; i <= Math.ceil(getData.length / itemsPerPage); i++) {
@@ -101,7 +101,7 @@ function Leaderboard() {
       <div className=" flex flex-col text-center text-white font-700">
         <div className="flex flex-col">
           <h1 className="primary-purple mt-16 text-xl 3xl:text-3xl 3xl:mt-20 2xl:text-3xl 2xl:mt-20">
-            Event ends in
+            Round 1 ends in
           </h1>
 
           <Countdown />
