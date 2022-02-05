@@ -12,6 +12,7 @@ import {
   TASK_RUNNER,
   SET_LOADING,
   SET_TRUE,
+  SET_REMOVE,
 } from "./postJudgeTypes";
 import { CODE_STATES } from "./states";
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
   taskRunner: [],
   loading: false,
   setTrue: false,
+  setRemove: false,
 };
 
 const postJudgeReducer = (state = initialState, action) => {
@@ -87,6 +89,11 @@ const postJudgeReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: action.payload,
+      };
+    case SET_REMOVE:
+      return {
+        ...state,
+        setRemove: action.payload,
       };
     default:
       return state;

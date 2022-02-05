@@ -40,7 +40,7 @@ const Ques = ({ data, input, postJudgepoints }) => {
   // console.log(open);
   const handleOpen = () => setOpen(true);
   const handleOpen2 = () => setOpen2(true);
-
+  // console.log("SATA SAMPLE INPUT", data.sampleInput);
   const handleClose = () => {
     setOpen(false);
     setFilename("");
@@ -119,6 +119,7 @@ const Ques = ({ data, input, postJudgepoints }) => {
   const getJudgetext = useSelector((state) => state.postJudge.judgestatetext);
   const getJudgeMain = useSelector((state) => state.postJudge.judgeMain);
   const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
+  // const getSampleCases = useSelector((state) => state.getAll.problems);
   // const allDisable = () => {
   //   if (getJudgeMain === "") { }
   // }
@@ -389,6 +390,8 @@ const Ques = ({ data, input, postJudgepoints }) => {
           maxPoints={data.maxPoints}
           data={data}
           inputprop={input}
+          sampleInput={data.sampleInput}
+          sampleOutput={data.sampleOutput}
         />
       </div>
     </div>
