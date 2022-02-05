@@ -4,6 +4,7 @@ import {
   GET_PROBLEMS,
   GET_TEAMS,
   GET_LEADERBOARD,
+  GET_RANK,
   GET_JUDGEPOINTS,
   LOGGED_ONCE,
 } from "./GetAllTypes";
@@ -13,6 +14,7 @@ const initialState = {
   problems: [],
   teams: {},
   leaderboard: [],
+  rank: {},
   judgePoints: [],
   loggedOnce: false,
 };
@@ -38,6 +40,11 @@ const getAllReducer = (state = initialState, action) => {
       return {
         ...state,
         leaderboard: action.payload,
+      };
+    case GET_RANK:
+      return {
+        ...state,
+        rank: action.payload,
       };
     case GET_JUDGEPOINTS:
       return {

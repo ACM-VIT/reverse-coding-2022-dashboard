@@ -14,6 +14,7 @@ import {
   getProblems,
   getTeams,
   getLeaderboard,
+  getRank,
   getJudgePoints,
   loggedOnce,
 } from "../../redux/GetAll/GetAllActions";
@@ -24,6 +25,7 @@ const Overview = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const loading = useSelector((state) => state.postJudge.loading);
+  const getMyRank = useSelector((state) => state.getAll.rank);
   const path = useLocation();
   const loggedonce = useSelector((state) => state.getAll.loggedOnce);
   useEffect(async () => {
@@ -75,7 +77,7 @@ const Overview = () => {
               },
             })
             .then(async (responseteams) => {
-              console.log("teams", responseteams);
+              // console.log("teams", responseteams);
               dispatch(getTeams(responseteams.data));
               await axios
                 .get(`${process.env.REACT_APP_BASEURL}/problems`, {
@@ -85,7 +87,7 @@ const Overview = () => {
                   },
                 })
                 .then(async (responseproblems) => {
-                  console.log("problems", responseproblems);
+                  // console.log("problems", responseproblems);
                   dispatch(getProblems(responseproblems.data));
                   await axios
                     .get(`${process.env.REACT_APP_BASEURL}/judge`, {
@@ -95,7 +97,7 @@ const Overview = () => {
                       },
                     })
                     .then(async (responsejudge) => {
-                      console.log("leaderboard", responsejudge);
+                      // console.log("leaderboard", responsejudge);
                       dispatch(getJudgePoints(responsejudge.data));
                       await axios
                         .get(`${process.env.REACT_APP_BASEURL}/teams/leader`, {
@@ -105,9 +107,26 @@ const Overview = () => {
                           },
                         })
                         .then((responseleaderboard) => {
-                          console.log("leaderboard", responseleaderboard);
+                          // console.log("leaderboard", responseleaderboard);
                           dispatch(getLeaderboard(responseleaderboard.data));
-                          dispatch(loggedOnce(true));
+                          axios
+                            .get(
+                              `${process.env.REACT_APP_BASEURL}/teams/getRank`,
+                              {
+                                headers: {
+                                  "Content-Type": "application/json",
+                                  authorization: `Bearer ${WT}`,
+                                },
+                              }
+                            )
+                            .then((responserank) => {
+                              dispatch(getRank(responserank.data));
+                              dispatch(loggedOnce(true));
+                            })
+                            .catch((err) => {
+                              dispatch(setLoading(false));
+                              toast.error("Error in fetching rank");
+                            });
                         })
                         .catch((err) => {
                           dispatch(setLoading(false));
@@ -149,7 +168,7 @@ const Overview = () => {
           },
         })
         .then(async (responsejudge) => {
-          console.log("leaderboard", responsejudge);
+          // console.log("leaderboard", responsejudge);
           dispatch(getJudgePoints(responsejudge.data));
           await axios
             .get(`${process.env.REACT_APP_BASEURL}/teams/leader`, {
@@ -159,7 +178,7 @@ const Overview = () => {
               },
             })
             .then((responseleaderboard) => {
-              console.log("leaderboard", responseleaderboard);
+              // console.log("leaderboard", responseleaderboard);
               dispatch(getLeaderboard(responseleaderboard.data));
               dispatch(loggedOnce(true));
             })
@@ -181,8 +200,8 @@ const Overview = () => {
 
   const team = useSelector((state) => state.getAll.teams);
   const submissions = useSelector((state) => state.getAll.judgePoints);
-  console.log("submissions", typeof submissions);
-  console.log(team, "tewammme");
+  // console.log("submissions", typeof submissions);
+  // console.log(team, "tewammme");
 
   // useEffect(() => {
   //   let count = 0;
@@ -264,7 +283,7 @@ const Overview = () => {
                 Rank
               </h1>
               <p className="text-4xl 2xl:text-5.5xl 3xl:text-6xl pt-1">
-                {team.points}
+                {getMyRank.rank}
               </p>
             </div>
           </div>
