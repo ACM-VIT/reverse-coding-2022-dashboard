@@ -34,7 +34,8 @@ function ModalRoulette(props) {
               </div>
               <div className="pb-4 pt-6 text-lg fontdmteam flex mx-auto font-400">
                 <span className="pr-2">
-                  Problem number 8 has been assigned to you as Question 1
+                  Problem number {props.problemNo} has been assigned to you as
+                  Question 1
                 </span>
               </div>
             </div>
