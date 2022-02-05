@@ -131,7 +131,7 @@ export const postJudge =
         dispatch(setLoading(false));
         toast.success("Running Test Cases");
         console.log(res);
-        let runafter4 = 0;
+        // let runafter4 = 0;
         const polling = await setInterval(() => {
           axios
             .get(`${process.env.REACT_APP_BASEURL}/judge/${res.data}`, {
@@ -191,37 +191,37 @@ export const postJudge =
                 response.data.testCase[3].state >= 3 &&
                 response.data.testCase[4].state >= 3
               ) {
-                runafter4 += 1;
-                console.log("RUNAFTER4", runafter4);
+                // runafter4 += 1;
+                // console.log("RUNAFTER4", runafter4);
                 const objfinal = {};
                 response.data.testCase.forEach((testCase) => {
                   objfinal[testCase.testCaseNumber] = testCase.state;
-                  console.log("final", testCase);
-                  console.log("objfinal", objfinal);
+                  // console.log("final", testCase);
+                  // console.log("objfinal", objfinal);
                 });
-                if (runafter4 === 5 || response.data.returned_testcases === 5) {
-                  console.log(WT);
-                  // axios
-                  //   .get(`${process.env.REACT_APP_BASEURL}/judge`, {
-                  //     headers: {
-                  //       "Content-Type": "application/json",
-                  //       authorization: `Bearer ${WT}`,
-                  //     },
-                  //   })
-                  //   .then((responsepoints) => {
-                  //     console.log("after poll", responsepoints.data);
-                  //     objfinal.points = responsepoints.data;
-                  //   })
-                  //   .catch((err) => {
-                  //     console.log("after poll", err);
-                  //     objfinal.points = response.data.points;
-                  //   });
-                  objfinal.points = response.data.points;
-                  dispatch(setTrue(true));
-                  dispatch(setDisable(false));
-                  dispatch(judgeMain(objfinal));
-                  clearInterval(polling);
-                }
+                // if (runafter4 === 5 || response.data.returned_testcases === 5) {
+                //   console.log(WT);
+                // axios
+                //   .get(`${process.env.REACT_APP_BASEURL}/judge`, {
+                //     headers: {
+                //       "Content-Type": "application/json",
+                //       authorization: `Bearer ${WT}`,
+                //     },
+                //   })
+                //   .then((responsepoints) => {
+                //     console.log("after poll", responsepoints.data);
+                //     objfinal.points = responsepoints.data;
+                //   })
+                //   .catch((err) => {
+                //     console.log("after poll", err);
+                //     objfinal.points = response.data.points;
+                //   });
+                objfinal.points = response.data.points;
+                dispatch(setTrue(true));
+                dispatch(setDisable(false));
+                dispatch(judgeMain(objfinal));
+                clearInterval(polling);
+                // }
               } else {
                 const obj = {};
                 console.log("done:", response.data.returned_testcases);
