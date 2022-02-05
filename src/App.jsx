@@ -65,7 +65,7 @@ const App = () => {
           <QuestionsMain />
         </Route>
         <Route exact path="/leaderboard">
-          {/* <Redirect exact from="/" to="/overview" /> */}
+          <Redirect exact from="/" to="/overview" />
           <Sidebar />
           <Leaderboard />
         </Route>
