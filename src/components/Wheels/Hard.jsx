@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Wheels.css";
 
 import { Wheel } from "react-custom-roulette";
+import $ from "jquery";
+
+// useEffect(() => {
+//   $(".gTLZXx").attr("src", "mac.svg");
+// });
 
 const data = [
   { option: "0", style: { backgroundColor: "#006900" } },
