@@ -148,7 +148,7 @@ const Ques = ({ data, input }) => {
               <h1 className="pt-1 pb-1 pr-2 2xl:pb-3 2xl:pt-2 3xl:pt-3.5 text-lg 2xl:text-2xl">
                 Test Cases
               </h1>
-              <div className="casess px-1 overflow-y-auto">
+              <div className="casess px-1 overflow-y-auto space-y-2">
                 <div
                   className={
                     CODE_STATES[getJudgeMain[1]]
