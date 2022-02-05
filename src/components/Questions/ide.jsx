@@ -370,7 +370,7 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
 
               <div className="bg-color pl-6 pt-6 output">
                 <h1>Output</h1>
-                {taskrunner}
+                <div dangerouslySetInnerHTML={{ __html: taskrunner }} />
               </div>
             </div>
           </div>
