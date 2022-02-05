@@ -26,6 +26,7 @@
 .output {
   width: 250px;
   height: 424px;
+  overflow-y: auto;
   border-radius: 4px;
 }
 
