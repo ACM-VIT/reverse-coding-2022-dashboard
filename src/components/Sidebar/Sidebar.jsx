@@ -45,7 +45,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="h-screen fixed top-0 md:left-0 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-3xl bg-black w-64 2xl:w-80 3xl:w-100 z-10 py-4 px-6 2xl:px-7 transition-all duration-300">
+    <div className="h-screen fixed top-0 md:left-0 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-3xl bg-black w-64 2xl:w-80 3xl:w-80 z-10 py-4 px-6 2xl:px-7 transition-all duration-300">
       <div className="flex-col items-stretch min-h-full w-full flex-nowrap relative">
         {/* <a href="#" className="mt-2 text-center w-full inline-block"> */}
         <img

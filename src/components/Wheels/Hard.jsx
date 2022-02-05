@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Wheels.css";
 
 import { Wheel } from "react-custom-roulette";
-import $ from "jquery";
+// import $ from "jquery";
 
 // useEffect(() => {
 //   $(".gTLZXx").attr("src", "mac.svg");
@@ -68,7 +68,7 @@ const Hard = () => {
 
   return (
     <div className="">
-      <header className="">
+      {/* <header className="">
         <div>
           <Wheel
             mustStartSpinning={mustSpin}
@@ -97,7 +97,7 @@ const Hard = () => {
         >
           SPIN
         </div>
-      </header>
+      </header> */}
     </div>
   );
 };
