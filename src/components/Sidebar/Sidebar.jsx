@@ -78,7 +78,7 @@ const Sidebar = () => {
                 Overview
               </Link>
             </li>
-            <li
+            {/* <li
               className={`${
                 splitLocation[1] === "roulette" ? "activeClass" : ""
               } rounded-lg mb-2 2xl:mb-3`}
@@ -90,7 +90,7 @@ const Sidebar = () => {
               >
                 Roulette
               </Link>
-            </li>
+            </li> */}
             <li
               className={`${
                 splitLocation[1] === "questions" ? "activeClass" : ""
