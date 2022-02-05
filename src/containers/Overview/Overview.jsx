@@ -97,22 +97,22 @@ const Overview = () => {
                     .then(async (responsejudge) => {
                       console.log("leaderboard", responsejudge);
                       dispatch(getJudgePoints(responsejudge.data));
-                      await axios
-                        .get(`${process.env.REACT_APP_BASEURL}/teams/leader`, {
-                          headers: {
-                            "Content-Type": "application/json",
-                            authorization: `Bearer ${WT}`,
-                          },
-                        })
-                        .then((responseleaderboard) => {
-                          console.log("leaderboard", responseleaderboard);
-                          dispatch(getLeaderboard(responseleaderboard.data));
-                          dispatch(loggedOnce(true));
-                        })
-                        .catch((err) => {
-                          dispatch(setLoading(false));
-                          toast.error("Error in fetching resources");
-                        });
+                      // await axios
+                      //   .get(`${process.env.REACT_APP_BASEURL}/teams/leader`, {
+                      //     headers: {
+                      //       "Content-Type": "application/json",
+                      //       authorization: `Bearer ${WT}`,
+                      //     },
+                      //   })
+                      //   .then((responseleaderboard) => {
+                      //     console.log("leaderboard", responseleaderboard);
+                      //     dispatch(getLeaderboard(responseleaderboard.data));
+                      //     dispatch(loggedOnce(true));
+                      //   })
+                      //   .catch((err) => {
+                      //     dispatch(setLoading(false));
+                      //     toast.error("Error in fetching resources");
+                      //   });
                     })
                     .catch((err) => {
                       dispatch(setLoading(false));
