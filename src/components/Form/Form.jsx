@@ -65,7 +65,7 @@ const Form = () => {
     e.preventDefault();
 
     /** Regex for freshers'(2022) reg number */
-    const reg = /^21[A-Z]{3}[0-9]{4}$/;
+    // const reg = /^21[A-Z]{3}[0-9]{4}$/;
 
     /** Regex for college name */
     const collegeRegEx = /^[A-Za-z ]+$/;
@@ -80,8 +80,6 @@ const Form = () => {
       toast.error("Fill all the fields!");
     } else if (collegeRegEx.test(college) === false) {
       toast.error("College name should be in alphabets!");
-    } else if (fresher.value === "Yes" && reg.test(registration) === false) {
-      toast.error("Invalid registration number!");
     } else if (phoneRegEx.test(phone) === false) {
       toast.error("Invalid phone number!");
     } else {
@@ -163,7 +161,7 @@ const Form = () => {
                 onChange={(e) => setCollege(e.target.value)}
               />
               <label className="text-normal 2xl:text-md 3xl:text-lg">
-                Are you a Fresher? (eligible for only VIT Students)
+                Are you a Fresher? (eligible for only VIT Vellore Students)
               </label>
               <div className="flex items-center py-2 mb-3">
                 <input
