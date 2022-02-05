@@ -360,7 +360,7 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
                   />
                   <div className="flex ">
                     <div onClick={handleClickRun}>
-                      <div className="run-btn absolute bottom-0 mb-4 2xl:mb-6 text-white  flex">
+                      <div className="run-btn absolute bottom-0 mb-4 2xl:mb-6 text-white  flex cursor-pointer">
                         <img className="2xl:h-5" src={run} alt="run" />
                       </div>
                     </div>

@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import LoadingOverlay from "react-loading-overlay";
 
+import { toast } from "react-toastify";
 import admin from "../../assets/images/admin.svg";
 import Submissions from "../../components/Submissions/Submissions";
 import "./Overview.css";
@@ -39,13 +40,6 @@ const Overview = () => {
       sessionStorage.getItem("WT") === ""
     ) {
       window.location.href = "/login";
-    } else if (
-      sessionStorage.getItem("FF") === "null" ||
-      sessionStorage.getItem("FF") === null ||
-      sessionStorage.getItem("FF") === undefined
-    ) {
-      console.log("From else if ", sessionStorage.getItem("FF"));
-      window.location.href = "/form";
     } else if (loggedonce === false) {
       const WT = sessionStorage.getItem("WT");
 
@@ -107,27 +101,36 @@ const Overview = () => {
                           dispatch(loggedOnce(true));
                         })
                         .catch((err) => {
-                          console.log(err);
+                          dispatch(setLoading(false));
+                          toast.error("Error in fetching resources");
                         });
                     })
                     .catch((err) => {
+                      dispatch(setLoading(false));
                       console.log(err);
+                      toast.error("Error in fetching resources");
                     });
                 })
                 .catch((err) => {
+                  dispatch(setLoading(false));
                   console.log(err);
+                  toast.error("Error in fetching resources");
                 });
             })
             .catch((err) => {
+              dispatch(setLoading(false));
               console.log("err", err);
+              toast.error("Error in fetching resources");
             });
           dispatch(setLoading(false));
         })
         .catch((err) => {
           console.log("err", err);
+          dispatch(setLoading(false));
         });
     } else if (loggedonce === true) {
       const WT = sessionStorage.getItem("WT");
+      dispatch(setLoading(true));
 
       await axios
         .get(`${process.env.REACT_APP_BASEURL}/judge`, {
@@ -152,12 +155,15 @@ const Overview = () => {
               dispatch(loggedOnce(true));
             })
             .catch((err) => {
+              dispatch(setLoading(false));
               console.log(err);
             });
         })
         .catch((err) => {
+          dispatch(setLoading(false));
           console.log(err);
         });
+      dispatch(setLoading(false));
     }
   }, []);
 
