@@ -97,22 +97,22 @@ const Overview = () => {
                     .then(async (responsejudge) => {
                       console.log("leaderboard", responsejudge);
                       dispatch(getJudgePoints(responsejudge.data));
-                      // await axios
-                      //   .get(`${process.env.REACT_APP_BASEURL}/teams/leader`, {
-                      //     headers: {
-                      //       "Content-Type": "application/json",
-                      //       authorization: `Bearer ${WT}`,
-                      //     },
-                      //   })
-                      //   .then((responseleaderboard) => {
-                      //     console.log("leaderboard", responseleaderboard);
-                      //     dispatch(getLeaderboard(responseleaderboard.data));
-                      //     dispatch(loggedOnce(true));
-                      //   })
-                      //   .catch((err) => {
-                      //     dispatch(setLoading(false));
-                      //     toast.error("Error in fetching resources");
-                      //   });
+                      await axios
+                        .get(`${process.env.REACT_APP_BASEURL}/teams/leader`, {
+                          headers: {
+                            "Content-Type": "application/json",
+                            authorization: `Bearer ${WT}`,
+                          },
+                        })
+                        .then((responseleaderboard) => {
+                          console.log("leaderboard", responseleaderboard);
+                          dispatch(getLeaderboard(responseleaderboard.data));
+                          dispatch(loggedOnce(true));
+                        })
+                        .catch((err) => {
+                          dispatch(setLoading(false));
+                          toast.error("Error in fetching resources");
+                        });
                     })
                     .catch((err) => {
                       dispatch(setLoading(false));
@@ -182,21 +182,21 @@ const Overview = () => {
   const team = useSelector((state) => state.getAll.teams);
   const submissions = useSelector((state) => state.getAll.judgePoints);
   console.log("submissions", typeof submissions);
-  console.log(team);
+  console.log(team, "tewammme");
 
-  useEffect(() => {
-    let count = 0;
-    // eslint-disable-next-line array-callback-return
-    submissions.map((sub) => {
-      if (sub.points === null) {
-        count += 1;
-      }
-    });
-    console.log("totalNulls", count);
-    if (count === submissions.length) {
-      setNull(true);
-    }
-  }, [submissions]);
+  // useEffect(() => {
+  //   let count = 0;
+  //   // eslint-disable-next-line array-callback-return
+  //   submissions.map((sub) => {
+  //     if (sub.points === null) {
+  //       count += 1;
+  //     }
+  //   });
+  //   console.log("totalNulls", count);
+  //   if (count === submissions.length) {
+  //     setNull(true);
+  //   }
+  // }, [submissions]);
 
   function submissionRedirect() {
     history.push("/questions");

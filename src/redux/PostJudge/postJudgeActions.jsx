@@ -13,6 +13,7 @@ import {
   SET_DISABLE,
   TASK_RUNNER,
   SET_LOADING,
+  SET_TRUE,
 } from "./postJudgeTypes";
 
 // export const caseOne = (stateone) => ({
@@ -59,17 +60,26 @@ export const setLoading = (bool) => ({
   type: SET_LOADING,
   payload: bool,
 });
+export const setTrue = (bool) => ({
+  type: SET_TRUE,
+  payload: bool,
+});
 
 export const postTask = (input, id) => (dispatch) => {
   dispatch(setDisable(true));
   dispatch(setLoading(true));
   const WT = sessionStorage.getItem("WT");
+  let inputData = input.toString();
+  if (inputData.endsWith("\n") === false) {
+    inputData += "\n";
+  }
+
   axios
     .post(
       `${process.env.REACT_APP_BASEURL}/runner`,
       {
         id: id,
-        input: input,
+        input: inputData,
       },
       {
         headers: {
@@ -82,7 +92,9 @@ export const postTask = (input, id) => (dispatch) => {
       dispatch(setDisable(false));
       dispatch(setLoading(false));
       console.log("response runner", res);
-      dispatch(taskRunner(res.data));
+      let result = res.data;
+      result = result.toString().replace(/\n\r?/g, "<br />");
+      dispatch(taskRunner(result));
     })
     .catch((err) => {
       dispatch(setDisable(false));
@@ -172,7 +184,13 @@ export const postJudge =
               //     console.log("state:", testCase.state);
               //   });
               // }
-              if (response.data.returned_testcases >= 4) {
+              if (
+                response.data.testCase[0].state >= 3 &&
+                response.data.testCase[1].state >= 3 &&
+                response.data.testCase[2].state >= 3 &&
+                response.data.testCase[3].state >= 3 &&
+                response.data.testCase[4].state >= 3
+              ) {
                 runafter4 += 1;
                 console.log("RUNAFTER4", runafter4);
                 const objfinal = {};
@@ -183,21 +201,23 @@ export const postJudge =
                 });
                 if (runafter4 === 5 || response.data.returned_testcases === 5) {
                   console.log(WT);
-                  axios
-                    .get(`${process.env.REACT_APP_BASEURL}/judge`, {
-                      headers: {
-                        "Content-Type": "application/json",
-                        authorization: `Bearer ${WT}`,
-                      },
-                    })
-                    .then((responsepoints) => {
-                      console.log("after poll", responsepoints.data);
-                      objfinal.points = responsepoints.data;
-                    })
-                    .catch((err) => {
-                      console.log("after poll", err);
-                      objfinal.points = response.data.points;
-                    });
+                  // axios
+                  //   .get(`${process.env.REACT_APP_BASEURL}/judge`, {
+                  //     headers: {
+                  //       "Content-Type": "application/json",
+                  //       authorization: `Bearer ${WT}`,
+                  //     },
+                  //   })
+                  //   .then((responsepoints) => {
+                  //     console.log("after poll", responsepoints.data);
+                  //     objfinal.points = responsepoints.data;
+                  //   })
+                  //   .catch((err) => {
+                  //     console.log("after poll", err);
+                  //     objfinal.points = response.data.points;
+                  //   });
+                  objfinal.points = response.data.points;
+                  dispatch(setTrue(true));
                   dispatch(setDisable(false));
                   dispatch(judgeMain(objfinal));
                   clearInterval(polling);

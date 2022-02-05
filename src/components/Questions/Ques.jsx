@@ -20,7 +20,7 @@ import { judgeMain, postJudge } from "../../redux/PostJudge/postJudgeActions";
 import "./Ques.css";
 import { CODE_STATES } from "../../redux/PostJudge/states";
 
-const Ques = ({ data, input }) => {
+const Ques = ({ data, input, postJudgepoints }) => {
   const [active, setActive] = useState({
     windowsImage: true,
     linuxImage: false,
@@ -129,7 +129,7 @@ const Ques = ({ data, input }) => {
   console.log(getData);
   const handleupload = async () => {
     console.log("handleuplaod");
-    await dispatch(postJudge(problemid, getTeamid, fileType, downloadFile));
+    await dispatch(postJudge(data.id, getTeamid, fileType, downloadFile));
     setDisable(true);
     handleClose();
   };
@@ -148,7 +148,7 @@ const Ques = ({ data, input }) => {
               <h1 className="pt-1 pb-1 pr-2 2xl:pb-3 2xl:pt-2 3xl:pt-3.5 text-lg 2xl:text-2xl">
                 Test Cases
               </h1>
-              <div className="casess px-1 overflow-y-auto space-y-2">
+              <div className="casess px-1 overflow-y-auto">
                 <div
                   className={
                     CODE_STATES[getJudgeMain[1]]
@@ -249,6 +249,12 @@ const Ques = ({ data, input }) => {
                     ? "-"
                     : data.points}
                   /{data.maxPoints}
+                  {/* {data.pointsJudgeMain !== null
+                    ? data.pointsJudgeMain
+                    : data.points === null
+                    ? "-"
+                    : data.points}
+                  /{data.maxPoints} */}
                   {/* {data.pointsJudgeMain !== null
                     ? data.pointsJudgeMain
                     : data.points === null
