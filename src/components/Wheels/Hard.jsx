@@ -4,7 +4,7 @@ import "./Wheels.css";
 import { Wheel } from "react-custom-roulette";
 import { useSelector, useDispatch } from "react-redux";
 import ModalRoulette from "../Modals/ModalRoulette";
-
+import { postRoullete } from "../../redux/PostJudge/postJudgeActions";
 const data = [
   { option: "0", style: { backgroundColor: "#006900" } },
   { option: "1" },
@@ -48,6 +48,7 @@ const fontSize = 20;
 const textDistance = 86;
 
 const Hard = () => {
+  const dispatch = useDispatch();
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [prizeSelected, setPrizeSelected] = useState("0");
@@ -72,7 +73,7 @@ const Hard = () => {
     console.log(newPrizeNumber);
     const easyID = easyARR[newPrizeNumber].id;
     console.log(easyID);
-    // dispatch(postPrize(easyID));
+    dispatch(postRoullete(easyID));
     // console.log("aaaa", a);
     setPrizeSelected(easyID);
     // console.log("newPrizeNumber", newPrizeNumber);

@@ -14,6 +14,7 @@ import {
   TASK_RUNNER,
   SET_LOADING,
   SET_TRUE,
+  GET_ASSIGNED,
 } from "./postJudgeTypes";
 
 // export const caseOne = (stateone) => ({
@@ -64,6 +65,46 @@ export const setTrue = (bool) => ({
   type: SET_TRUE,
   payload: bool,
 });
+export const getAssigned = (assigned) => ({
+  type: GET_ASSIGNED,
+  payload: assigned,
+});
+export const postRoullete = (idroulette) => (dispatch) => {
+  const WT = sessionStorage.getItem("WT");
+  axios
+    .post(
+      `${process.env.REACT_APP_BASEURL}/problem/${idroulette}`,
+      {
+        id: idroulette,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${WT}`,
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res.data);
+      axios
+        .get(`${process.env.REACT_APP_BASEURL}/getassigned/`, {
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${WT}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          dispatch(getAssigned(response.data));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 export const postTask = (input, id) => (dispatch) => {
   dispatch(setDisable(true));

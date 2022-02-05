@@ -11,5 +11,6 @@ export const SET_DISABLE = "SET_DISABLE";
 export const TASK_RUNNER = "TASK_RUNNER";
 export const SET_LOADING = "SET_LOADING";
 export const SET_TRUE = "SET_TRUE";
-export const POST_ROULETTE = "POST_ROULETTE";
+// export const POST_ROULETTE = "POST_ROULETTE";
+export const GET_ASSIGNED = "GET_ASSIGNED";
 // export const CLEAR_INPUT = "CLEAR_INPUT";
