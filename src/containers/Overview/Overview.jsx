@@ -14,6 +14,7 @@ import {
   getProblems,
   getTeams,
   getLeaderboard,
+  getRank,
   getJudgePoints,
   loggedOnce,
 } from "../../redux/GetAll/GetAllActions";
@@ -24,6 +25,7 @@ const Overview = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const loading = useSelector((state) => state.postJudge.loading);
+  const getMyRank = useSelector((state) => state.getAll.rank);
   const path = useLocation();
   const loggedonce = useSelector((state) => state.getAll.loggedOnce);
   useEffect(async () => {
@@ -107,7 +109,24 @@ const Overview = () => {
                         .then((responseleaderboard) => {
                           console.log("leaderboard", responseleaderboard);
                           dispatch(getLeaderboard(responseleaderboard.data));
-                          dispatch(loggedOnce(true));
+                          axios
+                            .get(
+                              `${process.env.REACT_APP_BASEURL}/teams/getRank`,
+                              {
+                                headers: {
+                                  "Content-Type": "application/json",
+                                  authorization: `Bearer ${WT}`,
+                                },
+                              }
+                            )
+                            .then((responserank) => {
+                              dispatch(getRank(responserank.data));
+                              dispatch(loggedOnce(true));
+                            })
+                            .catch((err) => {
+                              dispatch(setLoading(false));
+                              toast.error("Error in fetching rank");
+                            });
                         })
                         .catch((err) => {
                           dispatch(setLoading(false));
@@ -264,7 +283,7 @@ const Overview = () => {
                 Rank
               </h1>
               <p className="text-4xl 2xl:text-5.5xl 3xl:text-6xl pt-1">
-                {team.points}
+                {getMyRank.rank}
               </p>
             </div>
           </div>
