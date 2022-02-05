@@ -62,6 +62,7 @@ export const setLoading = (bool) => ({
 
 export const postTask = (input, id) => (dispatch) => {
   dispatch(setDisable(true));
+  dispatch(setLoading(true));
   const WT = sessionStorage.getItem("WT");
   axios
     .post(
@@ -78,14 +79,16 @@ export const postTask = (input, id) => (dispatch) => {
       }
     )
     .then((res) => {
+      dispatch(setDisable(false));
+      dispatch(setLoading(false));
       console.log("response runner", res);
       dispatch(taskRunner(res.data));
-      setDisable(false);
     })
     .catch((err) => {
+      dispatch(setDisable(false));
+      dispatch(setLoading(false));
       console.log("runner", err);
       toast.error("Error. Please try again");
-      setDisable(false);
     });
 };
 
@@ -215,8 +218,9 @@ export const postJudge =
         // axios.get
       })
       .catch((err) => {
+        dispatch(setDisable(false));
+        dispatch(setLoading(false));
         console.log(err);
-        setDisable(false);
         toast.error("Error in running test cases. Please try again");
       });
   };
