@@ -23,8 +23,8 @@ function Questions() {
   const dispatch = useDispatch();
   console.log("getDataBefore", getData);
   const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
-  const getJudgeMain = useSelector((state) => state.postJudge.judgeMain);
-  console.log("GETJUDGEMAIN", getJudgeMain);
+  const postJudgePoints = useSelector((state) => state.postJudge.judgeMain);
+  console.log("GETJUDGEMAIN", postJudgePoints);
   for (let i = 0; i < getData.length; i++) {
     getData[i] = {
       ...getData[i],
@@ -147,7 +147,13 @@ function Questions() {
         </div>
 
         {currentItems.map((data) => (
-          <Ques data={data} input={input} />
+          <Ques
+            data={data}
+            input={input}
+            postJudgePoints={
+              postJudgePoints.points === null ? "-" : postJudgePoints.points
+            }
+          />
         ))}
       </div>
     </LoadingOverlay>

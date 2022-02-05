@@ -13,6 +13,7 @@ import {
   SET_DISABLE,
   TASK_RUNNER,
   SET_LOADING,
+  SET_TRUE,
 } from "./postJudgeTypes";
 
 // export const caseOne = (stateone) => ({
@@ -57,6 +58,10 @@ export const taskRunner = (obj) => ({
 });
 export const setLoading = (bool) => ({
   type: SET_LOADING,
+  payload: bool,
+});
+export const setTrue = (bool) => ({
+  type: SET_TRUE,
   payload: bool,
 });
 
@@ -172,7 +177,13 @@ export const postJudge =
               //     console.log("state:", testCase.state);
               //   });
               // }
-              if (response.data.returned_testcases >= 4) {
+              if (
+                response.data.testCase[0].state >= 3 &&
+                response.data.testCase[1].state >= 3 &&
+                response.data.testCase[2].state >= 3 &&
+                response.data.testCase[3].state >= 3 &&
+                response.data.testCase[4].state >= 3
+              ) {
                 runafter4 += 1;
                 console.log("RUNAFTER4", runafter4);
                 const objfinal = {};
@@ -198,6 +209,8 @@ export const postJudge =
                       console.log("after poll", err);
                       objfinal.points = response.data.points;
                     });
+                  // objfinal.points = response.data.points;
+                  dispatch(setTrue(true));
                   dispatch(setDisable(false));
                   dispatch(judgeMain(objfinal));
                   clearInterval(polling);

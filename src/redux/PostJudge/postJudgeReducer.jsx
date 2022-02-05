@@ -11,6 +11,7 @@ import {
   SET_DISABLE,
   TASK_RUNNER,
   SET_LOADING,
+  SET_TRUE,
 } from "./postJudgeTypes";
 import { CODE_STATES } from "./states";
 const initialState = {
@@ -21,6 +22,7 @@ const initialState = {
   disable: false,
   taskRunner: [],
   loading: false,
+  setTrue: false,
 };
 
 const postJudgeReducer = (state = initialState, action) => {
