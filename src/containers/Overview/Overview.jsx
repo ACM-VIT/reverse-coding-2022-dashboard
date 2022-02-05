@@ -30,8 +30,17 @@ const Overview = () => {
     const token = path.pathname.slice(10);
 
     if (token) {
-      sessionStorage.setItem("WT", token);
-      window.history.replaceState(null, null, "/overview");
+      if (
+        token === "401" ||
+        token === "401#" ||
+        token === "404" ||
+        token === "404#"
+      ) {
+        window.location.href = "/401";
+      } else {
+        sessionStorage.setItem("WT", token);
+        window.history.replaceState(null, null, "/overview");
+      }
     }
     if (
       sessionStorage.getItem("WT") === null ||

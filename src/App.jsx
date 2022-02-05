@@ -81,7 +81,7 @@ const App = () => {
         </Route> */}
         <Route exact path="/login" component={Login} />
         <ProtectedRoute exact path="/form" component={Form} />
-        <Route exact path="/overview/401" component={NotAuth401} />
+        <Route exact path="/401" component={NotAuth401} />
         <Route path="*" component={NotFound404} />
       </Switch>
     </Provider>
