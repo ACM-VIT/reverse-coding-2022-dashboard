@@ -21,10 +21,10 @@ function Questions() {
   const loading = useSelector((state) => state.postJudge.loading);
 
   const dispatch = useDispatch();
-  console.log("getDataBefore", getData);
+  // console.log("getDataBefore", getData);
   const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
   const postJudgePoints = useSelector((state) => state.postJudge.judgeMain);
-  console.log("GETJUDGEMAIN", postJudgePoints);
+  // console.log("GETJUDGEMAIN", postJudgePoints);
   for (let i = 0; i < getData.length; i++) {
     getData[i] = {
       ...getData[i],
@@ -38,7 +38,7 @@ function Questions() {
       // getJudgeMain[i].points === undefined ? "-" : getJudgeMain[i].points,
     };
   }
-  console.log("getDataAfter", getData);
+  // console.log("getDataAfter", getData);
   const [input, setInput] = useState(false);
 
   const [currentPage, setcurrentPage] = useState(1);
@@ -55,7 +55,7 @@ function Questions() {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = getData.slice(indexOfFirstItem, indexOfLastItem);
-  console.log(currentItems);
+  // console.log(currentItems);
   const handleClick = (e) => {
     setcurrentPage(Number(e.target.id));
     setInput(true);
