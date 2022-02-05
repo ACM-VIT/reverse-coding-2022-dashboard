@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import "./Wheels.css";
 
 import { Wheel } from "react-custom-roulette";
@@ -46,7 +46,7 @@ const radiusLineWidth = 3;
 const fontSize = 20;
 const textDistance = 86;
 
-const Hard = () => {
+const Medium = () => {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [prizeSelected, setPrizeSelected] = useState("0");
@@ -117,4 +117,4 @@ const Hard = () => {
   );
 };
 
-export default Hard;
+export default memo(Medium);
