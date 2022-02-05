@@ -9,3 +9,5 @@ export const JUDGE_MAIN = "JUDGE_MAIN";
 export const CLEAR_ALL = "CLEAR_ALL";
 export const SET_DISABLE = "SET_DISABLE";
 export const TASK_RUNNER = "TASK_RUNNER";
+export const SET_LOADING = "SET_LOADING";
+// export const CLEAR_INPUT = "CLEAR_INPUT";

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { useSelector } from "react-redux";
+/* eslint-disable import/prefer-default-export */
 import "./LeaderboardItems.css";
 
 const LeaderboardItems = ({ person }) => {
@@ -36,4 +37,4 @@ const LeaderboardItems = ({ person }) => {
   );
 };
 
-export default LeaderboardItems;
+export default memo(LeaderboardItems);

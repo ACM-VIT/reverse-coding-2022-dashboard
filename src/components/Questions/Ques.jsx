@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoadingOverlay from "react-loading-overlay";
 
 import Ide from "./ide";
 import Modals from "../Modals/Modals";
@@ -49,16 +50,14 @@ const Ques = ({ data, input }) => {
     reader.readAsDataURL(file);
     reader.onload = () => {
       const base64 = reader.result;
-      console.log("base6444", base64.split(",")[1]);
-      console.log("base64", window.btoa(base64));
       setDownloadFile(base64.split(",")[1]);
     };
     reader.onerror = (error) => {
+      toast.error("Try Again");
       console.log("Error: ", error);
     };
   };
   const handleClose2 = () => {
-    console.log("close");
     setOpen2(false);
   };
   const handlechangefile = async (e) => {
@@ -73,8 +72,8 @@ const Ques = ({ data, input }) => {
           setDisable(true);
           setFilename("");
           console.log("file not supported");
-          toast.error("File type no supported");
-        } else if (e.target.files[0].size > 8000) {
+          toast.error("File type not supported");
+        } else if (e.target.files[0].size > 5000) {
           setDisable(true);
           console.log("file size is too big");
           setFilename("");
@@ -88,6 +87,7 @@ const Ques = ({ data, input }) => {
         }
       } catch (error) {
         console.log("errorfew", error);
+        toast.error("Error in uploading");
       }
     } else {
       setDisable(true);
@@ -243,18 +243,18 @@ const Ques = ({ data, input }) => {
 
                 <div className="ml-8 2xl:ml-16 text-white font-700 text-lg 2xl:text-2xl">
                   Points: <br />
-                  {/* {getJudgeMain.points
-                    ? getJudgeMain.points
-                    : data.points === null
-                    ? "_"
-                    : data.points}
-                  /{data.maxPoints} */}
                   {getJudgeMain.points
                     ? getJudgeMain.points
                     : data.points === null
                     ? "-"
                     : data.points}
                   /{data.maxPoints}
+                  {/* {data.pointsJudgeMain !== null
+                    ? data.pointsJudgeMain
+                    : data.points === null
+                    ? "-"
+                    : data.points}
+                  /{data.maxPoints} */}
                 </div>
               </div>
             </div>
