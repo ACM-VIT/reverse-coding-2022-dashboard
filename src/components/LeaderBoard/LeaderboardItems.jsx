@@ -9,7 +9,6 @@ const LeaderboardItems = ({ person }) => {
   const [purple, setPurple] = useState("");
 
   useEffect(() => {
-    // console.log(person.name);
     if (getMyTeam.name === person.name) {
       setPurple("purple");
     }
