@@ -237,18 +237,18 @@ const Ques = ({ data, input }) => {
 
                 <div className=" ml-8 2xl:ml-20 text-white font-700 text-lg 2xl:text-2xl">
                   Points: <br />
-                  {/* {getJudgeMain.points
+                  {getJudgeMain.points
                     ? getJudgeMain.points
-                    : data.points === null
-                    ? "_"
-                    : data.points}
-                  /{data.maxPoints} */}
-                  {data.pointsJudgeMain
-                    ? data.pointsJudgeMain
                     : data.points === null
                     ? "-"
                     : data.points}
                   /{data.maxPoints}
+                  {/* {data.pointsJudgeMain !== null
+                    ? data.pointsJudgeMain
+                    : data.points === null
+                    ? "-"
+                    : data.points}
+                  /{data.maxPoints} */}
                 </div>
               </div>
             </div>

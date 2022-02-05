@@ -90,11 +90,8 @@ export const postTask = (input, id) => (dispatch) => {
 
 export const postJudge =
   (problemid, getTeamid, fileType, downloadFile) => (dispatch) => {
-    console.log("problemid", problemid);
-    console.log("getTeamid", getTeamid);
-    console.log("fileType", fileType);
-    console.log("downloadFile", downloadFile);
     dispatch(setDisable(true));
+    dispatch(setLoading(true));
     const TK = sessionStorage.getItem("TK");
     const WT = sessionStorage.getItem("WT");
     axios
@@ -114,6 +111,7 @@ export const postJudge =
         }
       )
       .then(async (res) => {
+        dispatch(setLoading(false));
         console.log(res);
         let runafter4 = 0;
         const polling = await setInterval(() => {
