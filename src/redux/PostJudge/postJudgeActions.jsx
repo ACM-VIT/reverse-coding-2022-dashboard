@@ -73,9 +73,9 @@ export const postRoullete = (idroulette) => (dispatch) => {
   const WT = sessionStorage.getItem("WT");
   axios
     .post(
-      `${process.env.REACT_APP_BASEURL}/problem/${idroulette}`,
+      `${process.env.REACT_APP_BASEURL}/teams/problems`,
       {
-        id: idroulette,
+        problemID: idroulette,
       },
       {
         headers: {
@@ -87,7 +87,7 @@ export const postRoullete = (idroulette) => (dispatch) => {
     .then((res) => {
       console.log(res.data);
       axios
-        .get(`${process.env.REACT_APP_BASEURL}/getassigned/`, {
+        .get(`${process.env.REACT_APP_BASEURL}/teams/getassignedproblems`, {
           headers: {
             "Content-Type": "application/json",
             authorization: `Bearer ${WT}`,
