@@ -12,17 +12,21 @@ import Backdrop from "@material-ui/core/Backdrop";
 import { getLaunch } from "../../redux/QuestionsLaunch/questionsLaunchActions";
 
 import "./Sidebar.css";
+// import ModalForm from "../Modals/ModalForm";
 import logo from "../../assets/images/logo.svg";
 import logout from "../../assets/images/logout2.svg";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
+  // const [open2, setOpen2] = useState(false);
 
   const history = useHistory();
   const dispatch = useDispatch();
   const location = useLocation();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  // const handleOpen2 = () => setOpen2(true);
+  // const handleClose2 = () => setOpen2(false);
 
   const { pathname } = location;
   const splitLocation = pathname.split("/");
@@ -33,7 +37,7 @@ const Sidebar = () => {
   // team.participants.map((part) => {
   //   console.log(part.name);
   // });
-  console.log("participant", participant);
+  // console.log("participant", participant);
   const logoutfunc = () => {
     sessionStorage.removeItem("WT");
     sessionStorage.removeItem("cc");
@@ -41,7 +45,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="h-screen fixed top-0 md:left-0 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-3xl bg-black w-64 2xl:w-80 3xl:w-100 z-10 py-4 px-6 2xl:px-7 transition-all duration-300">
+    <div className="h-screen fixed top-0 md:left-0 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-3xl bg-black w-64 2xl:w-80 3xl:w-80 z-10 py-4 px-6 2xl:px-7 transition-all duration-300">
       <div className="flex-col items-stretch min-h-full w-full flex-nowrap relative">
         {/* <a href="#" className="mt-2 text-center w-full inline-block"> */}
         <img
@@ -78,7 +82,7 @@ const Sidebar = () => {
                 Overview
               </Link>
             </li>
-            {/* <li
+            <li
               className={`${
                 splitLocation[1] === "roulette" ? "activeClass" : ""
               } rounded-lg mb-2 2xl:mb-3`}
@@ -90,7 +94,7 @@ const Sidebar = () => {
               >
                 Roulette
               </Link>
-            </li> */}
+            </li>
             <li
               className={`${
                 splitLocation[1] === "questions" ? "activeClass" : ""
@@ -148,6 +152,7 @@ const Sidebar = () => {
         </div>
         {/* ))} */}
       </div>
+      {/* <ModalForm open={open2} onClose={handleClose2} /> */}
 
       <Modal
         open={open}

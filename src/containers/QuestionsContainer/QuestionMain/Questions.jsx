@@ -16,15 +16,15 @@ import { clearAll } from "../../../redux/PostJudge/postJudgeActions";
 import "./Questions.css";
 
 function Questions() {
-  const getData = useSelector((state) => state.getAll.problems);
+  const getData = useSelector((state) => state.postJudge.getAssigned);
   const getDisable = useSelector((state) => state.postJudge.disable);
   const loading = useSelector((state) => state.postJudge.loading);
 
   const dispatch = useDispatch();
-  console.log("getDataBefore", getData);
+  // console.log("getDataBefore", getData);
   const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
-  const getJudgeMain = useSelector((state) => state.postJudge.judgeMain);
-  console.log("GETJUDGEMAIN", getJudgeMain);
+  const postJudgePoints = useSelector((state) => state.postJudge.judgeMain);
+  // console.log("GETJUDGEMAIN", postJudgePoints);
   for (let i = 0; i < getData.length; i++) {
     getData[i] = {
       ...getData[i],
@@ -38,7 +38,7 @@ function Questions() {
       // getJudgeMain[i].points === undefined ? "-" : getJudgeMain[i].points,
     };
   }
-  console.log("getDataAfter", getData);
+  // console.log("getDataAfter", getData);
   const [input, setInput] = useState(false);
 
   const [currentPage, setcurrentPage] = useState(1);
@@ -55,7 +55,7 @@ function Questions() {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = getData.slice(indexOfFirstItem, indexOfLastItem);
-  console.log(currentItems);
+  // console.log(currentItems);
   const handleClick = (e) => {
     setcurrentPage(Number(e.target.id));
     setInput(true);
@@ -92,6 +92,7 @@ function Questions() {
       </li>
     );
   }
+  console.log("getdata length", getData.length);
   return (
     <LoadingOverlay
       active={loading}
@@ -103,7 +104,11 @@ function Questions() {
         },
       }}
     >
-      <div className="md:ml-64 2xl:ml-80 3xl:ml-100">
+      <div
+        className={
+          getData.length > 0 ? "md:ml-64 2xl:ml-80 3xl:ml-100" : "hidden"
+        }
+      >
         <div
           className={
             getDisable
@@ -147,8 +152,21 @@ function Questions() {
         </div>
 
         {currentItems.map((data) => (
-          <Ques data={data} input={input} />
+          <Ques
+            data={data}
+            input={input}
+            postJudgePoints={
+              postJudgePoints.points === null ? "-" : postJudgePoints.points
+            }
+          />
         ))}
+      </div>
+      <div className={getData.length === 0 ? "block" : "hidden"}>
+        <div className="centre pt-64 2xl:pt-96">
+          <p className="nil purple px-12 py-20 2xl:py-24 2xl:px-16 3xl:px-20 3xl:py-28 rounded-4xl text-3xl 2xl:text-4xl 3xl:text-5xl md:ml-64 2xl:ml-80 3xl:ml-100">
+            Please select questions from the roulette
+          </p>
+        </div>
       </div>
     </LoadingOverlay>
   );

@@ -23,6 +23,7 @@ import NotFound404 from "./components/404/404";
 import NotAuth401 from "./components/401/401";
 import Form from "./components/Form/Form";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import NotSelected from "./components/NotSelected/NotSelected";
 
 const App = () => {
   const size = useWindowSize();
@@ -74,11 +75,11 @@ const App = () => {
           <Sidebar />
           <Faq />
         </Route>
-        {/* <Route exact path="/roulette">
+        <Route exact path="/roulette">
           <Redirect exact from="/" to="/overview" />
           <Sidebar />
           <Roulette />
-        </Route> */}
+        </Route>
         <Route exact path="/login" component={Login} />
 
         <Route exact path="/" component={Login}>
@@ -87,6 +88,7 @@ const App = () => {
 
         <ProtectedRoute exact path="/form" component={Form} />
         <Route exact path="/401" component={NotAuth401} />
+        <Route exact path="/notselected" component={NotSelected} />
         <Route path="*" component={NotFound404} />
       </Switch>
     </Provider>

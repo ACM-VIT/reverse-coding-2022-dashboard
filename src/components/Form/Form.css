@@ -5,13 +5,6 @@
   background-repeat: no-repeat !important;
   background-size: cover !important;
 }
-.PhoneInputInput {
-  background: transparent !important;
-  outline: none;
-  outline:focus {
-    outline: none;
-  }
-}
 
 .form-box {
   width: 425px !important;

@@ -3,7 +3,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
+import LoadingOverlay from "react-loading-overlay";
 import "react-toastify/dist/ReactToastify.css";
 
 // Assets
@@ -11,6 +13,8 @@ import logo from "../../assets/images/logo.svg";
 
 // Styling
 import "./Form.css";
+
+import { setLoading } from "../../redux/PostJudge/postJudgeActions";
 
 const Form = () => {
   const [college, setCollege] = useState("");
@@ -20,15 +24,20 @@ const Form = () => {
   const [phone, setPhone] = useState("");
   const [displayName, setDisplayName] = useState("");
 
+  const loading = useSelector((state) => state.postJudge.loading);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const token = sessionStorage.getItem("WT");
     const headers = {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     };
+    dispatch(setLoading(true));
     axios
       .get(`${process.env.REACT_APP_BASEURL}/participants`, { headers })
       .then((res) => {
+        dispatch(setLoading(false));
         const firstName = res.data.name.split(" ")[0];
         setDisplayName(firstName);
         if (res.data.phoneNumber !== "0000000000") {
@@ -56,7 +65,7 @@ const Form = () => {
     e.preventDefault();
 
     /** Regex for freshers'(2022) reg number */
-    const reg = /^21[A-Z]{3}[0-9]{4}$/;
+    // const reg = /^21[A-Z]{3}[0-9]{4}$/;
 
     /** Regex for college name */
     const collegeRegEx = /^[A-Za-z ]+$/;
@@ -71,8 +80,6 @@ const Form = () => {
       toast.error("Fill all the fields!");
     } else if (collegeRegEx.test(college) === false) {
       toast.error("College name should be in alphabets!");
-    } else if (fresher.value === "Yes" && reg.test(registration) === false) {
-      toast.error("Invalid registration number!");
     } else if (phoneRegEx.test(phone) === false) {
       toast.error("Invalid phone number!");
     } else {
@@ -90,7 +97,7 @@ const Form = () => {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
       };
-
+      dispatch(setLoading(true));
       axios
         .post(
           `${process.env.REACT_APP_BASEURL}/participants/update`,
@@ -98,6 +105,7 @@ const Form = () => {
           { headers }
         )
         .then(() => {
+          dispatch(setLoading(false));
           window.location.href = "/overview";
         })
         .catch((err) => {
@@ -110,7 +118,16 @@ const Form = () => {
     window.location.href = `/login`;
   };
   return (
-    <>
+    <LoadingOverlay
+      active={loading}
+      spinner
+      text="Loading..."
+      styles={{
+        wrapper: {
+          height: "100vh",
+        },
+      }}
+    >
       <ToastContainer theme="colored" />
       <div className="bg-image">
         <img
@@ -144,7 +161,7 @@ const Form = () => {
                 onChange={(e) => setCollege(e.target.value)}
               />
               <label className="text-normal 2xl:text-md 3xl:text-lg">
-                Are you a Fresher? (eligible for only VIT Students)
+                Are you a Fresher? (eligible for only VIT Vellore Students)
               </label>
               <div className="flex items-center py-2 mb-3">
                 <input
@@ -203,7 +220,7 @@ const Form = () => {
           </form>
         </div>
       </div>
-    </>
+    </LoadingOverlay>
   );
 };
 
