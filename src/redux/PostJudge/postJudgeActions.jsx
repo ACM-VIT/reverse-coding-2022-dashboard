@@ -102,6 +102,7 @@ export const postRoullete = (idroulette) => (dispatch) => {
         });
     })
     .catch((err) => {
+      toast.error("Please Spin Again");
       console.log(err);
     });
 };
