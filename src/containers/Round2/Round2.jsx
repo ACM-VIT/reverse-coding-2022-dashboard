@@ -28,7 +28,7 @@ const Round2 = () => {
         </div>
       </div>
       <div className="flex justify-center mt-16">
-        {/* <div className={getQues.length <= 5 ? "block" : "hidden"}>
+        <div className={getQues.length <= 5 ? "block" : "hidden"}>
           <Easy />
         </div>
         <div
@@ -37,10 +37,10 @@ const Round2 = () => {
           }
         >
           <Medium />
-        </div> */}
-        {/* <div className={getQues.length > 8 ? "block" : "hidden"}> */}
-        <Hard />
-        {/* </div> */}
+        </div>
+        <div className={getQues.length > 8 ? "block" : "hidden"}>
+          <Hard />
+        </div>
       </div>
     </div>
   );
