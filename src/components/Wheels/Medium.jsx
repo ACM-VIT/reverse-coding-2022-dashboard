@@ -4,7 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import "./Wheels.css";
 
 import { Wheel } from "react-custom-roulette";
-import { postRoullete } from "../../redux/PostJudge/postJudgeActions";
+import {
+  postRoullete,
+  setDisable,
+} from "../../redux/PostJudge/postJudgeActions";
 
 import ModalRoulette from "../Modals/ModalRoulette";
 
@@ -56,6 +59,7 @@ const Medium = () => {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [prizeSelected, setPrizeSelected] = useState("0");
+  const getDisable = useSelector((state) => state.postJudge.disable);
   const getData = useSelector((state) => state.getAll.problems);
   const medARR = getData.slice(7, 11);
 
@@ -79,6 +83,7 @@ const Medium = () => {
     setPrizeSelected(newPrizeNumber);
     setPrizeNumber(newPrizeNumber);
     setMustSpin(true);
+    dispatch(setDisable(true));
   };
 
   return (
@@ -103,6 +108,7 @@ const Medium = () => {
             textDistance={textDistance}
             onStopSpinning={() => {
               setMustSpin(false);
+              dispatch(setDisable(false));
               handleOpen();
             }}
           />
@@ -113,7 +119,11 @@ const Medium = () => {
           />
         </div>
         <div
-          className="spin-btn font-robo text-2xl mx-auto mt-16"
+          className={
+            getDisable
+              ? "spin-btn font-robo text-2xl mx-auto mt-16 disabled pointer-events-none opacity-50"
+              : "spin-btn font-robo text-2xl mx-auto mt-16"
+          }
           onClick={handleSpinClick}
         >
           SPIN
