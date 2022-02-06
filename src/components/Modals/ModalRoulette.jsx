@@ -3,12 +3,15 @@
 /* eslint-disable react/no-this-in-sfc */
 /* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Backdrop from "@mui/material/Backdrop";
 import "./Modals.css";
 function ModalRoulette(props) {
+  const getQuesNo = useSelector((state) => state.getAll.problems);
+
   return (
     <div>
       <Modal
@@ -30,11 +33,12 @@ function ModalRoulette(props) {
           <Box className=" shadows stile">
             <div className="flex flex-col text-center pt-2">
               <div className=" pb-4 text-xl fontdmteam font-700">
-                Question 1 assigned!
+                Question {getQuesNo.length} assigned!
               </div>
               <div className="pb-4 pt-6 text-lg fontdmteam flex mx-auto font-400">
                 <span className="pr-2">
-                  Problem number 8 has been assigned to you as Question 1
+                  Problem number {props.problemNo} has been assigned to you as
+                  Question {getQuesNo.length}
                 </span>
               </div>
             </div>
