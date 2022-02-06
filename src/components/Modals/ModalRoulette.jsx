@@ -10,7 +10,7 @@ import Fade from "@mui/material/Fade";
 import Backdrop from "@mui/material/Backdrop";
 import "./Modals.css";
 function ModalRoulette(props) {
-  const getQuesNo = useSelector((state) => state.getAll.problems);
+  const getQuesNo = useSelector((state) => state.postJudge.getAssigned);
 
   return (
     <div>

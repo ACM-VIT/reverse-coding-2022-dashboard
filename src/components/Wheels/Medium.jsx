@@ -1,7 +1,11 @@
 import React, { useEffect, useState, memo } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import "./Wheels.css";
 
 import { Wheel } from "react-custom-roulette";
+import { postRoullete } from "../../redux/PostJudge/postJudgeActions";
+
 import ModalRoulette from "../Modals/ModalRoulette";
 
 const data = [
@@ -47,9 +51,13 @@ const fontSize = 20;
 const textDistance = 86;
 
 const Medium = () => {
+  const dispatch = useDispatch();
+
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [prizeSelected, setPrizeSelected] = useState("0");
+  const getData = useSelector((state) => state.getAll.problems);
+  const medARR = getData.slice(7, 11);
 
   const [open, setOpen] = useState(false);
 
@@ -64,13 +72,13 @@ const Medium = () => {
     // The Wheel component will call this function when spin is clicked
     // The next line will set the prize number to a random number between 0 and end of data array(which will be no. of questions)
     // You can then access the question number(option name) through indexing(newPrizeNumber is the index value).
-    const newPrizeNumber = Math.floor(Math.random() * 6);
-    const a = data[newPrizeNumber].option;
-    // console.log("aaaa", a);
-    setPrizeSelected(a);
-    // console.log("newPrizeNumber", newPrizeNumber);
-    // console.log(data.length);
-    // console.log("prize selected", prizeSelected);
+    const newPrizeNumber = Math.floor(Math.random() * medARR.length);
+    const mediumID = medARR[newPrizeNumber].id;
+    const selectedQues = data[newPrizeNumber].option;
+    console.log("abccc", selectedQues);
+    console.log(mediumID);
+    dispatch(postRoullete(mediumID));
+    setPrizeSelected(newPrizeNumber);
     setPrizeNumber(newPrizeNumber);
     setMustSpin(true);
   };

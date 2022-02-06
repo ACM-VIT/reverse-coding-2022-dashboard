@@ -92,6 +92,7 @@ function Questions() {
       </li>
     );
   }
+  console.log("getdata length", getData.length);
   return (
     <LoadingOverlay
       active={loading}
@@ -161,9 +162,11 @@ function Questions() {
         ))}
       </div>
       <div className={getData.length === 0 ? "block" : "hidden"}>
-        <p className="md:ml-64 2xl:ml-80 3xl:ml-100 bg-white">
-          Please select questions from roulette
-        </p>
+        <div className="centre pt-64 2xl:pt-96">
+          <p className="nil purple px-12 py-20 2xl:py-24 2xl:px-16 3xl:px-20 3xl:py-28 rounded-4xl text-3xl 2xl:text-4xl 3xl:text-5xl md:ml-64 2xl:ml-80 3xl:ml-100">
+            Please select questions from the roulette
+          </p>
+        </div>
       </div>
     </LoadingOverlay>
   );

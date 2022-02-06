@@ -39,9 +39,13 @@ const Overview = () => {
         token === "401" ||
         token === "401#" ||
         token === "404" ||
-        token === "404#"
+        token === "404#" ||
+        token === "undefined" ||
+        token === undefined
       ) {
         window.location.href = "/401";
+      } else if (token === "notselected" || token === "notselected#") {
+        window.location.href = "/notselected";
       } else {
         sessionStorage.setItem("WT", token);
         window.history.replaceState(null, null, "/overview");
@@ -200,7 +204,24 @@ const Overview = () => {
             .then((responseleaderboard) => {
               // console.log("leaderboard", responseleaderboard);
               dispatch(getLeaderboard(responseleaderboard.data));
-              dispatch(loggedOnce(true));
+              axios
+                .get(
+                  `${process.env.REACT_APP_BASEURL}/teams/getassignedproblems`,
+                  {
+                    headers: {
+                      "Content-Type": "application/json",
+                      authorization: `Bearer ${WT}`,
+                    },
+                  }
+                )
+                .then((responseassigned) => {
+                  console.log(responseassigned.data);
+                  dispatch(getAssigned(responseassigned.data));
+                  dispatch(loggedOnce(true));
+                })
+                .catch((err) => {
+                  dispatch(setLoading(false));
+                });
             })
             .catch((err) => {
               dispatch(setLoading(false));
