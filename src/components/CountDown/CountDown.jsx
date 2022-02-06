@@ -5,7 +5,7 @@ import "./CountDown.css";
 const Countdown = () => {
   const renderer = ({ hours, minutes, seconds, completed }) => {
     if (completed) {
-      return <h1>Round 1 has ended!</h1>;
+      return <h1>Round 2 has ended!</h1>;
     }
     const addZero = (num) => {
       let time = num.toString();
@@ -28,7 +28,7 @@ const Countdown = () => {
     <div className="flex flex-col items-center justify-center text-center font-mono">
       <div className="grad pt-3 text-3xl 2xl:text-4xl 2xl:pt-7">
         <Count
-          date="2022-02-06T01:30:00"
+          date="2022-02-06T05:30:00"
           renderer={renderer}
           intervalDelay={0}
         />
