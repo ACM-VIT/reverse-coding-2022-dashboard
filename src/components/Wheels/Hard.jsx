@@ -53,8 +53,8 @@ const Hard = () => {
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [prizeSelected, setPrizeSelected] = useState("0");
   const getData = useSelector((state) => state.getAll.problems);
-  const easyARR = getData.slice(0, 7);
-  const medARR = getData.slice(7, 11);
+  // const easyARR = getData.slice(0, 7);
+  // const medARR = getData.slice(7, 11);
   const hardARR = getData.slice(11, 15);
   const [open, setOpen] = useState(false);
 
@@ -69,16 +69,12 @@ const Hard = () => {
     // The Wheel component will call this function when spin is clicked
     // The next line will set the prize number to a random number between 0 and end of data array(which will be no. of questions)
     // You can then access the question number(option name) through indexing(newPrizeNumber is the index value).
-    const newPrizeNumber = Math.floor(Math.random() * easyARR.length);
+    const newPrizeNumber = Math.floor(Math.random() * hardARR.length);
     console.log(newPrizeNumber);
-    const easyID = easyARR[newPrizeNumber].id;
-    console.log(easyID);
-    dispatch(postRoullete(easyID));
-    // console.log("aaaa", a);
-    setPrizeSelected(easyID);
-    // console.log("newPrizeNumber", newPrizeNumber);
-    // console.log(data.length);
-    // console.log("prize selected", prizeSelected);
+    const hardID = hardARR[newPrizeNumber].id;
+    console.log(hardID);
+    dispatch(postRoullete(hardID));
+    setPrizeSelected(newPrizeNumber);
     setPrizeNumber(newPrizeNumber);
     setMustSpin(true);
   };
