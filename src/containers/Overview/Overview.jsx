@@ -316,7 +316,7 @@ const Overview = () => {
                 Score
               </h1>
               <p className="text-4xl 2xl:text-5.5xl 3xl:text-6xl pt-1">
-                {team.points}
+                {team.pointsR2}
               </p>
             </div>
             <div className="flex flex-col">
