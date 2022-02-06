@@ -65,55 +65,10 @@ export const setTrue = (bool) => ({
   type: SET_TRUE,
   payload: bool,
 });
-<<<<<<< HEAD
-export const getAssigned = (assigned) => ({
-  type: GET_ASSIGNED,
-  payload: assigned,
-});
-export const postRoullete = (idroulette) => (dispatch) => {
-  const WT = sessionStorage.getItem("WT");
-  axios
-    .post(
-      `${process.env.REACT_APP_BASEURL}/teams/problems`,
-      {
-        problemID: idroulette,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${WT}`,
-        },
-      }
-    )
-    .then((res) => {
-      console.log("from post req ka res", res.data);
-      axios
-        .get(`${process.env.REACT_APP_BASEURL}/teams/getassignedproblems`, {
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${WT}`,
-          },
-        })
-        .then((response) => {
-          console.log("from get req ka res", response.data);
-          dispatch(getAssigned(response.data));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    })
-    .catch((err) => {
-      toast.error("Please Spin Again");
-      console.log(err);
-    });
-};
-
-=======
 export const setRemove = (bool) => ({
   type: SET_REMOVE,
   payload: bool,
 });
->>>>>>> a1a3cbada8ace7bf05a811b1d794062d0804c908
 export const postTask = (input, id) => (dispatch) => {
   dispatch(setDisable(true));
   dispatch(setLoading(true));
