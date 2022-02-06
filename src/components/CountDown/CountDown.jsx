@@ -5,7 +5,7 @@ import "./CountDown.css";
 const Countdown = () => {
   const renderer = ({ hours, minutes, seconds, completed }) => {
     if (completed) {
-      return <h1>Round 2 has ended!</h1>;
+      return <h1 className=""> </h1>;
     }
     const addZero = (num) => {
       let time = num.toString();
@@ -32,11 +32,6 @@ const Countdown = () => {
           renderer={renderer}
           intervalDelay={0}
         />
-      </div>
-      <div className="flex flex-row text-white font-mono text-base pt-1 pl-0.5 mb-8 2xl:mb-16">
-        <div className="mx-5 2xl:mx-6">HRS</div>
-        <div className="mx-4 2xl:mx-5">MINS</div>
-        <div className="mx-4 2xl:mx-5">SECS</div>
       </div>
     </div>
   );

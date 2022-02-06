@@ -11,7 +11,7 @@ import Ques from "../../../components/Questions/Ques";
 import Pages from "../../../components/Pagination/Pages";
 import nextarrow from "../../../assets/images/nextarrow.svg";
 import prevarrow from "../../../assets/images/prevarrow.svg";
-import { clearAll } from "../../../redux/PostJudge/postJudgeActions";
+import { clearAll, setRemove } from "../../../redux/PostJudge/postJudgeActions";
 
 import "./Questions.css";
 
@@ -60,6 +60,7 @@ function Questions() {
     setcurrentPage(Number(e.target.id));
     setInput(true);
     dispatch(clearAll());
+    dispatch(setRemove(false));
   };
 
   const handleNext = () => {

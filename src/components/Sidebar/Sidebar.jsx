@@ -97,8 +97,27 @@ const Sidebar = () => {
             </li>
             <li
               className={`${
-                splitLocation[1] === "questions" ? "activeClass" : ""
-              } rounded-lg cursor-pointer mb-2 2xl:mb-3`}
+                splitLocation[1] === "questions"
+                  ? "activeClass cursor-not-allowed"
+                  : ""
+              } rounded-lg mb-2 2xl:mb-3 cursor-not-allowed`}
+            >
+              <div
+                className="flex items-center text-white px-4 py-3 3xl:py-4 rounded-lg 2xl:rounded-xl 3xl:rounded-2xl 2xl:pl-6 pointer-events-none cursor-not-allowed"
+                onClick={() => {
+                  dispatch(getLaunch(false));
+                  history.push("/leaderboard");
+                }}
+              >
+                Questions
+              </div>
+            </li>
+            {/* <li
+              className={`${
+                splitLocation[1] === "questions"
+                  ? "activeClass cursor-not-allowed"
+                  : ""
+              } rounded-lg mb-2 2xl:mb-3 cursor-pointer`}
             >
               <div
                 className="flex items-center text-white px-4 py-3 3xl:py-4 rounded-lg 2xl:rounded-xl 3xl:rounded-2xl 2xl:pl-6"
@@ -109,7 +128,7 @@ const Sidebar = () => {
               >
                 Questions
               </div>
-            </li>
+            </li> */}
             <li
               className={`${
                 splitLocation[1] === "leaderboard" ? "activeClass" : ""

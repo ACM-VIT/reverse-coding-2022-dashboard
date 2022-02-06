@@ -61,13 +61,13 @@ const Accordion = (props) => {
           onClick={toggleAccordion}
         >
           <div className={`${setActive}`}>{props.question}</div>
-          <button
+          {/* <button
             type="button"
             className={`${setTextColor} ${setMargin} accordion__title`}
             onClick={questionRedirect}
           >
             Open
-          </button>
+          </button> */}
           <div className={`${setActive} flex`}>
             {props.score}/100
             <Chevron
