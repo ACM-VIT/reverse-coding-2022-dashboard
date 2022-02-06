@@ -161,7 +161,9 @@ function Questions() {
         ))}
       </div>
       <div className={getData.length === 0 ? "block" : "hidden"}>
-        <p className="bg-white">Please select questions from roulette</p>
+        <p className="md:ml-64 2xl:ml-80 3xl:ml-100 bg-white">
+          Please select questions from roulette
+        </p>
       </div>
     </LoadingOverlay>
   );
