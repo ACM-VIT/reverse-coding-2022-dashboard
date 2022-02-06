@@ -80,7 +80,7 @@ const Overview = () => {
               // console.log("teams", responseteams);
               dispatch(getTeams(responseteams.data));
               await axios
-                .get(`${process.env.REACT_APP_BASEURL}/problems`, {
+                .get(`${process.env.REACT_APP_BASEURL}/problems/round2`, {
                   headers: {
                     "Content-Type": "application/json",
                     authorization: `Bearer ${WT}`,

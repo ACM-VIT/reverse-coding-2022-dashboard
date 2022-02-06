@@ -7,12 +7,7 @@
   height: 41px;
   left: 0px;
   top: 0px;
-
-  /* Green 2 */
-
   background: #27ae60;
-  /* Green 2 */
-
   border: 2px solid #27ae60;
   box-sizing: border-box;
   border-radius: 8px;
@@ -24,10 +19,20 @@
   height: 41px;
   left: 165px;
   top: 0px;
-
-  /* Green 3 */
-
   border: 2px solid #6fcf97;
+  box-sizing: border-box;
+  border-radius: 8px;
+  text-align: center;
+  line-height: 41px;
+}
+
+.mediumfill {
+  width: 41px;
+  height: 41px;
+  left: 301px;
+  top: 0px;
+  background: #f2994a;
+  border: 2px solid #f2994a;
   box-sizing: border-box;
   border-radius: 8px;
   text-align: center;
@@ -39,9 +44,6 @@
   height: 41px;
   left: 301px;
   top: 0px;
-
-  /* Orange */
-
   border: 2px solid #f2994a;
   box-sizing: border-box;
   border-radius: 8px;
@@ -49,14 +51,23 @@
   line-height: 41px;
 }
 
+.hardfill {
+  width: 41px;
+  height: 41px;
+  left: 547px;
+  top: 0px;
+  background: #eb5757;
+  border: 2px solid #eb5757;
+  box-sizing: border-box;
+  border-radius: 8px;
+  text-align: center;
+  line-height: 41px;
+}
 .hard {
   width: 41px;
   height: 41px;
   left: 547px;
   top: 0px;
-
-  /* Red */
-
   border: 2px solid #eb5757;
   box-sizing: border-box;
   border-radius: 8px;
