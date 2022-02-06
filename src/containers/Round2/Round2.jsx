@@ -44,9 +44,9 @@ const Round2 = () => {
     <div className="ml-64 2xl:ml-80 3xl:ml-100 mt-24 ">
       <div className="flex justify-center">
         <div className="grid grid-cols-10 text-white quesno font-robo text-xl ">
-          {/* <div className={color1 ? "easyfill" : "easy"}>1</div> */}
-          <div className="easy">1</div>
-          <div className="easy">2</div>
+          <div className={getQues[14] ? "easyfill" : "easy"}>1</div>
+          {/* <div className="easy">1</div> */}
+          <div className={getQues[13] ? "easyfill" : "easy"}>2</div>
           <div className="easy">3</div>
           <div className="easy">4</div>
           <div className="easy">5</div>
