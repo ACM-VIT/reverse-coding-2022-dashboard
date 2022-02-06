@@ -19,7 +19,10 @@ import {
   loggedOnce,
 } from "../../redux/GetAll/GetAllActions";
 
-import { setLoading } from "../../redux/PostJudge/postJudgeActions";
+import {
+  setLoading,
+  getAssigned,
+} from "../../redux/PostJudge/postJudgeActions";
 
 const Overview = () => {
   const dispatch = useDispatch();
@@ -125,7 +128,24 @@ const Overview = () => {
                             )
                             .then((responserank) => {
                               dispatch(getRank(responserank.data));
-                              dispatch(loggedOnce(true));
+                              axios
+                                .get(
+                                  `${process.env.REACT_APP_BASEURL}/teams/getassignedproblems`,
+                                  {
+                                    headers: {
+                                      "Content-Type": "application/json",
+                                      authorization: `Bearer ${WT}`,
+                                    },
+                                  }
+                                )
+                                .then((responseassigned) => {
+                                  console.log(responseassigned.data);
+                                  dispatch(getAssigned(responseassigned.data));
+                                  dispatch(loggedOnce(true));
+                                })
+                                .catch((err) => {
+                                  dispatch(setLoading(false));
+                                });
                             })
                             .catch((err) => {
                               dispatch(setLoading(false));

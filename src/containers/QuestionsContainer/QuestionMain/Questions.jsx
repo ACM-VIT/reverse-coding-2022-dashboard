@@ -16,7 +16,7 @@ import { clearAll } from "../../../redux/PostJudge/postJudgeActions";
 import "./Questions.css";
 
 function Questions() {
-  const getData = useSelector((state) => state.getAll.problems);
+  const getData = useSelector((state) => state.postJudge.getAssigned);
   const getDisable = useSelector((state) => state.postJudge.disable);
   const loading = useSelector((state) => state.postJudge.loading);
 
@@ -103,7 +103,11 @@ function Questions() {
         },
       }}
     >
-      <div className="md:ml-64 2xl:ml-80 3xl:ml-100">
+      <div
+        className={
+          getData.length > 0 ? "md:ml-64 2xl:ml-80 3xl:ml-100" : "hidden"
+        }
+      >
         <div
           className={
             getDisable
@@ -155,6 +159,11 @@ function Questions() {
             }
           />
         ))}
+      </div>
+      <div className={getData.length === 0 ? "block" : "hidden"}>
+        <p className="md:ml-64 2xl:ml-80 3xl:ml-100 bg-white">
+          Please select questions from roulette
+        </p>
       </div>
     </LoadingOverlay>
   );
