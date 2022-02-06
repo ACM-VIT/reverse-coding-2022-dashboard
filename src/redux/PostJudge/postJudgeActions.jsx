@@ -85,7 +85,7 @@ export const postRoullete = (idroulette) => (dispatch) => {
       }
     )
     .then((res) => {
-      console.log(res.data);
+      console.log("from post req ka res", res.data);
       axios
         .get(`${process.env.REACT_APP_BASEURL}/teams/getassignedproblems`, {
           headers: {
@@ -94,7 +94,7 @@ export const postRoullete = (idroulette) => (dispatch) => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          console.log("from get req ka res", response.data);
           dispatch(getAssigned(response.data));
         })
         .catch((err) => {
