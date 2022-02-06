@@ -27,7 +27,7 @@ const LeaderboardItems = ({ person }) => {
         {person.name}
       </td>
       <td className="justify-end text-right text-xl 3xl:text-3xl 2xl:text-3xl py-4 3xl:py-6 2xl:py-6">
-        {person.points}
+        {person.pointsR2}
       </td>
       <hr className="hr-bottom col-span-3" />
     </div>
