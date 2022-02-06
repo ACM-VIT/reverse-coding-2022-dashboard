@@ -12,7 +12,7 @@ const Round2 = () => {
   console.log(getQues.length);
 
   return (
-    <div className="ml-64 2xl:ml-80 3xl:ml-100 mt-24 ">
+    <div className="ml-64 2xl:ml-80 3xl:ml-100 xl:mt-16 2xl:mt-32 ">
       <div className="flex justify-center">
         <div className="grid grid-cols-10 text-white quesno font-robo text-xl ">
           <div className={getQues[0] ? "easyfill" : "easy"}>1</div>
@@ -27,18 +27,29 @@ const Round2 = () => {
           <div className={getQues[9] ? "hardfill" : "hard"}>10</div>
         </div>
       </div>
-      <div className="flex justify-center mt-16">
-        <div className={getQues.length <= 5 ? "" : "hidden"}>
-          <Easy />
+      <div className="font-robo text-white text-center text-xl 3xl:text-2xl mt-8 2xl:mt-12">
+        Spin the wheel to get 10 questions alloted to your team.
+        <br /> Question breakdown is 5 easy, 3 Medium and 2 hard.
+      </div>
+      <div className="flex justify-center mt-12">
+        <div>
+          <div className={getQues.length <= 5 ? "" : "hidden"}>
+            <Easy />
+          </div>
+          <div
+            className={
+              getQues.length > 5 && getQues.length <= 8 ? "" : "hidden"
+            }
+          >
+            <Medium />
+          </div>
+          <div className={getQues.length > 8 ? "" : "hidden"}>
+            <Hard />
+          </div>
         </div>
-        <div
-          className={getQues.length > 5 && getQues.length <= 8 ? "" : "hidden"}
-        >
-          <Medium />
-        </div>
-        <div className={getQues.length > 8 ? "" : "hidden"}>
-          <Hard />
-        </div>
+        {/* <Easy />
+        <Medium />
+        <Hard /> */}
       </div>
     </div>
   );

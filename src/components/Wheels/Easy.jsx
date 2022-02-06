@@ -5,7 +5,7 @@ import { Wheel } from "react-custom-roulette";
 import ModalRoulette from "../Modals/ModalRoulette";
 
 const data = [
-  { option: "0", style: { backgroundColor: "#006900" } },
+  { option: "0", style: { backgroundColor: "#0000AE" } },
   { option: "1" },
   { option: "2" },
   { option: "3" },
@@ -34,7 +34,7 @@ const data = [
   { option: "26" },
 ];
 
-const backgroundColors = ["#000000", "#df3428"];
+const backgroundColors = ["#000000", "#006900"];
 const textColors = ["white"];
 const outerBorderColor = "#1a1717";
 const outerBorderWidth = 9;
@@ -99,6 +99,7 @@ const Easy = () => {
               setMustSpin(false);
               handleOpen();
             }}
+            className="w-24"
           />
           <ModalRoulette
             open={open}
@@ -107,7 +108,7 @@ const Easy = () => {
           />
         </div>
         <div
-          className="spin-btn font-robo text-2xl mx-auto mt-16"
+          className="spin-btn font-robo text-2xl mx-auto xl:mt-8 2xl:mt-16"
           onClick={handleSpinClick}
         >
           SPIN

@@ -70,7 +70,10 @@ const Hard = () => {
     // The next line will set the prize number to a random number between 0 and end of data array(which will be no. of questions)
     // You can then access the question number(option name) through indexing(newPrizeNumber is the index value).
     const newPrizeNumber = Math.floor(Math.random() * easyARR.length);
+
     console.log(newPrizeNumber);
+    const selectedQues = data[newPrizeNumber].option;
+    console.log("abccc", selectedQues);
     const easyID = easyARR[newPrizeNumber].id;
     console.log(easyID);
     dispatch(postRoullete(easyID));
@@ -115,7 +118,7 @@ const Hard = () => {
           />
         </div>
         <div
-          className="spin-btn font-robo text-2xl mx-auto mt-16"
+          className="spin-btn font-robo text-2xl mx-auto xl:mt-8 2xl:mt-16"
           onClick={handleSpinClick}
         >
           SPIN
