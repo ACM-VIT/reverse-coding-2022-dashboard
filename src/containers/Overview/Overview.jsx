@@ -36,9 +36,13 @@ const Overview = () => {
         token === "401" ||
         token === "401#" ||
         token === "404" ||
-        token === "404#"
+        token === "404#" ||
+        token === "undefined" ||
+        token === undefined
       ) {
         window.location.href = "/401";
+      } else if (token === "notselected" || token === "notselected#") {
+        window.location.href = "/notselected";
       } else {
         sessionStorage.setItem("WT", token);
         window.history.replaceState(null, null, "/overview");
