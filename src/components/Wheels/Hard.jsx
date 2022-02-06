@@ -13,26 +13,6 @@ const data = [
   { option: "1" },
   { option: "2" },
   { option: "4" },
-  { option: "2" },
-  { option: "1" },
-  { option: "3" },
-  { option: "4" },
-  { option: "3" },
-  { option: "1" },
-  { option: "2" },
-  { option: "4" },
-  { option: "2" },
-  { option: "1" },
-  { option: "3" },
-  { option: "4" },
-  { option: "3" },
-  { option: "1" },
-  { option: "2" },
-  { option: "4" },
-  { option: "2" },
-  { option: "1" },
-  { option: "3" },
-  { option: "4" },
   { option: "3" },
 ];
 
@@ -72,6 +52,7 @@ const Hard = () => {
     // The next line will set the prize number to a random number between 0 and end of data array(which will be no. of questions)
     // You can then access the question number(option name) through indexing(newPrizeNumber is the index value).
     const newPrizeNumber = Math.floor(Math.random() * data.length);
+    console.log(hardARR, "hardARR");
     console.log(newPrizeNumber);
     const selectedQues = Number(data[newPrizeNumber].option);
     console.log("abccc", selectedQues);
