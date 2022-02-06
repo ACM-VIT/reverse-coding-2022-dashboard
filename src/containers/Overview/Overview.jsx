@@ -319,14 +319,14 @@ const Overview = () => {
                 {team.points}
               </p>
             </div>
-            <div className="flex flex-col">
+            {/* <div className="flex flex-col">
               <h1 className="text-3xl 2xl:text-4.5xl 3xl:text-5xl pb-4 2xl:pb-7">
                 Rank
               </h1>
               <p className="text-4xl 2xl:text-5.5xl 3xl:text-6xl pt-1">
                 {getMyRank.rank}
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="font-dm font-bold text-white pt-20 2xl:pt-32">
