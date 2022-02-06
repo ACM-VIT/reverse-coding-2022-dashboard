@@ -12,30 +12,28 @@ const data = [
   { option: "0", style: { backgroundColor: "#006900" } },
   { option: "1" },
   { option: "2" },
+  { option: "4" },
+  { option: "2" },
+  { option: "1" },
   { option: "3" },
   { option: "4" },
-  { option: "5" },
-  { option: "6" },
-  { option: "7" },
-  { option: "8" },
-  { option: "9" },
-  { option: "10" },
-  { option: "11" },
-  { option: "12" },
-  { option: "13" },
-  { option: "14" },
-  { option: "15" },
-  { option: "16" },
-  { option: "17" },
-  { option: "18" },
-  { option: "19" },
-  { option: "20" },
-  { option: "21" },
-  { option: "22" },
-  { option: "23" },
-  { option: "24" },
-  { option: "25" },
-  { option: "26" },
+  { option: "3" },
+  { option: "1" },
+  { option: "2" },
+  { option: "4" },
+  { option: "2" },
+  { option: "1" },
+  { option: "3" },
+  { option: "4" },
+  { option: "3" },
+  { option: "1" },
+  { option: "2" },
+  { option: "4" },
+  { option: "2" },
+  { option: "1" },
+  { option: "3" },
+  { option: "4" },
+  { option: "3" },
 ];
 
 const backgroundColors = ["#000000", "#df3428"];
@@ -59,7 +57,7 @@ const Hard = () => {
   const getData = useSelector((state) => state.getAll.problems);
   // const easyARR = getData.slice(0, 7);
   // const medARR = getData.slice(7, 11);
-  const hardARR = getData.slice(11, 15);
+  const hardARR = getData.slice(16, 21);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -73,15 +71,15 @@ const Hard = () => {
     // The Wheel component will call this function when spin is clicked
     // The next line will set the prize number to a random number between 0 and end of data array(which will be no. of questions)
     // You can then access the question number(option name) through indexing(newPrizeNumber is the index value).
-    const newPrizeNumber = Math.floor(Math.random() * hardARR.length);
+    const newPrizeNumber = Math.floor(Math.random() * data.length);
     console.log(newPrizeNumber);
-    const selectedQues = data[newPrizeNumber].option;
+    const selectedQues = Number(data[newPrizeNumber].option);
     console.log("abccc", selectedQues);
-    const hardID = hardARR[newPrizeNumber].id;
+    const hardID = hardARR[selectedQues].id;
     console.log(hardID);
-    dispatch(postRoullete(hardID));
-    setPrizeSelected(newPrizeNumber);
+    setPrizeSelected(selectedQues);
     setPrizeNumber(newPrizeNumber);
+    dispatch(postRoullete(hardID));
     setMustSpin(true);
     dispatch(setDisable(true));
   };

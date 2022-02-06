@@ -13,31 +13,23 @@ import ModalRoulette from "../Modals/ModalRoulette";
 const data = [
   { option: "0", style: { backgroundColor: "#0000AE" } },
   { option: "3" },
+  { option: "8" },
   { option: "1" },
   { option: "5" },
-  { option: "10" },
+  { option: "9" },
   { option: "2" },
   { option: "7" },
-  { option: "8" },
-  { option: "9" },
   { option: "4" },
   { option: "6" },
-  { option: "11" },
-  { option: "12" },
-  { option: "13" },
-  { option: "14" },
-  { option: "15" },
-  { option: "16" },
-  { option: "17" },
-  { option: "18" },
-  { option: "19" },
-  { option: "20" },
-  { option: "21" },
-  { option: "22" },
-  { option: "23" },
-  { option: "24" },
-  { option: "25" },
-  { option: "26" },
+  { option: "3" },
+  { option: "8" },
+  { option: "1" },
+  { option: "5" },
+  { option: "9" },
+  { option: "2" },
+  { option: "7" },
+  { option: "4" },
+  { option: "6" },
 ];
 
 const backgroundColors = ["#000000", "#006900"];
@@ -61,7 +53,7 @@ const Easy = () => {
   const getData = useSelector((state) => state.getAll.problems);
   // const getAsssignedQues = useSelector((state) => state.postjudge.getAssigned);
   const getDisable = useSelector((state) => state.postJudge.disable);
-  const easyARR = getData.slice(0, 7);
+  const easyARR = getData.slice(0, 10);
   // const medARR = getData.slice(7, 11);
   // const hardARR = getData.slice(11, 15);
 
@@ -75,8 +67,8 @@ const Easy = () => {
   };
 
   const handleSpinClick = () => {
-    const newPrizeNumber = Math.floor(Math.random() * 11);
-
+    const newPrizeNumber = Math.floor(Math.random() * data.length);
+    console.log(newPrizeNumber);
     const selectedQues = Number(data[newPrizeNumber].option);
     console.log("abccc", Number(selectedQues));
     const easyID = easyARR[selectedQues].id;
@@ -85,10 +77,10 @@ const Easy = () => {
     //   }
     // });
     // console.log(easyID);
-    // dispatch(postRoullete(easyID));
-    setPrizeSelected(selectedQues);
-    setPrizeNumber(selectedQues);
 
+    setPrizeSelected(selectedQues);
+    setPrizeNumber(newPrizeNumber);
+    dispatch(postRoullete(easyID));
     setMustSpin(true);
     dispatch(setDisable(true));
   };
