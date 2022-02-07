@@ -15,6 +15,8 @@ import {
   SET_LOADING,
   SET_TRUE,
   GET_ASSIGNED,
+  GET_JUDGEPOINTS,
+  SET_REMOVE,
 } from "./postJudgeTypes";
 
 // export const caseOne = (stateone) => ({
@@ -69,6 +71,15 @@ export const getAssigned = (assigned) => ({
   type: GET_ASSIGNED,
   payload: assigned,
 });
+export const getJudgePoints = (points) => ({
+  type: GET_JUDGEPOINTS,
+  payload: points,
+});
+export const setRemove = (bool) => ({
+  type: SET_REMOVE,
+  payload: bool,
+});
+
 export const postRoullete = (idroulette) => (dispatch) => {
   const WT = sessionStorage.getItem("WT");
   axios
@@ -243,21 +254,22 @@ export const postJudge =
                 });
                 // if (runafter4 === 5 || response.data.returned_testcases === 5) {
                 //   console.log(WT);
-                // axios
-                //   .get(`${process.env.REACT_APP_BASEURL}/judge`, {
-                //     headers: {
-                //       "Content-Type": "application/json",
-                //       authorization: `Bearer ${WT}`,
-                //     },
-                //   })
-                //   .then((responsepoints) => {
-                //     console.log("after poll", responsepoints.data);
-                //     objfinal.points = responsepoints.data;
-                //   })
-                //   .catch((err) => {
-                //     console.log("after poll", err);
-                //     objfinal.points = response.data.points;
-                //   });
+                axios
+                  .get(`${process.env.REACT_APP_BASEURL}/judge`, {
+                    headers: {
+                      "Content-Type": "application/json",
+                      authorization: `Bearer ${WT}`,
+                    },
+                  })
+                  .then((responsepoints) => {
+                    console.log("after poll", responsepoints.data);
+                    // objfinal.points = responsepoints.data;
+                    dispatch(getJudgePoints(responsepoints.data));
+                  })
+                  .catch((err) => {
+                    console.log("after poll", err);
+                    objfinal.points = response.data.points;
+                  });
                 objfinal.points = response.data.points;
                 dispatch(setTrue(true));
                 dispatch(setDisable(false));
