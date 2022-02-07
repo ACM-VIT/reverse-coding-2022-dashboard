@@ -10,6 +10,10 @@ import {
 
 import ModalRoulette from "../Modals/ModalRoulette";
 
+// const mapper = {"easy":{"0","3","8","1","5","9","2","7","4","6","3","8","1","5","9","2","7","4","6"},
+// "medium":{"0","3","8","1","5","9","2","7","4","6","3","8","1","5","9","2","7","4","6"},
+// "hard":{"0","3","8","1","5","9","2","7","4","6","3","8","1","5","9","2","7","4","6"}};
+
 const data = [
   { option: "0", style: { backgroundColor: "#0000AE" } },
   { option: "3" },
@@ -51,7 +55,6 @@ const Easy = () => {
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [prizeSelected, setPrizeSelected] = useState("0");
   const getData = useSelector((state) => state.getAll.problems);
-
   // const getAsssignedQues = useSelector((state) => state.postjudge.getAssigned);
   const getDisable = useSelector((state) => state.postJudge.disable);
   const easyARR = getData.slice(0, 10);

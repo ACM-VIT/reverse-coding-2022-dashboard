@@ -33,6 +33,7 @@ const Round2 = () => {
       </div>
       <div className="flex justify-center mt-12">
         <div>
+          <Easy />
           <div className={getQues.length <= 5 ? "" : "hidden"}>
             <Easy />
           </div>
