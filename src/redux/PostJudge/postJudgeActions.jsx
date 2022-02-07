@@ -113,7 +113,7 @@ export const postRoullete = (idroulette) => (dispatch) => {
         });
     })
     .catch((err) => {
-      toast.error("Please Spin Again");
+      toast.error("All questions have been assigned!");
       console.log(err);
     });
 };

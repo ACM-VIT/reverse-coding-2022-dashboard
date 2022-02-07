@@ -94,8 +94,22 @@ const Overview = () => {
                   },
                 })
                 .then(async (responseproblems) => {
-                  // console.log("problems", responseproblems);
-                  dispatch(getProblems(responseproblems.data));
+                  // sort based on problem no
+
+                  console.log(
+                    "problems",
+                    responseproblems.data.sort(
+                      (a, b) => Number(a.problem_name) - Number(b.problem_name)
+                    )
+                  );
+                  dispatch(
+                    getProblems(
+                      responseproblems.data.sort(
+                        (a, b) =>
+                          Number(a.problem_name) - Number(b.problem_name)
+                      )
+                    )
+                  );
                   await axios
                     .get(`${process.env.REACT_APP_BASEURL}/judge`, {
                       headers: {
