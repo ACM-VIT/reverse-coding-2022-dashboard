@@ -370,7 +370,6 @@ const Ide = ({
                     onInput={(e) => setInput(e.currentTarget.textContent)}
                     contentEditable
                   >
-                    {" "}
                     {sampleInput}
                   </div>
                   <div className="flex ">
