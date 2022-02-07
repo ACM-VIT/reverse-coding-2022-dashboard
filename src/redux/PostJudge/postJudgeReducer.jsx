@@ -13,6 +13,8 @@ import {
   SET_LOADING,
   SET_TRUE,
   GET_ASSIGNED,
+  GET_JUDGEPOINTS,
+  SET_REMOVE,
 } from "./postJudgeTypes";
 import { CODE_STATES } from "./states";
 const initialState = {
@@ -25,6 +27,8 @@ const initialState = {
   loading: false,
   setTrue: false,
   getAssigned: [],
+  judgePoints: [],
+  setRemove: false,
 };
 
 const postJudgeReducer = (state = initialState, action) => {
@@ -94,6 +98,16 @@ const postJudgeReducer = (state = initialState, action) => {
       return {
         ...state,
         getAssigned: action.payload,
+      };
+    case GET_JUDGEPOINTS:
+      return {
+        ...state,
+        judgePoints: action.payload,
+      };
+    case SET_REMOVE:
+      return {
+        ...state,
+        setRemove: action.payload,
       };
     default:
       return state;

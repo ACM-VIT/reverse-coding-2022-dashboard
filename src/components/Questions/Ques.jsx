@@ -118,7 +118,7 @@ const Ques = ({ data, input, postJudgepoints }) => {
   const getJudgecolor = useSelector((state) => state.postJudge.judgestatecol);
   const getJudgetext = useSelector((state) => state.postJudge.judgestatetext);
   const getJudgeMain = useSelector((state) => state.postJudge.judgeMain);
-  const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
+  const getJudgePoints = useSelector((state) => state.postJudge.judgePoints);
   // const allDisable = () => {
   //   if (getJudgeMain === "") { }
   // }
@@ -243,12 +243,14 @@ const Ques = ({ data, input, postJudgepoints }) => {
 
                 <div className="ml-8 2xl:ml-16 text-white font-700 text-lg 2xl:text-2xl">
                   Points: <br />
-                  {getJudgeMain.points
+                  {/* {getJudgeMain.points
                     ? getJudgeMain.points
                     : data.points === null
                     ? "-"
                     : data.points}
-                  /{data.maxPoints}
+                  /100 */}
+                  {data.truepoints === null ? "-" : data.truepoints}
+                  /100
                   {/* {data.pointsJudgeMain !== null
                     ? data.pointsJudgeMain
                     : data.points === null
@@ -389,6 +391,8 @@ const Ques = ({ data, input, postJudgepoints }) => {
           maxPoints={data.maxPoints}
           data={data}
           inputprop={input}
+          sampleInput={data.sampleInput}
+          sampleOutput={data.sampleOutput}
         />
       </div>
     </div>

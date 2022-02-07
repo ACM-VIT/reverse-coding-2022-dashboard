@@ -7,7 +7,7 @@ import Accordion from "./Accordion/Accordion";
 import "./Submissions.css";
 
 const Submissions = () => {
-  const submissions = useSelector((state) => state.getAll.judgePoints);
+  const submissions = useSelector((state) => state.postJudge.judgePoints);
   // console.log(submissions);
 
   return (

@@ -1,7 +1,7 @@
 /* eslint-disable react/function-component-definition */
 /* eslint-disable no-nested-ternary */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -17,6 +17,7 @@ import {
   postTask,
   postJudge,
   taskRunner,
+  setRemove,
 } from "../../redux/PostJudge/postJudgeActions";
 
 import "./ide.css";
@@ -24,7 +25,15 @@ import { CODE_STATES } from "../../redux/PostJudge/states";
 
 // const initialState = { inputTextArea: "" };
 
-const Ide = ({ name, id, inputprop, maxPoints, data }) => {
+const Ide = ({
+  name,
+  id,
+  inputprop,
+  maxPoints,
+  data,
+  sampleOutput,
+  sampleInput,
+}) => {
   const dispatch = useDispatch();
   const [problemid, setProblemid] = useState(data.id);
 
@@ -65,9 +74,18 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
   const [open2, setOpen2] = useState(false);
   const [filename, setFilename] = useState("");
   const [disable, setDisable] = useState(true);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(sampleInput);
   const [downloadFile, setDownloadFile] = useState("");
   const [fileType, setFileType] = useState("");
+
+  const getData = useSelector((state) => state.questionsLaunch.launchState);
+  const getTeam = useSelector((state) => state.getAll.teams);
+  const getJudgeMain = useSelector((state) => state.postJudge.judgeMain);
+  const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
+  const getDisable = useSelector((state) => state.postJudge.disable);
+  const getTeamid = getTeam.id;
+  const taskrunner = useSelector((state) => state.postJudge.taskRunner);
+  const remove = useSelector((state) => state.postJudge.setRemove);
 
   const handleOpen = () => setOpen(true);
   const handleOpen2 = () => setOpen2(true);
@@ -79,6 +97,11 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
   const handleClose2 = () => {
     setOpen2(false);
   };
+
+  useEffect(() => {
+    setInput(sampleInput);
+  }, [sampleInput]);
+
   const convertBase64 = (file) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -128,19 +151,15 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
       toast.error("Please enter a valid input");
     } else {
       await dispatch(postTask(input.toString(), id));
+      dispatch(setRemove(true));
+      console.log("input on run", input);
+      await dispatch(postTask(input, id));
     }
   };
 
-  const getData = useSelector((state) => state.questionsLaunch.launchState);
-  const getTeam = useSelector((state) => state.getAll.teams);
-  const getJudgeMain = useSelector((state) => state.postJudge.judgeMain);
-  const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
-  const getDisable = useSelector((state) => state.postJudge.disable);
-  const getTeamid = getTeam.id;
-  const taskrunner = useSelector((state) => state.postJudge.taskRunner);
   // const taskrunnerenter = taskrunner.replaceAll("\n", "");
   const handleupload = async () => {
-    await dispatch(postJudge(data.id, getTeamid, fileType, downloadFile));
+    await dispatch(postJudge(id, getTeamid, fileType, downloadFile));
     setDisable(true);
     handleClose();
   };
@@ -336,12 +355,8 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
 
               <div className=" ml-8 2xl:ml-14 text-white font-700 text-lg 2xl:text-2xl">
                 Points: <br />
-                {getJudgeMain.points
-                  ? getJudgeMain.points
-                  : data.points === null
-                  ? "-"
-                  : data.points}
-                /{data.maxPoints}
+                {data.truepoints === null ? "-" : data.truepoints}
+                /100
               </div>
             </div>
           </div>
@@ -350,10 +365,13 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
               <div>
                 <div className="bg-color pl-6 pt-6 input relative">
                   <p className="pb-2 2xl:pb-3">Input</p>
-                  <textarea
+                  <div
                     className="text-area overflow-y-auto"
-                    onChange={(e) => setInput(e.target.value)}
-                  />
+                    onInput={(e) => setInput(e.currentTarget.textContent)}
+                    contentEditable
+                  >
+                    {sampleInput}
+                  </div>
                   <div className="flex ">
                     <div onClick={handleClickRun}>
                       <div className="run-btn absolute bottom-0 mb-4 2xl:mb-6 text-white  flex cursor-pointer">
@@ -365,7 +383,7 @@ const Ide = ({ name, id, inputprop, maxPoints, data }) => {
               </div>
 
               <div className="bg-color pl-6 pt-6 output">
-                <h1>Output</h1>
+                <h1 className="pb-2 2xl:pb-3">Output</h1>
                 <div dangerouslySetInnerHTML={{ __html: taskrunner }} />
               </div>
             </div>
