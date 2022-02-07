@@ -11,7 +11,7 @@ import Ques from "../../../components/Questions/Ques";
 import Pages from "../../../components/Pagination/Pages";
 import nextarrow from "../../../assets/images/nextarrow.svg";
 import prevarrow from "../../../assets/images/prevarrow.svg";
-import { clearAll } from "../../../redux/PostJudge/postJudgeActions";
+import { clearAll, setRemove } from "../../../redux/PostJudge/postJudgeActions";
 
 import "./Questions.css";
 
@@ -22,21 +22,30 @@ function Questions() {
 
   const dispatch = useDispatch();
   // console.log("getDataBefore", getData);
-  const getJudgePoints = useSelector((state) => state.getAll.judgePoints);
+  const getJudgePoints = useSelector((state) => state.postJudge.judgePoints);
   const postJudgePoints = useSelector((state) => state.postJudge.judgeMain);
   // console.log("GETJUDGEMAIN", postJudgePoints);
+  console.log("getJudgePoints", getJudgePoints);
+  console.log("getData", getData);
   for (let i = 0; i < getData.length; i++) {
-    getData[i] = {
-      ...getData[i],
-      points: getJudgePoints[i].points,
-      // pointsJudgeMain:
-      //   getJudgeMain.points === null
-      //     ? "-"
-      //     : getJudgeMain.points[i].points === null
-      //     ? "-"
-      //     : getJudgeMain.points[i].points,
-      // getJudgeMain[i].points === undefined ? "-" : getJudgeMain[i].points,
-    };
+    for (let j = 0; j < getJudgePoints.length; j++) {
+      if (getData[i].id === getJudgePoints[j].problem_id) {
+        console.log("getData[i].id", getData[i].id);
+        console.log("getJudgePoints[j].id", getJudgePoints[j].problem_id);
+        getData[i] = {
+          ...getData[i],
+          truepoints: getJudgePoints[j].points,
+          // pointsJudgeMain:
+          //   getJudgeMain.points === null
+          //     ? "-"
+          //     : getJudgeMain.points[i].points === null
+          //     ? "-"
+          //     : getJudgeMain.points[i].points,
+          // getJudgeMain[i].points === undefined ? "-" : getJudgeMain[i].points,
+        };
+        console.log("getData[i]", getData[i]);
+      }
+    }
   }
   // console.log("getDataAfter", getData);
   const [input, setInput] = useState(false);
@@ -60,6 +69,7 @@ function Questions() {
     setcurrentPage(Number(e.target.id));
     setInput(true);
     dispatch(clearAll());
+    dispatch(setRemove(false));
   };
 
   const handleNext = () => {
@@ -92,7 +102,7 @@ function Questions() {
       </li>
     );
   }
-  console.log("getdata length", getData.length);
+  // console.log("getdata length", getData.length);
   return (
     <LoadingOverlay
       active={loading}

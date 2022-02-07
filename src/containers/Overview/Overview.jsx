@@ -15,13 +15,13 @@ import {
   getTeams,
   getLeaderboard,
   getRank,
-  getJudgePoints,
   loggedOnce,
 } from "../../redux/GetAll/GetAllActions";
 
 import {
   setLoading,
   getAssigned,
+  getJudgePoints,
 } from "../../redux/PostJudge/postJudgeActions";
 
 const Overview = () => {
@@ -215,7 +215,7 @@ const Overview = () => {
                   }
                 )
                 .then((responseassigned) => {
-                  console.log(responseassigned.data);
+                  // console.log(responseassigned.data);
                   dispatch(getAssigned(responseassigned.data));
                   dispatch(loggedOnce(true));
                 })
@@ -240,7 +240,7 @@ const Overview = () => {
   const [hidden, setHidden] = useState("");
 
   const team = useSelector((state) => state.getAll.teams);
-  const submissions = useSelector((state) => state.getAll.judgePoints);
+  const submissions = useSelector((state) => state.postJudge.judgePoints);
   // console.log("submissions", typeof submissions);
   // console.log(team, "tewammme");
 
