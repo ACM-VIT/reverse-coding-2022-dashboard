@@ -50,7 +50,30 @@ const Easy = () => {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [prizeSelected, setPrizeSelected] = useState("0");
-  const getData = useSelector((state) => state.getAll.problems);
+  // const getData = useSelector((state) => state.getAll.problems);
+  const getData = [
+    { id: "id_0" },
+    { id: "id_1" },
+    { id: "id_2" },
+    { id: "id_3" },
+    { id: "id_4" },
+    { id: "id_5" },
+    { id: "id_6" },
+    { id: "id_7" },
+    { id: "id_8" },
+    { id: "id_9" },
+    { id: "id_10" },
+    { id: "id_11" },
+    { id: "id_12" },
+    { id: "id_13" },
+    { id: "id_14" },
+    { id: "id_15" },
+    { id: "id_16" },
+    { id: "id_17" },
+    { id: "id_18" },
+    { id: "id_19" },
+    { id: "id_20" },
+  ];
   // const getAsssignedQues = useSelector((state) => state.postjudge.getAssigned);
   const getDisable = useSelector((state) => state.postJudge.disable);
   const easyARR = getData.slice(0, 10);
