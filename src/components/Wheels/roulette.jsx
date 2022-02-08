@@ -143,6 +143,7 @@ const Roulette = () => {
 
     if (getQues.length >= 10) {
       setMustSpin(false);
+      dispatch(setDisable(false));
     }
     console.log(quesArr);
   };
