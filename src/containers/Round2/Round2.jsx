@@ -9,8 +9,7 @@ import "./Round2.css";
 
 const Round2 = () => {
   const getQues = useSelector((state) => state.postJudge.getAssigned);
-
-  console.log(getQues.length);
+  // console.log(getQues.length);
 
   return (
     <div className="ml-64 2xl:ml-80 3xl:ml-100 xl:mt-16 2xl:mt-32 ">
