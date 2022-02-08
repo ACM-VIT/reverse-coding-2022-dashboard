@@ -113,8 +113,8 @@ export const postRoullete = (idroulette) => (dispatch) => {
         });
     })
     .catch((err) => {
-      toast.error("All questions have been assigned!");
-      console.log(err);
+      toast.error(err.response.data.message);
+      console.log(err.response.data.message);
     });
 };
 

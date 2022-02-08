@@ -116,16 +116,16 @@ const Roulette = () => {
   };
 
   const quesArr =
-    getQues.length <= 5
+    getQues.length < 5
       ? easyARR
-      : getQues.length > 5 && getQues.length <= 8
+      : getQues.length >= 5 && getQues.length < 8
       ? medARR
       : hardARR;
 
   const dataArr =
-    getQues.length <= 5
+    getQues.length < 5
       ? mapper.easy
-      : getQues.length > 5 && getQues.length <= 8
+      : getQues.length >= 5 && getQues.length < 8
       ? mapper.medium
       : mapper.hard;
 
