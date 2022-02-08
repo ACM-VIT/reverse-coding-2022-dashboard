@@ -22,14 +22,15 @@ const Submissions = () => {
     >
       <article>
         <div className="mr-5">
-          {submissions.map((sub) => (
+          {submissions?.map((sub) => (
             <Accordion
               key={sub.problem_id}
               id={sub.problem_id}
               question={sub.problem_name}
               desc={sub.instructionsText}
               score={sub.points}
-              num={arr.findIndex((x) => String(x) === sub.problem_name) + 1}
+              // num={arr.findIndex((x) => String(x) === sub.problem_name) + 1}
+              num={(Number(sub.problem_name) - 16).toString()}
             />
           ))}
         </div>

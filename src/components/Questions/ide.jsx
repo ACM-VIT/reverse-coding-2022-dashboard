@@ -33,6 +33,7 @@ const Ide = ({
   data,
   sampleOutput,
   sampleInput,
+  number,
 }) => {
   const dispatch = useDispatch();
   const [problemid, setProblemid] = useState(data.id);
@@ -167,7 +168,9 @@ const Ide = ({
     <div className="ide mx-auto">
       <div className="flex flex-col gap-9 ">
         <div className="px-8 py-8 bg-color relative">
-          <div className="mb-10">{name}</div>
+          <div className="mb-10">
+            {Number(number) - 16}: {name}
+          </div>
           <div className="absolute mt-16 right-0 bottom-0 mb-3 mr-3">
             <div className="download-container">
               <span

@@ -306,7 +306,7 @@ const Overview = () => {
                 {Object.keys(team).length === 0 ? (
                   <p>Loading...</p>
                 ) : (
-                  team.participants.map((part) => (
+                  team.participants?.map((part) => (
                     <div className="flex" key={part.id}>
                       <p className="text-gre 2xl:text-1.5xl 3xl:text-2xl pl-1 pr-2 pb-0.5">
                         {part.name}
