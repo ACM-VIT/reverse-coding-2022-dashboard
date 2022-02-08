@@ -31,7 +31,7 @@
 
 .form-box-modal {
   width: 425px !important;
-  margin: 40px auto;
+  /* margin: 40px auto; */
   background: linear-gradient(
     135.61deg,
     rgba(0, 0, 0, 0.74),
@@ -48,13 +48,13 @@
 @media (min-width: 1550px) and (max-width: 1950px) {
   .form-box-modal {
     width: 450px !important;
-    margin: 150px auto;
+    /* margin: 150px auto; */
   }
 }
 
 @media (min-width: 1951px) and (max-width: 2560px) {
   .form-box-modal {
     width: 470px !important;
-    margin: 190px auto;
+    /* margin: 190px auto; */
   }
 }
