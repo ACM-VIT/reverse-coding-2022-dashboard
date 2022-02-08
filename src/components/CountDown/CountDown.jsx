@@ -45,7 +45,7 @@ const Countdown = () => {
     <div className="flex flex-col items-center justify-center text-center">
       <div className="grad pt-3 text-3xl 2xl:text-5xl 2xl:pt-7 font-mono">
         <Count
-          date="2022-02-09T00:00:00"
+          date="2022-02-09T01:00:00"
           renderer={renderer}
           intervalDelay={0}
         />
