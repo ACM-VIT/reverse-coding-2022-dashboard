@@ -41,7 +41,7 @@ const Sidebar = () => {
   const logoutfunc = () => {
     sessionStorage.removeItem("WT");
     sessionStorage.removeItem("cc");
-    window.location.href = "https://rcpc.acmvit.in";
+    window.location.href = "/login";
   };
 
   return (
@@ -139,7 +139,7 @@ const Sidebar = () => {
 
         {/* {team.participants.map((part) => ( */}
         <div
-          className="flex mt-2 text-center w-full absolute bottom-0 pb-10 text-white break-words break-normal justify-around brdr p-5 3xl:text-3xl 2xl:text-2.5xl text-lg font-robo"
+          className="flex mt-2  w-full absolute bottom-0 pb-10 text-white break-words break-normal justify-around brdr p-5 3xl:text-3xl 2xl:text-2.5xl text-lg font-robo"
           // key={part.id}
         >
           <p className="2xl:pt-3">{participant.name}</p>
