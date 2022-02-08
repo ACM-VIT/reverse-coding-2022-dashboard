@@ -1,3 +1,6 @@
+/* eslint-disable import/no-named-as-default */
+/* eslint-disable  no-nested-ternary */
+
 import React, { useEffect, useState, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Wheels.css";
@@ -10,33 +13,73 @@ import {
 
 import ModalRoulette from "../Modals/ModalRoulette";
 
-// const mapper = {"easy":{"0","3","8","1","5","9","2","7","4","6","3","8","1","5","9","2","7","4","6"},
-// "medium":{"0","3","8","1","5","9","2","7","4","6","3","8","1","5","9","2","7","4","6"},
-// "hard":{"0","3","8","1","5","9","2","7","4","6","3","8","1","5","9","2","7","4","6"}};
+const mapper = {
+  easy: [
+    { option: "0", style: { backgroundColor: "#006900" } },
+    { option: "3" },
+    { option: "8" },
+    { option: "1" },
+    { option: "5" },
+    { option: "9" },
+    { option: "2" },
+    { option: "7" },
+    { option: "4" },
+    { option: "6" },
+    { option: "3" },
+    { option: "8" },
+    { option: "1" },
+    { option: "5" },
+    { option: "9" },
+    { option: "2" },
+    { option: "7" },
+    { option: "4" },
+    { option: "6" },
+  ],
+  medium: [
+    { option: "0", style: { backgroundColor: "#006900" } },
+    { option: "5" },
+    { option: "2" },
+    { option: "1" },
+    { option: "4" },
+    { option: "3" },
+    { option: "4" },
+    { option: "3" },
+    { option: "2" },
+    { option: "1" },
+    { option: "5" },
+    { option: "2" },
+    { option: "5" },
+    { option: "1" },
+    { option: "4" },
+    { option: "3" },
+    { option: "4" },
+    { option: "3" },
+    { option: "2" },
+    { option: "1" },
+    { option: "5" },
+  ],
+  hard: [
+    { option: "0", style: { backgroundColor: "#006900" } },
+    { option: "1" },
+    { option: "2" },
+    { option: "4" },
+    { option: "3" },
+    { option: "1" },
+    { option: "2" },
+    { option: "4" },
+    { option: "3" },
+    { option: "1" },
+    { option: "2" },
+    { option: "4" },
+    { option: "3" },
+    { option: "1" },
+    { option: "2" },
+    { option: "4" },
+    { option: "3" },
+  ],
+};
 
-const data = [
-  { option: "0", style: { backgroundColor: "#0000AE" } },
-  { option: "3" },
-  { option: "8" },
-  { option: "1" },
-  { option: "5" },
-  { option: "9" },
-  { option: "2" },
-  { option: "7" },
-  { option: "4" },
-  { option: "6" },
-  { option: "3" },
-  { option: "8" },
-  { option: "1" },
-  { option: "5" },
-  { option: "9" },
-  { option: "2" },
-  { option: "7" },
-  { option: "4" },
-  { option: "6" },
-];
-
-const backgroundColors = ["#000000", "#006900"];
+const backgroundColors = ["#000000", "#df3428"];
 const textColors = ["white"];
 const outerBorderColor = "#1a1717";
 const outerBorderWidth = 9;
@@ -48,7 +91,7 @@ const radiusLineWidth = 3;
 const fontSize = 20;
 const textDistance = 86;
 
-const Easy = () => {
+const Roulette = () => {
   const dispatch = useDispatch();
 
   const [mustSpin, setMustSpin] = useState(false);
@@ -57,9 +100,11 @@ const Easy = () => {
   const getData = useSelector((state) => state.getAll.problems);
   // const getAsssignedQues = useSelector((state) => state.postjudge.getAssigned);
   const getDisable = useSelector((state) => state.postJudge.disable);
+  const getQues = useSelector((state) => state.postJudge.getAssigned);
+
   const easyARR = getData.slice(0, 10);
-  // const medARR = getData.slice(7, 11);
-  // const hardARR = getData.slice(11, 15);
+  const medARR = getData.slice(10, 16);
+  const hardARR = getData.slice(16, 21);
 
   const [open, setOpen] = useState(false);
 
@@ -70,23 +115,36 @@ const Easy = () => {
     setOpen(false);
   };
 
-  const handleSpinClick = () => {
-    const newPrizeNumber = Math.floor(Math.random() * data.length);
-    console.log(newPrizeNumber);
-    const selectedQues = Number(data[newPrizeNumber].option);
-    console.log("abccc", Number(selectedQues));
-    const easyID = easyARR[selectedQues].id;
-    // getAsssignedQues.map((quesid) => {
-    //   if (quesid.id === easyID) {
-    //   }
-    // });
-    // console.log(easyID);
+  const quesArr =
+    getQues.length <= 5
+      ? easyARR
+      : getQues.length > 5 && getQues.length <= 8
+      ? medARR
+      : hardARR;
 
+  const dataArr =
+    getQues.length <= 5
+      ? mapper.easy
+      : getQues.length > 5 && getQues.length <= 8
+      ? mapper.medium
+      : mapper.hard;
+
+  const handleSpinClick = () => {
+    const newPrizeNumber = Math.floor(Math.random() * dataArr.length);
+    console.log(newPrizeNumber);
+    const selectedQues = Number(dataArr[newPrizeNumber].option);
+    console.log("abccc", Number(selectedQues));
+    const quesID = quesArr[selectedQues].id;
     setPrizeSelected(selectedQues);
     setPrizeNumber(newPrizeNumber);
-    dispatch(postRoullete(easyID));
+    dispatch(postRoullete(quesID));
     setMustSpin(true);
     dispatch(setDisable(true));
+
+    if (getQues.length >= 10) {
+      setMustSpin(false);
+    }
+    console.log(quesArr);
   };
 
   return (
@@ -96,7 +154,7 @@ const Easy = () => {
           <Wheel
             mustStartSpinning={mustSpin}
             prizeNumber={prizeNumber}
-            data={data}
+            data={dataArr}
             backgroundColors={backgroundColors}
             textColors={textColors}
             fontSize={fontSize}
@@ -137,4 +195,4 @@ const Easy = () => {
   );
 };
 
-export default memo(Easy);
+export default Roulette;

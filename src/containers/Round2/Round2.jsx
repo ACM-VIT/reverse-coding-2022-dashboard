@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Hard from "../../components/Wheels/Hard";
 import Medium from "../../components/Wheels/Medium";
 import Easy from "../../components/Wheels/Easy";
+import Roulette from "../../components/Wheels/roulette";
 
 import "./Round2.css";
 
@@ -32,8 +33,7 @@ const Round2 = () => {
         <br /> Question breakdown is 5 easy, 3 Medium and 2 hard.
       </div>
       <div className="flex justify-center mt-12">
-        <div>
-          <Easy />
+        {/* <div>
           <div className={getQues.length <= 5 ? "" : "hidden"}>
             <Easy />
           </div>
@@ -47,7 +47,8 @@ const Round2 = () => {
           <div className={getQues.length > 8 ? "" : "hidden"}>
             <Hard />
           </div>
-        </div>
+        </div> */}
+        <Roulette />
         {/* <Easy />
         <Medium />
         <Hard /> */}
