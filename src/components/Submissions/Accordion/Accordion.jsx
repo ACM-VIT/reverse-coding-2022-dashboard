@@ -49,11 +49,9 @@ const Accordion = (props) => {
     if (props.score !== null) {
       if (props.score.toString().length === 3) {
         setMarginState("three");
-      }
-      if (props.score.toString().length === 2) {
+      } else if (props.score.toString().length === 2) {
         setMarginState("two");
-      }
-      if (props.score.toString().length === 1) {
+      } else if (props.score.toString().length === 1) {
         setMarginState("one");
       }
     }
