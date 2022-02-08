@@ -15,6 +15,7 @@ const Accordion = (props) => {
   const [setTextColor, setTextColorState] = useState("gray");
   const [setDisplay, setDisplayState] = useState("displayBorder");
   const [hideBorder, setHideBorder] = useState("accordion");
+  const [hide, setHide] = useState("");
   const desc = useRef(null);
   const history = useHistory();
 
@@ -39,46 +40,46 @@ const Accordion = (props) => {
   };
 
   useEffect(() => {
+    if (props.score === null) {
+      setHide("none");
+    } else {
+      setHide("");
+    }
+
     if (props.score !== null) {
       if (props.score.toString().length === 3) {
         setMarginState("three");
-      }
-      if (props.score.toString().length === 2) {
+      } else if (props.score.toString().length === 2) {
         setMarginState("two");
-      }
-      if (props.score.toString().length === 1) {
+      } else if (props.score.toString().length === 1) {
         setMarginState("one");
       }
     }
   }, [props.score]);
 
   return (
-    <div className="accordion__section z-0">
-      {props.score !== null ? (
+    <div className={`${hide} accordion__section z-0`}>
+      <button
+        type="button"
+        className={`${hideBorder} ${setActive} flex justify-between accordion__title`}
+        onClick={toggleAccordion}
+      >
+        <div className={`${setActive}`}>{props.question}</div>
         <button
           type="button"
-          className={`${hideBorder} ${setActive} flex justify-between accordion__title`}
-          onClick={toggleAccordion}
+          className={`${setTextColor} ${setMargin} accordion__title`}
+          onClick={questionRedirect}
         >
-          <div className={`${setActive}`}>{props.question}</div>
-          <button
-            type="button"
-            className={`${setTextColor} ${setMargin} accordion__title`}
-            onClick={questionRedirect}
-          >
-            Open
-          </button>
-          <div className={`${setActive} flex`}>
-            {props.score}/100
-            <Chevron
-              className={`${setRotate} mt-2 2xl:mt-0 ml-28 2xl:ml-48 3xl:ml-60`}
-              fill={`${setColor}`}
-            />
-          </div>
+          Open
         </button>
-      ) : (
-        <div className="none">...</div>
-      )}
+        <div className={`${setActive} flex`}>
+          {props.score}/100
+          <Chevron
+            className={`${setRotate} mt-2 2xl:mt-0 ml-28 2xl:ml-48 3xl:ml-60`}
+            fill={`${setColor}`}
+          />
+        </div>
+      </button>
       <div
         ref={desc}
         style={{ maxHeight: `${setHeight}` }}
