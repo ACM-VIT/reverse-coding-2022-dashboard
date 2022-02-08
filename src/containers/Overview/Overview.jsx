@@ -96,12 +96,12 @@ const Overview = () => {
                 .then(async (responseproblems) => {
                   // sort based on problem no
 
-                  console.log(
-                    "problems",
-                    responseproblems.data.sort(
-                      (a, b) => Number(a.problem_name) - Number(b.problem_name)
-                    )
-                  );
+                  // console.log(
+                  //   "problems",
+                  //   responseproblems.data.sort(
+                  //     (a, b) => Number(a.problem_name) - Number(b.problem_name)
+                  //   )
+                  // );
                   dispatch(
                     getProblems(
                       responseproblems.data.sort(
@@ -153,7 +153,7 @@ const Overview = () => {
                                   }
                                 )
                                 .then((responseassigned) => {
-                                  console.log(responseassigned.data);
+                                  // console.log(responseassigned.data);
                                   dispatch(getAssigned(responseassigned.data));
                                   dispatch(loggedOnce(true));
                                 })

@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import React, { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink, useHistory } from "react-router-dom";
@@ -39,6 +40,9 @@ const Accordion = (props) => {
     history.push("/questions");
   };
 
+  const quesNo = useSelector((state) => state.postJudge.getAssigned);
+  const sub = useSelector((state) => state.postJudge.judgePoints);
+
   useEffect(() => {
     if (props.score === null) {
       setHide("none");
@@ -64,7 +68,7 @@ const Accordion = (props) => {
         className={`${hideBorder} ${setActive} flex justify-between accordion__title`}
         onClick={toggleAccordion}
       >
-        <div className={`${setActive}`}>{props.question}</div>
+        <div className={`${setActive}`}>{props.num}</div>
         <button
           type="button"
           className={`${setTextColor} ${setMargin} accordion__title`}

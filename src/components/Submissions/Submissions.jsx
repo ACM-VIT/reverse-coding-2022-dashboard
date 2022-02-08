@@ -8,7 +8,12 @@ import "./Submissions.css";
 
 const Submissions = () => {
   const submissions = useSelector((state) => state.postJudge.judgePoints);
-  // console.log(submissions);
+
+  const arr = [];
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < submissions.length; i++) {
+    arr.push(submissions[i].problem_name);
+  }
 
   return (
     <div
@@ -20,10 +25,11 @@ const Submissions = () => {
           {submissions.map((sub) => (
             <Accordion
               key={sub.problem_id}
-              id={sub.prblem_id}
+              id={sub.problem_id}
               question={sub.problem_name}
               desc={sub.instructionsText}
               score={sub.points}
+              num={arr.findIndex((x) => String(x) === sub.problem_name) + 1}
             />
           ))}
         </div>
